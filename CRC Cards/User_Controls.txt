@@ -1,0 +1,12 @@
+Class Name: User_Controls
+
+Responsibilities:
+* Sell Item
+* Search Item
+* Delete Item
+
+Collaborators:
+* Item
+* Sell_Buy
+* Search
+* Database_Manager
