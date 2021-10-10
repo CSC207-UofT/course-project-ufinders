@@ -1,0 +1,6 @@
+Class Name: Calendar_Database
+
+Responsibilities:
+* Stores dates
+* Stores events
+

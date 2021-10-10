@@ -1,0 +1,10 @@
+Class Name: UI_List
+
+Responsibilities:
+* Prints journal entries
+* Tells Journal_Controller to add by date
+* Passes to UI_Expanded which posts to show
+
+Collaborators:
+* Journal_Controller
+* UI_Expanded

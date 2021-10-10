@@ -1,0 +1,8 @@
+Class Name: Searching
+
+Responsibilities:
+* Get item based on the information given through searching
+
+Collaborators:
+* Database_Manager
+* Sorting

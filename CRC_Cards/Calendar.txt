@@ -1,0 +1,12 @@
+Class Name: Calendar
+
+Responsibilities:
+* Displays Calendar_Database
+* Calls Make_Delete_Event to delete event
+* Gives option to be an alarm
+* Notifies the event and sends the event to Alarm_Maker
+
+Collaborators:
+* Calendar_Database
+* Event_Manager
+* Alarm_Maker

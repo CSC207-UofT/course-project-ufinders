@@ -1,0 +1,9 @@
+Class Name: User_Controller
+
+Responsibilities:
+* Tells Create_User to create user
+* Tells Event_Manager to add course event to calendar that the user stores in
+
+Collaborators:
+* Create_User
+* Event_Manager

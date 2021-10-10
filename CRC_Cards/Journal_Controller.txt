@@ -1,0 +1,9 @@
+Class Name: Journal_Controller
+
+Responsibilities:
+* Calls Journal_Manager to delete and add items with information given by user
+* Retrieves journal entries
+
+Collaborators:
+* Journal_Manager
+* UI_List

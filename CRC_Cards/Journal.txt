@@ -1,0 +1,5 @@
+Class Name: Journal
+
+Responsibilities:
+* Stores journal entries
+* Deletes journal entries

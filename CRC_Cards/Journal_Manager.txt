@@ -1,0 +1,11 @@
+Class Name: Journal_Manager
+
+Responsibilities:
+* Deletes Journal Entry by calling Journal
+* Creates journal entry
+* Stores entry into Journal
+* Gets list of journal entries
+
+Collaborators:
+* Journal_Entry
+* Journal

@@ -1,0 +1,7 @@
+Class Name: UI_Expanded
+
+Responsibilities:
+* Displays one post by getting information from Journal_Entry
+
+Collaborators:
+* Journal_Entry

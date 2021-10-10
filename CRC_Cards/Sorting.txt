@@ -1,0 +1,10 @@
+Class Name: Sorting
+
+Responsibilities:
+* Sort items by age, choice...
+* Returns Post and sends to Result
+
+Collaborators:
+* Item
+* Result
+* Database

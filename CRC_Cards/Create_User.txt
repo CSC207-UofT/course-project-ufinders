@@ -1,0 +1,9 @@
+Class Name: Create_User
+
+Responsibilities:
+* Makes user object for the information in User_UI
+* Tells Event_Manager to add course event to calendar
+
+Collaborators:
+* User
+* Event_Manager

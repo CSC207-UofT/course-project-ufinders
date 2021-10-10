@@ -1,0 +1,5 @@
+Class Name: Post
+
+Responsibilities:
+* Has items and information about them
+

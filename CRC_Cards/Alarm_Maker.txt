@@ -1,0 +1,8 @@
+Class Name: Alarm_Maker
+
+Responsibilities:
+* Makes alarm object and stores event
+
+Collaborators:
+* Alarm
+* Event

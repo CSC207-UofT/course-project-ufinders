@@ -1,0 +1,8 @@
+Class Name: Make_Delete_Event
+
+Responsibilities:
+* Adds events to calendar
+* Deletes events
+
+Collaborators:
+* Calendar_Database

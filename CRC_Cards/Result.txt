@@ -1,0 +1,6 @@
+Class Name: Result
+
+Responsibilities:
+* Contains all Post
+* Display Post from Sorting
+

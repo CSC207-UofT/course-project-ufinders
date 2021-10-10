@@ -1,0 +1,11 @@
+Class Name: Event_UI
+
+Responsibilities:
+* Displays event
+* Add-one-more-calendar-event button
+* Recommend-event button
+* Add-custom-event button
+
+Collaborators:
+* Get_Event
+* Event_Manager

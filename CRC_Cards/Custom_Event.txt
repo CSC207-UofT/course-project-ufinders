@@ -1,0 +1,7 @@
+Class Name: Custom_Event
+
+Responsibilities:
+* Makes event object and sends to controller
+
+Collaborators:
+* Event

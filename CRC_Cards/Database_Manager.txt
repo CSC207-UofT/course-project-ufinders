@@ -1,0 +1,11 @@
+Class Name: Database_Manager
+
+Responsibilities:
+* Creates post with information from user and sends to Database
+* Gives item searched
+* Check with Post if password matches and removes Post from database
+
+Collaborators:
+* Post
+* Database
+* Item

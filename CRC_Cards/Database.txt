@@ -1,0 +1,7 @@
+Class Name: Database
+
+Responsibilities:
+* Store Post
+
+Collaborators:
+* Post
