@@ -8,3 +8,4 @@ Responsibilities:
 Collaborators:
 * Item
 * Database
+* Searching
