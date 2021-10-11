@@ -4,6 +4,7 @@ Responsibilities:
 * Sell Item
 * Search Item
 * Delete Item
+* Returns listing of posts
 
 Collaborators:
 * Item
