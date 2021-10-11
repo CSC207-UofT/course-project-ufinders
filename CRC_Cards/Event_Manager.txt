@@ -1,14 +1,14 @@
 Class Name: Event_Manager
 
 Responsibilities:
-* Tells Calendar the event the user wants to add
-* Tells Calendar to make custom event and add it
-* Makes recommended event and passes to Event_UI
-* Deletes event
-* Adds course event and make event object with course information also, it will call Make_Delete_Event to add to database
+* Tells Make_Delete_Event to add custom event
+* Tells Make_Delete_Event to add the event %
+* Deletes event by calling Make_Delete_Event
+* Tells Make_Delete_Event to add course event %
+* Removes alarm %
+* Adds alarm %
 
 Collaborators:
-* Custom_Event
 * Make_Delete_Event
 * Event
-* Event_UI
+* Alarm_Maker %

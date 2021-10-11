@@ -1,9 +1,11 @@
 Class Name: Journal_Controller
 
 Responsibilities:
-* Calls Journal_Manager to delete and add items with information given by user
-* Retrieves journal entries
+* Calls Journal_Manager to create a journal entry
+* Calls Journal_Manager to delete journal entry %
+* Calls Journal_Manager to get the journal entry the user wants and passes to the Journal_Entry_UI %
+* Asks Journal_Manager to pass a list of entry's titles %
 
 Collaborators:
 * Journal_Manager
-* UI_List
+* Journal_Entry_UI %

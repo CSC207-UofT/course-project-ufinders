@@ -4,3 +4,4 @@ Responsibilities:
 * Stores information about the event, ie. date, time, url, title
 * Stores alarm object
 
+

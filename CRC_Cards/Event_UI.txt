@@ -2,9 +2,10 @@ Class Name: Event_UI
 
 Responsibilities:
 * Displays event
-* Add-one-more-calendar-event button
-* Recommend-event button
+* Add Recommended events %
+* Recommends events to users %
 * Add-custom-event button
+* Delete Event %
 
 Collaborators:
 * Get_Event
