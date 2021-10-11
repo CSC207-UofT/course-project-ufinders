@@ -6,4 +6,3 @@ Responsibilities:
 * Asks for password in order to delete the item from the market
 
 Collaborators:
-* User_Controls
