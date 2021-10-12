@@ -1,9 +1,8 @@
 Class Name: Result
 
 Responsibilities:
-* Display Post from Sorting
+* Display items from Sorting
 * Gives options to buy, sell or delete items
 
 Collaborators:
 * User-controls
-
