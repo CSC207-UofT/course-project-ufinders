@@ -2,7 +2,7 @@ Class Name: Sorting
 
 Responsibilities:
 * Sort items by age, choice...
-* Returns Post and sends to Result
+* Returns items and sends to Result
 * Get_sorted method returns sorted items
 
 Collaborators:
