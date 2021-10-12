@@ -1,7 +1,6 @@
 Class Name: Database
 
 Responsibilities:
-* Store Post
+* Store items
 
 Collaborators:
-* Post
