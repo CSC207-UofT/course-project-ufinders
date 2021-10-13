@@ -16,7 +16,7 @@ public class Sell_Buy {
     }
 
 //    Should we make the price an integer?
-    public HashMap<String, Object> create_post(String name, String description, Float price, String contact,
+    public HashMap<String, Object> create_post(String name, String description, Double price, String contact,
                                                       String password){
 
         /**
