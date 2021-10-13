@@ -1,0 +1,11 @@
+Class Name: JournalController
+
+Responsibilities:
+* Calls JournalManager to create a journal entry
+* Calls JournalManager to delete journal entry
+* Calls JournalManager to get the journal entry the user wants and passes to the JournalEntryUI
+* Asks JournalManager to pass a list of entry's titles
+
+Collaborators:
+* JournalManager
+* JournalEntryUI

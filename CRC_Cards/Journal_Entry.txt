@@ -1,8 +1,0 @@
-Class Name: JournalEntry
-
-Responsibilities:
-* Information the user wrote
-* Tags related to the entry
-* Date
-
-

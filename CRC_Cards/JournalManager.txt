@@ -1,0 +1,11 @@
+Class Name: JournalManager
+
+Responsibilities:
+* Deletes journal entry from Journal
+* Creates journal entry which would then be added to Journal
+* Gets journal entry from Journal based on title
+* Gets all the entry titles from Journal
+
+Collaborators:
+* JournalEntry
+* Journal

@@ -1,12 +1,11 @@
-Class Name: Journal_UI
+Class Name: JournalUI
 
 Responsibilities:
-* Add entry button which prompts user to label entry with title, date and tags and provide an entry and tell
-Journal_Controller to add a journal entry %
-* Delete journal entry button which would prompt the user to give the title of entry they want to delete %
-* Prints journal entries' title by asking Journal_Controller to give us list of entry title %
-* Passes the journal entry the user wants to view to Journal_Entry_UI %
+* Prompts user to provide a jorunal entry
+* Prompts the user to give the title of entry they want to delete
+* Prints all the journal entries' title
+* Sends the journal entry the user wants to view // might delete&&
 
 Collaborators:
-* Journal_Controller
-* Journal_Entry_UI %
+* JournalController
+* JournalEntryUI %// might delete
