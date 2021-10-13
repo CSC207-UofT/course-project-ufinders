@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 public class User_controls {
 
+    public static void main(String[] args) {
+        intro();
+    }
     public static void intro(){
         Scanner input = new Scanner(System.in);
         System.out.println("Do you want to buy or sell? (Write 'buy' or 'sell'");
@@ -24,6 +27,8 @@ public class User_controls {
         String price = get_input("What is the price of the item you're selling?");
         String contact = get_input("What is your contact information?");
         String password = get_input("What password would you like to use to delete this post after the item is sold?");
+        Double price1 = Double.parseDouble(price);
+        new SellBuy().create_post(name, description, price1, contact, password);
         //call SellBuy (or maybe Database_manager bc things are confusing) here with the info (try to get a bool back for a confirmation message?)
     }
 
