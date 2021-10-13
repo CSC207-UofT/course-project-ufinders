@@ -16,8 +16,8 @@ public class Sell_Buy {
     }
 
 //    Should we make the price an integer?
-    public HashMap<String, Object> create_post(String name, String description, Double price, String contact,
-                                                      String password){
+    public void create_post(String name, String description, Double price, String contact,
+                                   String password){
 
         /**
          * Creates the post through User_Controls and returns
@@ -30,8 +30,6 @@ public class Sell_Buy {
         this.post.put("price",price);
         this.post.put("contact",contact);
         Database.AddPost(post);
-
-        return post;
     }
 
 //    We will need a unique id to differentiate the repeated titles or we will have to ask
@@ -40,7 +38,7 @@ public class Sell_Buy {
         /**
          * Remove the item sold from post and return true
          */
-        ArrayList<HashMap<String, Object>> posts = Database.item_lst;
+        ArrayList<HashMap<String, Object>> posts = Database.GetLst();
         for (HashMap<String, Object> item: posts){
             if (item.get("name").equals(title)){
                 posts.remove(item);
