@@ -1,35 +1,43 @@
 package Journal;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class Journal {
+    //Stores title to Journal Entry
     private HashMap<String, JournalEntry> entries;
 
+    /**
+     * A  constructor that initializes entries
+     * as an empty HashMap.
+     */
     public Journal() {
         entries = new HashMap<>();
     }
 
+    /**
+     * Store the provided journal entry's' title to the provided journal entry
+     *
+     * @param title The title of the entry that we want to store.
+     * @param entry The journal entry we want to store
+     */
     public void addEntry(String title, JournalEntry entry) {
         entries.put(title, entry);
     }
 
-    public String getEntry(String title) {
+    /**
+     * Find the journal entry with the given title and return it.
+     *
+     * @param title The title of the entry that we want to retrieve.
+     * @return The entry with the given title.
+     */
+    public JournalEntry getEntry(String title) {
         if (entries.containsKey(title)) {
-            JournalEntry entry = entries.get(title);
-            ArrayList<String> tags = entry.tagsGetter();
-            StringBuilder tagOfEntry = new StringBuilder();
-            for (int i = 0; i < tags.toArray().length - 1; i += 1){
-                tagOfEntry.append(tags.get(i)).append(", ");
-            }
-            tagOfEntry.append(tags.get(tags.toArray().length - 1));
 
-
-            return "date: " + entry.dateGetter() +  '\n' +  "title: " + entry.titleGetter()  + '\n'  + "tags: "  + tagOfEntry +  '\n'  +  entry.contentGetter();
-        } else {
-            return "Entry with given title does not exist!";
+            return entries.get(title);
         }
+
+        return null;
     }
 }
