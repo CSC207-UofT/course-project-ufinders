@@ -20,28 +20,29 @@ public class Database_Manager {
     }
 
 //    Not sure if this will work (the input part)
-    public HashMap<String, String> create_post(){
-
-        /**
-        * Creates the post through user's input of info and returns
-         * list of info of post
-         */
-        Scanner title = new Scanner(System.in);
-        System.out.println("Enter title of item");
-        String item_title = title.nextLine();
-        this.post.put("title", item_title);
-        Scanner description = new Scanner(System.in);
-        System.out.println("Enter description of item");
-        String item_descript = description.nextLine();
-        this.post.put("description", item_descript);
-        Scanner pass = new Scanner(System.in);
-        System.out.println("Create password for item");
-        String item_password = pass.nextLine();
-        this.post.put("password", item_password);
-
-
-        return post;
-    }
+//    Moved this to Sell_Buy, but kept it for now just in case
+//    public HashMap<String, String> create_post(){
+//
+//        /**
+//        * Creates the post through user's input of info and returns
+//         * list of info of post
+//         */
+//        Scanner title = new Scanner(System.in);
+//        System.out.println("Enter title of item");
+//        String item_title = title.nextLine();
+//        this.post.put("title", item_title);
+//        Scanner description = new Scanner(System.in);
+//        System.out.println("Enter description of item");
+//        String item_descript = description.nextLine();
+//        this.post.put("description", item_descript);
+//        Scanner pass = new Scanner(System.in);
+//        System.out.println("Create password for item");
+//        String item_password = pass.nextLine();
+//        this.post.put("password", item_password);
+//
+//
+//        return post;
+//    }
 
 /*
     public String searched_item(String title){
