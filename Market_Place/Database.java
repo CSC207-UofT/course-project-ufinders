@@ -13,16 +13,23 @@ public class Database {
 //    we need to create an id that makes the items in the list unique
 
 
-    public static ArrayList<HashMap<String, String>> item_lst;
+    public static ArrayList<HashMap<String, Object>> item_lst;
 
-    public Database(HashMap<String, String> post){
+    public Database(){
         /**
          * The constructor for Database and initializes an empty array list
          * */
-        item_lst = new ArrayList<HashMap<String, String>>();
-        item_lst.add(post);
+        item_lst = new ArrayList<HashMap<String, Object>>();
+
     }
 
+    public static void AddPost(HashMap<String, Object> post) {
+        /**
+         * Adds the post to the item_lst
+         */
+        item_lst.add(post);
+
+    }
 
 }
 

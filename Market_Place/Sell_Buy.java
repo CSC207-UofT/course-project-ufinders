@@ -9,15 +9,15 @@ public class Sell_Buy {
      * @param post a post with information given by user
      *
      */
-    public HashMap<String, String> post;
+    public HashMap<String, Object> post;
 
     public Sell_Buy(){
         this.post = new HashMap<>();
     }
 
 //    Should we make the price an integer?
-    public HashMap<String, String> create_post(String name, String description, String price, String contact, String
-                                               password){
+    public HashMap<String, Object> create_post(String name, String description, Float price, String contact,
+                                                      String password){
 
         /**
          * Creates the post through User_Controls and returns
@@ -29,8 +29,8 @@ public class Sell_Buy {
         this.post.put("password", password);
         this.post.put("price",price);
         this.post.put("contact",contact);
+        Database.AddPost(post);
 
-        new Database(post);
         return post;
     }
 
@@ -40,8 +40,8 @@ public class Sell_Buy {
         /**
          * Remove the item sold from post and return true
          */
-        ArrayList<HashMap<String, String>> posts = Database.item_lst;
-        for (HashMap<String, String> item: posts){
+        ArrayList<HashMap<String, Object>> posts = Database.item_lst;
+        for (HashMap<String, Object> item: posts){
             if (item.get("name").equals(title)){
                 posts.remove(item);
                 return true;
