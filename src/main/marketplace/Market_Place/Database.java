@@ -41,9 +41,6 @@ public class Database {
         return item_lst;
     }
 
-    public static void main(String[] args) {
-        System.out.println(item_lst);
-    }
 
 }
 
