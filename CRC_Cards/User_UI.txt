@@ -1,7 +1,7 @@
 Class Name: User_UI
 
 Responsibilities:
-* User gives user's ID and password
+* User gives user's ID, name, and password
 
 Collaborators:
 * Create_User
