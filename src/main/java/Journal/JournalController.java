@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class JournalController {
 
     // the object that the controller instructs
-    private JournalManager journalmanager;
+    private final JournalManager journalmanager;
 
     public JournalController(){
         this.journalmanager = new JournalManager();

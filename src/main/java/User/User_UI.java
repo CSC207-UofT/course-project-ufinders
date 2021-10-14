@@ -1,4 +1,4 @@
-package java.User;
+package User;
 
 import java.util.Scanner;
 import java.util.Objects;

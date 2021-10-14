@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class JournalManager {
     // Where journal entries are stored
-    private Journal journal;
+    private final Journal journal;
 
     public JournalManager(){
         journal = new Journal();
