@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,7 +17,6 @@ public class Sell_Buy {
         this.post = new HashMap<>();
     }
 
-//    Should we make the price an integer?
     public void create_post(String name, String description, Double price, String contact,
                                    String password, String email){
 
@@ -29,7 +30,6 @@ public class Sell_Buy {
         this.post.put("price",price);
         this.post.put("contact",contact);
         this.post.put("email", email);
-        Database.AddPost(post);
         Item item = new Item(name, description, contact, email, password, price);
         Database.StoreItem(item);
     }
@@ -38,16 +38,19 @@ public class Sell_Buy {
 //    users to create unique titles
     public boolean buy_items(String title){
         /**
-         * Remove the item sold from post and return true
+         * Removes the item sold from post and return true
          */
-        ArrayList<HashMap<String, Object>> posts = Database.GetLst();
-        for (HashMap<String, Object> item: posts){
-            if (item.get("name").equals(title)){
+        ArrayList<Item> posts = Database.GetLst();
+
+        for (Item item: posts){
+            if (item.getName().equals(title)){
                 posts.remove(item);
                 return true;
             }
         }
         return false;
     }
+
+
 
 }
