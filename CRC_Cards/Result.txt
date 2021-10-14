@@ -1,8 +1,8 @@
 Class Name: Result
 
 Responsibilities:
-* Display items from Sorting
-* Gives options to buy, sell or delete items
+* Allows user to view items from Sorting
+* Gives option to delete items or exit search
 
 Collaborators:
 * User-controls
