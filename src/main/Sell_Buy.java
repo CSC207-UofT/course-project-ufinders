@@ -1,1 +1,52 @@
+import java.util.ArrayList;
+import java.util.HashMap;
 
+
+public class Sell_Buy {
+
+    /**
+     * Creates the items to be sold
+     * @param post a post with information given by user
+     *
+     */
+    public HashMap<String, Object> post;
+
+    public Sell_Buy(){
+        this.post = new HashMap<>();
+    }
+
+    //    Should we make the price an integer?
+    public void create_post(String name, String description, Double price, String contact_num, String contact_email,
+                            String password){
+
+        /**
+         * Creates the post through User_Controls and returns
+         * list of info of post
+         */
+
+        this.post.put("name",name);
+        this.post.put("description", description);
+        this.post.put("password", password);
+        this.post.put("price",price);
+        this.post.put("contact_num",contact_num);
+        this.post.put("contact_email", contact_email);
+        Database.AddPost(post);
+    }
+
+    //    We will need a unique id to differentiate the repeated titles or we will have to ask
+//    users to create unique titles
+    public boolean buy_items(String title){
+        /**
+         * Remove the item sold from post and return true
+         */
+        ArrayList<HashMap<String, Object>> posts = Database.GetLst();
+        for (HashMap<String, Object> item: posts){
+            if (item.get("name").equals(title)){
+                posts.remove(item);
+                return true;
+            }
+        }
+        return false;
+    }
+
+}
