@@ -1,4 +1,4 @@
-Class Name: Database
+Class Name: main.Database
 
 Responsibilities:
 * Store Post
