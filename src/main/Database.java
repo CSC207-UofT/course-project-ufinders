@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,7 +15,8 @@ public class Database {
 //    we need to create an id that makes the items in the list unique
 
 
-    private static final ArrayList<HashMap<String, Object>> item_lst = new ArrayList<>();
+//    private static ArrayList<HashMap<String, Object>> item_lst = new ArrayList<>();
+    private static ArrayList<Item> item_type_lst = new ArrayList<Item>();
 
 //    public Database(){
 //        /**
@@ -23,23 +26,37 @@ public class Database {
 //
 //    }
 
-    public static void AddPost(HashMap<String, Object> post) {
+//    public static void AddPost(HashMap<String, Object> post) {
+//        /**
+//         * Adds the post to the item_lst
+//         */
+////        System.out.println(post);
+//
+////        item_lst.add(post);
+//        System.out.println(item_lst);
+//
+//    }
+
+    public static void StoreItem(Item item) {
         /**
          * Adds the post to the item_lst
          */
-        System.out.println(post);
 
-        item_lst.add(post);
-        System.out.println(item_lst);
+        item_type_lst.add(item);
+        System.out.println(item_type_lst);
 
     }
 
-    public static ArrayList<HashMap<String, Object>> GetLst(){
+    public static ArrayList<Item> GetLst(){
         /**
          * Returns the item_lst
          */
-        return item_lst;
+        return item_type_lst;
+    }
+    public static void main(String[] args) {
+
+        System.out.println(item_type_lst);
     }
 
-
 }
+
