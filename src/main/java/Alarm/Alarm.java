@@ -1,4 +1,4 @@
-package java.Alarm;
+package Alarm;
 
 import java.util.Date;
 import java.util.HashMap;

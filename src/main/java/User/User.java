@@ -1,4 +1,4 @@
-package java.User;
+package User;
 
 import java.util.HashMap;
 import java.util.Date;

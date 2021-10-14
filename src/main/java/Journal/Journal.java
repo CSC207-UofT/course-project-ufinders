@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Journal {
     //Stores title to Journal Entry
-    private HashMap<String, JournalEntry> entries;
+    private final HashMap<String, JournalEntry> entries;
 
     /**
      * A  constructor that initializes entries
