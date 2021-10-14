@@ -14,6 +14,7 @@ public class Database {
 
 
     private static ArrayList<HashMap<String, Object>> item_lst = new ArrayList<>();
+    private static ArrayList<Item> item_type_lst = new ArrayList<Item>();
 
 //    public Database(){
 //        /**
@@ -31,6 +32,17 @@ public class Database {
 
         item_lst.add(post);
         System.out.println(item_lst);
+
+    }
+
+    public static void StoreItem(Item item) {
+        /**
+         * Adds the post to the item_lst
+         */
+//        System.out.println(post);
+
+        item_type_lst.add(item);
+        System.out.println(item_type_lst);
 
     }
 

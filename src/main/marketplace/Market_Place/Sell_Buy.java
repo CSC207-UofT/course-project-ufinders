@@ -30,7 +30,8 @@ public class Sell_Buy {
         this.post.put("contact",contact);
         this.post.put("email", email);
         Database.AddPost(post);
-        new Item(name, description, contact, email, password, price);
+        Item item = new Item(name, description, contact, email, password, price);
+        Database.StoreItem(item);
     }
 
 //    We will need a unique id to differentiate the repeated titles or we will have to ask
