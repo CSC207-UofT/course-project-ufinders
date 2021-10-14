@@ -2,5 +2,7 @@ Class Name: Searching
 
 Responsibilities:
 * Get all items based on the information given
+* Sends items to be sorted based on the information given
 
 Collaborators:
+* Sorting
