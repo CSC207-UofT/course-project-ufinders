@@ -1,30 +1,69 @@
-//import java.util.Scanner;
-//
-//public class Item {
-//
-//    /**
-//     * An item class that stores the users' information and the description of the item
-//     *
-//     * @param item_descript the description of the item
-//     */
-//
-//    public String item_descript;
-//
-////    How are we getting the user's input?
-////    I need to know where and what method gets the user's info in order to implement user's info
-//    public Item(){
-//        this.item_descript = null;
+public class Item {
+
+    /**
+     * An item class that stores the users' information and item's attributes
+     *
+     * @param name the item's name
+     * @param item_description the description of the item
+     * @param contact_num the seller's phone number
+     * @param contact_email the seller's email
+     * @param price the item's price
+     * @param password the item's deletion password
+     * @param campus the seller's campus
+     * @param condition the item's condition
+     * @param picture the item's picture
+     */
+
+    private final String name;
+    private final String item_description;
+    private final String contact_num;
+    private final String contact_email;
+    private final String password;
+    private final double price;
+
+    /* TODO: add picture attribute, implement campus and condition enums
+     */
+//    private enum campus{
+//        UTSG, UTM, UTSC
 //    }
-//
-//    public String Item_Descript(){
-//        /**
-//         * Get the description of the item through Database_Manager
-//         */
-////        I have the description of the item in Database_Manager, but I am not sure how to retrieve it yet
-//
-//    public void delete_item(){
-////        Not sure where to ask password, why do we need this if we are deleting through Database_Manager
+//    private campus campus;
+//    private enum condition{
+//        Used, New, LikeNew
 //    }
-//
-//
-//}
+//    private condition condition;
+
+
+    public Item(String title, String item_description, String contact_num, String contact_email, String password,
+                double price){
+        this.name = title;
+        this.item_description = item_description;
+        this.contact_num = contact_num;
+        this.contact_email = contact_email;
+        this.password = password;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getItem_description() {
+        return item_description;
+    }
+
+    public String getContact_num() {
+        return contact_num;
+    }
+
+    public String getContact_email() {
+        return contact_email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}

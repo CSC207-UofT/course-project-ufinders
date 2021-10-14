@@ -26,10 +26,11 @@ public class User_Controls {
         String description = get_input("What is the description of the item you're selling?");
         String price = get_input("What is the price of the item you're selling?");
         String contact = get_input("What is your contact information?");
+        String email = get_input("What is your email information?");
         String password = get_input("What password would you like to use to delete this post after the item is sold?");
         Double price1 = Double.parseDouble(price);
         Sell_Buy sell_buy = new Sell_Buy();
-        sell_buy.create_post(name, description, price1, contact, password);
+        sell_buy.create_post(name, description, price1, contact, password, email);
     }
 
     private static void buying_info(){

@@ -27,7 +27,7 @@ public class Database {
         /**
          * Adds the post to the item_lst
          */
-        System.out.println(post);
+//        System.out.println(post);
 
         item_lst.add(post);
         System.out.println(item_lst);
