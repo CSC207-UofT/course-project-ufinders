@@ -1,0 +1,8 @@
+Class Name: ItemManager
+
+Responsibilities:
+* Creates item to sell and sends to database
+* Buys Items
+
+Collaborators:
+* Item
