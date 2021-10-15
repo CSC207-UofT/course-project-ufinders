@@ -1,6 +1,8 @@
 Class Name: Database
 
 Responsibilities:
-* Store items
+* Stores Items
 
 Collaborators:
+* Item
+

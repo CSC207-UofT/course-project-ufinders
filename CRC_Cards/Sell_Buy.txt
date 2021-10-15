@@ -5,5 +5,4 @@ Responsibilities:
 * Buy Items
 
 Collaborators:
-* Database_Manager
 * Item
