@@ -1,7 +1,7 @@
 Class Name: main.Database
 
 Responsibilities:
-* Store Post
+* Stores Items
 
 Collaborators:
-* Post
+* Item
