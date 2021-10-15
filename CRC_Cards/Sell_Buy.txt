@@ -1,8 +1,0 @@
-Class Name: Sell_Buy
-
-Responsibilities:
-* Creates item to sell and sends to database
-* Buy Items
-
-Collaborators:
-* Item
