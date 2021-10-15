@@ -1,4 +1,5 @@
-package Journal;
+package java.Journal;
+
 
 
 import java.util.HashMap;
