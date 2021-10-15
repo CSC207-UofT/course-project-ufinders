@@ -15,7 +15,7 @@ public class MainController {
             if (choice.equals("market")) {
                 User_controls.intro();
             } else if (choice.equals("self_help")) {
-                //SELF HELP PEOPLE WHAT DO YOU WANT HERE?
+                new User.User_UI();
             } else if (choice.equals("exit")) {
                 stop = true;
             }
