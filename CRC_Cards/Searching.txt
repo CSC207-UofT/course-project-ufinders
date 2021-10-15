@@ -1,8 +1,8 @@
 Class Name: Searching
 
 Responsibilities:
-* Get item based on the information given through searching
+* Get all items based on the information given
+* Sends items to be sorted based on the information given
 
 Collaborators:
-* Database_Manager
 * Sorting

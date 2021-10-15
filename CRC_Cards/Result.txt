@@ -1,6 +1,8 @@
 Class Name: Result
 
 Responsibilities:
-* Contains all Post
-* Display Post from Sorting
+* Allows user to view items from Sorting
+* Gives option to delete items or exit search
 
+Collaborators:
+* User-controls

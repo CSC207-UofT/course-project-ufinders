@@ -3,7 +3,6 @@ Class Name: Item
 Responsibilities:
 * Contains the user's information
 * Description of the item
-* Asks for password in order to delete the item from the market
+* Contains password in order to delete the item from the market
 
 Collaborators:
-* User_Controls
