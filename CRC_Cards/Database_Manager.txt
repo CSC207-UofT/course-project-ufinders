@@ -1,6 +1,7 @@
 Class Name: Database_Manager
 
 Responsibilities:
+
 * Gives item(s) searched
 * Check with item if password matches and removes item from database
 

@@ -1,4 +1,4 @@
-package Alarm;
+package java.Alarm;
 
 public class Alarm_Maker {
 

@@ -1,8 +1,7 @@
-package Journal;
+package java.Journal;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 
 public class JournalController {
 

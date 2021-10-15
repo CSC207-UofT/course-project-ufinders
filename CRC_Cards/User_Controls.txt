@@ -8,6 +8,6 @@ Responsibilities:
 
 Collaborators:
 * Item
-* Sell_Buy
+* main.Sell_Buy
 * Search
 * Database_Manager
