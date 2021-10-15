@@ -3,7 +3,6 @@ package java.Journal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
 public class JournalController {
 
     // the object that the controller instructs
