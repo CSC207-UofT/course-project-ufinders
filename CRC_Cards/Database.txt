@@ -1,4 +1,4 @@
-Class Name: main.Database
+Class Name: Database
 
 Responsibilities:
 * Stores Items

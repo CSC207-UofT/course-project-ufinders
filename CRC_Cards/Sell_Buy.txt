@@ -1,4 +1,4 @@
-Class Name: main.Sell_Buy
+Class Name: Sell_Buy
 
 Responsibilities:
 * Creates item to sell and sends to database

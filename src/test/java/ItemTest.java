@@ -55,7 +55,7 @@ class ItemTest {
         Item sample = new Item("cat", "furry animal", "7689503921",
                 "j@gmail.com", "123", 12.0);
 
-        assertEquals(sample.getPrice(), "123");
+        assertEquals(sample.getPrice(), "12.0");
 
     }
 
