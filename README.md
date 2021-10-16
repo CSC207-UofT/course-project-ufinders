@@ -1,6 +1,3 @@
-## Replace this README.md!
+## Welcome to UFind!
 
-This is a standard README.md file for you to replace. You'll want to include your own content here!
-
-MD (Markdown) files use [Markdown formatting](https://guides.github.com/features/mastering-markdown/): 
-these look very much like .txt files, so you can write them in a very similar way.
+Our Phase 0 written work (specification, walkthrough, and progress report) is in the Phase 0 folder, alongside directions for running our skeleton code. Our CRC cards are in the CRC card folder.
