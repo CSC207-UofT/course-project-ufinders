@@ -1,8 +1,8 @@
 package java.User;
 
+import java.Journal.JournalUI;
 import java.util.Scanner;
 import java.util.Objects;
-import Journal.JournalUI;
 
 
 public class User_UI {

@@ -1,3 +1,5 @@
+package java;
+
 import java.util.Scanner;
 
 public class MainController {
@@ -13,9 +15,9 @@ public class MainController {
             System.out.println("Welcome to Ufind! Would you like to enter the self-help section, enter the marketplace, or exit? (self-help/market/exit)");
             String choice = input.nextLine();
             if (choice.equals("market")) {
-                User_controls.intro();
+                java.Marketplace.User_Controls.intro();
             } else if (choice.equals("self_help")) {
-                new User.User_UI();
+                new java.User.User_UI();
             } else if (choice.equals("exit")) {
                 stop = true;
             }

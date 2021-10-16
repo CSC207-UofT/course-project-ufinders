@@ -1,7 +1,9 @@
+package java.Marketplace;
+
 import java.util.Objects;
 import java.util.Scanner;
 
-public class User_controls {
+public class User_Controls {
 
     /**
      * Prompts the user to choose a section of the marketplace to enter
@@ -19,7 +21,7 @@ public class User_controls {
             selling_info();
         }
         else if (Objects.equals(segmentchoice, "exit")){
-            MainController.menu();
+            java.MainController.menu();
         }
         else {
             intro();
