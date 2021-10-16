@@ -16,7 +16,7 @@ public class User_UI {
         String id = null;
         String name = null;
         // Program keeps the user on the login section until they exit
-        while(!Objects.equals(read.nextLine(), "exit") && (id == null && name == null) ){
+        while(!Objects.equals(read.nextLine(), "exit") || (id == null && name == null) ){
             // Asks the user to enter their UTorID:
             System.out.println("UTorID:");
             id = read.nextLine();
