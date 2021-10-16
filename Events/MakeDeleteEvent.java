@@ -13,7 +13,7 @@ public class MakeDeleteEvent { //The Use Case that contains a list of events for
 
 
     /**
-     * Constructs a Events.MakeDeleteEvent object.
+     * Constructs a Events.main.java.Events.MakeDeleteEvent object.
      */
     public MakeDeleteEvent() {
         events = new ArrayList<>();

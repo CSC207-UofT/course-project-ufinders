@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class EventManager { //The controller for how all events work
 
-    //Events.MakeDeleteEvent Use Case that contains all events for this user
+    //Events.main.java.Events.MakeDeleteEvent Use Case that contains all events for this user
     private MakeDeleteEvent mde;
 
     /**
-     * Constructor that initializes Events.EventManager and its Events.MakeDeleteEvent attribute.
+     * Constructor that initializes Events.main.java.Events.EventManager and its Events.main.java.Events.MakeDeleteEvent attribute.
      */
     public EventManager() {
         mde = new MakeDeleteEvent();
