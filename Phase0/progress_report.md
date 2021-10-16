@@ -6,7 +6,7 @@ There are two main features in the program, a self-help section and a marketplac
 
 Walkthrough Summary:
 
-In our walkthrough, the user first goes to the marketplace and posts an item they want to sell, using MenuController, User_Controls, ItemManager, Database, and Item in the process. The user then navigates to the selfcare section using MenuController and User_UI. The user accesses the Journal and adds a journal entry using the JournalUI, JournalController, Journal Manager and Journal.
+In our walkthrough, the user first goes to the marketplace and posts an item they want to sell, using MenuController, User_Controls, ItemManager, Database, and Item in the process. The user then navigates to the selfcare section using MenuController and User_UI. The user accesses the Journal and adds a journal entry using the JournalUI, JournalController, Journal Manager and Journal. Finally, the user accesses their events and adds an event using EventUI, EventManager, MakeDeleteEvent, and Event. 
 
 ------
 
