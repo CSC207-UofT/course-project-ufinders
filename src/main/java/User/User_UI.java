@@ -12,7 +12,7 @@ public class User_UI {
         Scanner read = new Scanner(System.in);
 
         // Asks user if they want to exit the UserUI
-        System.out.println("Type 'exit' to leave the program or sign in");
+        System.out.println("Type 'exit' to leave the program or 'sign in' to sign in");
         String id = null;
         String name = null;
         // Program keeps the user on the login section until they exit
@@ -24,6 +24,7 @@ public class User_UI {
             System.out.println("Name:");
             name = read.nextLine();
         }
+        System.out.println("Type 'exit' to leave the program or 'done' to sign in");
         // Checks that the user has entered a UTorID and Name
         if(id != null && name != null){
             while(!Objects.equals(read.nextLine(), "exit")) {
@@ -40,6 +41,7 @@ public class User_UI {
                 }
             }
         }
+        Main.MainController.menu()
     }
 
 }
