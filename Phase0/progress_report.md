@@ -109,4 +109,5 @@ Plan to work on: Front End development and further integrating UI elements into 
 
 Oliver: 
 
-Have worked on: Skeleton code for Item, revised changes to Item_Manager and User_Controls, made sure code was working in different stages of development, modified unit tests for Item to make it more concise
+Have worked on: Skeleton code for Item, revised changes to Item_Manager and User_Controls, made sure code was working in different stages of development, modified unit tests for Item to make it more concise.
+Plan to work on: Create more unit tests for the code
