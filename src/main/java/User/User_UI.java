@@ -41,7 +41,7 @@ public class User_UI {
                 }
             }
         }
-        Main.MainController.menu()
+        Main.MainController.menu();
     }
 
 }
