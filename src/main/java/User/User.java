@@ -25,22 +25,38 @@ public class User {
         this.setCalendar(calendar);
     }
 
-    // Set the UserID
+    /**
+     * Sets id for the user
+     *
+     * @param id The user's id
+     */
     public void setUserID(String id){
         UserID = id;
     }
 
-    // Set the users name
+    /**
+     * Sets name for user
+     *
+     * @param name The user's name
+     */
     public void setUserName(String name){
         UserName = name;
     }
 
-    // Set the course of the user
+    /**
+     * Sets course for user
+     *
+     * @param course The user's course
+     */
     public void setCourse(String course){
         Course = course;
     }
 
-    // Set the calendar of the user
+    /**
+     * Sets calendar for the user.
+     *
+     * @param calendar The date of the event.
+     */
     public void setCalendar(HashMap<Date, Event> calendar){
         Calendar = calendar;
     }
