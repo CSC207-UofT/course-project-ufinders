@@ -1,31 +1,48 @@
+package Events;
+
+import Events.Event;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
+import java.util.List;
 
-public class MakeDeleteEvent {
+public class MakeDeleteEvent { //The Use Case that contains a list of events for this user and manages them
+    //List of events this object stores
+    private List<Event> events;
 
-    public static void makeEvent(Date date, String time, String title, String URL, String user, Boolean print) {
-        if (MakeDeleteEvent.getEvent() == "") {
-            Event event = new Event(date, time, title, URL);
-            MakeDeleteEvent.addToCalendar(event, user);
-            if (print) {
-                MakeDeleteEvent.printEvent(event);
-            }
-        }
-        else {
-            System.out.println("Event already added");
-        }
+
+    /**
+     * Constructs a Events.MakeDeleteEvent object.
+     */
+    public MakeDeleteEvent() {
+        events = new ArrayList<>();
     }
 
-    public static void makeCustomEvent(Date date, String time, String title, String URL, String user, Boolean print) {
-        Event event = new Event(date, time, title, "");
-        MakeDeleteEvent.addToCalendar(event, user);
+    /**
+     * Adds an event to the calendar.
+     *
+     * @param date The date of the event.
+     * @param time The time the event takes place at.
+     * @param title The name of the event.
+     * @param url The URL of the event if it's from the UofT website.
+     * @param user The username of the user using this program
+     * @param print Whether to print the event upon adding it.
+     */
+    public void addEvent(Date date, String time, String title, String URL, String user, Boolean print) {
+        Event event = new Event(date, time, title, URL);
+        events.add(event);
         if (print) {
-            MakeDeleteEvent.printEvent(event);
+            this.printEvent(event);
         }
     }
 
-
-    public static void printEvent(Event event) {
+    /**
+     * Prints the event.
+     *
+     * @param event The event itself.
+     */
+    public void printEvent(Event event) {
         System.out.println(event.getEventTitle());
         System.out.println(event.getEventDate());
         System.out.println(event.getEventTime());
@@ -34,25 +51,13 @@ public class MakeDeleteEvent {
         }
     }
 
-    public static Event getFromCalendar(Date date, String time, String title, String URL, String user) {
-
+    /**
+     * Prints all events this object holds.
+     */
+    public void displayEvents() {
+        for(Event e: events) {
+            this.printEvent(e);
+        }
     }
 
-    public static void addToCalendar(Event event, String user) {
-
-    }
-
-    public static void removeEvent(Date date, String time, String title, String URL, String user) {
-
-    }
-
-    public static void makeAlarm(Date date, String time, String title, String URL, String user) {
-        Event event = MakeDeleteEvent.getFromCalendar(date, time, title, URL, user);
-        AlarmMaker.addAlarm(event);
-    }
-
-    public static void removeAlarm(Date date, String time, String title, String URL, String user) {
-        Event event = MakeDeleteEvent.getFromCalendar(date, time, title, URL, user);
-        AlarmMaker.deleteAlarm(event);
-    }
 }

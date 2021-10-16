@@ -1,30 +1,38 @@
+package Events;
+
 import java.util.Date;
 
-public class EventManager {
+public class EventManager { //The controller for how all events work
 
-    public static void addEvent(Date date, String time, String title, String URL, String user, Boolean print) {
+    //Events.MakeDeleteEvent Use Case that contains all events for this user
+    private MakeDeleteEvent mde;
 
-        MakeDeleteEvent.makeEvent(date, time, title, URL, user, print);
+    /**
+     * Constructor that initializes Events.EventManager and its Events.MakeDeleteEvent attribute.
+     */
+    public EventManager() {
+        mde = new MakeDeleteEvent();
     }
 
-    public static void addCustomEvent(Date date, String time, String title, String URL, String user, Boolean print) {
-        MakeDeleteEvent.makeCustomEvent(date, time, title, URL, user, print);
+    /**
+     * Adds an event to the calendar.
+     *
+     * @param date The date of the event.
+     * @param time The time the event takes place at.
+     * @param title The name of the event.
+     * @param url The URL of the event if it's from the UofT website.
+     * @param user The username of the user using this program
+     * @param print Whether to print the event upon adding it.
+     */
+    public void addEvent(Date date, String time, String title, String URL, String user, Boolean print) {
+        mde.addEvent(date, time, title, URL, user, print);
     }
 
-    public static void deleteEvent(Date date, String time, String title, String URL, String user) {
-        MakeDeleteEvent.removeEvent(date, time, title, URL, user);
-    }
-
-    public static void addCourseEvent(Date date, String time, String title, String user, Boolean print) {
-        MakeDeleteEvent.makeCourseEvent(date, time, title, user, print);
-    }
-
-    public static void addAlarm(Date date, String time, String title, String URL, String user) {
-        MakeDeleteEvent.makeAlarm(date, time, title, URL, user);
-    }
-
-    public static void deleteAlarm(Date date, String time, String title, String URL, String user) {
-        MakeDeleteEvent.removeAlarm(date, time, title, URL, user);
+    /**
+     * Prints all events this object holds.
+     */
+    public void displayEvents() {
+        mde.displayEvents();
     }
 
 }
