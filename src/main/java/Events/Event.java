@@ -1,5 +1,6 @@
-package Events;
+package java.Events;
 
+import java.Alarm.Alarm;
 import java.util.Date;
 
 public class Event { //The event object itself
@@ -17,7 +18,7 @@ public class Event { //The event object itself
      * @param date The date of the event.
      * @param time The time the event takes place at.
      * @param title The name of the event.
-     * @param url The URL of the event if it's from the UofT website.
+     * @param URL The URL of the event if it's from the UofT website.
      */
     public Event(Date date, String time, String title, String URL) {
         this.setDate(date);

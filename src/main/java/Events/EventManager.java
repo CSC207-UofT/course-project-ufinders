@@ -1,4 +1,4 @@
-package Events;
+package java.Events;
 
 import java.util.Date;
 
@@ -20,7 +20,7 @@ public class EventManager { //The controller for how all events work
      * @param date The date of the event.
      * @param time The time the event takes place at.
      * @param title The name of the event.
-     * @param url The URL of the event if it's from the UofT website.
+     * @param URL The URL of the event if it's from the UofT website.
      * @param user The username of the user using this program
      * @param print Whether to print the event upon adding it.
      */
