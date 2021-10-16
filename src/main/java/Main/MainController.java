@@ -14,14 +14,14 @@ public class MainController {
         Scanner input = new Scanner(System.in);
         boolean stop = false;
         while (!stop) {
-            System.out.println("Welcome to Ufind! Would you like to enter the self-help section, enter the marketplace, or exit? (self-help/market/exit)");
+            System.out.println("Welcome to Ufind! Would you like to enter the self-help section, enter the marketplace, or exit? (selfhelp/market/exit)");
             String choice = input.nextLine();
             switch (choice) {
                 case "market":
                     User_Controls.intro();
                     break;
-                case "self_help":
-                    new User_UI();
+                case "selfhelp":
+                    new User_UI.intro();
                     break;
                 case "exit":
                     stop = true;
