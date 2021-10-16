@@ -8,7 +8,7 @@ import Events.EventUI;
 
 public class User_UI {
 
-    public static void main(String[] args){
+    public static void intro(){
         Scanner read = new Scanner(System.in);
 
         // Asks user if they want to exit the UserUI
