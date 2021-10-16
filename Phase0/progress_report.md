@@ -12,22 +12,41 @@ In our walkthrough, the user first goes to the marketplace and posts an item the
 
 CRC Summary:
 
-We have # Controllers/Presenters:
+We have 10 Controllers/Presenters:
   - JournalController
-  - Main.MainController
+  - MainController
   - User_Controls
+  - Calendar
+  - Event_UI
+  - JournalUI
+  - JournalEntryUI
+  - Result
+  - User_Controller
+  - User_UI
 
-We have # Use Cases:
+
+We have 11 Use Cases:
   - JournalManager
   - ItemManager
   - Searching
   - Sorting
+  - Alarm_Maker
+  - Create_User
+  - Database_Manager
+  - Event_Manager
+  - Get_Event
+  - ItemManager
+  - Make_Delete_Event
 
-We have # Entities:
+We have 8 Entities:
   - JournalEntry
   - Journal
   - Database
   - Item
+  - Alarm
+  - Calendar_Database
+  - Event
+  - User
 
 ------
 
@@ -49,9 +68,9 @@ By clarifying what classes go in which layer, we were able to figure out the col
 
 Questions:
 
-How can we implement a database so that information isn’t lost each time our program is re-run? (For marketplace and journal) 
-How should we decide what to implement interfaces for? 
-How should we write unit tests for controllers when they mostly just take input? 
+  - How can we implement a database so that information isn’t lost each time our program is re-run? (For marketplace and journal) 
+  - How should we decide what to implement interfaces for? 
+  - How should we write unit tests for controllers when they mostly just take input? 
 
 ------
 
