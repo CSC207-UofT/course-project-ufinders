@@ -58,9 +58,9 @@ The skeleton calendar program allows a user to enter the calendar and make an ev
 
 What has worked well so far:
 
-Separating out the controllers and the use cases was more intuitive and helpful than we expected. Working on the controller allowed us to focus on what information was gathered from the user, without worrying about what exactly was being done with that information. Working on use cases, we could easily access information we needed without worrying about how the class acquires it.
+Separating out the controllers and the use cases was more intuitive and helpful than we expected. Working on controllers and UI allowed us to focus on what information was gathered from the user, without worrying about what exactly was being done with that information. Working on use cases, we could easily access information we needed without worrying about how the class acquires it.
 
-Using the scenario walkthrough as a way to verify our program works the way we thought it was supposed to work. Figuring out which part of the clean architecture each class was prevented us from having high level code depending on low level code. The CRC cards helped us identify what methods we should implement for each class based on the responsibilities of each class.
+Using the scenario walkthrough as a way to verify our program works the way we thought it was supposed to work was also helpful. Figuring out which part of the clean architecture each class was prevented us from having high level code depending on low level code. The CRC cards helped us identify what methods we should implement for each class based on the responsibilities of each class.
 
 By clarifying what classes go in which layer, we were able to figure out the collaborations between classes and their responsibilities more easily and efficiently which then made coding quicker.
 
