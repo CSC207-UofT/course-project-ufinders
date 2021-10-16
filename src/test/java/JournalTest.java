@@ -1,5 +1,3 @@
-package java;
-
 import Journal.JournalController;
 import static org.junit.Assert.*;
 import org.junit.Before;
