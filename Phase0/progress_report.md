@@ -16,11 +16,13 @@ We have # Controllers/Presenters:
   - JournalController
   - Main.MainController
   - User_Controls
+
 We have # Use Cases:
   - JournalManager
   - ItemManager
   - Searching
   - Sorting
+
 We have # Entities:
   - JournalEntry
   - Journal
@@ -83,6 +85,7 @@ Have worked on: Skeleton code for the events section.
 Marton:
 
 Have worked on: Skeleton code of the alarm clock and the user sections of the program along with front end development.
+Plan to Work on: Front End development and further integrating UI elements into our program.
 
 Oliver: 
 
