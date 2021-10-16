@@ -55,7 +55,7 @@ public class User {
     /**
      * Sets calendar for the user.
      *
-     * @param calendar The date of the event.
+     * @param calendar The user's calendar.
      */
     public void setCalendar(HashMap<Date, Event> calendar){
         Calendar = calendar;
