@@ -19,9 +19,10 @@ public class EventUI { //The user interface for the events section
         EventUI eventView = new EventUI();
 
         // Asks user if they want to exit the event program
-        System.out.println("Type Exit to leave the events");
+        System.out.println("Type Exit to leave the events or continue to add events");
+        if (!Objects.equals(read.nextLine(), "exit")) {
         // Events.Event program keeps running until the user types exit
-        while(!(Objects.equals(read.nextLine(), "Exit"))){
+
 
             // User wants to add an event
 
