@@ -33,7 +33,7 @@ We have # Entities:
 
 Skeleton Program Summary:
 
-The skeleton journal program allows you to add an entry to the journal; the skeleton marketplace program allows a user to enter the marketplace and make and store an item to sell, and exit the marketplace; THE SKELETON EVENT PROGRAM DOES WHAT. Our skeleton program can be run by running Main.MainController. 
+The skeleton calendar program allows a user to enter the calendar and make an event; the skeleton journal program allows you to add an entry to the journal; the skeleton marketplace program allows a user to enter the marketplace and make and store an item to sell. Our skeleton program can be run by running Main.MainController. 
 
 ------
 
@@ -80,14 +80,14 @@ Plan to work on: Implementing exceptions to deal with invalid input from the use
 
 Nealon:
 
-Have worked on: Skeleton code for the events section.
+Have worked on: Skeleton code for the events section, integration with the alarm and user sections. 
+Plan to work on: Front End development and further integrating UI elements into our program.
 
 Marton:
 
 Have worked on: Skeleton code of the alarm clock and the user sections of the program along with front end development.
-Plan to Work on: Front End development and further integrating UI elements into our program.
+Plan to work on: Front End development and further integrating UI elements into our program.
 
 Oliver: 
 
-Have worked on: Skeleton code for Item, revised changes to Item_Manager and User_Controls, made sure code was working in different stages of development
-Modified unit tests for Item to make it more concise
+Have worked on: Skeleton code for Item, revised changes to Item_Manager and User_Controls, made sure code was working in different stages of development, modified unit tests for Item to make it more concise
