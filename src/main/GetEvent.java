@@ -1,3 +1,6 @@
+package Events;
+
 public class GetEvent {
-    //Too hard, later
+    //Class that gets event from UofT website
+
 }
