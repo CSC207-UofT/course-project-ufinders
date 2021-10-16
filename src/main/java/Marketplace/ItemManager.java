@@ -1,4 +1,4 @@
-package java.Marketplace;
+package Marketplace;
 
 import java.util.ArrayList;
 import java.util.HashMap;

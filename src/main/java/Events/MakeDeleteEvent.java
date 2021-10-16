@@ -1,6 +1,6 @@
-package java.Events;
+package Events;
 
-import java.Events.Event;
+import Events.Event;
 
 import java.util.ArrayList;
 import java.util.Date;

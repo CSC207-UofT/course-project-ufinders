@@ -1,14 +1,14 @@
-package java.User;
+package User;
 
 import java.util.Scanner;
 import java.util.Objects;
-import java.Journal.JournalUI;
-import java.Events.EventUI;
+import Journal.JournalUI;
+import Events.EventUI;
 
 
 public class User_UI {
 
-    public void main(String[] args){
+    public static void main(String[] args){
         Scanner read = new Scanner(System.in);
 
         // Asks user if they want to exit the UserUI

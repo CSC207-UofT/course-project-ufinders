@@ -4,7 +4,7 @@ package java;
 
 import org.junit.Test;
 
-import java.Marketplace.Item;
+import Marketplace.Item;
 
 import static org.junit.Assert.assertEquals;
 

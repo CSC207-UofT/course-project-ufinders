@@ -1,7 +1,7 @@
-package java;
+package Main;
 
-import java.Marketplace.User_Controls;
-import java.User.User_UI;
+import Marketplace.User_Controls;
+import User.User_UI;
 import java.util.Scanner;
 
 public class MainController {

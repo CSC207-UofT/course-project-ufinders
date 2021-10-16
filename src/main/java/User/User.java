@@ -1,7 +1,7 @@
-package java.User;
+package User;
 
 import java.util.HashMap;
-import java.Events.*;
+import Events.*;
 import java.util.Date;
 
 public class User {

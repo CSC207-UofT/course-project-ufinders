@@ -14,7 +14,7 @@ CRC Summary:
 
 We have # Controllers/Presenters:
   - JournalController
-  - MainController
+  - Main.MainController
   - User_Controls
 We have # Use Cases:
   - JournalManager
@@ -31,7 +31,7 @@ We have # Entities:
 
 Skeleton Program Summary:
 
-The skeleton journal program allows you to add an entry to the journal; the skeleton marketplace program allows a user to enter the marketplace and make and store an item to sell, and exit the marketplace; THE SKELETON EVENT PROGRAM DOES WHAT. Our skeleton program can be run by running MainController. 
+The skeleton journal program allows you to add an entry to the journal; the skeleton marketplace program allows a user to enter the marketplace and make and store an item to sell, and exit the marketplace; THE SKELETON EVENT PROGRAM DOES WHAT. Our skeleton program can be run by running Main.MainController. 
 
 ------
 
@@ -63,7 +63,7 @@ Writing the specification, walkthrough, and progress report
 
 Claire:
 
-Have worked on: Skeleton code for User_Controls and MainController.
+Have worked on: Skeleton code for User_Controls and Main.MainController.
 Plan to work on: Marketplace section, particularly the classes related to searching and sorting search results. 
 
 Annie:

@@ -1,6 +1,6 @@
-package java.Events;
+package Events;
 
-import java.Alarm.Alarm;
+import Alarm.Alarm;
 import java.util.Date;
 
 public class Event { //The event object itself

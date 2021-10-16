@@ -1,6 +1,6 @@
 package java;
 
-import java.Journal.JournalController;
+import Journal.JournalController;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;

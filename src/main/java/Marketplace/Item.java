@@ -1,4 +1,4 @@
-package java.Marketplace;
+package Marketplace;
 
 public class Item {
 

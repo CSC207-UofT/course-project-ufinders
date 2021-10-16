@@ -1,3 +1,3 @@
-package java.Alarm;
+package Alarm;
 
 // Not Implemented

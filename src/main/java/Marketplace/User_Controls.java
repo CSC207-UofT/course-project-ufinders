@@ -1,8 +1,9 @@
-package java.Marketplace;
+package Marketplace;
 
-import java.MainController;
+
 import java.util.Objects;
 import java.util.Scanner;
+import Main.*;
 
 public class User_Controls {
 

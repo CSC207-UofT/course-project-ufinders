@@ -3,7 +3,7 @@ package java;
 
 import org.junit.Test;
 
-import java.Marketplace.User_Controls;
+import Marketplace.User_Controls;
 
 import static org.junit.Assert.assertEquals;
 

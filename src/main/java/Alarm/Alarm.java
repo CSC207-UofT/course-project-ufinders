@@ -1,4 +1,4 @@
-package java.Alarm;
+package Alarm;
 
 public class Alarm {
     public String Title;

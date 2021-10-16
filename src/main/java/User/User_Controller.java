@@ -1,3 +1,3 @@
-package java.User;
+package User;
 
 /// NOT IMPLEMENTED
