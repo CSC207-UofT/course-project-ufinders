@@ -1,7 +1,3 @@
-package java;
-
-
-
 import org.junit.Test;
 
 import Marketplace.Item;
