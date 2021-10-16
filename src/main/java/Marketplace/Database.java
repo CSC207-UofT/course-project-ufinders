@@ -33,7 +33,6 @@ public class Database {
          */
 
         item_type_lst.add(item);
-        System.out.println(item_type_lst);
 
     }
 
