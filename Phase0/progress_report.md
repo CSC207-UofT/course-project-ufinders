@@ -16,11 +16,13 @@ We have # Controllers/Presenters:
   - JournalController
   - Main.MainController
   - User_Controls
+
 We have # Use Cases:
   - JournalManager
   - ItemManager
   - Searching
   - Sorting
+
 We have # Entities:
   - JournalEntry
   - Journal
