@@ -41,7 +41,7 @@ public class EventUI { //The user interface for the events section
             System.out.println("Time of event (in format 'HH:MM'):");
             String time = read.nextLine();
             eventView.em.addEvent(date2, time, title, "", "username", true);
-            System.out.println("Type exit to leave the program or continue to keep typing event");
+
         }
 
     }
