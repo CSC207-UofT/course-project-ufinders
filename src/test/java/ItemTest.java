@@ -1,12 +1,14 @@
-package test.java;
+package java;
 
-import main.Item;
+
 
 import org.junit.Test;
 
+import java.Marketplace.Item;
+
 import static org.junit.Assert.assertEquals;
 
-class ItemTest {
+public class ItemTest {
 
 
 

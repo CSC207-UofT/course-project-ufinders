@@ -1,12 +1,14 @@
-package test.java;
+package java;
 
-import main.User_Controls;
+
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import java.Marketplace.User_Controls;
 
-class User_ControlsTest {
+import static org.junit.Assert.assertEquals;
+
+
+public class User_ControlsTest {
 
     @Test(timeout = 50)
     public void testintro() {
