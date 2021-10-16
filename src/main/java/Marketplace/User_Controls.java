@@ -1,10 +1,13 @@
+package java.Marketplace;
+
+import java.MainController;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class User_controls {
+public class User_Controls {
 
     /**
-     * Prompts the user to choose a section of the marketplace to enter 
+     * Prompts the user to choose a section of the marketplace to enter
      * and directs them there.
      *
      */
@@ -28,7 +31,7 @@ public class User_controls {
 
     /**
      * Gets information on what item the user is selling and passes to Sell_Buy.
-     * 
+     *
      *
      */
     private static void selling_info(){
@@ -36,9 +39,10 @@ public class User_controls {
         String description = get_input("What is the description of the item you're selling?");
         String price = get_input("What is the price of the item you're selling?");
         String contact = get_input("What is your contact information?");
+        String email = get_input("What is your email?");
         String password = get_input("What password would you like to use to delete this post after the item is sold?");
         Double price1 = Double.parseDouble(price);
-        new SellBuy().create_post(name, description, price1, contact, password);
+        new ItemManager().create_post(name, description, price1, contact, password, email);
         System.out.println("Your post has been created!");
 
     }
@@ -65,7 +69,7 @@ public class User_controls {
     }
 
     /**
-     * Gets information on what filters the searcher wants. 
+     * Gets information on what filters the searcher wants.
      *
      */
     private static void search_helper(){
@@ -74,7 +78,7 @@ public class User_controls {
     }
 
     /**
-     * Prints a prompt to the terminal and returns what the user writes in response. 
+     * Prints a prompt to the terminal and returns what the user writes in response.
      *
      * @param prompt prompt to be printed for user
      */
@@ -82,12 +86,12 @@ public class User_controls {
         Scanner input = new Scanner(System.in);
         System.out.println(prompt);
         String response =  input.nextLine();
-      //  if (possibleinput.contains(response)){
-      //      return response;
-     //   }
-      //  else{
-      //      get_input(prompt, possibleinput);
-      //  }
+        //  if (possibleinput.contains(response)){
+        //      return response;
+        //   }
+        //  else{
+        //      get_input(prompt, possibleinput);
+        //  }
         return response;
         //could edit this so that it checks whether the answer is acceptable and forces user to give another line if it's not?
     }

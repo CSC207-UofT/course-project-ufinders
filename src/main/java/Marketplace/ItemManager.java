@@ -1,10 +1,10 @@
-package main;
+package java.Marketplace;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Sell_Buy {
+public class ItemManager {
 
     /**
      * Creates the items to be sold
@@ -13,7 +13,7 @@ public class Sell_Buy {
      */
     public HashMap<String, Object> post;
 
-    public Sell_Buy(){
+    public ItemManager(){
         this.post = new HashMap<>();
     }
 
@@ -21,7 +21,7 @@ public class Sell_Buy {
                                    String password, String email){
 
         /**
-         * Stores the post into Database and creates the Item
+         * Stores the post into Database and creates the Item. Got the item from User_Controls
          */
 
         this.post.put("name",name);

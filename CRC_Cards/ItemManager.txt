@@ -1,8 +1,8 @@
-Class Name: Sell_Buy
+Class Name: ItemManager
 
 Responsibilities:
 * Creates item to sell and sends to database
-* Buy Items
+* Buys Items
 
 Collaborators:
 * Item

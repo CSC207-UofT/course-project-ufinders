@@ -1,5 +1,7 @@
 package java.Alarm;
 
+import java.Events.Event;
+
 public class Alarm_Maker {
 
     public static void creator(String title, String filename, Event event){

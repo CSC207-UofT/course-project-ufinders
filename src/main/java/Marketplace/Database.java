@@ -1,4 +1,4 @@
-package main;
+package java.Marketplace;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,16 +26,6 @@ public class Database {
 //
 //    }
 
-//    public static void AddPost(HashMap<String, Object> post) {
-//        /**
-//         * Adds the post to the item_lst
-//         */
-////        System.out.println(post);
-//
-////        item_lst.add(post);
-//        System.out.println(item_lst);
-//
-//    }
 
     public static void StoreItem(Item item) {
         /**
