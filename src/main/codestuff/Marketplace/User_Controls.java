@@ -1,4 +1,6 @@
-package java.Marketplace;
+package codestuff.Marketplace;
+
+import codestuff.MainController;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -21,7 +23,7 @@ public class User_Controls {
             selling_info();
         }
         else if (Objects.equals(segmentchoice, "exit")){
-            java.MainController.menu();
+            MainController.menu();
         }
         else {
             intro();

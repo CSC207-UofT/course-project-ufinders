@@ -1,18 +1,22 @@
-package java.User;
+package codestuff.User;
 
-import java.Journal.JournalUI;
+import codestuff.Journal.JournalUI;
+import codestuff.MainController;
+
 import java.util.Scanner;
 import java.util.Objects;
 
 
 public class User_UI {
 
-    public static void main(String[] args){
+    public static void beginning(){
+        System.out.println("HERE!");
         Scanner read = new Scanner(System.in);
         User_UI userview = new User_UI();
 
         // Asks user if they want to exit the UserUI
-        System.out.println("Type 'exit' to leave the program or sign in");
+        System.out.println("Type 'exit' to leave the program or 'sign-in' to sign in");
+        //added the sign-in thing bc otherwise the program doesn't get a next line
         // Program keeps the user on the login section until they exit
         String id = null;
         String name = null;
@@ -23,7 +27,7 @@ public class User_UI {
             name = read.nextLine();
         }
         if(id != null && name != null){
-            User newuser = Create_User.makeUserObject(id, name);
+            // User newuser = Create_User.makeUserObject(id, name);
             while(!Objects.equals(read.nextLine(), "exit")) {
                 System.out.println("Would you like to access the journal or the events tab?");
                 System.out.println("Type 'journal' or 'events'");
@@ -31,10 +35,11 @@ public class User_UI {
                 if (Objects.equals(choice, "journal")){
                     new JournalUI();}
                 else if (Objects.equals(choice, "events")){
-                    EventUI.displayEvent();
+                    System.out.println("that's not a thing!");
                 }
             }
         }
+        MainController.menu();
     }
 
 }

@@ -1,4 +1,4 @@
-package java.Journal;
+package codestuff.Journal;
 
 
 
