@@ -1,5 +1,6 @@
 package Journal;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -20,9 +21,8 @@ public class JournalController {
      * @param tags The tags we want to give the entry.
 
      */
-    public String callCreateEntry(String title, String content, LocalDate date, ArrayList<String> tags){
-
-        return journalmanager.createEntry(title, content, date, tags);
+    public void callCreateEntry(String title, String content, LocalDate date, String[] tags) throws IOException {
+        journalmanager.createEntry(title, content, date, tags);
     }
 
 }
