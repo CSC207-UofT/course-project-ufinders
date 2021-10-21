@@ -1,10 +1,12 @@
 Class Name: JournalManager
 
 Responsibilities:
-* Deletes journal entry from Journal
-* Creates journal entry and stores in Journal
-* Gets journal entry from Journal based on title
-* Gets all the entry titles from Journal
+* Deletes JournalEntry with given title from Journal
+* Creates JournalEntry with given title, entry, date and tags and stores it in Journal
+* Gets JournalEntry with given title from Journal and returns it
+* Gets the title of all entries in the Journal and returns it as an ArrayList<String>
+* viewing all entries..
+* editing entries...
 
 Collaborators:
 * JournalEntry

@@ -1,13 +1,33 @@
 Class Name: JournalUI
 
 Responsibilities:
-* prompts user to exit or continue the program
-*
-* Prompts user to provide a title, content and tags for entry
-* Prompts the user to give the title of entry they want to delete
-* Prints all the journal entries' title
-* Allows user to choose a single journal entry they want to view
+
+Class Name: Journal_UI
+
+Responsibilities:
+
+
+* Prompt user to add entry, view a single entry,  view all entries, delete entry and edit an entry until they type
+"exit"
+
+* When user wants to add an entry it prompts user to enter a title, what they want to write and tags they want to
+add to the entry. Then it calls Journal_Controller to create an entry with the input provided by the user.
+
+* When user wants to view a single entry it calls the Journal_Controller to get the names of all the journal entries and
+displays it to the user. The user than choose from the entries displayed which entry they would like to view. Then
+it calls the Journal_Controller to get that entry and the Journal_UI passes the entry to the Journal_Entry_UI
+for it to display it to the user.
+
+* When user wants to view all entries ......
+
+* When user wants to delete an entry or entries it calls the JournalController to get the title of all entries in the
+Journal and displays it to the user. The user enters the journal entries they want to delete. The Journal_UI calls
+the Journal_controller to delete all the entries that the user inputs.
+
+* When user wants to edit an entry.....
+
+
 
 Collaborators:
-* JournalController
-* JournalEntryUI
+* Journal_Controller
+* Journal_Entry_UI %

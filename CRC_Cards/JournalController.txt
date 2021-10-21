@@ -1,11 +1,10 @@
 Class Name: JournalController
 
 Responsibilities:
-* Calls JournalManager to create a journal entry
-* Calls JournalManager to delete journal entry
-* Calls JournalManager to get the journal entry the user wants
-* Asks JournalManager to pass a list of entry's titles
+* Calls Journal Manager passing it the date, title, entry and tags to create a JournalEntry and store it in Journal
+* Calls Journal Manager to get a ArrayList<String>  the title of all the JournalEntrys in Journal
+* Calls JournalManager passing to delete a JournalEntry from Journal by passing it the title of entry to delete
+* Calls JournalManager passing to get the JournalEntry with the title it passes
 
 Collaborators:
 * JournalManager
-* JournalEntryUI
