@@ -2,6 +2,7 @@ Class Name: JournalUI
 
 Responsibilities:
 * prompts user to exit or continue the program
+*
 * Prompts user to provide a title, content and tags for entry
 * Prompts the user to give the title of entry they want to delete
 * Prints all the journal entries' title
