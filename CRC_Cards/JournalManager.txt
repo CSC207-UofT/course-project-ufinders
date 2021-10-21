@@ -6,6 +6,7 @@ Responsibilities:
 * Gets JournalEntry with given title from Journal and returns it
 * Gets the title of all entries in the Journal and returns it as an ArrayList<String>
 * viewing all entries..
+
 * editing entries...
 
 Collaborators:
