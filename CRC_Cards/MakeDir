@@ -1,0 +1,7 @@
+Class name: MakeDir
+
+Responsibilities:
+* makes a file for the journal entry text files to be stored in and stores the path to it
+* gets the path to the file that the journal entry text files are stored in
+* get the file that the journal entry text files are stored in
+* makes the file the journal entry text files the current directory

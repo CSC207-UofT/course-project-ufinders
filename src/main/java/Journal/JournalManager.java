@@ -1,81 +1,54 @@
 package Journal;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 
+public class JournalManager {// file gateway does the work of journal manager
+    // the  interface the journal manager calls on to add, delete and modify journal entry files.
+    private FileGatewayInterface accessFiles;
 
-public class JournalManager {
-    // Where journal entries are stored
-    private final Journal journal;
-
-    public JournalManager() {
-        journal = new Journal();
-    }
 
     /**
-     * Create a journal entry with the given information and stores it in the journal.
+     * Creates a journal manager with the given FileGatewayInterface, fileGateway.
      *
-     * @param title   The title of the entry.
-     * @param content The content of the entry.
-     * @param date    The date the entry was written on.
-     * @param tags    The tags we want to give the entry.
+     *
+     * @param   fileGateway      The interface that can be used to add, delete and edit journal entries
      */
-    public void createEntry(String title, String content, LocalDate date, String[] tags) throws IOException {
-        // When create use ask them where they want to store the journal entries and create directory for it
-        String path = "/Users/thakshamangalam/Documents/JournalEntries";
-        //new File(path).mkdir();
 
-
-        File journalEntry = new File(path + "/" + title + ".txt");
-        journalEntry.createNewFile();
-        // Open the file.
-        PrintWriter writingEntry = new PrintWriter(path + "/" + title + ".txt"); // Step 2
-
-
-        writingEntry.println(date);
-        writingEntry.println(title + "\n");
-
-        StringBuilder tagsOfEntry = new StringBuilder();
-        for (String tag : tags) {
-            tagsOfEntry.append(tag + ", ");
-        }
-        tagsOfEntry.delete(tagsOfEntry.length() - 2, tagsOfEntry.length());
-        writingEntry.println("Tags:" + tagsOfEntry + "\n");
-        writingEntry.println(content);
-
-
-        // Close the file.
-        writingEntry.close();
-
-
-        /**
-         * Retrieves the journal entry from Journal with the given title.
-         *
-         * @param title The title of the entry that we want to retrieve.
-         * @return The string representation of the entry with the given title.
-         */
-//    public String entryGetter(String title){
-//
-//        JournalEntry maybeEntry = journal.getEntry(title);
-//        if (maybeEntry == null){
-//            return "Entry with given title does not exist!";
-//        }
-//        else{
-//
-//            String[] tags = maybeEntry.tagsGetter();
-//            StringBuilder tagOfEntry = new StringBuilder();
-//            for (int i = 0; i < tags.toArray().length - 1; i += 1){
-//                tagOfEntry.append(tags.get(i)).append(",");
-//            }
-//            tagOfEntry.append(tags.get(tags.toArray().length - 1));
-//
-//
-//            return "date: " + maybeEntry.dateGetter() +  '\n' +  "title: " + maybeEntry.titleGetter()  + '\n'
-//                    + "tags: "  + tagOfEntry +  '\n' + '\n' +  maybeEntry.contentGetter();
-//        }
-//    }
+    public JournalManager(FileGatewayInterface fileGateway){
+        setFileGateway(fileGateway );
     }
+    /**
+     * Sets accessFiles  to the provided journalFileGateway
+     *
+     * @param journalFileGateway The interface that accessFiles is set to.
+
+     */
+
+    public void setFileGateway(FileGatewayInterface journalFileGateway){
+        this.accessFiles = journalFileGateway; // needs gateway to allow it to store entries
+
+    }
+    /**
+     * Calls accessFiles to create entry with the given information.
+     *
+     * @param title The title of the entry.
+     * @param content The content of the entry.
+     * @param date The date the entry was written on.
+     * @param tags The tags we want to give the entry.
+
+     */
+    public void createEntry(String title, String content, LocalDate date, String[] tags) {
+        // asks interface to create the file with the given info
+        boolean fileCreated = accessFiles.addFile(title, content, date, tags);
+
+        if (!(fileCreated)) {
+            // need to get a new name for journal entry if journal entry with that name exist
+        }
+    }
+        public void deleteEntry(String title)  {
+            accessFiles.deleteFile(title);
+        }
+
+
+
 }
