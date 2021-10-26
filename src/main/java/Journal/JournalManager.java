@@ -55,6 +55,11 @@ public class JournalManager {// file gateway does the work of journal manager
         accessFiles.deleteFile(fileToDelete);
         }
 
+        public String[] getEntry(String title){
+        File fileWithInfo = journal.getEntry(title);
+            return accessFiles.getInfo(fileWithInfo);
+        }
+
 
 
 }

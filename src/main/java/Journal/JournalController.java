@@ -45,7 +45,7 @@ public class JournalController {
         journalmanager.deleteEntry(title);
     }
 
-    public void callGetEntry(String title) {
-        journalmanager.deleteEntry(title);
+    public String[] callGetEntry(String title) {
+        return journalmanager.getEntry(title);
     }
 }

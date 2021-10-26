@@ -1,9 +1,7 @@
 package Journal;
 
 import javax.swing.filechooser.FileSystemView;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
@@ -53,8 +51,27 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
     }
 
     @Override
-    public String[] getInfo(String title, String content, LocalDate date, String[] tags) {
-        return new String[0];
+    public String[] getInfo(File fileWithInfo) {
+        String[] info = new String[2];
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(fileWithInfo));
+            String line = reader.readLine();
+            reader.readLine().strip();
+            int i = 0;
+
+            while(line != null){
+                line = reader.readLine().strip();
+                info[i] = line;
+                i += 1;
+            }
+            info[0] = info[0].substring(info[0].indexOf(":"));
+            return info;
+
+        }
+        catch(Exception IOException){return info;}
+
+
+
     }
 
     @Override
