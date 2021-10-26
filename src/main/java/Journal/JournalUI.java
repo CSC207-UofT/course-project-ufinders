@@ -88,7 +88,7 @@ public class JournalUI {
         JournalUI UI = new JournalUI();
         // implement popup so user can choose what they want to do in journal
         UI.addEntry();
-        UI.deleteEntry();
+        //UI.deleteEntry();
         UI.viewEntry();
 
 
