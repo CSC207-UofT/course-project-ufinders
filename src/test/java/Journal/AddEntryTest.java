@@ -21,7 +21,7 @@ public class AddEntryTest {
     }
     @Test(timeout = 1000)
     public void testAddEntryNoEntriesInJournal(){
-        String[] tags = {"cs", "stress", "life"};
+        String tags = "cs, stress, life";
         String title = "midterm";
         String entry = "I think i did good on my midterm";
 
@@ -31,7 +31,7 @@ public class AddEntryTest {
     }
     @Test(timeout = 1000)
     public void testAddEntryEntryInJournal(){
-        String[] tagsTwo = {"birthday", "fun", "party"};
+        String tagsTwo = "birthday, fun, party";
         String titleTwo = "dads birthday";
         String entryTwo = "I think his birthday is going to be fun";
         controller.callCreateEntry(titleTwo, entryTwo, LocalDate.now(), tagsTwo);

@@ -1,8 +1,6 @@
 package Journal;
 
-import javax.swing.filechooser.FileSystemView;
 import java.io.*;
-import java.nio.file.Path;
 import java.time.LocalDate;
 
 public class JournalFileGateway implements FileGatewayInterface { //interacts with dir
@@ -33,7 +31,7 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
 
      */
     @Override
-    public File addFile(String title,  String content, LocalDate date, String[] tags) { // method should be in journal manager.
+    public File addFile(String title, String content, LocalDate date, String tags) { // method should be in journal manager.
         // only method in here should be edit file ? maybe
 
             String pathOfEntry = path + "/" + title + ".txt";
@@ -82,21 +80,20 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
 
     /**
      * Writes to a text file the title, content, date and tags at the given directory, journalEntry.
-     *
-     * @param title The title of the entry.
+     *  @param title The title of the entry.
      * @param content The content of the entry.
      * @param date The date the entry was written on.
      * @param tags The tags we want to give the entry.
      * @param journalEntry The file to which will be written.
 
      */
-    public void writeToFile(String title, String content, LocalDate date, String[] tags, String journalEntry) {
+    public void writeToFile(String title, String content, LocalDate date, String tags, String journalEntry) {
         try {
             PrintWriter writingEntry = new PrintWriter(journalEntry);
             writingEntry.println(date);
             writingEntry.println(title + "\n");
-            StringBuilder tagsOfEntry = getStringTags(tags);
-            writingEntry.println("Tags:" + tagsOfEntry + "\n");
+
+            writingEntry.println("Tags:" + tags + "\n");
             writingEntry.println(content);
             writingEntry.close();
         } catch (Exception ignored) {
@@ -109,7 +106,7 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
      * @return each elements of tags seperated by commas in as a string builder.
 
      */
-    public StringBuilder getStringTags(String[] tags) {
+    public StringBuilder getStringTags(String[] tags) { // can delete method
 
         StringBuilder tagsOfEntry = new StringBuilder();
         if (tags.length == 1){

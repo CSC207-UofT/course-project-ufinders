@@ -28,7 +28,7 @@ public class JournalController {
     }
     /**
      * Calls journal manager to create entry with the given information.
-     *  @param title The title of the entry.
+     * @param title The title of the entry.
      * @param content The content of the entry.
      * @param date The date the entry was written on.
      * @param tags The tags we want to give the entry.
