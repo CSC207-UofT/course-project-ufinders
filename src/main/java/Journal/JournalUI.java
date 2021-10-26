@@ -1,5 +1,6 @@
 package Journal;
 
+import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -37,6 +38,32 @@ public class JournalUI {
     }
 
     public void viewEntry(){
+        Scanner read = new Scanner(System.in);
+        System.out.println("Title of entry:");
+        String titleOfEntryToView = read.nextLine();
+        String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
+
+        JTextField title = new JTextField();
+        JTextField tags = new JTextField();
+        JTextField entry = new JTextField();
+
+        title.setText(titleOfEntryToView);
+        tags.setText(entryInfo[1]);
+        entry.setText(entryInfo[2]);
+        Object[] message = {
+                "Input value 1:", title,
+                "Input value 2:", tags,
+                "Input value 3:", entry,
+        };
+        int option = JOptionPane.showConfirmDialog(null, message, titleOfEntryToView, JOptionPane.OK_CANCEL_OPTION);
+
+            String titleModified = title.getText();
+            String tagsModified = tags.getText();
+            String entryModified = entry.getText();
+
+        this.controller.callDeleteEntry(titleOfEntryToView);
+        this.controller.callCreateEntry(titleModified, entryModified, LocalDate.parse(entryInfo[0]), tagsModified);
+
 
     }
 
