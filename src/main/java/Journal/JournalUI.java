@@ -42,7 +42,13 @@ public class JournalUI {
         System.out.println("Title of entry you would like to view:");
         String titleOfEntryToView = read.nextLine();
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
+        String[] modifiedJournalEntry = viewEntryPopUp(titleOfEntryToView, entryInfo);
+        this.controller.callDeleteEntry(titleOfEntryToView);
+        this.controller.callCreateEntry(modifiedJournalEntry[0], modifiedJournalEntry[2], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[1]);
 
+    }
+
+    public String[] viewEntryPopUp(String titleOfEntryToView, String[] entryInfo){
         JTextField title = new JTextField();
         JTextField tags = new JTextField();
         JTextField entry = new JTextField();
@@ -53,18 +59,14 @@ public class JournalUI {
         Object[] message = {
                 "Title:", title,
                 "Tags:", tags,
-                "Entry:", entry,
-        };
+                "Entry:", entry,};
         int option = JOptionPane.showConfirmDialog(null, message, entryInfo[0], JOptionPane.OK_CANCEL_OPTION);
 
-            String titleModified = title.getText();
-            String tagsModified = tags.getText();
-            String entryModified = entry.getText();
-
-        this.controller.callDeleteEntry(titleOfEntryToView);
-        this.controller.callCreateEntry(titleModified, entryModified, LocalDate.parse(entryInfo[0]), tagsModified);
-
-
+        String titleModified = title.getText();
+        String tagsModified = tags.getText();
+        String entryModified = entry.getText();
+        String[] modifiedJournalEntry = {titleModified, tagsModified, entryModified}
+        return modifiedJournalEntry;
     }
 
     public static void main(String[] args) {
