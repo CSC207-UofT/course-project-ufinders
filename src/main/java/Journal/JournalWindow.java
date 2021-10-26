@@ -1,9 +1,11 @@
 package Journal;
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +49,11 @@ public class JournalWindow extends WindowAdapter implements ItemListener {
     }
 
     public static void main(String[] args) {
-        new JournalWindow();
+        JournalFileGateway ex = new JournalFileGateway(FileSystemView.getFileSystemView()
+                .getHomeDirectory()
+                .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
+        File returned = ex.addFile("love", "love is hard", LocalDate.now(), "apple, idk");
+        String[] st = ex.getInfo(returned);
 
     }
 

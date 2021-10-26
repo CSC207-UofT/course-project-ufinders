@@ -39,7 +39,7 @@ public class JournalUI {
 
     public void viewEntry(){
         Scanner read = new Scanner(System.in);
-        System.out.println("Title of entry:");
+        System.out.println("Title of entry you would like to view:");
         String titleOfEntryToView = read.nextLine();
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
 
@@ -51,11 +51,11 @@ public class JournalUI {
         tags.setText(entryInfo[1]);
         entry.setText(entryInfo[2]);
         Object[] message = {
-                "Input value 1:", title,
-                "Input value 2:", tags,
-                "Input value 3:", entry,
+                "Title:", title,
+                "Tags:", tags,
+                "Entry:", entry,
         };
-        int option = JOptionPane.showConfirmDialog(null, message, titleOfEntryToView, JOptionPane.OK_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(null, message, entryInfo[0], JOptionPane.OK_CANCEL_OPTION);
 
             String titleModified = title.getText();
             String tagsModified = tags.getText();
@@ -70,7 +70,8 @@ public class JournalUI {
     public static void main(String[] args) {
         JournalUI UI = new JournalUI();
         UI.addEntry();
-        UI.deleteEntry();
+        //UI.deleteEntry();
+        UI.viewEntry();
 
 
     }

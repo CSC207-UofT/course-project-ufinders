@@ -1,5 +1,6 @@
 package Journal;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.time.LocalDate;
 
@@ -56,22 +57,34 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
             String line = reader.readLine();
             info[0] = line;
             reader.readLine().strip(); // title of entry
+            reader.readLine().strip(); // space after title of entry
             int i = 1;
 
-            while(line != null){
+            while(i != 4){
+
                 line = reader.readLine().strip();
                 info[i] = line;
                 i += 1;
             }
-            info[1] = info[1].substring(info[1].indexOf(":"));
-            info[2] = info[3];
+            info[1] = info[1].substring(info[1].indexOf(":") + 1);
+            info[2] = info[3]; // white space after tags
+            reader.close();
             return info;
-
         }
-        catch(Exception IOException){return info;}
+        catch(Exception IOException){
+           return info;
+            }
 
 
 
+    }
+
+    public static void main(String[] args) {
+        JournalFileGateway ex = new JournalFileGateway(FileSystemView.getFileSystemView()
+                .getHomeDirectory()
+                .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
+        File returned = ex.addFile("love", "love is hard", LocalDate.now(), "apple, idk");
+        String[] st = ex.getInfo(returned);
     }
 
     @Override
