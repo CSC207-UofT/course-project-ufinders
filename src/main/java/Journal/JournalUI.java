@@ -17,16 +17,12 @@ public class JournalUI {
     }
 
     public void addEntry(){
-        Scanner read = new Scanner(System.in);
-        System.out.println("Title of entry:");
-        String title = read.nextLine();
-        System.out.println("Entry:");
-        String content = read.nextLine();
-        System.out.println("Enter each tag you would like to add seperated by a comma:");
-        String tags = read.nextLine();
+        String[] newEntry = this.addEntryPopUp();
+        String title = newEntry[0];
+        String content = newEntry[2];
+        String tags = newEntry[1];
         LocalDate today = LocalDate.now();
         this.controller.callCreateEntry(title, content, today, tags );
-
     }
 
     public void deleteEntry(){
@@ -65,14 +61,34 @@ public class JournalUI {
         String titleModified = title.getText();
         String tagsModified = tags.getText();
         String entryModified = entry.getText();
-        String[] modifiedJournalEntry = {titleModified, tagsModified, entryModified}
+        String[] modifiedJournalEntry = {titleModified, tagsModified, entryModified};
         return modifiedJournalEntry;
+    }
+
+    public String[] addEntryPopUp(){
+        JTextField titleEntered = new JTextField();
+        JTextField tagsEntered = new JTextField();
+        JTextField entryEntered = new JTextField();
+
+        Object[] message = {
+                "Title:", titleEntered,
+                "Tags:", tagsEntered,
+                "Entry:", entryEntered,};
+        int option = JOptionPane.showConfirmDialog(null, message, "Journal", JOptionPane.OK_CANCEL_OPTION);
+
+        String title = titleEntered.getText();
+        String tags = tagsEntered.getText();
+        String entry = entryEntered.getText();
+        String[] JournalEntry = {title, tags, entry};
+        return JournalEntry;
+
     }
 
     public static void main(String[] args) {
         JournalUI UI = new JournalUI();
+        // implement popup so user can choose what they want to do in journal
         UI.addEntry();
-        //UI.deleteEntry();
+        UI.deleteEntry();
         UI.viewEntry();
 
 
