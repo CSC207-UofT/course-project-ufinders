@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public class JournalEntry {
 
     // The title of the entry
-    private final String title;
+    private  String title;
     // the date the entry was written on
     private final LocalDate date;
     // the tags associated with the entry
-    private final ArrayList<String> tags;
+    private String[] tags;
     // the content within the entry
-    private final String content;
+    private  String content;
 
     /**
      * Creates a new journal entry with the given
@@ -27,7 +27,7 @@ public class JournalEntry {
      */
 
 
-    public JournalEntry(String title, String entry, ArrayList<String> tags, LocalDate date){
+    public JournalEntry(String title, String entry, String[] tags, LocalDate date){
         this.title = title;
         this.content = entry;
         this.tags = tags;
@@ -55,7 +55,7 @@ public class JournalEntry {
      *
      * @return the tags of this entry.
      */
-    public ArrayList<String> tagsGetter(){
+    public String[] tagsGetter(){
         return this.tags;
     }
     /**
