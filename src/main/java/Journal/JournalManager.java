@@ -34,14 +34,13 @@ public class JournalManager {// file gateway does the work of journal manager
     }
     /**
      * Calls accessFiles to create entry with the given information.
-     *
-     * @param title The title of the entry.
+     *  @param title The title of the entry.
      * @param content The content of the entry.
      * @param date The date the entry was written on.
      * @param tags The tags we want to give the entry.
 
      */
-    public void createEntry(String title, String content, LocalDate date, String[] tags) {
+    public void createEntry(String title, String content, LocalDate date, String tags) {
         // asks interface to create the file with the given info
         File fileCreated = accessFiles.addFile(title, content, date, tags);
         journal.addEntry(title, fileCreated);
