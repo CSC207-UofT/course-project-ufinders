@@ -1,9 +1,9 @@
-package Marketplace;
+package Marketplace.Items.types;
 
-public class Item {
+public abstract class Item {
 
     /**
-     * An item class that stores the users' information and item's attributes
+     * An abstract item class that stores the users' information and item's attributes
      *
      * @param name the item's name
      * @param item_description the description of the item
@@ -16,33 +16,40 @@ public class Item {
      * @param picture the item's picture
      */
 
-    private final String name;
-    private final String item_description;
-    private final String contact_num;
-    private final String contact_email;
-    private final String password;
-    private final double price;
+    private String name;
+    private String item_description;
+    private String contact_num;
+    private String contact_email;
+    private String password;
+    private double price;
+    private int id;
 
-    /* TODO: add picture attribute, implement campus and condition enums
+    private static int id_counter = 0;
+
+    /* TODO: add picture attribute
      */
-//    private enum campus{
-//        UTSG, UTM, UTSC
-//    }
-//    private campus campus;
-//    private enum condition{
-//        Used, New, LikeNew
-//    }
-//    private condition condition;
+
+    public enum campus{
+        UTSG, UTM, UTSC
+    }
+    private campus campus;
+    public enum condition{
+        Used, New, LikeNew
+    }
+    private condition condition;
 
 
     public Item(String title, String item_description, String contact_num, String contact_email, String password,
-                double price){
+                double price, Item.campus campus){
         this.name = title;
         this.item_description = item_description;
         this.contact_num = contact_num;
         this.contact_email = contact_email;
         this.password = password;
         this.price = price;
+        this.campus = campus;
+        this.id = id_counter;
+        id_counter += 1;
     }
 
     public String getName() {
