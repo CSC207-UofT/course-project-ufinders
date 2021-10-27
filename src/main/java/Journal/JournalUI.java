@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class JournalUI {
     public JournalController controller;
 
+
     public JournalUI(){
         MakeDir dir = new MakeDir(FileSystemView.getFileSystemView()
                         .getHomeDirectory()
@@ -38,18 +39,17 @@ public class JournalUI {
         System.out.println("Title of entry you would like to view:");
         String titleOfEntryToView = read.nextLine();
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
-        String[] modifiedJournalEntry = viewEntryPopUp(titleOfEntryToView, entryInfo);
-        this.controller.callDeleteEntry(titleOfEntryToView);
-        this.controller.callCreateEntry(modifiedJournalEntry[0], modifiedJournalEntry[2], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[1]);
-
+        String[] modifiedJournalEntry = viewEntryPopUp(entryInfo);
+        this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0], modifiedJournalEntry[2],
+                LocalDate.parse(entryInfo[0]), modifiedJournalEntry[1]);
     }
 
-    public String[] viewEntryPopUp(String titleOfEntryToView, String[] entryInfo){
+    public String[] viewEntryPopUp(String[] entryInfo){
         JTextField title = new JTextField();
         JTextField tags = new JTextField();
         JTextField entry = new JTextField();
 
-        title.setText(titleOfEntryToView);
+        title.setText(entryInfo[0]);
         tags.setText(entryInfo[1]);
         entry.setText(entryInfo[2]);
         Object[] message = {

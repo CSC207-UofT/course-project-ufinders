@@ -49,25 +49,29 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
 
     }
 
+    /**
+     * Reads fileWithInfo, storing tags, title and content within the file to a string array that will be returned.
+     * @param fileWithInfo The file that we want get information from.
+     * @return return a string array containing the information in fileWithInfo in the format
+     * [title, tags, content]
+     */
+
     @Override
     public String[] getInfo(File fileWithInfo) {
-        String[] info = new String[4];
+        String[] info = new String[3];
         try{
             BufferedReader reader = new BufferedReader(new FileReader(fileWithInfo));
-            String line = reader.readLine();
+            String line = reader.readLine(); // date of entry
+
+            line = reader.readLine().strip(); // title of entry
             info[0] = line;
-            reader.readLine().strip(); // title of entry
-            reader.readLine().strip(); // space after title of entry
-            int i = 1;
+            line = reader.readLine().strip(); // space after title of entry
+            line = reader.readLine().strip();
+            info[1] = line.substring(line.indexOf(":") + 1);
+            line = reader.readLine().strip();
+            line = reader.readLine().strip();
+            info[2] = line;
 
-            while(i != 4){
-
-                line = reader.readLine().strip();
-                info[i] = line;
-                i += 1;
-            }
-            info[1] = info[1].substring(info[1].indexOf(":") + 1);
-            info[2] = info[3]; // white space after tags
             reader.close();
             return info;
         }
@@ -75,11 +79,9 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
            return info;
             }
 
-
-
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { // can delete after
         JournalFileGateway ex = new JournalFileGateway(FileSystemView.getFileSystemView()
                 .getHomeDirectory()
                 .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
@@ -87,6 +89,10 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
         String[] st = ex.getInfo(returned);
     }
 
+    /**
+     * Delete the fileToDelete from path that it is stored in.
+     * @param fileToDelete The file that we want to delete.
+     */
     @Override
     public void deleteFile(File fileToDelete) {
         fileToDelete.delete();

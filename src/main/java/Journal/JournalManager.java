@@ -32,8 +32,12 @@ public class JournalManager {// file gateway does the work of journal manager
         this.journal = new Journal();
 
     }
+    public Journal getJournal(){
+        return this.journal;
+    }
     /**
-     * Calls accessFiles to create entry with the given information.
+     * Calls accessFiles to create entry with the given information and add the title and file created
+     * to journal.
      *  @param title The title of the entry.
      * @param content The content of the entry.
      * @param date The date the entry was written on.
@@ -49,13 +53,24 @@ public class JournalManager {// file gateway does the work of journal manager
             // need to get a new name for journal entry if journal entry with that name exist
         }
     }
+    /**
+     * Finds the journal entry file with the given title by calling getEntry in
+     * Journal. Then calls accessFiles passing it the journal entry file to delete.
+     *  @param title The title of the entry to delete.
+     */
         public void deleteEntry(String title)  {
-        File fileToDelete = journal.getEntry(title);
+        File fileToDelete = journal.getEntryFile(title);
         accessFiles.deleteFile(fileToDelete);
+        journal.deleteEntryFile(title);
         }
-
+    /**
+     * Finds the journal entry file with the given title by calling get Entry in Journal.
+     * Calls accessFiles  passing it the journal entry file to get a string array
+     * of the form {title, tags, content}.
+     *  @param title The title of the entry to get.
+     */
         public String[] getEntry(String title){
-        File fileWithInfo = journal.getEntry(title);
+        File fileWithInfo = journal.getEntryFile(title);
             return accessFiles.getInfo(fileWithInfo);
         }
 

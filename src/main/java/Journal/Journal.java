@@ -19,22 +19,36 @@ public class Journal {
     }
 
     /**
-     * Store the provided journal entry's' title to the provided journal entry
+     * Store the provided journal entry's' title to the provided journal entry file.
      *
      * @param title The title of the entry that we want to store.
-     * @param entry The journal entry we want to store
+     * @param entry The journal entry file we want to store
      */
     public void addEntry(String title, File entry) {
         entries.put(title, entry);
     }
 
     /**
-     * Find the journal entry with the given title and return it.
+     * Find the journal entry file to the title and return it.
      *
      * @param title The title of the entry that we want to retrieve.
-     * @return The entry with the given title.
+     * @return The journal entry file with the given title.
      */
-    public File getEntry(String title) {
-            return entries.get(title);
+    public File getEntryFile(String title) {
+        if (this.entries.containsKey(title)){
+        return entries.get(title);}
+        else{
+            return null;
+        }
+    }
+
+
+    /**
+     * Delete the title key-value pair from entries
+     *
+     * @param title The key that we want to delete in entries
+     */
+    public void deleteEntryFile(String title) {
+        this.entries.remove(title);
     }
 }
