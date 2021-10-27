@@ -7,21 +7,26 @@ import java.util.HashMap;
 public class ItemManager {
 
     /**
-     * Creates the items to be sold
+     * Creates the items to be sold and removes items sold
      * @param post a post with information given by user
      *
      */
     public HashMap<String, Object> post;
 
     public ItemManager(){
+       /**
+        * Initiates post into a hashmap
+        */
         this.post = new HashMap<>();
     }
+
+//    TODO: make something like a ShapeFactory in create_post or make another method
 
     public void create_post(String name, String description, Double price, String contact,
                                    String password, String email){
 
         /**
-         * Stores the post into Database and creates the Item. Got the item from User_Controls
+         * Creates Item from Item and stores into Database.
          */
 
         this.post.put("name",name);
@@ -34,22 +39,25 @@ public class ItemManager {
         Database.StoreItem(item);
     }
 
-//    We will need a unique id to differentiate the repeated titles or we will have to ask
-//    users to create unique titles
-    public boolean buy_items(String title){
+
+//    TODO: create an ID for Item
+
+    public boolean remove_post(String title, String password){
         /**
-         * Removes the item sold from post and return true
+         * Removes the item sold from post and return true. Needs to check the password before the item can be removed.
          */
         ArrayList<Item> posts = Database.GetLst();
 
         for (Item item: posts){
-            if (item.getName().equals(title)){
+            if (item.getName().equals(title) & Database_Manager.password_match(title, password)){
                 posts.remove(item);
                 return true;
             }
         }
         return false;
     }
+
+//    TODO: create some sort of method that would tell the seller that their item has been sold
 
 
 

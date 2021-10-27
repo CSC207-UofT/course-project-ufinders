@@ -1,7 +1,8 @@
 Class Name: Database
 
 Responsibilities:
-* Stores Items
+* Stores Items sent by ItemManager
+* Returns the list of Items in Database
 
 Collaborators:
 * Item

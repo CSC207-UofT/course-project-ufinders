@@ -2,7 +2,8 @@ Class Name: ItemManager
 
 Responsibilities:
 * Creates item to sell and sends to database
-* Buys Items
+* Deletes items sold from database by checking password through Database_Manager
 
 Collaborators:
 * Item
+* Database_Manager
