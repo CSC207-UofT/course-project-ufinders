@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class EditEntryTest {
-    public class ViewJournalEntryTest {
+
         JournalController controller;
         MakeDir dir;
         String title;
@@ -21,6 +21,7 @@ public class EditEntryTest {
                     .getHomeDirectory()
                     .getAbsolutePath() + "/" + "Documents" +"/" + "JournalEntries");
             controller  = new JournalController(dir);
+            title = "untitled";
         }
         @Test(timeout = 1000)
         public void testEditEntryNothingEdited(){
@@ -30,7 +31,9 @@ public class EditEntryTest {
             String[] info = controller.callGetEntry(title);
             controller.callEditEntry(title, title, tags,LocalDate.now(), entry);
             String[] actualInfo = {title, tags, entry};
-            assertEquals(info, actualInfo);
+            assertEquals(actualInfo[0], info[0]);
+            assertEquals(actualInfo[1], info[1]);
+            assertEquals(actualInfo[2], info[2]); // date cannot be edited
         }
 
         @Test(timeout = 1000)
@@ -41,9 +44,9 @@ public class EditEntryTest {
             String[] info = controller.callGetEntry(title);
             controller.callEditEntry(title, title, "life, passion, school",LocalDate.now(), entry);
             String[] actualInfo = {title, "life, passion, school", entry};
-            assertNotEquals(info[1], actualInfo[1]);
-            assertEquals(info[0], actualInfo[0]);
-            assertEquals(info[2], actualInfo[2]);
+            assertNotEquals(actualInfo[1], info[1]);
+            assertEquals(actualInfo[0], info[0]);
+            assertEquals(actualInfo[2], info[2]);
         }
 
         @Test(timeout = 1000)
@@ -54,9 +57,9 @@ public class EditEntryTest {
             String[] info = controller.callGetEntry(title);
             controller.callEditEntry(title, title, tags,LocalDate.now(), "trying to figure it out");
             String[] actualInfo = {title, tags, "trying to figure it out"};
-            assertNotEquals(info[2], actualInfo[2]);
-            assertEquals(info[0], actualInfo[0]);
-            assertEquals(info[1], actualInfo[1]);
+            assertNotEquals(actualInfo[2], info[2]);
+            assertEquals(actualInfo[0], info[0]);
+            assertEquals(actualInfo[1], info[1]);
         }
 
         @Test(timeout = 1000)
@@ -67,9 +70,9 @@ public class EditEntryTest {
             String[] info = controller.callGetEntry(title);
             controller.callEditEntry(title, "life", tags,LocalDate.now(), "trying to figure it out");
             String[] actualInfo = {"life", tags, entry};
-            assertNotEquals(info[0], actualInfo[0]);
-            assertEquals(info[2], actualInfo[2]);
-            assertEquals(info[1], actualInfo[1]);
+            assertNotEquals(actualInfo[0], info[0]);
+            assertEquals(actualInfo[2], info[2]);
+            assertEquals(actualInfo[1], info[1]);
         }
 
         @Test(timeout = 1000)
@@ -80,9 +83,9 @@ public class EditEntryTest {
             String[] info = controller.callGetEntry(title);
             controller.callEditEntry(title, title, "life, school, destiny",LocalDate.now(), "trying to figure it out");
             String[] actualInfo = {title, "life, school, destiny", "trying to figure it out"};
-            assertNotEquals(info[1], actualInfo[1]);
-            assertNotEquals(info[2], actualInfo[2]);
-            assertEquals(info[0], actualInfo[0]);
+            assertNotEquals(actualInfo[1], info[1]);
+            assertNotEquals(actualInfo[2], info[2]);
+            assertEquals(actualInfo[0], info[0]);
         }
 
 
@@ -94,9 +97,9 @@ public class EditEntryTest {
             String[] info = controller.callGetEntry(title);
             controller.callEditEntry(title, "school", "life, school, destiny",LocalDate.now(), "trying to figure it out");
             String[] actualInfo = {"school", "life, school, destiny", "trying to figure it out"};
-            assertNotEquals(info[1], actualInfo[1]);
-            assertNotEquals(info[2], actualInfo[2]);
-            assertNotEquals(info[0], actualInfo[0]);
+            assertNotEquals(actualInfo[1], info[1]);
+            assertNotEquals(actualInfo[2], info[2]);
+            assertNotEquals(actualInfo[0], info[0]);
 
             String tagsTwo = "Reading week, fun";
             String entryTwo = "gonna relax this reading week";
@@ -105,8 +108,8 @@ public class EditEntryTest {
             controller.callEditEntry("Reading Week", "Reading Week", "break, life, family",
                     LocalDate.now(), "gonna relax this reading week");
             String[] actualInfoTwo = {"Reading Week", "break, life, family", "gonna relax this reading week"};
-            assertEquals(infoTwo[0], actualInfoTwo[0]);
-            assertEquals(infoTwo[2], actualInfoTwo[2]);
-            assertNotEquals(infoTwo[1], actualInfo[1]);
+            assertEquals(actualInfoTwo[0], infoTwo[0]);
+            assertEquals(actualInfoTwo[2], infoTwo[2]);
+            assertNotEquals(actualInfoTwo[1], info[1]);
         }
-}}
+}

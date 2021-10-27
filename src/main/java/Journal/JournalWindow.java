@@ -40,9 +40,9 @@ public class JournalWindow extends WindowAdapter implements ItemListener {
     @Override
         public void itemStateChanged(ItemEvent e) {
 
-        String entryToDelete = entry.getSelectedItem();
-        entry.remove(entryToDelete);
-        files.get(entryToDelete).delete();
+        String entryToDelete = entry.getSelectedItem(); // the entry the user choose to delete
+        entry.remove(entryToDelete); // remove from possible entries to delete
+        files.get(entryToDelete).delete(); // delete the entry that the user choose
 
 
 

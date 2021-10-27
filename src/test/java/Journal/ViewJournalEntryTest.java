@@ -7,6 +7,7 @@ import javax.swing.filechooser.FileSystemView;
 import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ViewJournalEntryTest {
     JournalController controller;
@@ -22,46 +23,51 @@ public class ViewJournalEntryTest {
         title = "untitled";
     }
     @Test(timeout = 1000)
-    public void testViewEntryAllInfoCorrect(){
+    public void testViewEntryAllInfoMatchesInfoInFile(){
         String tags = "cs, stress, life";
         String entry = "I think i did good on my midterm";
         controller.callCreateEntry(title, entry, LocalDate.now(), tags);
         String[] info = controller.callGetEntry(title);
         String[] actualInfo = {title, tags, entry};
-        assertEquals(info, actualInfo);
+        assertEquals(actualInfo[0], info[0]);
+        assertEquals(actualInfo[1], info[1]);
+        assertEquals(actualInfo[2], info[2]);
 
     }
 
     @Test(timeout = 1000)
     public void testViewEntryWithNoTags(){
-        String tags = null;
+        String tags = "";
         String entry = "I think i did good on my midterm";
         controller.callCreateEntry(title, entry, LocalDate.now(), tags);
         String[] info = controller.callGetEntry(title);
-        String[] actualInfo = {title, tags, entry};
-        assertEquals(info, actualInfo);
+        String[] actualInfo = {title, "", entry};
+        assertEquals(actualInfo[0], info[0]);
+        assertEquals(actualInfo[1], info[1]);
+        assertEquals(actualInfo[2], info[2]);
 
     }
 
     @Test(timeout = 1000)
     public void testViewEntryWithNoEntry(){
         String tags = "cs, stress, life";
-        String entry = null;
+        String entry = "";
         controller.callCreateEntry(title, entry, LocalDate.now(), tags);
         String[] info = controller.callGetEntry(title);
-        String[] actualInfo = {title, tags, entry};
-        assertEquals(info, actualInfo);
+        String[] actualInfo = {title, tags, ""};
+        assertEquals(actualInfo[0], info[0]);
+        assertEquals(actualInfo[1], info[1]);
+        assertEquals(actualInfo[2], info[2]);
 
     }
 
     @Test(timeout = 1000)
     public void testViewEntryWithNoEntryAndContent(){
-        String tags = null;
-        String entry = null;
-        controller.callCreateEntry(title, entry, LocalDate.now(), tags);
+        controller.callCreateEntry(title, "", LocalDate.now(), "");
         String[] info = controller.callGetEntry(title);
-        String[] actualInfo = {title, tags, entry};
-        assertEquals(info, actualInfo);
+        assertEquals(title, info[0]);
+        assertEquals("", info[1]);
+        assertEquals("", info[1]);
 
     }
 
@@ -75,10 +81,15 @@ public class ViewJournalEntryTest {
         controller.callCreateEntry("birthday", entryTwo, LocalDate.now(), tagsTwo);
         String[] info = controller.callGetEntry(title);
         String[] actualInfo = {title, tags, entry};
-        assertEquals(info, actualInfo);
+        assertNotEquals(actualInfo[0], info[0]);
+        assertNotEquals(actualInfo[1], info[1]);
+        assertNotEquals(actualInfo[2], info[2]);
+
         String[] infoTwo = controller.callGetEntry("birthday");
         String[] actualInfoTwo = {"birthday", tagsTwo, entryTwo};
-        assertEquals(infoTwo, actualInfoTwo);
+        assertEquals( actualInfoTwo[0], infoTwo[0]);
+        assertEquals(actualInfoTwo[1], infoTwo[1]);
+        assertEquals(actualInfoTwo[2], infoTwo[2]);
 
     }
 

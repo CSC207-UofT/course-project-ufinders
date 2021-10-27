@@ -30,7 +30,7 @@ public class JournalController {
         return this.journalmanager;
     }
     /**
-     * Calls journal manager to create entry with the given information.
+     * Calls journal manager to create entry with the given information and store it in dir.
      * @param title The title of the entry.
      * @param content The content of the entry.
      * @param date The date the entry was written on.
@@ -42,7 +42,7 @@ public class JournalController {
     }
 
     /**
-     * Calls journal manager to delete the entry with the given title.
+     * Calls journal manager to delete the entry with the given title in dir.
      * @param title The title of the entry to delete.
      */
     public void callDeleteEntry(String title) {
@@ -50,7 +50,7 @@ public class JournalController {
     }
 
     /**
-     * Calls journal manager to get the entry with the given title.
+     * Calls journal manager to get the entry with the given title in dir
      * @param title The title of the entry to get.
      */
 
@@ -58,8 +58,19 @@ public class JournalController {
         return journalmanager.getEntry(title);
     }
 
-    public void callEditEntry(String titleOfEntryToView, String s, String s1, LocalDate parse, String s2) {
-        this.callDeleteEntry(titleOfEntryToView);
-        this.callCreateEntry(s, s1, parse, s2);
+
+    /**
+     * Calls callDeleteEntry to delete the journal entry with title, titleOfEntryToDelete.
+     * Also it calls callCreateEntry to create a new entry with the given title and store it in dir.
+     * @param titleOfEntryToDelete The title of the entry user wants to delete.
+     * @param title The possibly modified title of the entry.
+     * @param tags The  possibly modified tags of the entry.
+     * @param today The  date the entry was orginaly written on.
+     * @param entry The possibly modified tags of  the entry.
+
+     */
+    public void callEditEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry) {
+        this.callDeleteEntry(titleOfEntryToDelete);
+        this.callCreateEntry(title, tags, today, entry);
     }
 }

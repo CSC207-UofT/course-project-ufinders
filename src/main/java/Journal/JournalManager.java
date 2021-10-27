@@ -6,6 +6,7 @@ import java.time.LocalDate;
 public class JournalManager {// file gateway does the work of journal manager
     // the  interface the journal manager calls on to add, delete and modify journal entry files.
     private FileGatewayInterface accessFiles;
+    // Where journal entry file is stored. A journal entry file can be accessed with the title of the entry file.
     private Journal journal;
 
 

@@ -2,6 +2,7 @@ package Journal;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
+import java.awt.*;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -18,12 +19,16 @@ public class JournalUI {
     }
 
     public void addEntry(){
+
         String[] newEntry = this.addEntryPopUp();
-        String title = newEntry[0];
-        String content = newEntry[2];
-        String tags = newEntry[1];
+        for (int i = 0; i < newEntry.length; i += 1){
+            if(newEntry[i] == null){
+                newEntry[i] = "";
+
+            }
+        }
         LocalDate today = LocalDate.now();
-        this.controller.callCreateEntry(title, content, today, tags );
+        this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1] );
     }
 
     public void deleteEntry(){
@@ -33,6 +38,12 @@ public class JournalUI {
         this.controller.callDeleteEntry(title );
 
     }
+
+    public void deleteEntryPopUp(){
+        Frame JournalEntries = new Frame("Choose an entry to delete");
+        File[] allJournalEntries = controller.callGetAllEntries();
+    }
+
 
     public void viewEntry(){
         Scanner read = new Scanner(System.in);
@@ -83,6 +94,8 @@ public class JournalUI {
         return JournalEntry;
 
     }
+
+
 
     public static void main(String[] args) {
         JournalUI UI = new JournalUI();
