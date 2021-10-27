@@ -14,13 +14,16 @@ public class User_Controls {
      */
     public static void intro(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Do you want to buy, sell, or exit the marketplace? (Write 'buy,' 'sell,' or 'exit')");
+        System.out.println("Do you want to buy, sell, remove item or exit the marketplace? (Write 'buy,' 'sell,' 'remove' or 'exit')");
         String segmentchoice = input.nextLine();
         if (Objects.equals(segmentchoice, "buy")){
             buying_info();
         }
         else if (Objects.equals(segmentchoice, "sell")){
             selling_info();
+        }
+        else if (Objects.equals(segmentchoice, "remove")){
+            remove_post();
         }
         else if (Objects.equals(segmentchoice, "exit")){
             MainController.menu();
@@ -67,6 +70,25 @@ public class User_Controls {
             //it feels like there should be a way to have these keys be easily replaced in case we want to
         }
         // call searcher here for the thing Searcher.search(searchkey, sortkey);
+    }
+
+    private static void remove_post(){
+//    Will change the title to ID when we create an ID instead, but should users be able to remember their ID?
+        String title = get_input("Please enter the title of the item you are removing");
+        String password = get_input("Please enter the password for the item.");
+        if (ItemManager.remove_post(title, password)){
+            System.out.println("You have successfully removed item!");
+        }
+        else {
+            String fail = get_input("You have entered the wrong title or password. Would you like to try again? (Y/N)");
+            if (Objects.equals(fail, "Y")){
+                remove_post();
+            }
+            else{
+                intro();
+//                or should we just go straight to MainController.menu()?
+            }
+        }
     }
 
     /**

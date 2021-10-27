@@ -11,7 +11,7 @@ public class Database {
      *
      */
 
-    private static ArrayList<Item> item_type_lst = new ArrayList<Item>();
+    private static ArrayList<Item> item_type_lst = new ArrayList<>();
 
 
     public static void StoreItem(Item item) {
@@ -28,6 +28,10 @@ public class Database {
          * Returns the item_lst
          */
         return item_type_lst;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(item_type_lst);
     }
 
 

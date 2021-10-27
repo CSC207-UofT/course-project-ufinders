@@ -42,14 +42,30 @@ public class ItemManager {
 
 //    TODO: create an ID for Item
 
-    public boolean remove_post(String title, String password){
+    public static boolean password_match(String title, String password){
+        /**
+         * Checks to see if the password given by
+         * user matches with the item in Database
+         */
+        ArrayList<Item> item_lst = Database.GetLst();
+
+        for (Item item: item_lst){
+            if (item.getName().equals(title) & item.getPassword().equals(password)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public static boolean remove_post(String title, String password){
         /**
          * Removes the item sold from post and return true. Needs to check the password before the item can be removed.
          */
         ArrayList<Item> posts = Database.GetLst();
 
         for (Item item: posts){
-            if (item.getName().equals(title) & Database_Manager.password_match(title, password)){
+            if (item.getName().equals(title) & password_match(title, password)){
                 posts.remove(item);
                 return true;
             }
@@ -57,7 +73,6 @@ public class ItemManager {
         return false;
     }
 
-//    TODO: create some sort of method that would tell the seller that their item has been sold
 
 
 
