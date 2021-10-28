@@ -2,6 +2,7 @@ package Journal;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.Set;
 
 public class JournalManager {// file gateway does the work of journal manager
     // the  interface the journal manager calls on to add, delete and modify journal entry files.
@@ -73,6 +74,10 @@ public class JournalManager {// file gateway does the work of journal manager
         public String[] getEntry(String title){
         File fileWithInfo = journal.getEntryFile(title);
             return accessFiles.getInfo(fileWithInfo);
+        }
+
+        public Set<String> GetAllEntries(){
+            return journal.getAllEntryFiles();
         }
 
 

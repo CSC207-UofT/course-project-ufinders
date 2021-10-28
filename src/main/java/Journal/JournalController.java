@@ -1,6 +1,7 @@
 package Journal;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 public class JournalController {
     // object the controller calls on to do the work its given
@@ -72,5 +73,9 @@ public class JournalController {
     public void callEditEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry) {
         this.callDeleteEntry(titleOfEntryToDelete);
         this.callCreateEntry(title, tags, today, entry);
+    }
+
+    public Set<String> callGetAllEntries(){
+        return journalmanager.GetAllEntries();
     }
 }

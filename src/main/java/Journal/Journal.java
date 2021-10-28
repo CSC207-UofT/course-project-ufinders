@@ -4,6 +4,7 @@ package Journal;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Set;
 
 
 public class Journal {
@@ -50,5 +51,9 @@ public class Journal {
      */
     public void deleteEntryFile(String title) {
         this.entries.remove(title);
+    }
+
+    public Set<String> getAllEntryFiles() {
+        return this.entries.keySet();
     }
 }
