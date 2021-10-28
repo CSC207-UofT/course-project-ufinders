@@ -53,7 +53,7 @@ public class JournalUI {
 
     public void viewEntry(String titleOfEntryToView){
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
-        String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo, entryInfo[0]);
+        String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo);
         this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0], modifiedJournalEntry[1],
                 LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
     }
@@ -70,7 +70,7 @@ public class JournalUI {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { // what if user presses cancel
         JournalUI UI = new JournalUI();
         String userCommand = UI.popUpWindow.viewUserOptions();
         while(userCommand != "exit journal"){
@@ -80,7 +80,7 @@ public class JournalUI {
 
             }
 
-            else if(userCommand == "view entries"){
+            else if(userCommand == "view/edit entries"){
                 UI.viewAllEntry();
 
             }

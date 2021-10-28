@@ -72,7 +72,7 @@ public class JournalController {
      */
     public void callEditEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry) {
         this.callDeleteEntry(titleOfEntryToDelete);
-        this.callCreateEntry(title, tags, today, entry);
+        this.callCreateEntry(title, entry, today, tags);
     }
 
     public Set<String> callGetAllEntries(){
