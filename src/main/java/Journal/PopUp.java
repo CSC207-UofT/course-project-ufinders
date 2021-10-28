@@ -1,26 +1,30 @@
 package Journal;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Set;
 
 public class PopUp { // presenter class
-    ItemListener listener;
+
     JournalController controller;
-    public PopUp(MakeDir dir){
-        this.controller = new JournalController(dir);
+
+    public PopUp( JournalController controller) {
+
+        this.controller = controller;
     }
 
-
-    public String[] viewAndAddEntryPopUp(String[] defaultEntryInput, String titleOfPopUp){
+    public String[] viewAndAddEntryPopUp(String[] defaultEntryInput, String titleOfPopUp) {
         JTextField title = new JTextField();
         JTextField tags = new JTextField();
         JTextField entry = new JTextField();
-        title.setText(defaultEntryInput[0]);
-        tags.setText(defaultEntryInput[1]);
-        entry.setText(defaultEntryInput[2]);
+        title.setText(defaultEntryInput[1]);
+        tags.setText(defaultEntryInput[2]);
+        entry.setText(defaultEntryInput[1]);
         Object[] message = {
                 "Title:", title,
                 "Tags:", tags,
@@ -29,20 +33,14 @@ public class PopUp { // presenter class
         String[] modifiedEntryInfo = {title.getText(), tags.getText(), entry.getText()};
         return modifiedEntryInfo;
     }
-    public String[] editedEntry(String[]  defaultEntryInput, String titleOfPopUp){
-        String[] modifiedEntryInfo = viewAndAddEntryPopUp(defaultEntryInput, titleOfPopUp);
-        String titleModified = modifiedEntryInfo[0];
-        String tagsModified = modifiedEntryInfo[0];
-        String entryModified = modifiedEntryInfo[0];
-        String[] modifiedJournalEntry = {titleModified, tagsModified, entryModified};
-        return modifiedJournalEntry;
-    }
 
-    public String[] addEntryPopUp(){
+
+
+    public String[] addEntryPopUp() {
         String[] noDefaultInput = new String[3];
         String[] userInput = viewAndAddEntryPopUp(noDefaultInput, "Journal");
 
-        String title =userInput[0];
+        String title = userInput[0];
         String tags = userInput[1];
         String entry = userInput[2];
         String[] JournalEntry = {title, tags, entry};
@@ -50,17 +48,39 @@ public class PopUp { // presenter class
 
     }
 
-    public String deleteEntryPopUp(){ // going to be in presenter class
-        Choice possibleEntriesToDelete = new Choice();
-        Frame JournalEntries = new Frame("Choose an entry to delete");
-        Set<String> allJournalEntries = controller.callGetAllEntries();
-        for (String entryTitle : allJournalEntries){
-            possibleEntriesToDelete.add(entryTitle);
-        }
-        possibleEntriesToDelete.addItemListener(listener);
-        String entryToDelete = possibleEntriesToDelete.getSelectedItem();
-        return entryToDelete;
+    public String deleteEntryPopUp() { // going to be in presenter class
 
+        Set<String> allJournalEntries = controller.callGetAllEntries();
+        Object[] possibleEntriesToDelete = new String[allJournalEntries.size()];
+        int i = 0;
+        for (String entryTitle : allJournalEntries) {
+            possibleEntriesToDelete[i] = entryTitle;
+            i += 1;
+        }
+       return (String)JOptionPane.showInputDialog(null, "choose an entry to delete",
+               "Delete a journal entry", JOptionPane.QUESTION_MESSAGE, null, possibleEntriesToDelete,
+               null);
     }
 
+    public String viewEntriesPopUp() {
+        Set<String> allJournalEntries = controller.callGetAllEntries();
+        Object[] possibleEntriesToView = new String[allJournalEntries.size()];
+        int i = 0;
+        for (String entryTitle : allJournalEntries) {
+            possibleEntriesToView[i] = entryTitle;
+            i += 1;
+        }
+        return (String)JOptionPane.showInputDialog(null, "choose an entry to View",
+                "Delete a journal entry", JOptionPane.QUESTION_MESSAGE, null, possibleEntriesToView,
+                null);
+    }
+
+    public String viewUserOptions() {
+
+        Object[] userOptions = {"add an entry", "view entries", "delete an entry", "exit journal"};
+
+        return (String)JOptionPane.showInputDialog(null, "What would you like to do",
+                "Choose what you would like to do in journal", JOptionPane.QUESTION_MESSAGE, null, userOptions,
+                null);
+    }
 }

@@ -24,7 +24,7 @@ public class JournalUI {
                         .getHomeDirectory()
                         .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
         this.controller = new JournalController(dir);
-        this.popUpWindow = new PopUp(dir);
+        this.popUpWindow = new PopUp(controller);
 
     }
 
@@ -46,20 +46,23 @@ public class JournalUI {
         String entryToDelete = this.popUpWindow.deleteEntryPopUp();
         controller.callDeleteEntry(entryToDelete);
 
+
     }
 
 
 
-
-    public void viewEntry(){
-        Scanner read = new Scanner(System.in);
-        System.out.println("Title of entry you would like to view:");
-        String titleOfEntryToView = read.nextLine();
+    public void viewEntry(String titleOfEntryToView){
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
-        String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo, titleOfEntryToView);
-        this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0], modifiedJournalEntry[2],
-                LocalDate.parse(entryInfo[0]), modifiedJournalEntry[1]);
+        String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo, entryInfo[0]);
+        this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0], modifiedJournalEntry[1],
+                LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
     }
+
+    public void viewAllEntry(){
+        String entryToView = this.popUpWindow.viewEntriesPopUp();
+        viewEntry(entryToView);
+    }
+
 
 
 
@@ -69,13 +72,28 @@ public class JournalUI {
 
     public static void main(String[] args) {
         JournalUI UI = new JournalUI();
-        // implement popup so user can choose what they want to do in journal
-        UI.addEntry();
-        UI.deleteEntry();
-        //UI.viewEntry();
+        String userCommand = UI.popUpWindow.viewUserOptions();
+        while(userCommand != "exit journal"){
 
+            if (userCommand == "add an entry" ){
+                UI.addEntry();
 
+            }
+
+            else if(userCommand == "view entries"){
+                UI.viewAllEntry();
+
+            }
+
+            else {
+                UI.deleteEntry();
+            }
+            userCommand = UI.popUpWindow.viewUserOptions();
+
+        }
     }
+
+
 }
 
 

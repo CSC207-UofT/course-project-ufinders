@@ -58,20 +58,19 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
 
     @Override
     public String[] getInfo(File fileWithInfo) {
-        String[] info = new String[3];
+        String[] info = new String[4];
         try{
             BufferedReader reader = new BufferedReader(new FileReader(fileWithInfo));
             String line = reader.readLine(); // date of entry
-
-            line = reader.readLine().strip(); // title of entry
             info[0] = line;
+            line = reader.readLine().strip(); // title of entry
+            info[1] = line;
             line = reader.readLine().strip(); // space after title of entry
             line = reader.readLine().strip();
-            info[1] = line.substring(line.indexOf(":") + 1);
+            info[2] = line.substring(line.indexOf(":") + 1); // tags
+            line = reader.readLine().strip();// space after tags
             line = reader.readLine().strip();
-            line = reader.readLine().strip();
-            info[2] = line;
-
+            info[3] = line;// entry
             reader.close();
             return info;
         }
