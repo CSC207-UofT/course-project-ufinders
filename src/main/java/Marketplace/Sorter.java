@@ -2,7 +2,7 @@ package Marketplace;
 
 import java.util.ArrayList;
 
-public class Sorter {
+public class Sorter implements ISorter {
 
     private String direction = "high-low";
     private String type = "time";
