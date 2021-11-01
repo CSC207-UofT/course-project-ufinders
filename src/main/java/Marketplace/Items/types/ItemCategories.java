@@ -5,6 +5,5 @@ public enum ItemCategories {
     electronics,
     misc,
     clothes,
-    animal,
-    request
+    animal
 }

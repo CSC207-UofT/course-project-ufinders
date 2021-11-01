@@ -38,7 +38,6 @@ public abstract class Item {
     }
     private condition condition;
 
-
     public Item(String title, String item_description, String contact_num, String contact_email, String password,
                 double price, Item.campus campus){
         this.name = title;
@@ -48,6 +47,18 @@ public abstract class Item {
         this.password = password;
         this.price = price;
         this.campus = campus;
+        this.id = id_counter;
+        id_counter += 1;
+    }
+
+    public Item(){
+        this.name = null;
+        this.item_description = null;
+        this.contact_num = null;
+        this.contact_email = null;
+        this.password = null;
+        this.price = 0.0;
+        this.campus = null;
         this.id = id_counter;
         id_counter += 1;
     }
@@ -75,4 +86,26 @@ public abstract class Item {
     public double getPrice() {
         return price;
     }
+
+    public int getId() {return id;}
+
+    public Item.campus getCampus() {return campus;}
+
+    public Item.condition getCondition() {return condition;}
+
+    public void setName(String name) {this.name = name;}
+
+    public void setItem_description(String item_description) {this.item_description = item_description;}
+
+    public void setContact_num(String contact_num) {this.contact_num = contact_num;}
+
+    public void setContact_email(String contact_email) {this.contact_email = contact_email;}
+
+    public void setPassword(String password) {this.password = password;}
+
+    public void setPrice(double price) {this.price = price;}
+
+    public void setCampus(Item.campus campus) {this.campus = campus;}
+
+    public void setCondition(Item.condition condition) {this.condition = condition;}
 }

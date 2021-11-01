@@ -1,11 +1,15 @@
 package Marketplace.Items.types;
 
-import Marketplace.Items.types.Item;
-
 public class Electronic extends Item {
 
     private Item.condition condition;
     private String tech_specifications;
+
+    public Electronic(){
+        super();
+        this.condition = null;
+        this.tech_specifications = null;
+    }
 
     public Electronic(String title, String item_description, String contact_num, String contact_email, String password,
                       double price, Item.campus campus, Item.condition condition, String tech_specifications) {
