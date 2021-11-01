@@ -1,6 +1,8 @@
 package Marketplace;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 import Main.*;
@@ -53,20 +55,29 @@ public class User_Controls {
      *
      */
     private static void buying_info(){
-        String keyword = get_input("Please enter a keyword for your search:");
-        String searchchoice = get_input("do you want to filter your search? (Y/N)");
-        if (Objects.equals(searchchoice, "Y")){
-            search_helper();
+        Searching search = new Searching();
+        search.setKeyword(get_input("Please enter a keyword for your search (ex. computer, desk, biology):"));
+        if (get_input("do you want to filter your search by campus? (Y/N)").equals("Y")){
+           search.setCampus("What campus do you want to see items from? (UTSG/UTM/UTSC)");
+        }
+        if (get_input("do you want to filter your search by price? (Y/N)").equals("Y")){
+            search.setPrices(get_input("What is the minimum price for your search?"), get_input("What is the maximum price for your search?"));
         }
         String sortchoice = get_input("do you want to sort by price or time posted? (price/time)");
         if (Objects.equals(sortchoice, "price")){
-            String sortkey = get_input("do you want to sort by high to low or low to high? (high to low/low to high)");
+            search.setSortchoice(get_input("do you want to sort by high to low or low to high? (high-low/low-high)"), "price");
         }
         else if (Objects.equals(sortchoice, "time")){
             String sortkey = get_input("do you want to sort by most recent or oldest? (recent/oldest)");
-            //it feels like there should be a way to have these keys be easily replaced in case we want to
+            if (sortkey.equals("recent")){
+                search.setSortchoice("low-high", "time");
+            }
+            if (sortkey.equals("oldest")){
+                search.setSortchoice("high-low", "time");
+            }
         }
-        // call searcher here for the thing Searcher.search(searchkey, sortkey);
+        System.out.println("Loading your search");
+        search.execute();
     }
 
     /**
@@ -74,8 +85,10 @@ public class User_Controls {
      *
      */
     private static void search_helper(){
-        System.out.println("yet to implement");
-        //TODO: figure this out.
+        //Possibilities for search: campus, price, condition
+
+
+
     }
 
     /**
@@ -86,14 +99,13 @@ public class User_Controls {
     private static String get_input(String prompt){
         Scanner input = new Scanner(System.in);
         System.out.println(prompt);
-        String response =  input.nextLine();
+        return input.nextLine();
         //  if (possibleinput.contains(response)){
         //      return response;
         //   }
         //  else{
         //      get_input(prompt, possibleinput);
-        //  }
-        return response;
+        //
         //could edit this so that it checks whether the answer is acceptable and forces user to give another line if it's not?
     }
 }
