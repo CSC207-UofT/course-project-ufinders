@@ -35,6 +35,7 @@ public class ItemManager {
         this.post.put("price",price);
         this.post.put("contact",contact);
         this.post.put("email", email);
+//        this.post.put("ID", id);
         Item item = new Item(name, description, contact, email, password, price);
         Database.StoreItem(item);
     }

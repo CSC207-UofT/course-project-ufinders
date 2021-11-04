@@ -56,20 +56,29 @@ public class User_Controls {
      *
      */
     private static void buying_info(){
-        String keyword = get_input("Please enter a keyword for your search:");
-        String searchchoice = get_input("do you want to filter your search? (Y/N)");
-        if (Objects.equals(searchchoice, "Y")){
-            search_helper();
+        Searching search = new Searching();
+        search.setKeyword(get_input("Please enter a keyword for your search (ex. computer, desk, biology):"));
+        if (get_input("do you want to filter your search by campus? (Y/N)").equals("Y")){
+            search.setCampus("What campus do you want to see items from? (UTSG/UTM/UTSC)");
+        }
+        if (get_input("do you want to filter your search by price? (Y/N)").equals("Y")){
+            search.setPrices(get_input("What is the minimum price for your search?"), get_input("What is the maximum price for your search?"));
         }
         String sortchoice = get_input("do you want to sort by price or time posted? (price/time)");
         if (Objects.equals(sortchoice, "price")){
-            String sortkey = get_input("do you want to sort by high to low or low to high? (high to low/low to high)");
+            search.setSortchoice(get_input("do you want to sort by high to low or low to high? (high-low/low-high)"), "price");
         }
         else if (Objects.equals(sortchoice, "time")){
             String sortkey = get_input("do you want to sort by most recent or oldest? (recent/oldest)");
-            //it feels like there should be a way to have these keys be easily replaced in case we want to
+            if (sortkey.equals("recent")){
+                search.setSortchoice("low-high", "time");
+            }
+            if (sortkey.equals("oldest")){
+                search.setSortchoice("high-low", "time");
+            }
         }
-        // call searcher here for the thing Searcher.search(searchkey, sortkey);
+        System.out.println("Loading your search");
+        search.execute();
     }
 
     private static void remove_post(){
