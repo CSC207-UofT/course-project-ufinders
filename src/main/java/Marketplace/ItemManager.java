@@ -20,7 +20,6 @@ public class ItemManager {
         this.post = new HashMap<>();
     }
 
-//    TODO: make something like a ShapeFactory in create_post or make another method
 
     public void create_post(String name, String description, Double price, String contact,
                                    String password, String email){

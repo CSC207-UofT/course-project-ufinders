@@ -22,7 +22,15 @@ public class Database implements Serializable{
          * Adds the post to the item_lst
          */
 
-        item_type_lst.add(item);
+//        item_type_lst.add(item);
+        try {
+            SerializeItem();
+        } catch (Exception e){
+            System.out.println("Cannot store item.");
+        } finally {
+            item_type_lst.add(item);
+        }
+
     }
 
     private static void SerializeItem() throws IOException {
@@ -33,14 +41,30 @@ public class Database implements Serializable{
         FileOutputStream newfile = new FileOutputStream("itemlst.txt");
         ObjectOutputStream outputStream = new ObjectOutputStream(newfile);
         outputStream.writeObject(item_type_lst);
+
     }
 
+    private static void DeserializeItem() throws IOException, ClassNotFoundException {
+        /**
+         * Deserializes the items in the file
+         */
+
+        FileInputStream retrievedfile = new FileInputStream("itemlst.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(retrievedfile);
+        Database data = (Database) objectInputStream.readObject();
+
+
+    }
 
     public static ArrayList<Item> GetLst() {
         /**
          * Returns the item_lst
          */
-
+        try{
+            DeserializeItem();
+        } catch (Exception e){
+            System.out.println("Item cannot be retrieved");
+        }
         return item_type_lst;
     }
 
@@ -56,18 +80,11 @@ public class Database implements Serializable{
 
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        Item item1 = new Item("cats", "furry", "123", "123", "123", 123);
-//        StoreItem(item1);
-//        Database vo1 = new Database();
-//        FileOutputStream fileOut = new FileOutputStream("test.txt");
-//        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-//        out.writeObject(vo1);
-//        out.close();
-//        fileOut.close();
-//        FileInputStream fileIn = new FileInputStream("test.txt");
-//        ObjectInputStream in = new ObjectInputStream(fileIn);
+        Item item1 = new Item("cats", "furry", "123", "123", "123", 123);
+        StoreItem(item1);
+
 //        Database vo2 = (Database) in.readObject();
-//        System.out.println(vo2.toString());
+        System.out.println(GetLst().toString());
 
     }
 
