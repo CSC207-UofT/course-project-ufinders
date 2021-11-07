@@ -50,7 +50,9 @@ public class Journal {
      * @param title The key that we want to delete in entries
      */
     public void deleteEntryFile(String title) {
-        this.entries.remove(title);
+        if (this.entries.containsKey(title)) {
+            this.entries.remove(title);
+        }
     }
 
     /**
@@ -59,7 +61,8 @@ public class Journal {
      *
      *  @return A set of title of journal entries that the user wrote
      */
-    public Set<String> getAllEntryFiles() {
+    public Set<String> getAllEntryTitles() {
         return this.entries.keySet();
     }
+
 }

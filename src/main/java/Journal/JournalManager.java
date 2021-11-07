@@ -70,7 +70,7 @@ public class JournalManager {// file gateway does the work of journal manager
      */
 
         public Set<String> GetAllEntries(){
-            return journal.getAllEntryFiles();
+            return journal.getAllEntryTitles();
         }
 
 

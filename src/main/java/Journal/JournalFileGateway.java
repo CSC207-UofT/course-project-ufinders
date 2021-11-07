@@ -51,7 +51,7 @@ public class JournalFileGateway implements FileGateway { //interacts with dir
      * Reads fileWithInfo, storing tags, title and content within the file to a string array that will be returned.
      * @param fileWithInfo The file that we want to get information from.
      * @return return a string array containing the information in fileWithInfo in the format
-     * [title, tags, content]
+     * [date, title, tags, content]
      */
 
     @Override
@@ -65,7 +65,7 @@ public class JournalFileGateway implements FileGateway { //interacts with dir
             info[1] = line;
             reader.readLine(); // space after title of entry
             line = reader.readLine();
-            info[2] = line.substring(line.indexOf(":") + 1); // tags
+            info[2] = line.substring(line.indexOf(":") + 2); // tags
             reader.readLine();// space after tags
             line = reader.readLine().strip();
             info[3] = line;// entry
@@ -105,7 +105,7 @@ public class JournalFileGateway implements FileGateway { //interacts with dir
             writingEntry.println(date);
             writingEntry.println(title + "\n");
 
-            writingEntry.println("Tags:" + tags + "\n");
+            writingEntry.println("Tags: " + tags + "\n");
             writingEntry.println(content);
             writingEntry.close();
         } catch (Exception ignored) {
