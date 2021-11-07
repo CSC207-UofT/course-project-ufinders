@@ -6,37 +6,25 @@ import java.util.Set;
 
 public class JournalManager {// file gateway does the work of journal manager
     // the  interface the journal manager calls on to add, delete and modify journal entry files.
-    private FileGatewayInterface accessFiles;
+    private final FileGateway accessFiles;
     // Where journal entry file is stored. A journal entry file can be accessed with the title of the entry file.
-    private Journal journal;
+    private final Journal journal;
 
 
 
     /**
-     * Creates a journal manager with the given FileGatewayInterface, fileGateway.
+     * Creates a journal manager with the given FileGateway, fileGateway.
      *
      *
      * @param   fileGateway      The interface that can be used to add, delete and edit journal entries
      */
 
-    public JournalManager(FileGatewayInterface fileGateway){
-        setFileGateway(fileGateway );
-    }
-    /**
-     * Sets accessFiles  to the provided journalFileGateway
-     *
-     * @param journalFileGateway The interface that accessFiles is set to.
-
-     */
-
-    public void setFileGateway(FileGatewayInterface journalFileGateway){
-        this.accessFiles = journalFileGateway; // needs gateway to allow it to store entries
+    public JournalManager(FileGateway fileGateway){
+        this.accessFiles = fileGateway; // needs gateway to allow it to store entries
         this.journal = new Journal();
+    }
 
-    }
-    public Journal getJournal(){
-        return this.journal;
-    }
+
     /**
      * Calls accessFiles to create entry with the given information and add the title and file created
      * to journal.
@@ -51,7 +39,7 @@ public class JournalManager {// file gateway does the work of journal manager
         File fileCreated = accessFiles.addFile(title, content, date, tags);
         journal.addEntry(title, fileCreated);
 
-        if (fileCreated == null) {
+        if (fileCreated == null) { // means file was not created
             // need to get a new name for journal entry if journal entry with that name exist
         }
     }
@@ -75,6 +63,11 @@ public class JournalManager {// file gateway does the work of journal manager
         File fileWithInfo = journal.getEntryFile(title);
             return accessFiles.getInfo(fileWithInfo);
         }
+
+    /**
+     * Calls journal to get the title of all the users' entries
+     * @return A set of the titles of the users' entries
+     */
 
         public Set<String> GetAllEntries(){
             return journal.getAllEntryFiles();

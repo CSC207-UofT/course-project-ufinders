@@ -1,13 +1,13 @@
 package Journal;
 
-import javax.swing.filechooser.FileSystemView;
+
 import java.io.*;
 import java.time.LocalDate;
 
-public class JournalFileGateway implements FileGatewayInterface { //interacts with dir
+public class JournalFileGateway implements FileGateway { //interacts with dir
 
     // the  path of the file to which JournalFileGateway can add, delete and edit text files from.
-    private String path;
+    private final String path;
 
 
     /**
@@ -17,12 +17,11 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
 
     public JournalFileGateway(String path){
         this.path = path;
-
     }
 
 
     /**
-     * Make a journal entry(text file) with the given information only if the file with the given title does not exsist.
+     * Make a journal entry(text file) with the given information only if the file with the given title does not exist.
      *
      * @param title The title of the entry.
      * @param content The content of the entry.
@@ -33,14 +32,13 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
      */
     @Override
     public File addFile(String title, String content, LocalDate date, String tags) { // method should be in journal manager.
-        // only method in here should be edit file ? maybe
+
 
             String pathOfEntry = path + "/" + title + ".txt";
             File journalEntry = new File(pathOfEntry);
         try {
             journalEntry.createNewFile();
-            writeToFile(title, content, date, tags, pathOfEntry); // write to file, getting to this line means file was created
-            // should be done through an interface
+            writeToFile(title, content, date, tags, pathOfEntry);
             return journalEntry;}
 
         catch (Exception IOException){// file was not created
@@ -51,7 +49,7 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
 
     /**
      * Reads fileWithInfo, storing tags, title and content within the file to a string array that will be returned.
-     * @param fileWithInfo The file that we want get information from.
+     * @param fileWithInfo The file that we want to get information from.
      * @return return a string array containing the information in fileWithInfo in the format
      * [title, tags, content]
      */
@@ -65,10 +63,10 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
             info[0] = line;
             line = reader.readLine().strip(); // title of entry
             info[1] = line;
-            line = reader.readLine().strip(); // space after title of entry
-            line = reader.readLine().strip();
+            reader.readLine(); // space after title of entry
+            line = reader.readLine();
             info[2] = line.substring(line.indexOf(":") + 1); // tags
-            line = reader.readLine().strip();// space after tags
+            reader.readLine();// space after tags
             line = reader.readLine().strip();
             info[3] = line;// entry
             reader.close();
@@ -80,13 +78,7 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
 
     }
 
-    public static void main(String[] args) { // can delete after
-        JournalFileGateway ex = new JournalFileGateway(FileSystemView.getFileSystemView()
-                .getHomeDirectory()
-                .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
-        File returned = ex.addFile("love", "love is hard", LocalDate.now(), "apple, idk");
-        String[] st = ex.getInfo(returned);
-    }
+
 
     /**
      * Delete the fileToDelete from path that it is stored in.
@@ -120,26 +112,8 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
         }
     }
 
-    /**
-     * Gives the StringBuilder representation of tags.
-     * @param tags The tags we want a StringBuilder representation of.
-     * @return each elements of tags seperated by commas in as a string builder.
-
-     */
-    public StringBuilder getStringTags(String[] tags) { // can delete method
-
-        StringBuilder tagsOfEntry = new StringBuilder();
-        if (tags.length == 1){
-            tagsOfEntry.append(tags[0]);
-        }
-        else if (tags.length > 1){
-        for (String tag : tags) {
-            tagsOfEntry.append(tag).append(", ");
-        }
-        tagsOfEntry.delete(tagsOfEntry.length() - 2, tagsOfEntry.length());
-    }
-        return tagsOfEntry;
-}
-
 
 }
+
+
+

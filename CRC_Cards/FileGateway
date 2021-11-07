@@ -1,0 +1,4 @@
+Interface Name: FileGateway
+
+Responsibilities:
+* stores methods such as addFile, deleteFile and getInfo that all classes that implement this interface must implement

@@ -6,28 +6,29 @@ Class Name: Journal_UI
 
 Responsibilities:
 
+* Stores a JournalController as an instance variable called controller and a JournalWindow called popUPWindow
+* Calls popUpWindow to make a pop-up window prompting user to add an entry. Then, gets the input of the user and calls
+controller to create a journal entry passing to it the title, tags and content the user inputted and the date the entry
+was written on.
 
-* Prompt user to add entry, view a single entry,  view all entries, delete entry and edit an entry until they type
-"exit"
+* Calls popUpWindow to make a pop-up window prompting user to choose an entry to delete. Then, gets title of the entry
+the user want to delete. Calls controller to delete that journal entry passing to it the title of the entry to delete.
 
-* When user wants to add an entry it prompts user to enter a title, what they want to write and tags they want to
-add to the entry. Then it calls Journal_Controller to create an entry with the input provided by the user. %
+* Call controller to get all entries that the user has added. Calls popUpWindow to make a pop-up window with a list
+ of journal entries that the user can choose to view
 
-* When user wants to view a single entry it calls the Journal_Controller to get the names of all the journal entries and
-displays it to the user. The user than choose from the entries displayed which entry they would like to view. Then
-it calls the Journal_Controller to get that entry and the Journal_UI passes the entry to the Journal_Entry_UI
-for it to display it to the user.
+ * The journal entry the user want to view is shown to the user by calling popUpWindow
+ to make a pop-up of the journal entry. The user can simply just view the entry or edit it. Then,
+ the possibly modified information from the journal entry such as tags, title and content is passed to controller
+ to make an edit to the journal entry the user is viewing.
 
-* When user wants to view all entries ......
-
-* When user wants to delete an entry or entries it calls the JournalController to get the title of all entries in the
-Journal and displays it to the user. The user enters the journal entries they want to delete. The Journal_UI calls
-the Journal_controller to delete all the entries that the user inputs.
-
-* When user wants to edit an entry.....
+* Calls popUpWindow which prompt user with a list of action they want to do in journal such ass add, view/edit and
+delete and entry. Then, accordingly calls popUpWindow to create a pop-up to display or allow the user
+to do what they wanted to do.
 
 
 
 Collaborators:
-* Journal_Controller
-* Journal_Entry_UI %
+* JournalController
+* JournalWindow
+

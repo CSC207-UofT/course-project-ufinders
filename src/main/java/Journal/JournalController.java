@@ -6,27 +6,22 @@ import java.util.Set;
 public class JournalController {
     // object the controller calls on to do the work its given
     private final JournalManager journalmanager;
-    // the directory that the journal entries are stored in
-    private final MakeDir dir;
+
 
 
     /**
      * Creates a controller with the given directory, dir.
      *
      *
-     * @param dir         the directory the controller modifies
+     * @param journalFile  the gateway which is used to interact and create files on users' computer
      */
 
 
 
-    public JournalController(MakeDir dir){
-        this.dir = dir;
-
-        this.journalmanager = new JournalManager(new JournalFileGateway(dir.getPath())); // not sure if controller
-        // creates an instance
-        // of a gateway
-        // controller needs its own journal manager to manage
+    public JournalController(JournalFileGateway journalFile){
+        this.journalmanager = new JournalManager(journalFile);
     }
+
     public JournalManager getJournalManager(){
         return this.journalmanager;
     }
@@ -51,8 +46,9 @@ public class JournalController {
     }
 
     /**
-     * Calls journal manager to get the entry with the given title in dir
+     * Calls journal manager to get the entry with the given title
      * @param title The title of the entry to get.
+     * @return An array of the title, tags and contents of the entry
      */
 
     public String[] callGetEntry(String title) {
@@ -75,6 +71,10 @@ public class JournalController {
         this.callCreateEntry(title, entry, today, tags);
     }
 
+    /**
+     * Calls journal manager to get the title of all the users' entries
+     * @return A set of the titles of the users' entries
+     */
     public Set<String> callGetAllEntries(){
         return journalmanager.GetAllEntries();
     }

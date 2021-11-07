@@ -1,0 +1,15 @@
+Class Name: JournalWindow
+
+Responsibilities:
+
+* Creates a pop-up window with the title, tags, entry and date of the journal entry
+for user to view an entry and edit it too
+* Creates an add entry pop-up window prompting user to input a title, tags and content
+ and passes the information user inputs as a string array
+* Creates a pop-window with a list of title of entries. The user can choose as many entries as they want to delete.
+* Creates a pop-window with a list of title of entries. The user can choose one entry from that list that they want
+to view.
+* Creates a pop-window prompt user to select if they like to add, view/edit or delete a journal entry.
+
+
+

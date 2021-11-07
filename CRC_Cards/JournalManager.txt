@@ -1,17 +1,17 @@
 Class Name: JournalManager
 
 Responsibilities:
-* Deletes JournalEntry with given title from Journal
-* Calls JournalFileGateway to create a text file for the journal entry with given title, entry, date and tags and
-stores it in user's journal%
-* Gets JournalEntry with given title from Journal and returns it
-* Gets the title of all entries in the Journal and returns it as an ArrayList<String>
-* viewing all entries..
+* Stores an instance of FileGateway as accessFiles and an instance of Journal as journal
+* Calls accessFiles to create a text file for the journal entry with given title, entry, date and tags and
+ stores it in user's journal directory.Also calls journal to store title of entry to file created.
+* Calls accessFiles to deletes journal entry file with given title within user's journal directory. Also calls journal to
+delete that mapping of these entries' title to its entry file
+* Calls on journal to get the journal entry file with the given title. Calls on acess files
+to return the information within the journal entry such as title, tags and contents
+* Calls journal to get the title of all entries o and returns it as an ArrayList<String>
 
-* editing entries...
 
 
 Collaborators:
-* JournalEntry
 * Journal
-* FileGatewayInterface
+* FileGateway

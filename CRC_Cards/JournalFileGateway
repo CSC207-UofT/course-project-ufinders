@@ -1,9 +1,13 @@
 class Name: JournalFileGateway
 
 Responsibilities:
-
+* Stores path of the directory to which it can add, delete and edit files from as an instance variable path
 * Creates a text file for the journal entry with given title, entry, date and tags and
-stores it in user's journal%
+stores it in user's journal directory
+* Get title, tags, date and content from the given file and return it as a string array
+* Deletes given file from directory
+
 
 
 Collaborators:
+*FileGateway

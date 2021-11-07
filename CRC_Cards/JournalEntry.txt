@@ -1,8 +1,0 @@
-Class Name: JournalEntry
-
-Responsibilities:
-* Stores information the user wrote
-* Stores tags related to the entry
-* Stores date of when entry was created
-
-

@@ -1,11 +1,15 @@
 Class Name: JournalController
 
 Responsibilities:
+* Stores an instance of JournalManager as jounralmanager
 * Calls Journal Manager passing it the date, title, entry and tags to create a file with the given information
 and store it in the user's journal folder.
-* Calls Journal Manager to get a ArrayList<String>  the title of all the JournalEntrys in Journal
-* Calls JournalManager passing to delete a JournalEntry from Journal by passing it the title of entry to delete
-* Calls JournalManager passing to get the JournalEntry with the title it passes
+* Gets its instance variable journalmanager
+* Calls journalmanager to delete an entry with the given title
+* Calls journalmanager with an entry's title to get a string array  of the title,tags and content of that entry
+* Calls journalmanager to delete entry that is being  "edited" and calls journalmanager to edit an entry passing it a
+possibly modified title, entry and tags and the original date the entry was written on
+* Calls JournalManager to get the title of all the user's journal entries
 
 Collaborators:
 * JournalManager

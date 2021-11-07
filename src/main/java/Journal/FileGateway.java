@@ -3,7 +3,7 @@ package Journal;
 import java.io.File;
 import java.time.LocalDate;
 
-public interface FileGatewayInterface {
+public interface FileGateway {
 
     public File addFile(String title, String content, LocalDate date, String tags);
 

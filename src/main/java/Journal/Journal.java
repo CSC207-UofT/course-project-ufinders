@@ -53,6 +53,12 @@ public class Journal {
         this.entries.remove(title);
     }
 
+    /**
+     * Returns all titles of entries stored as keys in entries
+     *
+     *
+     *  @return A set of title of journal entries that the user wrote
+     */
     public Set<String> getAllEntryFiles() {
         return this.entries.keySet();
     }

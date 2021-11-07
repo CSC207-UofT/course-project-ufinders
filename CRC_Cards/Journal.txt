@@ -1,8 +1,9 @@
 Class Name: Journal
 
 Responsibilities:
-* Stores journal entries
-* delte after
+* Stores journal entries  files in hash map named entries that maps title of journal entry to the file
+* Adds entry to the entries when passed the title and the file
+* Deletes entry from hash map entries when passed title of entry user wants deleted
 
 
 

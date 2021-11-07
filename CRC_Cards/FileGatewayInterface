@@ -1,4 +1,0 @@
-Interface Name: FileGatewayInterface
-
-Responsibilities:
-* stores methods that all classes that implement this interface must implement
