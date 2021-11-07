@@ -2,15 +2,17 @@ package Main;
 
 import Marketplace.User_Controls;
 import User.User_UI;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainController {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         menu();
     }
 
-    public static void menu() {
+    public static void menu() throws IOException {
         Scanner input = new Scanner(System.in);
         boolean stop = false;
         while (!stop) {

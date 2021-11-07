@@ -6,7 +6,7 @@ import java.util.Date;
 public class Event { //The event object itself
 
 
-    private Date EventDate; //Date of event
+    private String EventDate; //Date of event
     private String EventTime; //Time of event
     private String EventTitle;  //Name of event
     private String EventURL;   //URL of event page
@@ -20,7 +20,7 @@ public class Event { //The event object itself
      * @param title The name of the event.
      * @param URL The URL of the event if it's from the UofT website.
      */
-    public Event(Date date, String time, String title, String URL) {
+    public Event(String date, String time, String title, String URL) {
         this.setDate(date);
         this.setTime(time);
         this.setURL(URL);
@@ -32,7 +32,7 @@ public class Event { //The event object itself
      *
      * @param date The date of the event.
      */
-    public void setDate(Date date) {
+    public void setDate(String date) {
         EventDate = date;
     }
 
@@ -71,7 +71,7 @@ public class Event { //The event object itself
     /**
      * Gets event date.
      */
-    public Date getEventDate() {
+    public String getEventDate() {
         return EventDate;
     }
 

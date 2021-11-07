@@ -1,6 +1,7 @@
 package Marketplace;
 
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 import Main.*;
@@ -12,7 +13,7 @@ public class User_Controls {
      * and directs them there.
      *
      */
-    public static void intro(){
+    public static void intro() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("Do you want to buy, sell, or exit the marketplace? (Write 'buy,' 'sell,' or 'exit')");
         String segmentchoice = input.nextLine();
