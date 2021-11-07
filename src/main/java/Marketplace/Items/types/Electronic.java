@@ -18,6 +18,15 @@ public class Electronic extends Item {
         this.tech_specifications = tech_specifications;
     }
 
+    public void edit(String title, String item_description, String contact_num, String contact_email,
+                     String password, double price, Item.campus campus, condition condition,
+                     String tech_specifications) {
+        super.edit(title, item_description, contact_num, contact_email, password, price, campus);
+        setCondition(condition);
+        setTech_specifications(tech_specifications);
+
+    }
+
     public Item.condition getCondition() {
         return condition;
     }

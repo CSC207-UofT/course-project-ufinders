@@ -39,7 +39,7 @@ public abstract class Item {
     private condition condition;
 
     public Item(String title, String item_description, String contact_num, String contact_email, String password,
-                double price, Item.campus campus){
+                double price, campus campus){
         this.name = title;
         this.item_description = item_description;
         this.contact_num = contact_num;
@@ -61,6 +61,17 @@ public abstract class Item {
         this.campus = null;
         this.id = id_counter;
         id_counter += 1;
+    }
+
+    public void edit(String title, String item_description, String contact_num, String contact_email, String password,
+                     double price, campus campus){
+        setName(title);
+        setItem_description(item_description);
+        setContact_num(contact_num);
+        setContact_email(contact_email);
+        setPassword(password);
+        setPrice(price);
+        setCampus(campus);
     }
 
     public String getName() {
