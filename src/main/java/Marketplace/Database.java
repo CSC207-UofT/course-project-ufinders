@@ -3,7 +3,6 @@ package Marketplace;
 import java.io.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Database implements Serializable{
     /**
@@ -22,13 +21,11 @@ public class Database implements Serializable{
          * Adds the post to the item_lst
          */
 
-//        item_type_lst.add(item);
+        item_type_lst.add(item);
         try {
             SerializeItem();
         } catch (Exception e){
             System.out.println("Cannot store item.");
-        } finally {
-            item_type_lst.add(item);
         }
 
     }
@@ -51,8 +48,7 @@ public class Database implements Serializable{
 
         FileInputStream retrievedfile = new FileInputStream("itemlst.txt");
         ObjectInputStream objectInputStream = new ObjectInputStream(retrievedfile);
-        Database data = (Database) objectInputStream.readObject();
-
+        item_type_lst = (ArrayList<Item>) objectInputStream.readObject();
 
     }
 
@@ -81,10 +77,14 @@ public class Database implements Serializable{
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Item item1 = new Item("cats", "furry", "123", "123", "123", 123);
+        Item item2 = new Item("dogs", "cute", "123", "123", "123", 123);
         StoreItem(item1);
-
-//        Database vo2 = (Database) in.readObject();
-        System.out.println(GetLst().toString());
+        StoreItem(item2);
+//        System.out.println("before getlst \n" + d + "end");
+        GetLst();
+        Database d = new Database();
+        System.out.println("after getlst\n" + d + "end");
+//        System.out.println(GetLst().toString());
 
     }
 

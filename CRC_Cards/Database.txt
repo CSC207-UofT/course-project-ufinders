@@ -2,6 +2,8 @@ Class Name: Database
 
 Responsibilities:
 * Stores Items sent by ItemManager
+* Serializes the list of items in Database
+* Deserializes the list of items that were serialized
 * Returns the list of Items in Database
 
 Collaborators:
