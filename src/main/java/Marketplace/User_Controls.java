@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 import Main.*;
+import Marketplace.comparators.HighPrice;
+import Marketplace.comparators.LowPrice;
+import Marketplace.filters.*;
 
 public class User_Controls {
 
@@ -38,6 +41,7 @@ public class User_Controls {
      *
      */
     private static void selling_info(){
+        //need to edit this to have types as well
         String name = get_input("What is the name of the item you're selling?");
         String description = get_input("What is the description of the item you're selling?");
         String price = get_input("What is the price of the item you're selling?");
@@ -55,17 +59,49 @@ public class User_Controls {
      *
      */
     private static void buying_info(){
-        Searching search = new Searching();
-        search.setKeyword(get_input("Please enter a keyword for your search (ex. computer, desk, biology):"));
-        if (get_input("do you want to filter your search by campus? (Y/N)").equals("Y")){
-           search.setCampus("What campus do you want to see items from? (UTSG/UTM/UTSC)");
+        Searcher search = new Searcher();
+        ItemCategories type = ItemCategories.misc;
+        if (get_input("Do you want to search for a specific type of item? (Y/N)").equals("Y")){
+            String typechoice = get_input("GIANT LONG PROMPT");
+            if (typechoice.equals("Textbook")){
+                type = ItemCategories.textbook;
+            }
+            if (typechoice.equals("Clothes")){
+                type = ItemCategories.clothes;
+            }
+            if (typechoice.equals("Animal")){
+                type = ItemCategories.animal;
+            }
+            search.addFilter(new typeFilter(type));
         }
-        if (get_input("do you want to filter your search by price? (Y/N)").equals("Y")){
-            search.setPrices(get_input("What is the minimum price for your search?"), get_input("What is the maximum price for your search?"));
+
+        search.addFilter((get_input("Please enter a keyword for your search (ex. computer, desk, biology):")));
+
+        String filteranswer = get_input(get_prompt(type));
+        while (!filteranswer.equals("Done")){
+            if (filteranswer.equals("Campus")){
+                //filter by campus
+            }
+            if (filteranswer.equals("Price")){
+                //filter by price
+            }
+            if (filteranswer.equals("Condition")){
+                //filter by condition
+            }
+            filteranswer = get_input(get_prompt(type));
         }
+
+
+        //figure out the sorting stuff pls
         String sortchoice = get_input("do you want to sort by price or time posted? (price/time)");
         if (Objects.equals(sortchoice, "price")){
-            search.setSortchoice(get_input("do you want to sort by high to low or low to high? (high-low/low-high)"), "price");
+            String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
+            if (sortkey.equals("high-low")){
+                search.addSorter(new Sorter(new HighPrice()));
+            }
+            else if (sortkey.equals("low-high")){
+                search.addSorter(new Sorter(new LowPrice()));
+            }
         }
         else if (Objects.equals(sortchoice, "time")){
             String sortkey = get_input("do you want to sort by most recent or oldest? (recent/oldest)");
@@ -84,11 +120,21 @@ public class User_Controls {
      * Gets information on what filters the searcher wants.
      *
      */
-    private static void search_helper(){
-        //Possibilities for search: campus, price, condition
-
-
-
+    private static String get_prompt(ItemCategories type){
+        String prompt = "INSERT LONG STRING HERE";
+        if (type = ItemCategories.electronics){
+            prompt+= "INSERT MORE HERE";
+        }
+        if (type = ItemCategories.animal){
+            prompt+= "INSERT MORE HERE";
+        }
+        if (type = ItemCategories.clothes){
+            prompt+= "INSERT MORE HERE";
+        }
+        if (type = ItemCategories.textbook){
+            prompt+= "INSERT MORE HERE";
+        }
+        return prompt;
     }
 
     /**
