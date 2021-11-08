@@ -1,6 +1,8 @@
 package Marketplace.Items.types;
 
-public abstract class Item {
+import java.io.Serializable;
+
+public abstract class Item implements Serializable {
 
     /**
      * An abstract item class that stores the users' information and item's attributes
