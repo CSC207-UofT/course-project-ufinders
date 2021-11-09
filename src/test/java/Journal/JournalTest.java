@@ -30,6 +30,7 @@ public class JournalTest {
                 "fall, pretty, cold", walkingEntry.toString());
         journal.addEntry("fall walks", walkingEntry);
         assert journal.getEntryFile("fall walks").equals(walkingEntry);
+        walkingEntry.delete();
 
     }
     @Test(timeout = 1000)
@@ -45,6 +46,7 @@ public class JournalTest {
 
         }
         assert journal.getEntryFile("Dune").equals(duneEntry);
+        duneEntry.delete();
     }
     @Test(timeout = 1000)
     public void testdeleteEntry()  {
@@ -90,6 +92,8 @@ public class JournalTest {
         assert allEntries.contains("Dune");
         assert allEntries.contains("fall walks");
         assert allEntries.toArray().length == 2;
+        duneEntry.delete();
+        walkingEntry.delete();
 
     }
 

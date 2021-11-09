@@ -22,9 +22,7 @@ public class JournalController {
         this.journalmanager = new JournalManager(journalFile);
     }
 
-    public JournalManager getJournalManager(){
-        return this.journalmanager;
-    }
+
     /**
      * Calls journal manager to create entry with the given information and store it in dir.
      * @param title The title of the entry.
@@ -67,8 +65,9 @@ public class JournalController {
 
      */
     public void callEditEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry) {
+        if (callEntryExist(titleOfEntryToDelete)){
         this.callDeleteEntry(titleOfEntryToDelete);
-        this.callCreateEntry(title, entry, today, tags);
+        this.callCreateEntry(title, entry, today, tags);}
     }
 
     /**
@@ -77,5 +76,9 @@ public class JournalController {
      */
     public Set<String> callGetAllEntries(){
         return journalmanager.GetAllEntries();
+    }
+
+    public boolean callEntryExist(String title){
+        return journalmanager.checkEntryExist(title);
     }
 }

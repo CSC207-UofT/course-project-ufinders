@@ -50,13 +50,15 @@ public class JournalManager {// file gateway does the work of journal manager
      */
         public void deleteEntry(String title)  {
         File fileToDelete = journal.getEntryFile(title);
+        if (fileToDelete != null){
         accessFiles.deleteFile(fileToDelete);
-        journal.deleteEntryFile(title);
+        journal.deleteEntryFile(title);}
         }
+
     /**
      * Finds the journal entry file with the given title by calling get Entry in Journal.
      * Calls accessFiles  passing it the journal entry file to get a string array
-     * of the form {title, tags, content}.
+     * of the form {date, title, tags, content}.
      *  @param title The title of the entry to get.
      */
         public String[] getEntry(String title){
@@ -74,5 +76,7 @@ public class JournalManager {// file gateway does the work of journal manager
         }
 
 
-
+    public boolean checkEntryExist(String title) {
+            return journal.EntryExist(title);
+    }
 }

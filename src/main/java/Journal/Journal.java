@@ -55,6 +55,7 @@ public class Journal {
         }
     }
 
+
     /**
      * Returns all titles of entries stored as keys in entries
      *
@@ -65,4 +66,12 @@ public class Journal {
         return this.entries.keySet();
     }
 
+    public boolean EntryExist(String title) {
+        if (this.entries.containsKey(title)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
