@@ -1,5 +1,7 @@
 package Marketplace;
 
+import Marketplace.Items.types.Item;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +20,7 @@ public class ItemManager {
     }
 
     public void create_post(String name, String description, Double price, String contact,
-                                   String password, String email){
+                                   String password, String email, Item.campus campus){
 
         /**
          * Stores the post into Database and creates the Item. Got the item from User_Controls
@@ -30,7 +32,7 @@ public class ItemManager {
         this.post.put("price",price);
         this.post.put("contact",contact);
         this.post.put("email", email);
-        Item item = new Item(name, description, contact, email, password, price);
+        Item item = new Item(name, description, contact, email, password, price, campus);
         Database.StoreItem(item);
     }
 

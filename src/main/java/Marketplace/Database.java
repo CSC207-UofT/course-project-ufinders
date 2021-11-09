@@ -1,7 +1,8 @@
 package Marketplace;
 
+import Marketplace.Items.types.Item;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Database {
     /**

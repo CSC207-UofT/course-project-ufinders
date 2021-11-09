@@ -1,6 +1,8 @@
+package java;
+
 import org.junit.Test;
 
-import Marketplace.Item;
+import Marketplace.Items.types.Item;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +13,7 @@ public class ItemTest {
     @Test(timeout = 50)
     public void testgetName() {
         Item sample = new Item("cat", "furry animal", "7689503921",
-                "j@gmail.com", "123", 12.0);
+                "j@gmail.com", "123", 12.0, Item.campus.UTSG);
 
         assertEquals(sample.getName(), "cat");
 
@@ -19,7 +21,7 @@ public class ItemTest {
     @Test(timeout = 50)
     public void testgetItem_description() {
         Item sample = new Item("cat", "furry animal", "7689503921",
-                "j@gmail.com", "123", 12.0);
+                "j@gmail.com", "123", 12.0, );
 
         assertEquals(sample.getItem_description(), "furry animal");
 
@@ -27,7 +29,7 @@ public class ItemTest {
     @Test(timeout = 50)
     public void testgetContact_num() {
         Item sample = new Item("cat", "furry animal", "7689503921",
-                "j@gmail.com", "123", 12.0);
+                "j@gmail.com", "123", 12.0, );
 
         assertEquals(sample.getContact_num(), "7689503921");
 
@@ -35,7 +37,7 @@ public class ItemTest {
     @Test(timeout = 50)
     public void testgetContact_email() {
         Item sample = new Item("cat", "furry animal", "7689503921",
-                "j@gmail.com", "123", 12.0);
+                "j@gmail.com", "123", 12.0, );
 
         assertEquals(sample.getContact_email(), "j@gmail.com");
 
@@ -43,7 +45,7 @@ public class ItemTest {
     @Test(timeout = 50)
     public void testgetPassword() {
         Item sample = new Item("cat", "furry animal", "7689503921",
-                "j@gmail.com", "123", 12.0);
+                "j@gmail.com", "123", 12.0, );
 
         assertEquals(sample.getPassword(), "123");
 
