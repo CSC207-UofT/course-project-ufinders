@@ -1,7 +1,7 @@
 Class Name: Alarm_Maker
 
 Responsibilities:
-* Makes alarm object and stores it in Event
+* Create an alarm object with a title and a sound and stores it in the given event object
 
 Collaborators:
 * Alarm

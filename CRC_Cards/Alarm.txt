@@ -1,5 +1,6 @@
 Class Name: Alarm
 
 Responsibilities:
-* Stores the title and the sound
+* Stores the name of the Alarm and the name of the audio file used by the alarm
+* Plays the alarm's audio file when needed
 

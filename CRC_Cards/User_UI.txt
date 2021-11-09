@@ -2,6 +2,16 @@ Class Name: User_UI
 
 Responsibilities:
 * User gives user's ID, name, and password
+* Prompt user to choose between signing up or signing in until they type
+"exit"
+* When the user wants to sign-up it prompts the user to enter their desired username and desired password until they
+type "exit" or enter the prompted fields
+* When the user wants to sign-in it prompts the user to enter their username and password until they type
+"exit" or until they enter a correct account.
+* Checks if the log-in information from the user matches an existing account and proceeds as required
+* Calls on Create_User to create a new user based on the sign-up page
+
+
 
 Collaborators:
 * Create_User

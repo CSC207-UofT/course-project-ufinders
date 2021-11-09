@@ -1,8 +1,8 @@
 Class Name: Create_User
 
 Responsibilities:
-* Makes user object for the information in User_UI
-* Tells Event_Manager to add course event to calendar
+* Creates a user object based on the information entered by the user on the sign-up page
+* Calls on Event_Manager to add a course to the calendar of the user
 
 Collaborators:
 * User

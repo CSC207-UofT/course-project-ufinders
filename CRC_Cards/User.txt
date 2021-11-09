@@ -1,8 +1,6 @@
 Class Name: User
 
 Responsibilities:
-* User's ID
-* Name
-* Course
-* Stores calendar
+* Constructs and stores a user with a given ID, Name, Course and Calendar
+* Stores the Calendar of a user as a HashMap of format (Date: Event)
 

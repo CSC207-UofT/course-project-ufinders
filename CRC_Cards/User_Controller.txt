@@ -1,8 +1,8 @@
 Class Name: User_Controller
 
 Responsibilities:
-* Tells Create_User to create user
-* Tells Event_Manager to add course event to calendar that the user stores in
+* Calls on Create_User to create a user based on the information entered by the user in the User_UI
+* Handles adding a course event to a user's calendar by calling on Event_Manager
 
 Collaborators:
 * Create_User
