@@ -1,46 +1,51 @@
 package Marketplace;
 
+import Marketplace.Items.creator.ItemCreator;
+import Marketplace.Items.types.Animal;
+import Marketplace.Items.types.Item;
+import Marketplace.Items.types.ItemCategories;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 public class ItemManager {
 
     /**
-     * Creates the items to be sold and removes items sold
-     * @param post a post with information given by user
+     * Creates the items to be sold and sends to Database. Removes items sold from Database
      *
      */
-    public HashMap<String, Object> post;
-
-    public ItemManager(){
-       /**
-        * Initiates post into a hashmap
-        */
-        this.post = new HashMap<>();
-    }
 
 
+//TODO: finish this and check with Claire
     public void create_post(String name, String description, Double price, String contact,
-                                   String password, String email){
+                            String password, String email, Item.campus campus, String itemtype){
 
         /**
-         * Creates Item from Item and stores into Database.
+         * Creates Item depending on the type given and store into Database
          */
 
-        this.post.put("name",name);
-        this.post.put("description", description);
-        this.post.put("password", password);
-        this.post.put("price",price);
-        this.post.put("contact",contact);
-        this.post.put("email", email);
-//        this.post.put("ID", id);
-        Item item = new Item(name, description, contact, email, password, price);
-        Database.StoreItem(item);
+        if (Objects.equals(itemtype, "animal")){
+            ItemCreator itemCreator = new ItemCreator();
+            Animal item = (Animal) itemCreator.makeItem(ItemCategories.animal);
+            item.edit(name, description, contact, email, password, price, campus);
+            Database.StoreItem(item);
+        }
+
     }
 
+//    public void store_post(ItemCategories category){
+//        /**
+//         * Stores the item into Database
+//         */
+//        ItemCreator itemCreator = new ItemCreator();
+//        itemCreator.makeItem(category);
+//        Item item = new Item();
+//        Database.StoreItem(item);
+//    }
 
-//    TODO: create an ID for Item
+
 
     public static boolean password_match(String title, String password){
         /**

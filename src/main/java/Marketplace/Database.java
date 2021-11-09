@@ -1,5 +1,7 @@
 package Marketplace;
 
+import Marketplace.Items.types.Item;
+
 import java.io.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -64,29 +66,20 @@ public class Database implements Serializable{
         return item_type_lst;
     }
 
-    @Override
-    public String toString(){
-        String s = "";
-        for (Item item: item_type_lst){
-            s += "NAME OF ITEM: " + item.getName() + "\nITEM DESCRIPTION: " + item.getItem_description();
-            s += "\n";
-        }
-        return s;
-    }
+//    @Override
+//    public String toString(){
+//        String s = "";
+//        for (Item item: item_type_lst){
+//            s += "NAME OF ITEM: " + item.getName() + "\nITEM DESCRIPTION: " + item.getItem_description();
+//            s += "\n";
+//        }
+//        return s;
+//    }
 
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Item item1 = new Item("cats", "furry", "123", "123", "123", 123);
-        Item item2 = new Item("dogs", "cute", "123", "123", "123", 123);
-        StoreItem(item1);
-        StoreItem(item2);
-//        System.out.println("before getlst \n" + d + "end");
-        GetLst();
-        Database d = new Database();
-        System.out.println("after getlst\n" + d + "end");
-//        System.out.println(GetLst().toString());
+//    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-    }
+//    }
 
 
 }
