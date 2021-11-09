@@ -18,7 +18,7 @@ public class ItemManager {
      */
 
 
-//TODO: finish this and check with Claire
+//TODO: finish this and check with Claire for User_Controls
     public void create_post(String name, String description, Double price, String contact,
                             String password, String email, Item.campus campus, String itemtype){
 
