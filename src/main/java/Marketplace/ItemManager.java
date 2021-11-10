@@ -1,9 +1,7 @@
 package Marketplace;
 
 import Marketplace.Items.creator.ItemCreator;
-import Marketplace.Items.types.Animal;
-import Marketplace.Items.types.Item;
-import Marketplace.Items.types.ItemCategories;
+import Marketplace.Items.types.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,25 +24,29 @@ public class ItemManager {
          * Creates Item depending on the type given and store into Database
          */
 
+        ItemCreator itemCreator = new ItemCreator();
         if (Objects.equals(itemtype, "animal")){
-            ItemCreator itemCreator = new ItemCreator();
             Animal item = (Animal) itemCreator.makeItem(ItemCategories.animal);
             item.edit(name, description, contact, email, password, price, campus);
             Database.StoreItem(item);
+        } else if (Objects.equals(itemtype, "clothes")){
+            Clothes item = (Clothes) itemCreator.makeItem(ItemCategories.clothes);
+            item.edit(name, description, contact, email, password, price, campus);
+            Database.StoreItem(item);
+        } else if (Objects.equals(itemtype, "electronics")){
+            Electronic item = (Electronic) itemCreator.makeItem(ItemCategories.electronics);
+            item.edit(name, description, contact, email, password, price, campus);
+            Database.StoreItem(item);
+        } else if (Objects.equals(itemtype, "textbook")){
+            Textbook item = (Textbook) itemCreator.makeItem(ItemCategories.textbook);
+            item.edit(name, description, contact, email, password, price, campus);
+            Database.StoreItem(item);
+        } else if (Objects.equals(itemtype, "miscellaneous")){
+            Misc item = (Misc) itemCreator.makeItem(ItemCategories.misc);
+            item.edit(name, description, contact, email, password, price, campus);
+            Database.StoreItem(item);
         }
-
     }
-
-//    public void store_post(ItemCategories category){
-//        /**
-//         * Stores the item into Database
-//         */
-//        ItemCreator itemCreator = new ItemCreator();
-//        itemCreator.makeItem(category);
-//        Item item = new Item();
-//        Database.StoreItem(item);
-//    }
-
 
 
     public static boolean password_match(String title, String password){
