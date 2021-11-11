@@ -16,6 +16,7 @@ public class EventManager { //The controller for how all events work
 
     /**
      * Constructor that initializes Events.EventManager and its Events.MakeDeleteEvent attribute.
+     * @param userID The utorID of this user.
      */
     public EventManager(String userID) {
         mde = new MakeDeleteEvent();
@@ -40,6 +41,9 @@ public class EventManager { //The controller for how all events work
         return mde.addEvent(date, time, title, URL);
     }
 
+    /**
+     * Removes all events from this student's calendar.
+     */
     public void removeAllEvents() throws FileNotFoundException {
         mde.removeAllEvents();
         String path = "/course-project-ufinders/src/main/java/userData/";
@@ -48,6 +52,14 @@ public class EventManager { //The controller for how all events work
         userPrint.close();
     }
 
+    /**
+     * Removes an event from this student's calendar.
+     *
+     * @param date The date of the event.
+     * @param time The time the event takes place at.
+     * @param title The name of the event.
+     * @param URL The URL of the event if it's from the UofT website.
+     */
     public void removeSingleEvent(String date, String time, String title, String URL) throws IOException {
         //In MakeDeleteEvent, removes event from eventList, then in this class it removes it from the user file
         mde.removeEvent(date, time, title, URL);
@@ -73,22 +85,54 @@ public class EventManager { //The controller for how all events work
         tempFile.renameTo(inputFile);
     }
 
+    /**
+     * Retrieves an event from this student's database.
+     *
+     * @param date The date of the event.
+     * @param time The time the event takes place at.
+     * @param title The name of the event.
+     * @param URL The URL of the event if it's from the UofT website.
+     */
     public Event retrieveEvent(String date, String time, String title, String URL) {
         return mde.retrieveEvent(date, time, title, URL);
     }
 
+    /**
+     * Retrieves all events on this student's calendar.
+     */
     public List<Event> retrieveAllEvents() {
         return mde.retrieveAllEvents();
     }
 
+    /**
+     * Sets an alarm for the specified event on this student's calendar.
+     *
+     * @param date The date of the event.
+     * @param time The time the event takes place at.
+     * @param title The name of the event.
+     * @param URL The URL of the event if it's from the UofT website.
+     * @param AlarmDate The date the alarm goes off.
+     * @param AlarmTime The time the alarm goes off.
+     */
     public void setAlarm(String date, String time, String title, String URL, String AlarmDate, String AlarmTime) {
         mde.setAlarm(date, time, title, URL, AlarmDate, AlarmTime);
     }
 
+    /**
+     * Removes the alarm from this event on the calendar.
+     *
+     * @param date The date of the event.
+     * @param time The time the event takes place at.
+     * @param title The name of the event.
+     * @param URL The URL of the event if it's from the UofT website.
+     */
     public void removeAlarm(String date, String time, String title, String URL) {
         mde.removeAlarm(date, time, title, URL);
     }
 
+    /**
+     * Loads this user's calendar from their database.
+     */
     public void loadEvents() throws IOException { //Make sure the titles don't have commas
         String path = "/course-project-ufinders/src/main/java/userData/";
         File userFile = new File(path + utorID + ".txt");
