@@ -3,6 +3,7 @@ package Marketplace.Items;
 import Marketplace.Items.types.*;
 
 public class ItemCreator {
+    // Factory for creating subclasses of Item based on the input parameter
     public Item makeItem(ItemCategories category) {
         if(category == ItemCategories.electronics){
             return new Electronic();
