@@ -4,7 +4,6 @@ import Marketplace.Items.creator.ItemCreator;
 import Marketplace.Items.types.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 
 
@@ -15,37 +14,62 @@ public class ItemManager {
      *
      */
 
-
-//TODO: finish this and check with Claire for User_Controls
-    public void create_post(String name, String description, Double price, String contact,
-                            String password, String email, Item.campus campus, String itemtype){
-
+    public void CreatePostAnimal(String name, String description, double price, String contact,
+                                 String password, String email, Item.campus campus, String animal_type){
         /**
-         * Creates Item depending on the type given and store into Database
+         * Creates Animal Item and store into Database
          */
-
         ItemCreator itemCreator = new ItemCreator();
-        if (Objects.equals(itemtype, "animal")){
-            Animal item = (Animal) itemCreator.makeItem(ItemCategories.animal);
-            item.edit(name, description, contact, email, password, price, campus);
-            Database.StoreItem(item);
-        } else if (Objects.equals(itemtype, "clothes")){
-            Clothes item = (Clothes) itemCreator.makeItem(ItemCategories.clothes);
-            item.edit(name, description, contact, email, password, price, campus);
-            Database.StoreItem(item);
-        } else if (Objects.equals(itemtype, "electronics")){
-            Electronic item = (Electronic) itemCreator.makeItem(ItemCategories.electronics);
-            item.edit(name, description, contact, email, password, price, campus);
-            Database.StoreItem(item);
-        } else if (Objects.equals(itemtype, "textbook")){
-            Textbook item = (Textbook) itemCreator.makeItem(ItemCategories.textbook);
-            item.edit(name, description, contact, email, password, price, campus);
-            Database.StoreItem(item);
-        } else if (Objects.equals(itemtype, "miscellaneous")){
-            Misc item = (Misc) itemCreator.makeItem(ItemCategories.misc);
-            item.edit(name, description, contact, email, password, price, campus);
-            Database.StoreItem(item);
-        }
+        Animal item = (Animal) itemCreator.makeItem(ItemCategories.animal);
+        item.edit(name, description, contact, email, password, price, campus, animal_type);
+        Database.StoreItem(item);
+    }
+
+    public void CreatePostClothes(String name, String description, double price, String contact,
+                                  String password, String email, Item.campus campus, Item.size size,
+                                  Item.condition condition){
+        /**
+         * Creates Clothes Item and store into Database
+         */
+        ItemCreator itemCreator = new ItemCreator();
+        Clothes item = (Clothes) itemCreator.makeItem(ItemCategories.clothes);
+        item.edit(name, description, contact, email, password, price, campus, size, condition);
+        Database.StoreItem(item);
+    }
+
+    public void CreatePostElectronic(String name, String description, double price, String contact, String email,
+                                     String password, Item.campus campus, Item.condition condition,
+                                     String tech_specifications){
+        /**
+         * Creates Electronic Item and store into Database
+         */
+        ItemCreator itemCreator = new ItemCreator();
+        Electronic item = (Electronic) itemCreator.makeItem(ItemCategories.electronics);
+        item.edit(name, description, contact, email, password, price, campus, condition, tech_specifications);
+        Database.StoreItem(item);
+    }
+
+    public void CreatePostMisc(String name, String description, double price, String contact, String email,
+                               String password, Item.campus campus){
+        /**
+         * Creates Miscellaneous Item and store into Database
+         */
+        ItemCreator itemCreator = new ItemCreator();
+        Misc item = (Misc) itemCreator.makeItem(ItemCategories.misc);
+        item.edit(name, description, contact, email, password, price, campus);
+        Database.StoreItem(item);
+    }
+
+    public void CreatePostTextbook(String name, String description, double price, String contact, String email,
+                                   String password, Item.campus campus, String course) {
+        /**
+         * Creates Textbook Item and store into Database
+         */
+        ItemCreator itemCreator = new ItemCreator();
+        Textbook item = (Textbook) itemCreator.makeItem(ItemCategories.textbook);
+        item.edit(name, description, contact, email, password, price, campus, course);
+        Database.StoreItem(item);
+
     }
 
 
@@ -79,8 +103,6 @@ public class ItemManager {
         }
         return false;
     }
-
-
 
 
 }
