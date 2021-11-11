@@ -49,6 +49,32 @@ public class User_Controls {
         String email = get_input("What is your email?");
         String password = get_input("What password would you like to use to delete this post after the item is sold?");
         Double price1 = Double.parseDouble(price);
+        campus campus = get_input("What is the campus you're selling the item from?");
+        String typeentry = get_input("What is the type of the item you're selling? Your options are 'Animal' 'Clothing' 'Electronic' 'Textbook' or 'Other'");
+        ItemCategories type;
+        switch (typeentry) {
+            case "Electronic":
+                type = ItemCategories.electronics;
+                condition condition = condition.valueOf(get_input("What is the condition of your electronic? " +
+                        "Your options are: New, Used, LikeNew"));
+            case "Animal":
+                String animal_type = get_input("What type of animal are you selling?")
+                break;
+            case "Textbook":
+                type = ItemCategories.textbook;
+                String course = get_input("What is the condition of the textbook?");
+                break;
+            case "Clothing":
+                type = ItemCategories.clothes;
+                condition condition = condition.valueOf(get_input("What is the condition of the clothing? " +
+                        "Your options are: New, Used, LikeNew"));
+                size size = size.valueOf(get_input("What is the size of the clothing? " +
+                        "Your options are: XS, S, M, L, XL"));
+                break;
+            case "Other":
+                type = ItemCategories.misc;
+                break;
+        }
         new ItemManager().create_post(name, description, price1, contact, password, email);
         System.out.println("Your post has been created!");
 
@@ -60,64 +86,53 @@ public class User_Controls {
      */
     private static void buying_info(){
         Searcher search = new Searcher();
-        ItemCategories type = ItemCategories.misc;
+        ItemCategories type = Itemcategories.misc;
         if (get_input("Do you want to search for a specific type of item? (Y/N)").equals("Y")){
-            String typechoice = get_input("GIANT LONG PROMPT");
-            if (typechoice.equals("Textbook")){
-                type = ItemCategories.textbook;
+            String typechoice = get_input("If you would like to search only textbooks, type 'textbook'\nIf you " +
+                    "would like to search only clothing, type 'clothes'\nIf you would like to search only electronics, " +
+                    "type 'electronics'\nIf you would like to search only animals, type 'animal'\nIf you changed your mind, " +
+                    "type 'done'");
+            if (!typechoice.equals("done")) {
+                    type = Itemcategories.valueOf(typechoice);
+                    search.addFilter(new typeFilter(type));
             }
-            if (typechoice.equals("Clothes")){
-                type = ItemCategories.clothes;
-            }
-            if (typechoice.equals("Animal")){
-                type = ItemCategories.animal;
-            }
-            search.addFilter(new typeFilter(type));
         }
-
-        search.addFilter((get_input("Please enter a keyword for your search (ex. computer, desk, biology):")));
-
+        search.addFilter(new wordFilter((get_input("Please enter a keyword for your search (ex. computer" +
+                ", desk, biology):"))));
         String filteranswer = get_input(get_prompt(type));
         while (!filteranswer.equals("Done")){
             switch (filteranswer) {
                 case "Campus":
-                    //filter by campus
+                    campus.valueOf(get_input("What campus do you want your item to be from? Options are: UTSG, UTSC, UTM"));
                     break;
                 case "Price":
-                    //filter by price
+                    get_input("What is the lowest price you want to search for?");
+                    get_input("What is the highest price you want to search for?");
                     break;
                 case "Condition":
-                    //filter by condition
+                    condition.valueOf(get_input("What condition do you want your item to be in? Options are: New, Used, LikeNew"));
                     break;
                 case "Size":
-                    //filter by size
+                    size.valueOf(get_input("What size do you want your item to be? Options are: XS, S, M, L, XL"));
                     break;
                 case "Course":
-                    //filter by course
+                    get_input("What course do you want your textbook to be for?");
                     break;
             }
-            filteranswer = get_input(get_prompt(type));
         }
-
-
-        //figure out the sorting stuff pls
-        String sortchoice = get_input("do you want to sort by price or time posted? (price/time)");
-        if (Objects.equals(sortchoice, "price")){
-            String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
-            if (sortkey.equals("high-low")){
-                search.addSorter(new Sorter(new HighPrice()));
+        String sortchoice = get_input("do you want to sort by price? (Y/N)");
+        while (!sortchoice.equals("N")){
+            if (Objects.equals(sortchoice, "Y")){
+                String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
+                if (sortkey.equals("high-low")){
+                    search.addSorter(new Sorter(new HighPrice()));
+                }
+                else if (sortkey.equals("low-high")){
+                    search.addSorter(new Sorter(new LowPrice()));
+                }
             }
-            else if (sortkey.equals("low-high")){
-                search.addSorter(new Sorter(new LowPrice()));
-            }
-        }
-        else if (Objects.equals(sortchoice, "time")){
-            String sortkey = get_input("do you want to sort by most recent or oldest? (recent/oldest)");
-            if (sortkey.equals("recent")){
-                search.setSortchoice("low-high", "time");
-            }
-            if (sortkey.equals("oldest")){
-                search.setSortchoice("high-low", "time");
+            else{
+                sortchoice = get_input("do you want to sort by price? (Y/N)");
             }
         }
         System.out.println("Loading your search");
@@ -129,19 +144,18 @@ public class User_Controls {
      *
      */
     private static String get_prompt(ItemCategories type){
-        String prompt = "INSERT LONG STRING HERE";
+        String prompt = "Here are your filter options:\nTo filter results by campus, type 'Campus'\nTo filter results by price, type 'Price'\n";
         if (type = ItemCategories.electronics){
-            prompt+= "INSERT MORE HERE";
-        }
-        if (type = ItemCategories.animal){
-            prompt+= "INSERT MORE HERE";
+            prompt+= "To filter results by condition, type 'condition'";
         }
         if (type = ItemCategories.clothes){
-            prompt+= "INSERT MORE HERE";
+            prompt+= "To filter results by condition, type 'condition'\nTo filter results by size, type 'size'";
         }
         if (type = ItemCategories.textbook){
-            prompt+= "INSERT MORE HERE";
+            prompt+= "To filter results by course, type 'Course'";
         }
+        prompt+= "You can add multiple filters, but please only select one option for each category (ex. only choose one campus, don't go back to choose a second one)\n" +
+                "When you are done choosing filters, type 'Done'";
         return prompt;
     }
 
@@ -154,12 +168,5 @@ public class User_Controls {
         Scanner input = new Scanner(System.in);
         System.out.println(prompt);
         return input.nextLine();
-        //  if (possibleinput.contains(response)){
-        //      return response;
-        //   }
-        //  else{
-        //      get_input(prompt, possibleinput);
-        //
-        //could edit this so that it checks whether the answer is acceptable and forces user to give another line if it's not?
     }
 }
