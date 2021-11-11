@@ -27,6 +27,7 @@ public class EventTest {
         assertEquals(event.getEventURL(), "www.events.com");
     }
 
+
     @Test(timeout = 5000)
     public void testGetEventFromWebsite() throws ResponseException, NotFound {
         List<Event> eventList = GetEvent.findEvents("Data");

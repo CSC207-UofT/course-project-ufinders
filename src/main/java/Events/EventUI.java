@@ -22,7 +22,6 @@ public class EventUI { //The user interface for the events section
         em = new EventManager(userID);
     }
 
-
     /**
      * Constructs an event on a calendar.
      *

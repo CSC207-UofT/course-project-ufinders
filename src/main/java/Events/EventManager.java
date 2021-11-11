@@ -63,7 +63,6 @@ public class EventManager { //The controller for how all events work
         userPrint.close();
     }
 
-
     /**
      * Removes an event from this student's calendar.
      *

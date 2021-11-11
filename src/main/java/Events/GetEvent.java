@@ -11,7 +11,6 @@ import java.util.Objects;
 public class GetEvent {
     //Class that gets event from UofT website
 
-
     /**
      * Reads events matching given keywords from the UofT website
      * @param keywords The string containing the keywords given by the user for the purposes of searching for events.
