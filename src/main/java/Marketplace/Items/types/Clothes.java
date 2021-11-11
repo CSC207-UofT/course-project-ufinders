@@ -5,7 +5,7 @@ public class Clothes extends Item{
     // Subclass of Item, which represents items under the clothes category
 
     // enum for the possible sizes of clothes, along with condition enum
-    enum size{
+    public enum size{
         XS, S, M, L, XL, XXL
     }
     private size size;
