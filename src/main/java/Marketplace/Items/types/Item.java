@@ -42,6 +42,7 @@ public abstract class Item implements Serializable {
 
     public Item(String title, String item_description, String contact_num, String contact_email, String password,
                 double price, campus campus){
+        // Constructor with all parameters for an Item
         this.name = title;
         this.item_description = item_description;
         this.contact_num = contact_num;
@@ -54,6 +55,7 @@ public abstract class Item implements Serializable {
     }
 
     public Item(){
+        // Constructor for an empty item
         this.name = null;
         this.item_description = null;
         this.contact_num = null;
@@ -67,6 +69,7 @@ public abstract class Item implements Serializable {
 
     public void edit(String title, String item_description, String contact_num, String contact_email, String password,
                      double price, campus campus){
+        // Method which sets all attributes to the selected parameters
         setName(title);
         setItem_description(item_description);
         setContact_num(contact_num);
@@ -75,6 +78,8 @@ public abstract class Item implements Serializable {
         setPrice(price);
         setCampus(campus);
     }
+
+    // Getters and setters
 
     public String getName() {
         return name;
