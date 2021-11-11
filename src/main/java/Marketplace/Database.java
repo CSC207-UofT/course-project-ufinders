@@ -1,51 +1,83 @@
 package Marketplace;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import Marketplace.Items.types.Item;
 
-public class Database {
+import java.io.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Database implements Serializable{
     /**
-     * A database that stores a list of items from Database_Manager
+     * A database that stores a list of items from ItemManager
      *
      *
      * @param item_lst the list of items that are posts
      *
      */
 
-//    we need to create an id that makes the items in the list unique
+    private static ArrayList<Item> item_type_lst = new ArrayList<>();
 
 
-//    private static ArrayList<HashMap<String, Object>> item_lst = new ArrayList<>();
-    private static ArrayList<Item> item_type_lst = new ArrayList<Item>();
-
-//    public Database(){
-//        /**
-//         * The constructor for Database and initializes an empty array list
-//         * */
-//        item_lst = new ArrayList<HashMap<String, Object>>();
-//
-//    }
-
-
-    public static void StoreItem(Item item) {
+    public static void StoreItem(Item item){
         /**
          * Adds the post to the item_lst
          */
 
         item_type_lst.add(item);
+        try {
+            SerializeItem();
+        } catch (Exception e){
+            System.out.println("Cannot store item.");
+        }
 
     }
 
-    public static ArrayList<Item> GetLst(){
+    private static void SerializeItem() throws IOException {
+        /**
+         * Serializes the item into a file called itemlst.txt
+         */
+
+        FileOutputStream newfile = new FileOutputStream("itemlst.txt");
+        ObjectOutputStream outputStream = new ObjectOutputStream(newfile);
+        outputStream.writeObject(item_type_lst);
+
+    }
+
+    private static void DeserializeItem() throws IOException, ClassNotFoundException {
+        /**
+         * Deserializes the items in the file
+         */
+
+        FileInputStream retrievedfile = new FileInputStream("itemlst.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(retrievedfile);
+        item_type_lst = (ArrayList<Item>) objectInputStream.readObject();
+
+    }
+
+    public static ArrayList<Item> GetLst() {
         /**
          * Returns the item_lst
          */
+        try{
+            DeserializeItem();
+        } catch (Exception e){
+            System.out.println("Item cannot be retrieved");
+        }
         return item_type_lst;
     }
-    public static void main(String[] args) {
 
-        System.out.println(item_type_lst);
-    }
+//    @Override
+//    public String toString(){
+//        String s = "";
+//        for (Item item: item_type_lst){
+//            s += "NAME OF ITEM: " + item.getName() + "\nITEM DESCRIPTION: " + item.getItem_description();
+//            s += "\n";
+//        }
+//        return s;
+//    }
+
+
+
 
 }
 

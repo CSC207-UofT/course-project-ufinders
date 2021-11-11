@@ -1,0 +1,9 @@
+class Name: JournalFileGateway
+
+Responsibilities:
+
+* Creates a text file for the journal entry with given title, entry, date and tags and
+stores it in user's journal%
+
+
+Collaborators:
