@@ -1,4 +1,4 @@
-package Marketplace.Items.creator;
+package Marketplace.Items;
 
 import Marketplace.Items.types.*;
 

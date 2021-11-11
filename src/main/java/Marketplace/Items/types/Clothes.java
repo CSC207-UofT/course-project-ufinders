@@ -1,7 +1,7 @@
 package Marketplace.Items.types;
 
 public class Clothes extends Item{
-    enum size{
+    public enum size{
         XS, S, M, L, XL, XXL
     }
     private size size;
