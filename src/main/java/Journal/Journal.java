@@ -2,12 +2,13 @@ package Journal;
 
 
 
+import java.io.File;
 import java.util.HashMap;
 
 
 public class Journal {
     //Stores title to Journal Entry
-    private final HashMap<String, JournalEntry> entries;
+    private final HashMap<String, File> entries;
 
     /**
      * A  constructor that initializes entries
@@ -23,7 +24,7 @@ public class Journal {
      * @param title The title of the entry that we want to store.
      * @param entry The journal entry we want to store
      */
-    public void addEntry(String title, JournalEntry entry) {
+    public void addEntry(String title, File entry) {
         entries.put(title, entry);
     }
 

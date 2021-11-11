@@ -1,18 +1,35 @@
 package Journal;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+
+public class JournalManager {// file gateway does the work of journal manager
+    // the  interface the journal manager calls on to add, delete and modify journal entry files.
+    private FileGatewayInterface accessFiles;
 
 
-public class JournalManager {
-    // Where journal entries are stored
-    private final Journal journal;
+    /**
+     * Creates a journal manager with the given FileGatewayInterface, fileGateway.
+     *
+     *
+     * @param   fileGateway      The interface that can be used to add, delete and edit journal entries
+     */
 
-    public JournalManager(){
-        journal = new Journal();
+    public JournalManager(FileGatewayInterface fileGateway){
+        setFileGateway(fileGateway );
     }
     /**
-     * Create a journal entry with the given information and stores it in the journal.
+     * Sets accessFiles  to the provided journalFileGateway
+     *
+     * @param journalFileGateway The interface that accessFiles is set to.
+
+     */
+
+    public void setFileGateway(FileGatewayInterface journalFileGateway){
+        this.accessFiles = journalFileGateway; // needs gateway to allow it to store entries
+
+    }
+    /**
+     * Calls accessFiles to create entry with the given information.
      *
      * @param title The title of the entry.
      * @param content The content of the entry.
@@ -20,35 +37,18 @@ public class JournalManager {
      * @param tags The tags we want to give the entry.
 
      */
-    public String createEntry(String title, String content, LocalDate date, ArrayList<String> tags){
-        JournalEntry entry = new JournalEntry(title, content, tags, date);
-        journal.addEntry(title, entry);
-        return this.entryGetter(title);
-    }
-    /**
-     * Retrieves the journal entry from Journal with the given title.
-     *
-     * @param title The title of the entry that we want to retrieve.
-     * @return The string representation of the entry with the given title.
-     */
-    public String entryGetter(String title){
+    public void createEntry(String title, String content, LocalDate date, String[] tags) {
+        // asks interface to create the file with the given info
+        boolean fileCreated = accessFiles.addFile(title, content, date, tags);
 
-        JournalEntry maybeEntry = journal.getEntry(title);
-        if (maybeEntry == null){
-            return "Entry with given title does not exist!";
-        }
-        else{
-
-            ArrayList<String> tags = maybeEntry.tagsGetter();
-            StringBuilder tagOfEntry = new StringBuilder();
-            for (int i = 0; i < tags.toArray().length - 1; i += 1){
-                tagOfEntry.append(tags.get(i)).append(",");
-            }
-            tagOfEntry.append(tags.get(tags.toArray().length - 1));
-
-
-            return "date: " + maybeEntry.dateGetter() +  '\n' +  "title: " + maybeEntry.titleGetter()  + '\n'
-                    + "tags: "  + tagOfEntry +  '\n' + '\n' +  maybeEntry.contentGetter();
+        if (!(fileCreated)) {
+            // need to get a new name for journal entry if journal entry with that name exist
         }
     }
+        public void deleteEntry(String title)  {
+            accessFiles.deleteFile(title);
+        }
+
+
+
 }
