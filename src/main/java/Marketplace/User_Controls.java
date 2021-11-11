@@ -1,8 +1,6 @@
 package Marketplace;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 import Main.*;
@@ -19,13 +17,16 @@ public class User_Controls {
      */
     public static void intro(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Do you want to buy, sell, or exit the marketplace? (Write 'buy,' 'sell,' or 'exit')");
+        System.out.println("Do you want to buy, sell, remove item, or exit the marketplace? (Write 'buy,' 'sell,' 'remove' or 'exit')");
         String segmentchoice = input.nextLine();
         if (Objects.equals(segmentchoice, "buy")){
             buying_info();
         }
         else if (Objects.equals(segmentchoice, "sell")){
             selling_info();
+        }
+        else if (Objects.equals(segmentchoice, "remove")){
+            remove_post();
         }
         else if (Objects.equals(segmentchoice, "exit")){
             MainController.menu();
@@ -41,7 +42,6 @@ public class User_Controls {
      *
      */
     private static void selling_info(){
-        //need to edit this to have types as well
         String name = get_input("What is the name of the item you're selling?");
         String description = get_input("What is the description of the item you're selling?");
         String price = get_input("What is the price of the item you're selling?");
@@ -57,12 +57,16 @@ public class User_Controls {
                 type = ItemCategories.electronics;
                 condition condition = condition.valueOf(get_input("What is the condition of your electronic? " +
                         "Your options are: New, Used, LikeNew"));
+                String tech_specifications = get_input("What are the technical specifications of the electronic you are selling?");
+                new ItemManager().CreatePostElectronic(name, description, price1, contact, email, password, campus, condition, tech_specifications);
             case "Animal":
-                String animal_type = get_input("What type of animal are you selling?")
+                String animal_type = get_input("What type of animal are you selling?");
+                new ItemManager().CreatePostAnimal(name, description, price1, contact, password, email, campus, animal_type);
                 break;
             case "Textbook":
                 type = ItemCategories.textbook;
                 String course = get_input("What is the condition of the textbook?");
+                new ItemManager().CreatePostTextbook(name, description, price1, contact, password, email, campus, course);
                 break;
             case "Clothing":
                 type = ItemCategories.clothes;
@@ -70,12 +74,13 @@ public class User_Controls {
                         "Your options are: New, Used, LikeNew"));
                 size size = size.valueOf(get_input("What is the size of the clothing? " +
                         "Your options are: XS, S, M, L, XL"));
+                new ItemManager().CreatePostClothes(name, description, price1, contact, password, email, campus, size, condition);
                 break;
             case "Other":
                 type = ItemCategories.misc;
+                new ItemManager().CreatePostMisc(name, description, price1, contact, password, email);
                 break;
         }
-        new ItemManager().create_post(name, description, price1, contact, password, email);
         System.out.println("Your post has been created!");
 
     }
@@ -98,29 +103,30 @@ public class User_Controls {
             }
         }
         search.addFilter(new wordFilter((get_input("Please enter a keyword for your search (ex. computer" +
-                ", desk, biology):"))));s
+                ", desk, biology):"))));
         String filteranswer = get_input(get_prompt(type));
         while (!filteranswer.equals("Done")){
             switch (filteranswer) {
                 case "Campus":
-                    campus.valueOf(get_input("What campus do you want your item to be from? Options are: UTSG, UTSC, UTM"));
+                    search.addFilter(new campusFilter(campus.valueOf(get_input("What campus do you want your item to be from? Options are: UTSG, UTSC, UTM"))));
                     break;
                 case "Price":
-                    get_input("What is the lowest price you want to search for?");
-                    get_input("What is the highest price you want to search for?");
+                    search.addFilter(new priceFilter(Double.parseDouble(get_input("What is the lowest price you " +
+                            "want to search for?")), Double.parseDouble(get_input("What is the highest " +
+                            "price you want to search for?"));
                     break;
                 case "Condition":
-                    condition.valueOf(get_input("What condition do you want your item to be in? Options are: New, Used, LikeNew"));
+                    search.addFilter(new conditionFilter(condition.valueOf(get_input("What condition do you want your item to be in? Options are: New, Used, LikeNew")));
                     break;
                 case "Size":
-                    size.valueOf(get_input("What size do you want your item to be? Options are: XS, S, M, L, XL"));
+                    search.addFilter(new sizeFilter(size.valueOf(get_input("What size do you want your item to be? Options are: XS, S, M, L, XL"))));
                     break;
                 case "Course":
-                    get_input("What course do you want your textbook to be for?");
+                    search.addFilter(new courseFilter(get_input("What course do you want your textbook to be for?")));
                     break;
             }
         }
-        String sortchoice = get_input("do you want to sort by price? (Y/N)");
+        String sortchoice = get_input("do you want to sort your results by price? (Y/N)");
         while (!sortchoice.equals("N")){
             if (Objects.equals(sortchoice, "Y")){
                 String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
@@ -157,6 +163,25 @@ public class User_Controls {
         prompt+= "You can add multiple filters, but please only select one option for each category (ex. only choose one campus, don't go back to choose a second one)\n" +
                 "When you are done choosing filters, type 'Done'";
         return prompt;
+    }
+
+    private static void remove_post(){
+//    Will change the title to ID when we create an ID instead, but should users be able to remember their ID?
+        String title = get_input("Please enter the title of the item you are removing");
+        String password = get_input("Please enter the password for the item.");
+        if (ItemManager.remove_post(title, password)){
+            System.out.println("You have successfully removed item!");
+        }
+        else {
+            String fail = get_input("You have entered the wrong title or password. Would you like to try again? (Y/N)");
+            if (Objects.equals(fail, "Y")){
+                remove_post();
+            }
+            else{
+                intro();
+//                or should we just go straight to MainController.menu()?
+            }
+        }
     }
 
     /**

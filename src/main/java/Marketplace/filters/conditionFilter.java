@@ -9,10 +9,19 @@ public class conditionFilter implements Filter {
 
     private final String condition;
 
+    /**
+     * Make a new filter that selects items in the given condition
+     * @param condition  the condition that items should be in
+     */
     public conditionFilter(String condition){
         this.condition = condition;
     }
 
+    /**
+     * Filters the given list so that only clothes or electronics with this filter's condition are returned
+     * @param tofilter the list to be filtered
+     * @return the list returned
+     */
     @Override
     public ArrayList<Item> apply(Iterable<Item> tofilter) {
         ArrayList<Item> filtered = new ArrayList<>();
