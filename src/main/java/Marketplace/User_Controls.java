@@ -79,14 +79,22 @@ public class User_Controls {
 
         String filteranswer = get_input(get_prompt(type));
         while (!filteranswer.equals("Done")){
-            if (filteranswer.equals("Campus")){
-                //filter by campus
-            }
-            if (filteranswer.equals("Price")){
-                //filter by price
-            }
-            if (filteranswer.equals("Condition")){
-                //filter by condition
+            switch (filteranswer) {
+                case "Campus":
+                    //filter by campus
+                    break;
+                case "Price":
+                    //filter by price
+                    break;
+                case "Condition":
+                    //filter by condition
+                    break;
+                case "Size":
+                    //filter by size
+                    break;
+                case "Course":
+                    //filter by course
+                    break;
             }
             filteranswer = get_input(get_prompt(type));
         }

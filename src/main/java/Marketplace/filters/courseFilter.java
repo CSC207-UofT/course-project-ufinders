@@ -5,20 +5,20 @@ import Marketplace.Item;
 
 import java.util.ArrayList;
 
-public class conditionFilter implements Filter {
+public class courseFilter implements Filter {
 
-    private final String condition;
+    private final String course;
 
-    public conditionFilter(String condition){
-        this.condition = condition;
+    public courseFilter(String course){
+        this.course = course;
     }
 
     @Override
     public ArrayList<Item> apply(Iterable<Item> tofilter) {
         ArrayList<Item> filtered = new ArrayList<>();
         for (Item i: tofilter){
-            //make sure it's clothes or electronics - after merge
-            if (i.getCondition() = this.condition){
+            //make sure it's textbook - after merge
+            if (i.getCourse() = this.course){
                 filtered.add(i);
             }
         }

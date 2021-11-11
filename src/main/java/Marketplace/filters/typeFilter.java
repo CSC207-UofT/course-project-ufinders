@@ -17,11 +17,16 @@ public class typeFilter implements Filter {
     public ArrayList<Item> apply(Iterable<Item> tofilter) {
         ArrayList<Item> filtered = new ArrayList<>();
         for (Item i: tofilter){
-            //if i is TYPE <-- based on the type itemcategory
-            if (i.getCampus() = this.campus){
+            if (this.checktype(i)){
                 filtered.add(i);
             }
         }
         return filtered;
+    }
+
+    private boolean checktype(Item item){
+        if (this.type){
+            //figure this out after merge
+        }
     }
 }

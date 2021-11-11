@@ -11,6 +11,7 @@ public class Searcher {
         ArrayList<Item> items = Database.GetLst();
         while (filters.size() > 0){
             Filter filter = filters.pop();
+            //will this work so that typefilter goes first? could have the filters specifically check if they can be applied first
             items = filter.apply(items);
         }
         sorter.sort(items);
