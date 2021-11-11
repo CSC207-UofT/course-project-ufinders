@@ -1,5 +1,8 @@
 package Events;
 
+import com.jaunt.NotFound;
+import com.jaunt.ResponseException;
+
 import java.io.*;
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -39,6 +42,14 @@ public class EventManager { //The controller for how all events work
         userWriter.write(newData + "\n");
         userWriter.close();
         return mde.addEvent(date, time, title, URL);
+    }
+
+    /**
+     * Reads events matching given keywords from the UofT website
+     * @param keywords The string containing the keywords given by the user for the purposes of searching for events.
+     */
+    public List<Event> searchEvent(String keywords) throws ResponseException, NotFound {
+        return GetEvent.findEvents(keywords);
     }
 
     /**

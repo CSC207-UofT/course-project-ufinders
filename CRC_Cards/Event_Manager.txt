@@ -1,14 +1,15 @@
-Class Name: Event_Manager
+Class Name: EventManager
 
 Responsibilities:
-* Tells Make_Delete_Event to add custom event
-* Tells Make_Delete_Event to add the event %
-* Deletes event by calling Make_Delete_Event
-* Tells Make_Delete_Event to add course event %
-* Removes alarm %
-* Adds alarm %
+* Tells MakeDeleteEvent to add an event to the calendar
+* Deletes event by calling MakeDeleteEvent
+* Retrieves events, whether single or all, through MakeDeleteEvent
+* Tells GetEvent to find events from the UofT website by keyword.
+* Loads all a user's events from their database by adding each of them through MakeDeleteEvent.
+* Removes alarm from a specified event.
+* Adds alarm to a specified event.
 
 Collaborators:
-* Make_Delete_Event
+* MakeDeleteEvent
 * Event
-* Alarm_Maker %
+* AlarmMaker %

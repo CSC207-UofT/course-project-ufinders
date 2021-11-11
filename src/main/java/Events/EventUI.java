@@ -1,5 +1,8 @@
 package Events;
 
+import com.jaunt.NotFound;
+import com.jaunt.ResponseException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -41,6 +44,14 @@ public class EventUI { //The user interface for the events section
      */
     public void RemoveEvent(String date, String time, String title, String URL) throws IOException {
         em.removeSingleEvent(date, time, title, URL);
+    }
+
+    /**
+     * Reads events matching given keywords from the UofT website
+     * @param keywords The string containing the keywords given by the user for the purposes of searching for events.
+     */
+    public List<Event> SearchEvent(String keywords) throws ResponseException, NotFound {
+        return em.searchEvent(keywords);
     }
 
     /**

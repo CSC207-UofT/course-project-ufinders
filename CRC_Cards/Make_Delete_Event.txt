@@ -1,12 +1,12 @@
-Class Name: Make_Delete_Event
+Class Name: MakeDeleteEvent
 
 Responsibilities:
 * Adds events to calendar database
 * Deletes events
-* Make recommended event and add to calendar database %
-* Make custom event and store in calendar database %
-* Makes course event and stores it in calendar database %
+* Adds alarm to specified event
+* Removes alarm from specified event
+* Retrieves single or all events from a user
 
 Collaborators:
-* Calendar_Database
+* CalendarDatabase
 * Event
