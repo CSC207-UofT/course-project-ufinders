@@ -98,7 +98,7 @@ public class User_Controls {
             }
         }
         search.addFilter(new wordFilter((get_input("Please enter a keyword for your search (ex. computer" +
-                ", desk, biology):"))));
+                ", desk, biology):"))));s
         String filteranswer = get_input(get_prompt(type));
         while (!filteranswer.equals("Done")){
             switch (filteranswer) {
