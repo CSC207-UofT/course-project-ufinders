@@ -1,3 +1,0 @@
-package User;
-
-/// NOT IMPLEMENTED

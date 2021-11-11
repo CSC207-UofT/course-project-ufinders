@@ -11,7 +11,7 @@ Responsibilities:
 "exit"
 
 * When user wants to add an entry it prompts user to enter a title, what they want to write and tags they want to
-add to the entry. Then it calls Journal_Controller to create an entry with the input provided by the user.
+add to the entry. Then it calls Journal_Controller to create an entry with the input provided by the user. %
 
 * When user wants to view a single entry it calls the Journal_Controller to get the names of all the journal entries and
 displays it to the user. The user than choose from the entries displayed which entry they would like to view. Then
