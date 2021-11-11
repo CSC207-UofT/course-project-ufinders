@@ -10,6 +10,7 @@ public class priceFilter implements Filter {
 
     private final double HighPrice;
 
+
     /**
      * Make a new filter that selects item within the given prices
      * @param lowprice  the lowest price an item should be
