@@ -67,6 +67,7 @@ public class MakeDeleteEvent { //The Use Case that contains a list of events for
         events = new ArrayList<>();
     }
 
+
     /**
      * Removes a specified event from this student's calendar.
      *

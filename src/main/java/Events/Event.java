@@ -5,7 +5,6 @@ import java.util.Date;
 
 public class Event { //The event object itself
 
-
     private String EventDate; //Date of event
     private String EventTime; //Time of event
     private String EventTitle;  //Name of event
