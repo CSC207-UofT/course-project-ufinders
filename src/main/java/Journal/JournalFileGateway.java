@@ -1,17 +1,14 @@
 package Journal;
 
-import javax.swing.filechooser.FileSystemView;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Path;
+
+import java.io.*;
 import java.time.LocalDate;
 
-public class JournalFileGateway implements FileGatewayInterface { //interacts with dir
+public class JournalFileGateway implements FileGateway { //interacts with dir
 
     // the  path of the file to which JournalFileGateway can add, delete and edit text files from.
-    private String path;
-    private Journal journal;
+    private final String path;
+
 
     /**
      * Creates a JournalFileGateway with the given path
@@ -20,12 +17,11 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
 
     public JournalFileGateway(String path){
         this.path = path;
-        this.journal = new Journal();
     }
 
 
     /**
-     * Make a journal entry(text file) with the given information only if the file with the given title does not exsist.
+     * Make a journal entry(text file) with the given information only if the file with the given title does not exist.
      *
      * @param title The title of the entry.
      * @param content The content of the entry.
@@ -35,69 +31,89 @@ public class JournalFileGateway implements FileGatewayInterface { //interacts wi
 
      */
     @Override
-    public boolean addFile(String title,  String content, LocalDate date, String[] tags) { // method should be in journal manager.
-        // only method in here should be edit file ? maybe
+    public File addFile(String title, String content, LocalDate date, String tags) { // method should be in journal manager.
+
 
             String pathOfEntry = path + "/" + title + ".txt";
             File journalEntry = new File(pathOfEntry);
         try {
             journalEntry.createNewFile();
-            writeToFile(title, content, date, tags, pathOfEntry); // write to file, getting to this line means file was created
-            journal.addEntry(title, journalEntry); // should be done through an interface
-            return true;}
+            writeToFile(title, content, date, tags, pathOfEntry);
+            return journalEntry;}
 
         catch (Exception IOException){// file was not created
-            return false;
+            return null;
         }
 
     }
 
     /**
+     * Reads fileWithInfo, storing tags, title and content within the file to a string array that will be returned.
+     * @param fileWithInfo The file that we want to get information from.
+     * @return return a string array containing the information in fileWithInfo in the format
+     * [date, title, tags, content]
+     */
+
+    @Override
+    public String[] getInfo(File fileWithInfo) {
+        String[] info = new String[4];
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(fileWithInfo));
+            String line = reader.readLine(); // date of entry
+            info[0] = line;
+            line = reader.readLine().strip(); // title of entry
+            info[1] = line;
+            reader.readLine(); // space after title of entry
+            line = reader.readLine();
+            info[2] = line.substring(line.indexOf(":") + 2); // tags
+            reader.readLine();// space after tags
+            line = reader.readLine().strip();
+            info[3] = line;// entry
+            reader.close();
+            return info;
+        }
+        catch(Exception IOException){
+           return info;
+            }
+
+    }
+
+
+
+    /**
+     * Delete the fileToDelete from path that it is stored in.
+     * @param fileToDelete The file that we want to delete.
+     */
+    @Override
+    public void deleteFile(File fileToDelete) {
+        fileToDelete.delete();
+
+    }
+
+    /**
      * Writes to a text file the title, content, date and tags at the given directory, journalEntry.
-     *
-     * @param title The title of the entry.
+     *  @param title The title of the entry.
      * @param content The content of the entry.
      * @param date The date the entry was written on.
      * @param tags The tags we want to give the entry.
      * @param journalEntry The file to which will be written.
 
      */
-    public void writeToFile(String title, String content, LocalDate date, String[] tags, String journalEntry) {
+    public void writeToFile(String title, String content, LocalDate date, String tags, String journalEntry) {
         try {
             PrintWriter writingEntry = new PrintWriter(journalEntry);
             writingEntry.println(date);
             writingEntry.println(title + "\n");
-            StringBuilder tagsOfEntry = getStringTags(tags);
-            writingEntry.println("Tags:" + tagsOfEntry + "\n");
+
+            writingEntry.println("Tags: " + tags + "\n");
             writingEntry.println(content);
             writingEntry.close();
         } catch (Exception ignored) {
         }
     }
 
-    /**
-     * Gives the StringBuilder representation of tags.
-     * @param tags The tags we want a StringBuilder representation of.
-     * @return each elements of tags seperated by commas in as a string builder.
-
-     */
-    public StringBuilder getStringTags(String[] tags) {
-
-        StringBuilder tagsOfEntry = new StringBuilder();
-        if (tags.length == 1){
-            tagsOfEntry.append(tags[0]);
-        }
-        else if (tags.length > 1){
-        for (String tag : tags) {
-            tagsOfEntry.append(tag).append(", ");
-        }
-        tagsOfEntry.delete(tagsOfEntry.length() - 2, tagsOfEntry.length());
-    }
-        return tagsOfEntry;
-}
-    public void deleteFile(String title){
-        files.get(entryToDelete).delete();
-
-    }
 
 }
+
+
+
