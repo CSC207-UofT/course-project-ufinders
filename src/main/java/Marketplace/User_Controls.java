@@ -16,7 +16,7 @@ public class User_Controls {
      * and directs them there.
      *
      */
-    public static void intro() throws IOException {
+    public static void intro(){
         Scanner input = new Scanner(System.in);
         System.out.println("Do you want to buy, sell, remove item, or exit the marketplace? (Write 'buy,' 'sell,' 'remove' or 'exit')");
         String segmentchoice = input.nextLine();
