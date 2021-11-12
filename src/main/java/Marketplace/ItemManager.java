@@ -1,6 +1,6 @@
 package Marketplace;
 
-import Marketplace.Items.creator.ItemCreator;
+import Marketplace.Items.ItemCreator;
 import Marketplace.Items.types.Animal;
 import Marketplace.Items.types.Clothes;
 import Marketplace.Items.types.Electronic;
@@ -31,7 +31,7 @@ public class ItemManager {
     }
 
     public void CreatePostClothes(String name, String description, double price, String contact,
-                                  String password, String email, Item.campus campus, size size,
+                                  String password, String email, Item.campus campus, Clothes.size size,
                                   Item.condition condition){
         /**
          * Creates Clothes Item and store into Database
