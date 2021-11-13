@@ -1,7 +1,7 @@
 package Marketplace.filters;
 
 import Marketplace.Filter;
-import Marketplace.Item;
+import Marketplace.Items.types.Item;
 
 import java.util.ArrayList;
 

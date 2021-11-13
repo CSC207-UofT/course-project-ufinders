@@ -1,6 +1,6 @@
 package Marketplace.comparators;
 
-import Marketplace.Item;
+import Marketplace.Items.types.Item;
 
 import java.util.Comparator;
 
