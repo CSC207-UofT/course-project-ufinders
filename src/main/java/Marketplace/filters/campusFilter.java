@@ -1,19 +1,19 @@
 package Marketplace.filters;
 
 import Marketplace.Filter;
-import Marketplace.Item;
+import Marketplace.Items.types.Item;
 
 import java.util.ArrayList;
 
 public class campusFilter implements Filter {
 
-    private final String campus;
+    private final Item.campus campus;
 
     /**
      * Make a new filter that selects items from the given campus
      * @param campus  the campus that items should be from
      */
-    public campusFilter(String campus){
+    public campusFilter(Item.campus campus){
         this.campus = campus;
     }
 
@@ -26,7 +26,7 @@ public class campusFilter implements Filter {
     public ArrayList<Item> apply(Iterable<Item> tofilter) {
         ArrayList<Item> filtered = new ArrayList<>();
         for (Item i: tofilter){
-            if (i.getCampus() = this.campus){
+            if (i.getCampus() == this.campus){
                 filtered.add(i);
             }
         }

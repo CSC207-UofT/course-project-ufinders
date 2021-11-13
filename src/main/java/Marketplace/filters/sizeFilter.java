@@ -1,19 +1,20 @@
 package Marketplace.filters;
 
 import Marketplace.Filter;
-import Marketplace.Item;
+import Marketplace.Items.types.Clothes;
+import Marketplace.Items.types.Item;
 
 import java.util.ArrayList;
 
 public class sizeFilter implements Filter {
 
-    private final String size;
+    private final Clothes.size size;
 
     /**
      * Make a new filter that selects specific clothes from the given campus
      * @param size  the size that clothing items should be
      */
-    public sizeFilter(String size){
+    public sizeFilter(Clothes.size size){
         this.size = size;
     }
 
@@ -26,8 +27,7 @@ public class sizeFilter implements Filter {
     public ArrayList<Item> apply(Iterable<Item> tofilter) {
         ArrayList<Item> filtered = new ArrayList<>();
         for (Item i: tofilter){
-            //make sure it's clothes - after merge
-            if (i.getSize() = this.size){
+            if (i instanceof Clothes && ((Clothes) i).getSize() == this.size){
                 filtered.add(i);
             }
         }

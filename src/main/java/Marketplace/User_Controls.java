@@ -1,13 +1,14 @@
 package Marketplace;
 
-
-import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
-import Main.*;
+
+import Marketplace.Items.types.Clothes;
+import Marketplace.Items.types.Item;
 import Marketplace.comparators.HighPrice;
 import Marketplace.comparators.LowPrice;
 import Marketplace.filters.*;
+import Marketplace.Items.types.*;
 
 public class User_Controls {
 
@@ -49,37 +50,32 @@ public class User_Controls {
         String contact = get_input("What is your contact information?");
         String email = get_input("What is your email?");
         String password = get_input("What password would you like to use to delete this post after the item is sold?");
-        Double price1 = Double.parseDouble(price);
-        campus campus = get_input("What is the campus you're selling the item from?");
+        double price1 = Double.parseDouble(price);
+        Item.campus campus = Item.campus.valueOf(get_input("What is the campus you're selling the item from? Your options are UTM, UTSG, and UTSC"));
         String typeentry = get_input("What is the type of the item you're selling? Your options are 'Animal' 'Clothing' 'Electronic' 'Textbook' or 'Other'");
-        ItemCategories type;
         switch (typeentry) {
             case "Electronic":
-                type = ItemCategories.electronics;
-                condition condition = condition.valueOf(get_input("What is the condition of your electronic? " +
+                Item.condition Econdition = Item.condition.valueOf(get_input("What is the condition of your electronic? " +
                         "Your options are: New, Used, LikeNew"));
                 String tech_specifications = get_input("What are the technical specifications of the electronic you are selling?");
-                new ItemManager().CreatePostElectronic(name, description, price1, contact, email, password, campus, condition, tech_specifications);
+                new ItemManager().CreatePostElectronic(name, description, price1, contact, email, password, campus, Econdition, tech_specifications);
             case "Animal":
                 String animal_type = get_input("What type of animal are you selling?");
                 new ItemManager().CreatePostAnimal(name, description, price1, contact, password, email, campus, animal_type);
                 break;
             case "Textbook":
-                type = ItemCategories.textbook;
                 String course = get_input("What is the condition of the textbook?");
                 new ItemManager().CreatePostTextbook(name, description, price1, contact, password, email, campus, course);
                 break;
             case "Clothing":
-                type = ItemCategories.clothes;
-                condition condition = condition.valueOf(get_input("What is the condition of the clothing? " +
+                Item.condition Ccondition = Item.condition.valueOf(get_input("What is the condition of the clothing? " +
                         "Your options are: New, Used, LikeNew"));
-                size size = size.valueOf(get_input("What is the size of the clothing? " +
+                Clothes.size size = Clothes.size.valueOf(get_input("What is the size of the clothing? " +
                         "Your options are: XS, S, M, L, XL"));
-                new ItemManager().CreatePostClothes(name, description, price1, contact, password, email, campus, size, condition);
+                new ItemManager().CreatePostClothes(name, description, price1, contact, password, email, campus, size, Ccondition);
                 break;
             case "Other":
-                type = ItemCategories.misc;
-                new ItemManager().CreatePostMisc(name, description, price1, contact, password, email);
+                new ItemManager().CreatePostMisc(name, description, price1, contact, password, email, campus);
                 break;
         }
         System.out.println("Your post has been created!");
@@ -92,14 +88,14 @@ public class User_Controls {
      */
     private static void buying_info(){
         Searcher search = new Searcher();
-        ItemCategories type = Itemcategories.misc;
+        ItemCategories type = ItemCategories.misc;
         if (get_input("Do you want to search for a specific type of item? (Y/N)").equals("Y")){
             String typechoice = get_input("If you would like to search only textbooks, type 'textbook'\nIf you " +
                     "would like to search only clothing, type 'clothes'\nIf you would like to search only electronics, " +
                     "type 'electronics'\nIf you would like to search only animals, type 'animal'\nIf you changed your mind, " +
                     "type 'done'");
             if (!typechoice.equals("done")) {
-                    type = Itemcategories.valueOf(typechoice);
+                    type = ItemCategories.valueOf(typechoice);
                     search.addFilter(new typeFilter(type));
             }
         }
@@ -109,18 +105,18 @@ public class User_Controls {
         while (!filteranswer.equals("Done")){
             switch (filteranswer) {
                 case "Campus":
-                    search.addFilter(new campusFilter(campus.valueOf(get_input("What campus do you want your item to be from? Options are: UTSG, UTSC, UTM"))));
+                    search.addFilter(new campusFilter(Item.campus.valueOf(get_input("What campus do you want your item to be from? Options are: UTSG, UTSC, UTM"))));
                     break;
                 case "Price":
                     search.addFilter(new priceFilter(Double.parseDouble(get_input("What is the lowest price you " +
                             "want to search for?")), Double.parseDouble(get_input("What is the highest " +
-                            "price you want to search for?"));
+                            "price you want to search for?"))));
                     break;
                 case "Condition":
-                    search.addFilter(new conditionFilter(condition.valueOf(get_input("What condition do you want your item to be in? Options are: New, Used, LikeNew")));
+                    search.addFilter(new conditionFilter(Item.condition.valueOf(get_input("What condition do you want your item to be in? Options are: New, Used, LikeNew"))));
                     break;
                 case "Size":
-                    search.addFilter(new sizeFilter(size.valueOf(get_input("What size do you want your item to be? Options are: XS, S, M, L, XL"))));
+                    search.addFilter(new sizeFilter(Clothes.size.valueOf(get_input("What size do you want your item to be? Options are: XS, S, M, L, XL"))));
                     break;
                 case "Course":
                     search.addFilter(new courseFilter(get_input("What course do you want your textbook to be for?")));
@@ -152,13 +148,13 @@ public class User_Controls {
      */
     private static String get_prompt(ItemCategories type){
         String prompt = "Here are your filter options:\nTo filter results by campus, type 'Campus'\nTo filter results by price, type 'Price'\n";
-        if (type = ItemCategories.electronics){
+        if (type == ItemCategories.electronics){
             prompt+= "To filter results by condition, type 'condition'";
         }
-        if (type = ItemCategories.clothes){
+        if (type == ItemCategories.clothes){
             prompt+= "To filter results by condition, type 'condition'\nTo filter results by size, type 'size'";
         }
-        if (type = ItemCategories.textbook){
+        if (type == ItemCategories.textbook){
             prompt+= "To filter results by course, type 'Course'";
         }
         prompt+= "You can add multiple filters, but please only select one option for each category (ex. only choose one campus, don't go back to choose a second one)\n" +
