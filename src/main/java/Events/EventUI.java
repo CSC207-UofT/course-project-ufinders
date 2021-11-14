@@ -6,6 +6,7 @@ import com.jaunt.ResponseException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.*;
 
 public class EventUI { //The user interface for the events section
@@ -112,5 +113,97 @@ public class EventUI { //The user interface for the events section
     public void LoadEvents() throws IOException {
         em.loadEvents();
     }
+
+    public static void main(String[] args) throws IOException, ResponseException, NotFound {
+        Scanner read = new Scanner(System.in);
+        System.out.println("Enter your username: ");
+        String user = read.nextLine();
+        EventUI eventView = new EventUI(user);
+
+        // Asks user if they want to exit the event program
+        System.out.println("Type Exit to leave the events");
+        // Events.main.java.Events.Event program keeps running until the user types exit
+        while (!(Objects.equals(read.nextLine(), "Exit"))) {
+            // User wants to add an event
+
+            System.out.println("View all events? Y/N:");
+            String answer = read.nextLine();
+            if (Objects.equals(answer, "Y")) {
+                List<Event> eventList = eventView.RetrieveAllEvents();
+                EventUI.printEvents(eventList);
+
+                System.out.println("Want to remove an event? Y/N:");
+                String remove = read.nextLine();
+
+                if (Objects.equals(remove, "Y")) {
+                    System.out.println("Enter index of event (where the first index is 0): ");
+                    try {
+                        int removeIndex = Integer.parseInt(read.nextLine());
+                        if (removeIndex >= eventList.size() || removeIndex < 0) {
+                            System.out.println("Invalid entry");
+                        } else {
+                            eventView.AddEvent(eventList.get(removeIndex).getEventDate(), eventList.get(removeIndex).getEventTime(),
+                                    eventList.get(removeIndex).getEventTitle(), eventList.get(removeIndex).getEventURL());
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid index");
+                    }
+                }
+
+
+                System.out.println("Want to add an event? Y/N:");
+                answer = read.nextLine();
+                if (Objects.equals(answer, "Y")) {
+                    System.out.println("Name of event:");
+                    String title = read.nextLine();
+                    System.out.println("date of event (in format YYYY-MM-DD):");
+                    String date = read.nextLine();
+                    System.out.println("Time of event (in format 'HH:MM'):");
+                    String time = read.nextLine();
+                    eventView.AddEvent(date, time, title, "");
+                }
+
+                System.out.println("Want to search for an event? Y/N:");
+                String answer2 = read.nextLine();
+                if (Objects.equals(answer2, "Y")) {
+                    System.out.println("Type keywords separated by spaces: ");
+                    List<Event> searchedEvent = eventView.SearchEvent(read.nextLine());
+                    printEvents(searchedEvent);
+                    System.out.println("Do you want to add any of these? Y/N: ");
+                    String answer3 = read.nextLine();
+                    if (Objects.equals(answer3, "Y")) {
+                        System.out.println("Enter index of desired event (where the first index is 0): ");
+                        try {
+                            int answer4 = Integer.parseInt(read.nextLine());
+                            if (answer4 >= searchedEvent.size() || answer4 < 0) {
+                                System.out.println("Invalid entry");
+                            } else {
+                                eventView.AddEvent(searchedEvent.get(answer4).getEventDate(), searchedEvent.get(answer4).getEventTime(),
+                                        searchedEvent.get(answer4).getEventTitle(), searchedEvent.get(answer4).getEventURL());
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid entry");
+                        }
+                    }
+                }
+                System.out.println("Want to remove all events? Y/N: ");
+                String answer5 = read.nextLine();
+                if (Objects.equals(answer2, "Y")) {
+                    eventView.RemoveAllEvents();
+                }
+
+            }
+
+        }
+    }
+
+    public static void printEvents(List<Event> eventList) {
+        for (int i = 0; i < eventList.size(); i++) {
+            System.out.println(MessageFormat.format("{0} on {1} at {2}, URL: {3}", eventList.get(i).getEventTitle(),
+                    eventList.get(i).getEventDate(), eventList.get(i).getEventTime(),
+                    eventList.get(i).getEventURL()));
+        }
+    }
+
 
 }
