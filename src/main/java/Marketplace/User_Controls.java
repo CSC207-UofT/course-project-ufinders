@@ -171,6 +171,7 @@ public class User_Controls {
         String password = get_input("Please enter the password for the item.");
         if (ItemManager.remove_post(title, password)){
             System.out.println("You have successfully removed item!");
+            intro();
         }
         else {
             String fail = get_input("You have entered the wrong title or password. Would you like to try again? (Y/N)");
@@ -178,7 +179,7 @@ public class User_Controls {
                 remove_post();
             }
             else{
-                System.out.println("should call intro in reality");
+                intro();
 //                or should we just go straight to MainController.menu()?
             }
         }
