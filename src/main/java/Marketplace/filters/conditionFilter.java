@@ -1,19 +1,19 @@
 package Marketplace.filters;
 
 import Marketplace.Filter;
-import Marketplace.Item;
+import Marketplace.Items.types.Item;
 
 import java.util.ArrayList;
 
 public class conditionFilter implements Filter {
 
-    private final String condition;
+    private final Item.condition condition;
 
     /**
      * Make a new filter that selects items in the given condition
      * @param condition  the condition that items should be in
      */
-    public conditionFilter(String condition){
+    public conditionFilter(Item.condition condition){
         this.condition = condition;
     }
 
@@ -27,7 +27,7 @@ public class conditionFilter implements Filter {
         ArrayList<Item> filtered = new ArrayList<>();
         for (Item i: tofilter){
             //make sure it's clothes or electronics - after merge
-            if (i.getCondition() = this.condition){
+            if (i.getCondition() == this.condition){
                 filtered.add(i);
             }
         }

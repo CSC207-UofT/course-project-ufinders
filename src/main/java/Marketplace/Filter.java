@@ -1,7 +1,9 @@
 package Marketplace;
 
+import Marketplace.Items.types.Item;
+
 import java.util.ArrayList;
 
 public interface Filter {
-    public ArrayList<Item> apply(Iterable<Item> tofilter);
+    ArrayList<Item> apply(Iterable<Item> tofilter);
 }

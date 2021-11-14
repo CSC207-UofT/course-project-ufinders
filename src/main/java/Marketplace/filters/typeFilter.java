@@ -1,7 +1,7 @@
 package Marketplace.filters;
 
 import Marketplace.Filter;
-import Marketplace.Item;
+import Marketplace.Items.types.*;
 
 import java.util.ArrayList;
 
@@ -39,8 +39,21 @@ public class typeFilter implements Filter {
      * @return true if the item matches the type, false if not
      */
     private boolean checktype(Item item){
-        if (this.type){
-            //figure this out after merge
+        if (this.type == ItemCategories.textbook){
+            return item instanceof Textbook;
         }
+        else if (this.type == ItemCategories.clothes){
+            return item instanceof Clothes;
+        }
+        else if (this.type == ItemCategories.electronics){
+            return item instanceof Electronic;
+        }
+        else if (this.type == ItemCategories.misc){
+            return item instanceof Misc;
+        }
+        else if (this.type == ItemCategories.animal){
+            return item instanceof Animal;
+        }
+        return false;
     }
 }

@@ -1,9 +1,11 @@
 package Marketplace.filters;
 
 import Marketplace.Filter;
-import Marketplace.Item;
+import Marketplace.Items.types.Item;
+import Marketplace.Items.types.Textbook;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class courseFilter implements Filter {
 
@@ -27,7 +29,7 @@ public class courseFilter implements Filter {
         ArrayList<Item> filtered = new ArrayList<>();
         for (Item i: tofilter){
             //make sure it's textbook - after merge
-            if (i.getCourse() = this.course){
+            if (i instanceof Textbook && Objects.equals(((Textbook) i).getCourse(), this.course)){
                 filtered.add(i);
             }
         }

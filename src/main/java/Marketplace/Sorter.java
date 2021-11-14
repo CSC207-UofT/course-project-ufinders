@@ -1,9 +1,11 @@
 package Marketplace;
 
+import Marketplace.Items.types.Item;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Sorter implements ISorter{
+public class Sorter{
 
     private final Comparator<Item> comparator;
 
@@ -15,7 +17,6 @@ public class Sorter implements ISorter{
         this.comparator = comparator;
     }
 
-    @Override
     public Iterable<Item> sort(ArrayList<Item> tosort) {
         tosort.sort(this.comparator);
         return tosort;
