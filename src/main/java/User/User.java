@@ -1,28 +1,23 @@
 package User;
 
-import java.util.HashMap;
-import Events.*;
-import java.util.Date;
 
 public class User {
     public String UserID;
-    public String UserName;
-    public String Course;
-    public HashMap<Date, Event> Calendar;
+    public String Password;
+    public String Directory;
+
 
     /**
      * Constructs a USER
      *
      * @param id The user id of the user
-     * @param name The name of the user
-     * @param course The course of the user
-     * @param calendar The calendar of the user
+     * @param password The name of the user
+     * @param directory The directory of the user
      */
-    public User(String id, String name, String course, HashMap<Date, Event> calendar){
+    public User(String id, String password, String directory){
         this.setUserID(id);
-        this.setUserName(name);
-        this.setCourse(course);
-        this.setCalendar(calendar);
+        this.setPassword(password);
+        this.setdirectory(directory);
     }
 
     /**
@@ -37,28 +32,18 @@ public class User {
     /**
      * Sets name for user
      *
-     * @param name The user's name
+     * @param password The user's password
      */
-    public void setUserName(String name){
-        UserName = name;
+    public void setPassword(String password){
+        Password = password;
     }
 
     /**
-     * Sets course for user
+     * Sets directory for user
      *
-     * @param course The user's course
+     * @param directory The user's directory
      */
-    public void setCourse(String course){
-        Course = course;
+    public void setdirectory(String directory){
+        Directory = directory;
     }
-
-    /**
-     * Sets calendar for the user.
-     *
-     * @param calendar The user's calendar.
-     */
-    public void setCalendar(HashMap<Date, Event> calendar){
-        Calendar = calendar;
-    }
-
 }

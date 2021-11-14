@@ -1,53 +1,108 @@
 package Journal;
 
+import javax.swing.filechooser.FileSystemView;
 import java.time.LocalDate;
-
-import java.util.ArrayList;
-
-import java.util.Collections;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class JournalUI {
-    // object we will call to add and view journal entry
+    // object the JournalUI calls on to do the work its given
     public JournalController controller;
+    // objects the JournalUI calls to create a pop-up window and get information that is inputted
+    public JournalWindow popUpWindow;
+
+
+
+    /**
+     * ???? add about dir after integrated with user
+     */
 
     public JournalUI(){
-        controller = new JournalController();
+        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView()
+                        .getHomeDirectory()
+                        .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
+        this.controller = new JournalController(new JournalFileGateway(dir.getPath()));
+        this.popUpWindow = new JournalWindow();
+
     }
 
-    public static void main(String[] args) {
-        Scanner read = new Scanner(System.in);
-        JournalUI journalView = new JournalUI();
+    /**
+     * Calls popUpWindow to create a pop-up window prompting user to add an entry. Gets input from pop-window and
+     * passes it to controller to create entry with the given information and store it in dir.
+     */
 
-        // Asks user if they want to journal to exit the journal program
-        System.out.println("Type exit to leave the program or continue to keep journaling");
-        // Journal program keeps running until the user types exit
-        while(!Objects.equals(read.nextLine(), "exit")){
+    public void addEntry(){
 
+        String[] newEntry = this.popUpWindow.addEntryPopUp();
+        for (int i = 0; i < newEntry.length; i += 1){
+            if(newEntry[i] == null){
+                newEntry[i] = "";
 
-
-
-// User want to add a journal entry
-
-
-            System.out.println("Title of entry:");
-            String title = read.nextLine();
-            System.out.println("Entry:");
-            String content = read.nextLine();
-            System.out.println("Enter each tag you would like to add seperated by a comma:");
-            String[] ArrayOfTags = read.nextLine().split(",");
-            // Convert the string array of tags to a string array list
-            ArrayList<String> tags = new ArrayList<>();
-            Collections.addAll(tags, ArrayOfTags);
-// get the date of when the user is writing the journal entry
-            LocalDate today = LocalDate.now();
-            // creat journal entry that user wants and store it and returns the string representation of the
-            // journal entry
-            System.out.println(journalView.controller.callCreateEntry(title, content, today, tags));
-            System.out.println("Type exit to leave the program or continue to keep journaling");
+            }
+        }
+        LocalDate today = LocalDate.now();
+        this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1] );
     }
+
+    /**
+     * Calls popUpWindow to create a pop-up window prompting user to  choose from a list of entries to delete. Gets
+     * the entry the user wants to delete and calls controller to delete that entry.
+     */
+
+    public void deleteEntry(){
+
+        String entryToDelete = this.popUpWindow.deleteEntryPopUp(controller.callGetAllEntries());
+        controller.callDeleteEntry(entryToDelete);
+    }
+
+
+    /**
+     * Calls controller to get information about the entry the user wants to view. Then, calls popUpWindow tp create a
+     * pop-up with the information. Gets the modified journal entry information and calls controller with the modified
+     * journal entry information to edit the entry
+
+     */
+    public void viewEntry(String titleOfEntryToView){
+        String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
+        String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo);
+        this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0], modifiedJournalEntry[1],
+                LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
+    }
+/**
+    * Calls controller to get title of all entries. Calls a popUpWindow  to create a pop-up window with these titles,
+    * prompting user to choose an entry to view. Then calls viewEntry passing it the title of the entry the user
+ *  wants to view
+ */
+    public void viewAllEntry(){
+        String entryToView = this.popUpWindow.viewEntriesPopUp(controller.callGetAllEntries());
+        viewEntry(entryToView);
+    }
+
+    /**
+     * Calls popUpWindow to  create a pop-up window with a list of actions that the user wants to do. Gets the action
+     * the user wants to do and call addEntry,deleteEntry or viewAllEntry.
+     */
+    public static void main(String[] args) { // what if user presses cancel
+        JournalUI UI = new JournalUI();
+        String userCommand = UI.popUpWindow.viewUserOptions();
+        while(!Objects.equals(userCommand, "exit journal")){
+
+            if (Objects.equals(userCommand, "add an entry")){
+                UI.addEntry();
+            }
+
+            else if(Objects.equals(userCommand, "view/edit entries")){
+                UI.viewAllEntry();
+            }
+
+            else {
+                UI.deleteEntry();
+            }
+            userCommand = UI.popUpWindow.viewUserOptions();
+
+        }
+    }
+
 
 }
 
-}
+

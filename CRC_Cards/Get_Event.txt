@@ -1,8 +1,7 @@
 Class Name: Get_Event
 
 Responsibilities:
-* Gets information about the event on the UofT website based on the keyword and tells Event_Manager to make
-event object for each event
+* Gets information about events on the UofT website based on given keywords and returns to EventManager
 
 Collaborators:
-* Event_Manager
+* EventManager
