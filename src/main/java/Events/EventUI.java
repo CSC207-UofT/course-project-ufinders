@@ -19,7 +19,6 @@ public class EventUI { //The user interface for the events section
      * @param userID the utorID of the student
      */
     public EventUI(String userID) throws IOException {
-        File userInfo = new File("/course-project-ufinders/src/main/java/userData/" + userID + ".txt");
         em = new EventManager(userID);
         em.loadEvents();
     }
