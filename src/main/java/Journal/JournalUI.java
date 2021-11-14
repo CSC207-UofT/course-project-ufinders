@@ -1,8 +1,10 @@
 package Journal;
 
+
 import javax.swing.filechooser.FileSystemView;
 import java.time.LocalDate;
 import java.util.Objects;
+import User.MakeDir;
 
 public class JournalUI {
     // object the JournalUI calls on to do the work its given

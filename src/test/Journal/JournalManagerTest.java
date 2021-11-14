@@ -3,6 +3,7 @@ package Journal;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import User.MakeDir;
 
 import javax.swing.filechooser.FileSystemView;
 import java.time.LocalDate;

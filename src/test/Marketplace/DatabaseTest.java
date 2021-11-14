@@ -8,8 +8,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class DatabaseTest {
 
     @Before

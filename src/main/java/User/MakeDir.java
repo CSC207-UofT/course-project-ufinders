@@ -1,4 +1,4 @@
-package Journal;
+package User;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
