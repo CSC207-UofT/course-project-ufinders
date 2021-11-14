@@ -60,6 +60,7 @@ public class Results {
         int curr_item = 0;
         while(curr_item < items.size()){
             System.out.println((curr_item + 1) + ". " + items.get(curr_item).getName() + ", for $" + items.get(curr_item).getPrice());
+            curr_item++;
         }
     }
 }
