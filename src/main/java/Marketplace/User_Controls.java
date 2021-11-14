@@ -1,6 +1,5 @@
 package Marketplace;
 
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -12,6 +11,10 @@ import Marketplace.filters.*;
 import Marketplace.Items.types.*;
 
 public class User_Controls {
+
+    public static void main(String[] args) {
+        intro();
+    }
 
     /**
      * Prompts the user to choose a section of the marketplace to enter
@@ -32,7 +35,7 @@ public class User_Controls {
             remove_post();
         }
         else if (Objects.equals(segmentchoice, "exit")){
-            MainController.menu();
+            System.out.println("should go to main in reality");
         }
         else {
             intro();
@@ -48,7 +51,7 @@ public class User_Controls {
         String name = get_input("What is the name of the item you're selling?");
         String description = get_input("What is the description of the item you're selling?");
         String price = get_input("What is the price of the item you're selling?");
-        String contact = get_input("What is your contact information?");
+        String contact = get_input("What is your phone number?");
         String email = get_input("What is your email?");
         String password = get_input("What password would you like to use to delete this post after the item is sold?");
         double price1 = Double.parseDouble(price);
@@ -80,6 +83,7 @@ public class User_Controls {
                 break;
         }
         System.out.println("Your post has been created!");
+        intro();
 
     }
 
@@ -96,8 +100,8 @@ public class User_Controls {
                     "type 'electronics'\nIf you would like to search only animals, type 'animal'\nIf you changed your mind, " +
                     "type 'done'");
             if (!typechoice.equals("done")) {
-                    type = ItemCategories.valueOf(typechoice);
-                    search.addFilter(new typeFilter(type));
+                type = ItemCategories.valueOf(typechoice);
+                search.addFilter(new typeFilter(type));
             }
         }
         search.addFilter(new wordFilter((get_input("Please enter a keyword for your search (ex. computer" +
@@ -123,20 +127,18 @@ public class User_Controls {
                     search.addFilter(new courseFilter(get_input("What course do you want your textbook to be for?")));
                     break;
             }
+            filteranswer = get_input(get_prompt(type));
         }
         String sortchoice = get_input("do you want to sort your results by price? (Y/N)");
-        while (!sortchoice.equals("N")){
-            if (Objects.equals(sortchoice, "Y")){
-                String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
-                if (sortkey.equals("high-low")){
-                    search.addSorter(new Sorter(new HighPrice()));
-                }
-                else if (sortkey.equals("low-high")){
-                    search.addSorter(new Sorter(new LowPrice()));
-                }
-            }
-            else{
+        while (!sortchoice.equals("N")&&!sortchoice.equals("Y")){
                 sortchoice = get_input("do you want to sort by price? (Y/N)");
+        }
+        if (Objects.equals(sortchoice, "Y")) {
+            String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
+            if (sortkey.equals("high-low")) {
+                search.addSorter(new Sorter(new HighPrice()));
+            } else if (sortkey.equals("low-high")) {
+                search.addSorter(new Sorter(new LowPrice()));
             }
         }
         System.out.println("Loading your search");
@@ -148,7 +150,7 @@ public class User_Controls {
      *
      */
     private static String get_prompt(ItemCategories type){
-        String prompt = "Here are your filter options:\nTo filter results by campus, type 'Campus'\nTo filter results by price, type 'Price'\n";
+        String prompt = "Here are your filter options:\nTo filter results by campus, type 'Campus'\nTo filter results by price, type 'Price'";
         if (type == ItemCategories.electronics){
             prompt+= "To filter results by condition, type 'condition'";
         }
@@ -158,7 +160,7 @@ public class User_Controls {
         if (type == ItemCategories.textbook){
             prompt+= "To filter results by course, type 'Course'";
         }
-        prompt+= "You can add multiple filters, but please only select one option for each category (ex. only choose one campus, don't go back to choose a second one)\n" +
+        prompt+= "\nYou can add multiple filters, but please only select one option for each category (ex. only choose one campus, don't go back to choose a second one)\n" +
                 "When you are done choosing filters, type 'Done'";
         return prompt;
     }
@@ -176,7 +178,7 @@ public class User_Controls {
                 remove_post();
             }
             else{
-                intro();
+                System.out.println("should call intro in reality");
 //                or should we just go straight to MainController.menu()?
             }
         }
