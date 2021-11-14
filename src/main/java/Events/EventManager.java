@@ -99,6 +99,7 @@ public class EventManager { //The controller for how all events work
         tempFile.renameTo(inputFile);
     }
 
+
     /**
      * Retrieves an event from this student's database.
      *

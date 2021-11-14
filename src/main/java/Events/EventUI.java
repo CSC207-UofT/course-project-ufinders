@@ -170,7 +170,6 @@ public class EventUI { //The user interface for the events section
                     }
                 }
             }
-
                 System.out.println("Want to add an event? Y/N:");
                 answer = read.nextLine();
                 if (Objects.equals(answer, "Y")) {
