@@ -29,6 +29,7 @@ public class Results {
             System.out.println("Would you like to view another item? If so, please type the corresponding number on its left. To exit, type 0.");
             view_item = input.nextInt();
         }
+        User_Controls.intro();
     }
 
     public static void item_present(Item item){

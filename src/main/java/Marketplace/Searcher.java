@@ -7,21 +7,27 @@ import java.util.Stack;
 
 public class Searcher {
     private Stack<Filter> filters;
-    private Sorter sorter = null;
+    private Sorter sorter;
 
     /**
      * executes a search using the filters specified in filters and the sorter, if it has been given a value.
      *
      * @return an arraylist of the resulting items
      */
+    public Searcher(){
+        this.filters = new Stack<>();
+        this.sorter = null;
+
+    }
+
     public ArrayList<Item> execute() {
         ArrayList<Item> items = Database.GetLst();
-        while (filters.size() > 0){
-            Filter filter = filters.pop();
+        while (this.filters.size() > 0){
+            Filter filter = this.filters.pop();
             items = filter.apply(items);
         }
         if (!(this.sorter == null)){
-            sorter.sort(items);
+            this.sorter.sort(items);
         }
        return items;
     }
@@ -31,7 +37,7 @@ public class Searcher {
      * @param filter   the filter to be added
      */
     public void addFilter(Filter filter){
-        filters.push(filter);
+        this.filters.push(filter);
     }
 
     /**
