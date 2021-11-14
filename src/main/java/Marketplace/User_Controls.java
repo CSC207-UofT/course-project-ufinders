@@ -87,7 +87,7 @@ public class User_Controls {
      * Gets information on what item the user is searching for.
      *
      */
-    private static ArrayList<Item> buying_info(){
+    private static void buying_info(){
         Searcher search = new Searcher();
         ItemCategories type = ItemCategories.misc;
         if (get_input("Do you want to search for a specific type of item? (Y/N)").equals("Y")){
@@ -140,7 +140,7 @@ public class User_Controls {
             }
         }
         System.out.println("Loading your search");
-        return search.execute();
+        Results.present(search.execute());
     }
 
     /**
