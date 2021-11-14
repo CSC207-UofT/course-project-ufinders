@@ -7,6 +7,7 @@ public class JournalWindow { // presenter class
 
 
 
+
     /**
      * Creates a pop-up window with the title, tags, entry and date in defaultEntryInput for the user to view and edit
      * @param defaultEntryInput Contains information about entry to display to user in the format

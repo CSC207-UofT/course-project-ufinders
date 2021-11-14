@@ -4,6 +4,7 @@ package Journal;
 import java.io.*;
 import java.time.LocalDate;
 
+
 public class JournalFileGateway implements FileGateway { //interacts with dir
 
     // the  path of the file to which JournalFileGateway can add, delete and edit text files from.

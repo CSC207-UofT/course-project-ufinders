@@ -63,6 +63,7 @@ public class User_Controls {
                         "Your options are: New, Used, LikeNew"));
                 String tech_specifications = get_input("What are the technical specifications of the electronic you are selling?");
                 new ItemManager().CreatePostElectronic(name, description, price1, contact, email, password, campus, Econdition, tech_specifications);
+                break;
             case "Animal":
                 String animal_type = get_input("What type of animal are you selling?");
                 new ItemManager().CreatePostAnimal(name, description, price1, contact, password, email, campus, animal_type);
@@ -136,9 +137,9 @@ public class User_Controls {
         if (Objects.equals(sortchoice, "Y")) {
             String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
             if (sortkey.equals("high-low")) {
-                search.addSorter(new Sorter(new HighPrice()));
-            } else if (sortkey.equals("low-high")) {
                 search.addSorter(new Sorter(new LowPrice()));
+            } else if (sortkey.equals("low-high")) {
+                search.addSorter(new Sorter(new HighPrice()));
             }
         }
         System.out.println("Loading your search");

@@ -7,6 +7,7 @@ import org.junit.Test;
 import javax.swing.filechooser.FileSystemView;
 
 import java.io.File;
+import User.MakeDir;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
