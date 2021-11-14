@@ -14,6 +14,7 @@ public class JournalUI {
 
 
 
+
     /**
      * ???? add about dir after integrated with user
      */
