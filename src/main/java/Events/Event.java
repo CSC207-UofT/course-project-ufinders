@@ -59,12 +59,7 @@ public class Event { //The event object itself
      * @param URL The URL of the event.
      */
     public void setURL(String URL) {
-        if (URL.contains("www.") && (URL.contains((".com")))) {
-            EventURL = URL;
-        }
-        else {
-            EventURL = "";
-        }
+        this.EventURL = URL;
     }
 
     /**

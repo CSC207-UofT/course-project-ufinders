@@ -18,9 +18,10 @@ public class EventUI { //The user interface for the events section
      * Constructor that initializes the Events.EventUI object and its Events.EventManager attribute.
      * @param userID the utorID of the student
      */
-    public EventUI(String userID) {
+    public EventUI(String userID) throws IOException {
         File userInfo = new File("/course-project-ufinders/src/main/java/userData/" + userID + ".txt");
         em = new EventManager(userID);
+        em.loadEvents();
     }
 
     /**
@@ -75,6 +76,22 @@ public class EventUI { //The user interface for the events section
     }
 
     /**
+     * Edits an event in this student's database.
+     *
+     * @param date The date of the event.
+     * @param time The time the event takes place at.
+     * @param title The name of the event.
+     * @param URL The URL of the event if it's from the UofT website.
+     * @param newDate The new date of the event.
+     * @param newTime The new time the event takes place at.
+     * @param newTitle The new name of the event.
+     * @param newURL The new URL of the event.
+     */
+    public Event EditEvent(String date, String time, String title, String URL, String newDate, String newTime, String newTitle, String newURL) throws IOException {
+        return em.editEvent(date, time, title, URL, newDate, newTime, newTitle, newURL);
+    }
+
+    /**
      * Retrieves all events on this student's calendar.
      */
     public List<Event> RetrieveAllEvents() {
@@ -103,7 +120,7 @@ public class EventUI { //The user interface for the events section
      * @param title The name of the event.
      * @param URL The URL of the event if it's from the UofT website.
      */
-    public void removeAlarm(String date, String time, String title, String URL) {
+    public void RemoveAlarm(String date, String time, String title, String URL) {
         em.removeAlarm(date, time, title, URL);
     }
 
@@ -121,7 +138,7 @@ public class EventUI { //The user interface for the events section
         EventUI eventView = new EventUI(user);
 
         // Asks user if they want to exit the event program
-        System.out.println("Type Exit to leave the events");
+        System.out.println("Type Exit to leave events, or No: ");
         // Events.main.java.Events.Event program keeps running until the user types exit
         while (!(Objects.equals(read.nextLine(), "Exit"))) {
             // User wants to add an event
@@ -131,6 +148,9 @@ public class EventUI { //The user interface for the events section
             if (Objects.equals(answer, "Y")) {
                 List<Event> eventList = eventView.RetrieveAllEvents();
                 EventUI.printEvents(eventList);
+                if (eventList.size() == 0) {
+                    System.out.println("You have no events.");
+                }
 
                 System.out.println("Want to remove an event? Y/N:");
                 String remove = read.nextLine();
@@ -138,18 +158,19 @@ public class EventUI { //The user interface for the events section
                 if (Objects.equals(remove, "Y")) {
                     System.out.println("Enter index of event (where the first index is 0): ");
                     try {
-                        int removeIndex = Integer.parseInt(read.nextLine());
+                        String removeAnswer = read.nextLine();
+                        int removeIndex = Integer.parseInt(removeAnswer);
                         if (removeIndex >= eventList.size() || removeIndex < 0) {
                             System.out.println("Invalid entry");
                         } else {
-                            eventView.AddEvent(eventList.get(removeIndex).getEventDate(), eventList.get(removeIndex).getEventTime(),
+                            eventView.RemoveEvent(eventList.get(removeIndex).getEventDate(), eventList.get(removeIndex).getEventTime(),
                                     eventList.get(removeIndex).getEventTitle(), eventList.get(removeIndex).getEventURL());
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid index");
                     }
                 }
-
+            }
 
                 System.out.println("Want to add an event? Y/N:");
                 answer = read.nextLine();
@@ -178,6 +199,7 @@ public class EventUI { //The user interface for the events section
                             if (answer4 >= searchedEvent.size() || answer4 < 0) {
                                 System.out.println("Invalid entry");
                             } else {
+                                System.out.println("Event added.");
                                 eventView.AddEvent(searchedEvent.get(answer4).getEventDate(), searchedEvent.get(answer4).getEventTime(),
                                         searchedEvent.get(answer4).getEventTitle(), searchedEvent.get(answer4).getEventURL());
                             }
@@ -188,11 +210,12 @@ public class EventUI { //The user interface for the events section
                 }
                 System.out.println("Want to remove all events? Y/N: ");
                 String answer5 = read.nextLine();
-                if (Objects.equals(answer2, "Y")) {
+                if (Objects.equals(answer5, "Y")) {
                     eventView.RemoveAllEvents();
                 }
+                System.out.println("Type R to restart the cycle: ");
 
-            }
+
 
         }
     }
