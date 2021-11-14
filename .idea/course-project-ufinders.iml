@@ -10,6 +10,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/User" />
+      <excludeFolder url="file://$MODULE_DIR$/src/test/Journal" />
+      <excludeFolder url="file://$MODULE_DIR$/src/test/java" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/Journal" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/Events" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/Alarm" />
     </content>
     <orderEntry type="jdk" jdkName="corretto-11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
