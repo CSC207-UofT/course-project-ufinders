@@ -137,9 +137,9 @@ public class User_Controls {
         if (Objects.equals(sortchoice, "Y")) {
             String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
             if (sortkey.equals("high-low")) {
-                search.addSorter(new Sorter(new HighPrice()));
-            } else if (sortkey.equals("low-high")) {
                 search.addSorter(new Sorter(new LowPrice()));
+            } else if (sortkey.equals("low-high")) {
+                search.addSorter(new Sorter(new HighPrice()));
             }
         }
         System.out.println("Loading your search");

@@ -1,7 +1,7 @@
 package Marketplace;
 
 import Marketplace.Items.types.*;
-import Marketplace.comparators.HighPrice;
+import Marketplace.comparators.LowPrice;
 import Marketplace.filters.campusFilter;
 import Marketplace.filters.priceFilter;
 import Marketplace.filters.typeFilter;
@@ -47,7 +47,7 @@ public class SearcherTest {
         searcher.addFilter(filter2);
         ArrayList<Item> results = searcher.execute();
         assert results.size() == 1;
-        assert results.get(0) instanceof Animal;
+        assert results.get(0) instanceof Textbook;
 
     }
 
@@ -56,7 +56,7 @@ public class SearcherTest {
         campusFilter filter = new campusFilter(Item.campus.UTSG);
         Searcher searcher = new Searcher();
         searcher.addFilter(filter);
-        Sorter sorter = new Sorter(new HighPrice());
+        Sorter sorter = new Sorter(new LowPrice());
         searcher.addSorter(sorter);
         ArrayList<Item> results = searcher.execute();
         assert results.size() == 3;

@@ -8,10 +8,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 public class FiltersTest {
-    public static ArrayList<Item> noitems;
-    public static ArrayList<Item> allitems;
-    public static ArrayList<Item> textbooks;
-    public static ArrayList<Item> clothes;
+    public static ArrayList<Item> noitems = new ArrayList<>();
+    public static ArrayList<Item> allitems = new ArrayList<>();
+    public static ArrayList<Item> textbooks = new ArrayList<>();
+    public static ArrayList<Item> clothes = new ArrayList<>();
     public static Animal animal1 = new Animal();
     public static Textbook textbook1 = new Textbook();
     public static Textbook textbook2 = new Textbook();
@@ -77,7 +77,7 @@ public class FiltersTest {
     @Test(timeout = 1000)
     public void testCampusLargeList(){
         campusFilter filter = new campusFilter(Item.campus.UTSG);
-        ArrayList<Item> results = filter.apply(clothes);
+        ArrayList<Item> results = filter.apply(allitems);
         assert results.size() == 4;
         assert results.contains(animal1);
         assert results.contains(textbook1);

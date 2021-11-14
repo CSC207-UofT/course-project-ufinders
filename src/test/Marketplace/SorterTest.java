@@ -15,7 +15,7 @@ public class SorterTest {
     public static Textbook textbook2 = new Textbook();
     public static Textbook textbook3 = new Textbook();
     public static ArrayList<Item> allitems;
-    public static ArrayList<Item> noitems;
+    public static ArrayList<Item> noitems = new ArrayList<>();
 
     @Before
     public void setUp() {
@@ -37,7 +37,7 @@ public class SorterTest {
 
     @Test(timeout = 1000)
     public void testHighLowSorting(){
-        Sorter sorter = new Sorter(new HighPrice());
+        Sorter sorter = new Sorter(new LowPrice());
         sorter.sort(allitems);
         assert allitems.size() == 4;
         assert allitems.get(0).equals(textbook3);
@@ -48,7 +48,7 @@ public class SorterTest {
 
     @Test(timeout = 1000)
     public void testLowHighSorting(){
-        Sorter sorter = new Sorter(new LowPrice());
+        Sorter sorter = new Sorter(new HighPrice());
         sorter.sort(allitems);
         assert allitems.size() == 4;
         assert allitems.get(3).equals(textbook3);
