@@ -62,4 +62,5 @@ public class Results {
             System.out.println((curr_item + 1) + ". " + items.get(curr_item).getName() + ", for $" + items.get(curr_item).getPrice());
         }
     }
+
 }
