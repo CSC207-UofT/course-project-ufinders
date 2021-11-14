@@ -63,6 +63,7 @@ public class User_Controls {
                         "Your options are: New, Used, LikeNew"));
                 String tech_specifications = get_input("What are the technical specifications of the electronic you are selling?");
                 new ItemManager().CreatePostElectronic(name, description, price1, contact, email, password, campus, Econdition, tech_specifications);
+                break;
             case "Animal":
                 String animal_type = get_input("What type of animal are you selling?");
                 new ItemManager().CreatePostAnimal(name, description, price1, contact, password, email, campus, animal_type);
