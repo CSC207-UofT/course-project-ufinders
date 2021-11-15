@@ -80,7 +80,7 @@ public class User_UI {
             String user_input = read.nextLine();
             // Lead the user to Journal if they chose Journal
             if (Objects.equals(user_input, "journal")) {
-                String[] dir_path = {User_Controller.read_directory(id)};
+                String[] dir_path = {User_Controller.read_directory(user_file)};
                 JournalUI.main(dir_path);
 
             }
