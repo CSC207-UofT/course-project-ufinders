@@ -1,4 +1,4 @@
-Thaksha:
+Thaksha
 
 I implemented the journal section of the program allowing for users to add, delete and view/edit an entry. I also implemented the database for where the journal entries are being stored. Also, I tested all the methods in all of the classes of the journal section.
 
@@ -20,5 +20,10 @@ Want to work on GUI, potentially fix any problems with Item, maybe implement reg
 Marton
 
 Implemented the User login and sign-up system adhering to the persistent file and data system used throughout the program by establishing directories used to store user data
-Plan on working on a full GUI involving Java libraries to further integrate program sections and remove command-line interaction. 
+Plan on working on a full GUI involving Java libraries to further integrate program sections and remove command-line interaction.
+
+Nealon
+
+I’ve written all code pertaining to events, as well as a program that reads info from the UofT events webpage. I plan to work on the frontend and use HTML, CSS, and JavaScript to do so.
+
 
