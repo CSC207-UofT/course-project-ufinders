@@ -1,12 +1,11 @@
 package User;
 
-import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 
 
 public class MakeDir {
     // The path of the file we created
-    private File dir;
+    private final File dir;
 
     /**
      * Creates a file and stores the path of the new directory in dir.
@@ -22,7 +21,9 @@ public class MakeDir {
      * Makes the new directory dir.
      */
     public void createDir(){
-        this.dir.mkdir(); // folder with that name could exist so must check that
+        if (this.dir.mkdir()){
+            System.out.println("New directory created");// folder with that name could exist so must check that
+        }
     }
 
     /**

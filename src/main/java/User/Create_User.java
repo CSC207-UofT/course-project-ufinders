@@ -16,7 +16,9 @@ public class Create_User {
                 .getAbsolutePath() + File.separator +"Documents" + File.separator  + "userData");
 
         File myFile = new File(dir.getPath(),id + ".txt");
-        myFile.createNewFile();
+        if(myFile.createNewFile()){
+            System.out.println("New user file created");
+        }
         String filename = myFile.getPath();
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
