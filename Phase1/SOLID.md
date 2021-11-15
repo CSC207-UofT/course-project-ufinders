@@ -6,6 +6,7 @@ Because we are worried that there would be too many classes, we decided not to m
 Item as a superclass will not undergo any more changes, but it can be extended with the addition of more subclasses to represent possibly more categories of items.
 
 Liskov Substitution Principle:
+
 Interface Segregation Principle: The Filter interface has a single method which is necessary for all filters to implement, so there is no need for this interface to be further segregated. The interface segregation principle is also used within the FileGateway Interface. This interface only has three methods that class implementing has to implement. FileGateway is an interface that is used to interact with files such as create files, delete files and get information from files.
 
 Dependency Inversion Principle: User_Controls knows nothing about how items are created, only the information it needs to pass down to ItemManager or Searcher. (User_Controls does, however, depend on the current Filter, Searcher, and Sorter implementation in order to pass down information to them, although It does not know how they use said information). Similarly, Searcher does not depend on filters or sorters beyond their output. None of the classes I worked on rely on a certain implementation of Item, as long as the types and get functions remain consistent where necessary.  
