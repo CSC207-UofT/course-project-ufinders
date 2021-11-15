@@ -8,6 +8,7 @@ import Journal.JournalUI;
 import Events.EventUI;
 import com.jaunt.NotFound;
 import com.jaunt.ResponseException;
+import Marketplace.User_Controls;
 
 import javax.swing.filechooser.FileSystemView;
 
@@ -74,8 +75,8 @@ public class User_UI {
                 System.out.println("Incorrect Password Try Again");
                 System.exit(0);
             }
-            System.out.println("Would you like to access the journal or the events tab?");
-            System.out.println("Type 'journal' or 'events'");
+            System.out.println("Would you like to access the Journal, Events, or Marketplace section?");
+            System.out.println("Type 'journal', 'events', or 'marketplace'");
             String user_input = read.nextLine();
             // Lead the user to Journal if they chose Journal
             if (Objects.equals(user_input, "journal")) {
@@ -87,6 +88,9 @@ public class User_UI {
             else if (Objects.equals(user_input, "events")) {
                 String[] arguments = new String[]{"hi"};
                 EventUI.main(arguments);
+            }
+            else if (Objects.equals(user_input, "marketplace")) {
+                User_Controls.intro();
             }
         }
         if(Objects.equals(choice, "Sign-Up")) {
@@ -119,8 +123,8 @@ public class User_UI {
                 Create_User.make_user(id, password, dir.getPath());
                 System.out.println("Account Created!");
 
-                System.out.println("Would you like to access the journal or the events tab?");
-                System.out.println("Type 'journal' or 'events'");
+                System.out.println("Would you like to access the Journal, Events, or Marketplace section?");
+                System.out.println("Type 'journal', 'events', or 'marketplace'");
                 String user_input2 = read.nextLine();
                 // Lead the user to Journal if they chose Journal
                 if (Objects.equals(user_input2, "journal")) {
@@ -132,6 +136,9 @@ public class User_UI {
                 else if (Objects.equals(user_input2, "events")) {
                     String[] arguments = new String[]{"hi"};
                     EventUI.main(arguments);
+                }
+                else if (Objects.equals(user_input2, "marketplace")) {
+                    User_Controls.intro();
                 }
         }
         if (Objects.equals(choice, "Check")){
