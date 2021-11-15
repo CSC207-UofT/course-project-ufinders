@@ -35,7 +35,8 @@ public class User_Controls {
             remove_post();
         }
         else if (Objects.equals(segmentchoice, "exit")){
-            System.out.println("should go to main in reality");
+            String[] arguments = new String[]{"hi"};
+            User_UI.main(arguments);
         }
         else {
             intro();
