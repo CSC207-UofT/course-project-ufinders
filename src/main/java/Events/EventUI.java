@@ -211,7 +211,7 @@ public class EventUI { //The user interface for the events section
                 if (Objects.equals(answer5, "Y")) {
                     eventView.RemoveAllEvents();
                 }
-                System.out.println("Type R to restart the cycle: ");
+                System.out.println("Type R to restart the cycle, or Exit to exit: ");
 
 
 

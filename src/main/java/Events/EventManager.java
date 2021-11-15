@@ -174,6 +174,7 @@ public class EventManager { //The controller for how all events work
         BufferedReader br = new BufferedReader(new FileReader(userFile));
         String currentLine;
         List<String> userList;
+        String URL;
         while((currentLine = br.readLine()) != null) {
             String userData = currentLine.trim();
             if (!userData.isEmpty()) {
@@ -181,10 +182,16 @@ public class EventManager { //The controller for how all events work
                 String date = userList.get(0);
                 String time = userList.get(1);
                 String title = userList.get(2);
-                String URL = userList.get(3);
+                if (userList.size() == 3) {
+                    URL = "";
+                }
+                else {
+                    URL = userList.get(3);
+                }
                 this.addEvent(date, time, title, URL);
             }
         }
+        br.close();
     }
 
 }
