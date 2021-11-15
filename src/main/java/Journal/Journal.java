@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 
+
 public class Journal {
     //Stores title to Journal Entry
     private final HashMap<String, File> entries;

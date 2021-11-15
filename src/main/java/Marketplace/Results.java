@@ -14,23 +14,35 @@ public class Results {
 
 
     /**
-     * Prints and presents list of items to the user.
+     * Prints and presents list of items to the user, and allows them to interact with it.
      *
      * @param items ArrayList of items to be iterated over.
      */
 
     public static void present(ArrayList<Item> items){
-        Scanner input = new Scanner(System.in);
-        printlist(items);
-        System.out.println("Would you like to view one of the items? If so, please type the corresponding number on its left. To exit, type 0.");
-        int view_item = input.nextInt();
-        while (view_item != 0){
-            item_present(items.get(view_item - 1));
-            System.out.println("Would you like to view another item? If so, please type the corresponding number on its left. To exit, type 0.");
-            view_item = input.nextInt();
+        if (items.size() != 0){
+            Scanner input = new Scanner(System.in);
+            printlist(items);
+            System.out.println("Would you like to view one of the items? If so, please type the corresponding number on its left. To exit, type 0.");
+            int view_item = input.nextInt();
+            while (view_item != 0){
+                item_present(items.get(view_item - 1));
+                System.out.println("Would you like to view another item? If so, please type the corresponding number on its left. To exit, type 0.");
+                view_item = input.nextInt();
+            }
+            User_Controls.intro();
         }
-        User_Controls.intro();
+        else{
+            System.out.println("No items found.");
+        }
+
     }
+
+    /**
+     * Prints and presents a singular item to the user.
+     *
+     * @param item item whose contents will be displayed.
+     */
 
     public static void item_present(Item item){
         System.out.println(item.getName());
@@ -56,10 +68,17 @@ public class Results {
         System.out.println(item.getContact_num());
     }
 
+    /**
+     * Helper method that prints and presents list of items to the user.
+     *
+     * @param items ArrayList of items to be iterated over.
+     */
+
     public static void printlist(ArrayList<Item> items){
         int curr_item = 0;
         while(curr_item < items.size()){
             System.out.println((curr_item + 1) + ". " + items.get(curr_item).getName() + ", for $" + items.get(curr_item).getPrice());
+            curr_item++;
         }
     }
 

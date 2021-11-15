@@ -3,6 +3,7 @@ package Journal;
 import java.time.LocalDate;
 import java.util.Set;
 
+
 public class JournalController {
     // object the controller calls on to do the work its given
     private final JournalManager journalmanager;

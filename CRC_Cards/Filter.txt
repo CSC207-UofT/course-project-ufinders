@@ -1,0 +1,6 @@
+Class Name: Filter
+
+Responsibilities:
+* Interface for filters
+* contains a execute method that takes a given list and returns a new list containing only items that fit the specific filters specification
+* Used as part of a strategy design pattern for all filters

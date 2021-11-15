@@ -19,7 +19,6 @@ public class EventUI { //The user interface for the events section
      * @param userID the utorID of the student
      */
     public EventUI(String userID) throws IOException {
-        File userInfo = new File("/course-project-ufinders/src/main/java/userData/" + userID + ".txt");
         em = new EventManager(userID);
         em.loadEvents();
     }
@@ -171,7 +170,6 @@ public class EventUI { //The user interface for the events section
                     }
                 }
             }
-
                 System.out.println("Want to add an event? Y/N:");
                 answer = read.nextLine();
                 if (Objects.equals(answer, "Y")) {
@@ -213,7 +211,7 @@ public class EventUI { //The user interface for the events section
                 if (Objects.equals(answer5, "Y")) {
                     eventView.RemoveAllEvents();
                 }
-                System.out.println("Type R to restart the cycle: ");
+                System.out.println("Type R to restart the cycle, or Exit to exit: ");
 
 
 

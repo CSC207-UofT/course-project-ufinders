@@ -22,4 +22,9 @@ public class EventTest {
         assertNotSame(eventList, empty);
     }
 
+    @Test(timeout = 5000)
+    public void testRemoveEvent() throws IOException {
+        eventUI = new EventUI("soltanp3");
+    }
+
 }
