@@ -1,9 +1,8 @@
 Class Name: User_Controller
 
 Responsibilities:
-* Tells Create_User to create user
-* Tells Event_Manager to add course event to calendar that the user stores in
+* Reads the password section of a user .txt file
+* Reads the specific Journal file path of each user
 
 Collaborators:
-* Create_User
-* Event_Manager
+* User_UI

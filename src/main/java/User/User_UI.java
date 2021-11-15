@@ -119,7 +119,7 @@ public class User_UI {
                 password = confirmation;
                 MakeDir dir = new MakeDir(FileSystemView.getFileSystemView()
                         .getHomeDirectory()
-                        .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
+                        .getAbsolutePath() + File.separator +"Documents" + File.separator  + "Journal Entries");
                 Create_User.make_user(id, password, dir.getPath());
                 System.out.println("Account Created!");
 
