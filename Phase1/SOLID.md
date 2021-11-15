@@ -1,4 +1,5 @@
-Single Responsibility Principle: User_Controls only focuses on user input, Searcher only makes searches, Sorter only sorts, and the various comparators and filters only make their own very specific distinctions (ex. Is this item from a given campus).  
+Single Responsibility Principle: User_Controls only focuses on user input, Searcher only makes searches, Sorter only sorts, and the various comparators and filters only make their own very specific distinctions (ex. Is this item from a given campus). 
+ Also, EventUI focuses on user inputs and nothing else, EventManager decides how those inputs get distributed, MakeDeleteEvent manages the adding and deletion of events, GetEvent reads events from the UofT events webpage, and Event is just an entity containing event info.
 Each class of the journal section has a single responsibility. For example, JournalUI’s responsibility is to take input from the user, like what they want to do in the journal, and carry out that action. The JournalWindow’s responsibility is presenting what the user wants to see in a pop-up window. The JournalController’s responsibility is to delegate to JournalManager, which delegates to FileGateway and Journal. FileGateway’s responsibility is creating files, deleting files, and editing files. Lastly, the journal’s responsibility is to store a mapping of the entry title to file with the entry and get information about what it stores.
 
 Open-Closed Principle: Filters can easily be extended without needing to modify existing filters or the existing searcher. The same is true for comparators and sorters in the Marketplace.
@@ -6,8 +7,12 @@ Because we are worried that there would be too many classes, we decided not to m
 Item as a superclass will not undergo any more changes, but it can be extended with the addition of more subclasses to represent possibly more categories of items.
 
 Liskov Substitution Principle:
+Item is a superclass in Marketplace, and all of its subclasses (Animal, Textbook, etc) can replace Item at any point without issue.
+
 
 Interface Segregation Principle: The Filter interface has a single method which is necessary for all filters to implement, so there is no need for this interface to be further segregated. The interface segregation principle is also used within the FileGateway Interface. This interface only has three methods that class implementing has to implement. FileGateway is an interface that is used to interact with files such as create files, delete files and get information from files.
 
 Dependency Inversion Principle: User_Controls knows nothing about how items are created, only the information it needs to pass down to ItemManager or Searcher. (User_Controls does, however, depend on the current Filter, Searcher, and Sorter implementation in order to pass down information to them, although It does not know how they use said information). Similarly, Searcher does not depend on filters or sorters beyond their output. None of the classes I worked on rely on a certain implementation of Item, as long as the types and get functions remain consistent where necessary.  
 The dependency inversion principle is also used in the journal section. For example, JournalFileGateway is a gateway class, and a use case, JournalManager wants to delegate to JournalFileGateway, which will result in a violation of clean architecture. So I used an interface, FileGateway, to invert the dependency and allow JournalManager to delegate to FileGateway indirectly.
+ Also, The higher level class EventUI knows nothing about how Events are implemented, only that a few basic bits of information are required to be passed down. The same goes for the Controller layer EventManager. The Use Case MakeDeleteEvent knows how events work, because it creates them. None of these classes know how GetEvent works as well.
+
