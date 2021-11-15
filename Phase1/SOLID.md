@@ -3,6 +3,7 @@ Each class of the journal section has a single responsibility. For example, Jour
 
 Open-Closed Principle: Filters can easily be extended without needing to modify existing filters or the existing searcher. The same is true for comparators and sorters in the Marketplace.
 Because we are worried that there would be too many classes, we decided not to make ItemManager a parent class where its subclasses can extend from ItemManager and create their own type of objects. Additionally, we decided not to make ItemManager a parent class because all the subclasses would have the same single responsibility.
+Item as a superclass will not undergo any more changes, but it can be extended with the addition of more subclasses to represent possibly more categories of items.
 
 Liskov Substitution Principle:
 Interface Segregation Principle: The Filter interface has a single method which is necessary for all filters to implement, so there is no need for this interface to be further segregated. The interface segregation principle is also used within the FileGateway Interface. This interface only has three methods that class implementing has to implement. FileGateway is an interface that is used to interact with files such as create files, delete files and get information from files.
