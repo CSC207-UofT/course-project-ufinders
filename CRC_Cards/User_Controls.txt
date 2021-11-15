@@ -1,13 +1,12 @@
 Class Name: User_Controls
 
 Responsibilities:
-* Sell Item
-* Search Item
-* Delete Item
-* Returns listing of items
+* Collects information from user on the item they want to sell, then distributes that information to ItemManager
+* Collects information from user on the search they want to make, then gives Results the results to display
+* Collects information from the user on an item they want to delete, then attempts to delete using ItemManager
+* Contains main menu for the marketplace (intro method)
 
 Collaborators:
-* Item
-* main.Sell_Buy
 * Search
-* Database_Manager
+* Results
+* ItemManager

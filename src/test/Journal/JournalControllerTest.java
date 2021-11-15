@@ -2,6 +2,7 @@ package Journal;
 
 import org.junit.Before;
 import org.junit.Test;
+import User.MakeDir;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;

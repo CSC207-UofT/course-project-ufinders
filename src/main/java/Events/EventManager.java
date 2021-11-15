@@ -4,12 +4,15 @@ import com.jaunt.NotFound;
 import com.jaunt.ResponseException;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.nio.*;
 
 public class EventManager { //The controller for how all events work
 
@@ -87,7 +90,7 @@ public class EventManager { //The controller for how all events work
 
         while((currentLine = br.readLine()) != null) {
             String trimmedLine = currentLine.trim();
-            if(trimmedLine.equals(lineToRemove)) continue;
+            if(trimmedLine.contains(lineToRemove)) continue;
             bw.write(currentLine + System.getProperty("line.separator")); //Warning, this may cause an error later, duplicate newlines?
         }
         bw.close();
@@ -95,6 +98,7 @@ public class EventManager { //The controller for how all events work
         inputFile.delete();
         tempFile.renameTo(inputFile);
     }
+
 
     /**
      * Retrieves an event from this student's database.
@@ -130,6 +134,23 @@ public class EventManager { //The controller for how all events work
     }
 
     /**
+     * Edits an event in this student's database.
+     *
+     * @param date The date of the event.
+     * @param time The time the event takes place at.
+     * @param title The name of the event.
+     * @param URL The URL of the event if it's from the UofT website.
+     * @param newDate The new date of the event.
+     * @param newTime The new time the event takes place at.
+     * @param newTitle The new name of the event.
+     * @param newURL The new URL of the event.
+     */
+    public Event editEvent(String date, String time, String title, String URL, String newDate, String newTime, String newTitle, String newURL) throws IOException {
+        this.removeSingleEvent(date, time, title, URL);
+        return this.addEvent(newDate, newTitle, newTime, newURL);
+    }
+
+    /**
      * Removes the alarm from this event on the calendar.
      *
      * @param date The date of the event.
@@ -147,9 +168,13 @@ public class EventManager { //The controller for how all events work
     public void loadEvents() throws IOException { //Make sure the titles don't have commas
         String path = "/course-project-ufinders/src/main/java/userData/";
         File userFile = new File(path + utorID + ".txt");
+        if (userFile.length() == 0) {
+            return;
+        }
         BufferedReader br = new BufferedReader(new FileReader(userFile));
         String currentLine;
         List<String> userList;
+        String URL;
         while((currentLine = br.readLine()) != null) {
             String userData = currentLine.trim();
             if (!userData.isEmpty()) {
@@ -157,10 +182,16 @@ public class EventManager { //The controller for how all events work
                 String date = userList.get(0);
                 String time = userList.get(1);
                 String title = userList.get(2);
-                String URL = userList.get(3);
+                if (userList.size() == 3) {
+                    URL = "";
+                }
+                else {
+                    URL = userList.get(3);
+                }
                 this.addEvent(date, time, title, URL);
             }
         }
+        br.close();
     }
 
 }

@@ -20,6 +20,7 @@ public class User {
         this.setdirectory(directory);
     }
 
+
     /**
      * Sets id for the user
      *

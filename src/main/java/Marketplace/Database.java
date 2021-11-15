@@ -66,18 +66,5 @@ public class Database implements Serializable{
         return item_type_lst;
     }
 
-//    @Override
-//    public String toString(){
-//        String s = "";
-//        for (Item item: item_type_lst){
-//            s += "NAME OF ITEM: " + item.getName() + "\nITEM DESCRIPTION: " + item.getItem_description();
-//            s += "\n";
-//        }
-//        return s;
-//    }
-
-
-
-
 }
 

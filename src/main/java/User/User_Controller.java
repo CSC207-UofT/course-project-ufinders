@@ -9,8 +9,8 @@ public class User_Controller {
     public static String read_password(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             reader.readLine(); // Read the first line
-            String password = reader.readLine(); // Read and store the second line which is the password
-            return password;
+            // Read and return the second line which is the password
+            return reader.readLine();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -22,12 +22,13 @@ public class User_Controller {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
         reader.readLine(); // Read the first line
         reader.readLine(); // Read the second line
-        String directory = reader.readLine();   // Read and store the third line which is the directory
-        return directory;
+            // Read and store the third line which is the directory
+        return reader.readLine();
     }
         catch (IOException e) {
         e.printStackTrace();
         return null;
     }
+
     }
 }

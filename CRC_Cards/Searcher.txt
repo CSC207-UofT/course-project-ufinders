@@ -1,0 +1,10 @@
+Class Name: Searcher
+
+Responsibilities:
+* Stores the given filters to be used for this search
+* Stores the sorter to be used for this search
+* Gets items from the database, applies the given filters, and sorts the resulting list if applicable, then returns the results. 
+
+Collaborators:
+* Sorter
+* Database

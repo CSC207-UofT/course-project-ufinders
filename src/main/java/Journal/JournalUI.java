@@ -1,14 +1,17 @@
 package Journal;
 
+
 import javax.swing.filechooser.FileSystemView;
 import java.time.LocalDate;
 import java.util.Objects;
+import User.MakeDir;
 
 public class JournalUI {
     // object the JournalUI calls on to do the work its given
     public JournalController controller;
     // objects the JournalUI calls to create a pop-up window and get information that is inputted
     public JournalWindow popUpWindow;
+
 
 
 

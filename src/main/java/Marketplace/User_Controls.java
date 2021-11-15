@@ -17,7 +17,7 @@ public class User_Controls {
      * and directs them there.
      *
      */
-    public static void intro(){
+    public static void intro() {
         Scanner input = new Scanner(System.in);
         System.out.println("Do you want to buy, sell, remove item, or exit the marketplace? (Write 'buy,' 'sell,' 'remove' or 'exit')");
         String segmentchoice = input.nextLine();
@@ -31,7 +31,7 @@ public class User_Controls {
             remove_post();
         }
         else if (Objects.equals(segmentchoice, "exit")){
-            MainController.menu();
+            System.exit(0);
         }
         else {
             intro();
@@ -47,7 +47,7 @@ public class User_Controls {
         String name = get_input("What is the name of the item you're selling?");
         String description = get_input("What is the description of the item you're selling?");
         String price = get_input("What is the price of the item you're selling?");
-        String contact = get_input("What is your contact information?");
+        String contact = get_input("What is your phone number?");
         String email = get_input("What is your email?");
         String password = get_input("What password would you like to use to delete this post after the item is sold?");
         double price1 = Double.parseDouble(price);
@@ -59,6 +59,7 @@ public class User_Controls {
                         "Your options are: New, Used, LikeNew"));
                 String tech_specifications = get_input("What are the technical specifications of the electronic you are selling?");
                 new ItemManager().CreatePostElectronic(name, description, price1, contact, email, password, campus, Econdition, tech_specifications);
+                break;
             case "Animal":
                 String animal_type = get_input("What type of animal are you selling?");
                 new ItemManager().CreatePostAnimal(name, description, price1, contact, password, email, campus, animal_type);
@@ -79,6 +80,7 @@ public class User_Controls {
                 break;
         }
         System.out.println("Your post has been created!");
+        intro();
 
     }
 
@@ -95,8 +97,8 @@ public class User_Controls {
                     "type 'electronics'\nIf you would like to search only animals, type 'animal'\nIf you changed your mind, " +
                     "type 'done'");
             if (!typechoice.equals("done")) {
-                    type = ItemCategories.valueOf(typechoice);
-                    search.addFilter(new typeFilter(type));
+                type = ItemCategories.valueOf(typechoice);
+                search.addFilter(new typeFilter(type));
             }
         }
         search.addFilter(new wordFilter((get_input("Please enter a keyword for your search (ex. computer" +
@@ -122,24 +124,22 @@ public class User_Controls {
                     search.addFilter(new courseFilter(get_input("What course do you want your textbook to be for?")));
                     break;
             }
+            filteranswer = get_input(get_prompt(type));
         }
         String sortchoice = get_input("do you want to sort your results by price? (Y/N)");
-        while (!sortchoice.equals("N")){
-            if (Objects.equals(sortchoice, "Y")){
-                String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
-                if (sortkey.equals("high-low")){
-                    search.addSorter(new Sorter(new HighPrice()));
-                }
-                else if (sortkey.equals("low-high")){
-                    search.addSorter(new Sorter(new LowPrice()));
-                }
-            }
-            else{
+        while (!sortchoice.equals("N")&&!sortchoice.equals("Y")){
                 sortchoice = get_input("do you want to sort by price? (Y/N)");
+        }
+        if (Objects.equals(sortchoice, "Y")) {
+            String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
+            if (sortkey.equals("high-low")) {
+                search.addSorter(new Sorter(new LowPrice()));
+            } else if (sortkey.equals("low-high")) {
+                search.addSorter(new Sorter(new HighPrice()));
             }
         }
         System.out.println("Loading your search");
-        search.execute();
+        Results.present(search.execute());
     }
 
     /**
@@ -147,7 +147,7 @@ public class User_Controls {
      *
      */
     private static String get_prompt(ItemCategories type){
-        String prompt = "Here are your filter options:\nTo filter results by campus, type 'Campus'\nTo filter results by price, type 'Price'\n";
+        String prompt = "Here are your filter options:\nTo filter results by campus, type 'Campus'\nTo filter results by price, type 'Price'";
         if (type == ItemCategories.electronics){
             prompt+= "To filter results by condition, type 'condition'";
         }
@@ -157,7 +157,7 @@ public class User_Controls {
         if (type == ItemCategories.textbook){
             prompt+= "To filter results by course, type 'Course'";
         }
-        prompt+= "You can add multiple filters, but please only select one option for each category (ex. only choose one campus, don't go back to choose a second one)\n" +
+        prompt+= "\nYou can add multiple filters, but please only select one option for each category (ex. only choose one campus, don't go back to choose a second one)\n" +
                 "When you are done choosing filters, type 'Done'";
         return prompt;
     }
@@ -168,6 +168,7 @@ public class User_Controls {
         String password = get_input("Please enter the password for the item.");
         if (ItemManager.remove_post(title, password)){
             System.out.println("You have successfully removed item!");
+            intro();
         }
         else {
             String fail = get_input("You have entered the wrong title or password. Would you like to try again? (Y/N)");

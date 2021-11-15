@@ -1,0 +1,9 @@
+Class Name: Sorter
+
+Responsibilities:
+* Stores a given Item Comparator
+* Has a sort method that uses the given comprator to sort a given list
+
+Collaborators:
+* Item
+

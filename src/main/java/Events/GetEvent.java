@@ -44,6 +44,7 @@ public class GetEvent {
         return eventList;
     }
 
+
     /**
      * Sees if a URL for a found event has already been stored to be returned to the user to prevent duplicate events.
      * @param eventList The list of events that will be returned to the user.
