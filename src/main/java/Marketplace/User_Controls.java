@@ -12,16 +12,12 @@ import Marketplace.Items.types.*;
 
 public class User_Controls {
 
-    public static void main(String[] args) {
-        intro();
-    }
-
     /**
      * Prompts the user to choose a section of the marketplace to enter
      * and directs them there.
      *
      */
-    public static void intro(){
+    public static void intro() {
         Scanner input = new Scanner(System.in);
         System.out.println("Do you want to buy, sell, remove item, or exit the marketplace? (Write 'buy,' 'sell,' 'remove' or 'exit')");
         String segmentchoice = input.nextLine();
@@ -35,7 +31,7 @@ public class User_Controls {
             remove_post();
         }
         else if (Objects.equals(segmentchoice, "exit")){
-            System.out.println("should go to main in reality");
+            System.exit(0);
         }
         else {
             intro();

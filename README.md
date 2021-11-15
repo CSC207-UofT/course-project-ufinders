@@ -1,3 +1,3 @@
 ## Welcome to UFind!
 
-Our Phase 0 written work (specification, walkthrough, and progress report) is in the Phase0 folder, alongside directions for running our skeleton code. Our CRC cards are in the CRC_Card folder.
+Our Phase 1 written work is in the Phase1 folder, inside is an updated specification that directs you to how our program works. Our updated CRC cards are in the CRC_Card folder.
