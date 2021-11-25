@@ -27,8 +27,9 @@ public class JournalWindow { // presenter class
                 "Title:", title,
                 "Tags:", tags,
                 "Entry:", entry,};
+        ImageIcon icon = new ImageIcon("journaling.jpg");
         int option = JOptionPane.showConfirmDialog(null, message, defaultEntryInput[0],
-                JOptionPane.OK_CANCEL_OPTION); // will be used later
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,  icon); // will be used later
         return new String[]{title.getText(), tags.getText(), entry.getText()};
     }
 
