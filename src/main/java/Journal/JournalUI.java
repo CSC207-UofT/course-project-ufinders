@@ -59,6 +59,12 @@ public class JournalUI {
 
 
 
+    /**
+     * check whether title is an empty string, if it is  "Untitled"+ " " + titleLessEntries is returned and
+     * if not title is returned
+     * @param title string that is checked if it is empty string
+     * @return  "Untitled"+ " " + titleLessEntries if title is empty string and title if title is not an empty string
+     */
 
     public String checkEntryHasTitle(String title){
         if (Objects.equals(title, "")){
@@ -104,7 +110,8 @@ public class JournalUI {
 
     /**
      * Calls controller to get information about the entry the user wants to view. Then, calls popUpWindow tp create a
-     * pop-up with the information. Gets the modified journal entry information and calls controller with the modified
+     * pop-up with the information. Gets the modified journal entry information. Checks whether user has made the entry
+     * have no title and if so give it the title "Untitled"+ " " + titleLessEntries. Calls controller with the modified
      * journal entry information to edit the entry
 
      */
