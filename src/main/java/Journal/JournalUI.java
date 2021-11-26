@@ -11,6 +11,7 @@ public class JournalUI {
     public JournalController controller;
     // objects the JournalUI calls to create a pop-up window and get information that is inputted
     public JournalWindow popUpWindow;
+    public int titleLessEntries;
 
 
 
@@ -25,14 +26,16 @@ public class JournalUI {
                         .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
         this.controller = new JournalController(new JournalFileGateway(dir.getPath()));
         this.popUpWindow = new JournalWindow();
+        this.titleLessEntries = 0;
 
     }
 
     /**
-     * Calls popUpWindow to create a pop-up window prompting user to add an entry. If an entry with that title already
-     * exist user is prompted to enter a new title until they enter a title of an entry that does not exist.
-     * Gets input from pop-window and passes it to controller to create entry with the given information and store it
-     * in dir.
+     * Calls popUpWindow to create a pop-up window prompting user to add an entry. If user gives no title
+     * for entry, entry is title untitled followed by number of untitled entries. If user enters a title
+     * that is the same title as an entry that already exist user is prompted to enter a new title until
+     * they enter a title of an entry that does not exist. Gets input from pop-window and passes it to controller to
+     * create entry with the given information and store it in dir.
      */
 
     public void addEntry(){
@@ -44,6 +47,11 @@ public class JournalUI {
             }
         }
         LocalDate today = LocalDate.now();
+
+        if (Objects.equals(newEntry[0], "")){
+            newEntry[0] = "Untitled"+ " " + titleLessEntries;
+            titleLessEntries += 1;
+        }
         boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1] );
 
         while (!entryCreated){
