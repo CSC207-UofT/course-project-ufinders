@@ -11,17 +11,15 @@ public class Database implements Serializable{
      * A database that stores a list of items from ItemManager
      *
      *
-     * @param item_lst the list of items that are posts
      *
      */
 
     private static ArrayList<Item> item_type_lst = new ArrayList<>();
 
-
+    /**
+     * Adds the post to the item_lst
+     */
     public static void StoreItem(Item item){
-        /**
-         * Adds the post to the item_lst
-         */
 
         item_type_lst.add(item);
         try {
@@ -32,10 +30,10 @@ public class Database implements Serializable{
 
     }
 
+    /**
+     * Serializes the item into a file called itemlst.txt
+     */
     private static void SerializeItem() throws IOException {
-        /**
-         * Serializes the item into a file called itemlst.txt
-         */
 
         FileOutputStream newfile = new FileOutputStream("itemlst.txt");
         ObjectOutputStream outputStream = new ObjectOutputStream(newfile);
@@ -43,10 +41,10 @@ public class Database implements Serializable{
 
     }
 
+    /**
+     * Deserializes the items in the file
+     */
     private static void DeserializeItem() throws IOException, ClassNotFoundException {
-        /**
-         * Deserializes the items in the file
-         */
 
         FileInputStream retrievedfile = new FileInputStream("itemlst.txt");
         ObjectInputStream objectInputStream = new ObjectInputStream(retrievedfile);
@@ -54,16 +52,21 @@ public class Database implements Serializable{
 
     }
 
+    /**
+     * Returns the item_lst
+     */
     public static ArrayList<Item> GetLst() {
-        /**
-         * Returns the item_lst
-         */
+
         try{
             DeserializeItem();
         } catch (Exception e){
             System.out.println("Item cannot be retrieved");
         }
         return item_type_lst;
+    }
+
+    public static void main(String[] Args){
+
     }
 
 }
