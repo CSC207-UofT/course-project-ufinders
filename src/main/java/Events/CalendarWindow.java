@@ -110,8 +110,8 @@ public class CalendarWindow extends JFrame {
                     if (!Objects.equals(removeIndex.getText(), "") && !viewList.isEmpty()) {
                         Event removedEvent = viewList.get(Integer.parseInt(removeIndex.getText())-1);
                         try {
-                            eventInterface.removeEvent(removedEvent.getEventTitle(), removedEvent.getEventDate(),
-                                    removedEvent.getEventTime(), removedEvent.getEventURL());
+                            eventInterface.removeEvent(removedEvent.getEventDate(), removedEvent.getEventTime(),
+                                    removedEvent.getEventTitle(), removedEvent.getEventURL());
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
