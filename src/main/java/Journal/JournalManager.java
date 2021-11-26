@@ -35,13 +35,18 @@ public class JournalManager {// file gateway does the work of journal manager
      * @param tags The tags we want to give the entry.
 
      */
-    public void createEntry(String title, String content, LocalDate date, String tags) {
-        // asks interface to create the file with the given info
-        File fileCreated = accessFiles.addFile(title, content, date, tags);
-        journal.addEntry(title, fileCreated);
-
-        if (fileCreated == null) { // means file was not created
-            // need to get a new name for journal entry if journal entry with that name exist
+    public boolean createEntry(String title, String content, LocalDate date, String tags) {
+        if (doesEntryExist(title)){
+            return false;
+        }
+        else {
+            // asks interface to create the file with the given info
+            File fileCreated = accessFiles.addFile(title, content, date, tags);
+            journal.addEntry(title, fileCreated);
+            return true;
+//        if (fileCreated == null) { // means file was not created
+//            // need to get a new name for journal entry if journal entry with that name exist
+//        }
         }
     }
     /**
@@ -77,7 +82,7 @@ public class JournalManager {// file gateway does the work of journal manager
         }
 
 
-    public boolean checkEntryExist(String title) {
+    public boolean doesEntryExist(String title) {
             return journal.EntryExist(title);
     }
 }
