@@ -17,9 +17,10 @@ public class JournalWindow { // presenter class
 
      */
     public String[] viewAndAddEntryPopUp(String[] defaultEntryInput) {
-        JTextField title = new JTextField();
-        JTextField tags = new JTextField();
-        JTextField entry = new JTextField();
+        JTextField title = new JTextField(15);
+        JTextField tags = new JTextField(15);
+        JTextArea entry = new JTextArea(7, 35);
+
         title.setText(defaultEntryInput[1]);
         tags.setText(defaultEntryInput[2]);
         entry.setText(defaultEntryInput[3]);
