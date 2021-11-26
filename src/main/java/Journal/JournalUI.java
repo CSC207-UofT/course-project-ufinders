@@ -41,21 +41,23 @@ public class JournalUI {
     public void addEntry(){
 
         String[] newEntry = this.popUpWindow.addEntryPopUp();
-        for (int i = 0; i < newEntry.length; i += 1){
-            if(newEntry[i] == null){
-                newEntry[i] = "";
+        if (newEntry != null) {
+            for (int i = 0; i < newEntry.length; i += 1) {
+                if (newEntry[i] == null) {
+                    newEntry[i] = "";
+                }
             }
-        }
-        LocalDate today = LocalDate.now();
+            LocalDate today = LocalDate.now();
 
-        newEntry[0] = checkEntryHasTitle(newEntry[0]);
+            newEntry[0] = checkEntryHasTitle(newEntry[0]);
 
-        boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1] );
+            boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1]);
 
-        while (!entryCreated){
-            newEntry = addEntryWithNewTitle(today, newEntry);
-            entryCreated = this.controller.callCreateEntry(newEntry[0],
-                    newEntry[1], today, newEntry[2] );
+            while (!entryCreated) {
+                newEntry = addEntryWithNewTitle(today, newEntry);
+                entryCreated = this.controller.callCreateEntry(newEntry[0],
+                        newEntry[1], today, newEntry[2]);
+            }
         }
     }
 
@@ -122,6 +124,7 @@ public class JournalUI {
     public void viewEntry(String titleOfEntryToView){
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
         String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo);
+        if (modifiedJournalEntry != null){
 
         modifiedJournalEntry[0] = checkEntryHasTitle(modifiedJournalEntry[0]);
         boolean noEntryWithSameTitle = this.controller.callGetAllEntries().contains(modifiedJournalEntry[0]);
@@ -134,7 +137,7 @@ public class JournalUI {
             modifiedJournalEntry = addEntryWithNewTitle( LocalDate.parse(entryInfo[0]), modifiedJournalEntry);
             noEntryWithSameTitle = this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
                 modifiedJournalEntry[1], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);}
-    }}
+    }}}
 /**
     * Calls controller to get title of all entries. Calls a popUpWindow  to create a pop-up window with these titles,
     * prompting user to choose an entry to view. Then calls viewEntry passing it the title of the entry the user

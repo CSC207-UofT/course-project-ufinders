@@ -28,10 +28,14 @@ public class JournalWindow { // presenter class
                 "Title:", title,
                 "Tags:", tags,
                 "Entry:", entry,};
-        ImageIcon icon = new ImageIcon("journaling.jpg");
+        ImageIcon icon = new ImageIcon("journaling.png");
         int option = JOptionPane.showConfirmDialog(null, message, defaultEntryInput[0],
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,  icon); // will be used later
-        return new String[]{title.getText(), tags.getText(), entry.getText()};
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, icon);
+        if (option == JOptionPane.CANCEL_OPTION) {
+            return null;
+        } else {
+            return new String[]{title.getText(), tags.getText(), entry.getText()};
+        }
     }
 
 
