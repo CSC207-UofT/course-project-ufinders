@@ -32,8 +32,8 @@ public class JournalController {
      * @param tags The tags we want to give the entry.
 
      */
-    public void callCreateEntry(String title, String content, LocalDate date, String tags) {
-        journalmanager.createEntry(title, content, date, tags);
+    public boolean callCreateEntry(String title, String content, LocalDate date, String tags) {
+        return journalmanager.createEntry(title, content, date, tags);
     }
 
     /**
@@ -80,6 +80,6 @@ public class JournalController {
     }
 
     public boolean callEntryExist(String title){
-        return journalmanager.checkEntryExist(title);
+        return journalmanager.doesEntryExist(title);
     }
 }

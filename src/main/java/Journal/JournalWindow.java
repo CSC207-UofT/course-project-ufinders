@@ -27,8 +27,9 @@ public class JournalWindow { // presenter class
                 "Title:", title,
                 "Tags:", tags,
                 "Entry:", entry,};
+        ImageIcon icon = new ImageIcon("journaling.jpg");
         int option = JOptionPane.showConfirmDialog(null, message, defaultEntryInput[0],
-                JOptionPane.OK_CANCEL_OPTION); // will be used later
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,  icon); // will be used later
         return new String[]{title.getText(), tags.getText(), entry.getText()};
     }
 
@@ -91,6 +92,16 @@ public class JournalWindow { // presenter class
         return (String)JOptionPane.showInputDialog(null, "What would you like to do",
                 "Choose what you would like to do in journal", JOptionPane.QUESTION_MESSAGE, null, userOptions,
                 null);
+    }
+
+    /**
+     * Creates a pop-up window with a warning that an entry with given title already exists
+     */
+
+    public void entryWithTitleAlreadyExists(){
+        ImageIcon icon = new ImageIcon("warning.png");
+        JOptionPane.showMessageDialog(null, "Journal entry with this title already exists. " +
+                "Please choose another title!", "warning", JOptionPane.ERROR_MESSAGE, icon);
     }
 
 
