@@ -107,7 +107,8 @@ public class JournalUI {
     public void deleteEntry(){
 
         String entryToDelete = this.popUpWindow.deleteEntryPopUp(controller.callGetAllEntries());
-        controller.callDeleteEntry(entryToDelete);
+        if (entryToDelete != null){
+        controller.callDeleteEntry(entryToDelete);}
     }
 
 
@@ -145,8 +146,9 @@ public class JournalUI {
  */
     public void viewAllEntry(){
         String entryToView = this.popUpWindow.viewEntriesPopUp(controller.callGetAllEntries());
+        if (entryToView != null){
         viewEntry(entryToView);
-    }
+    }}
 
     /**
      * Calls popUpWindow to  create a pop-up window with a list of actions that the user wants to do. Gets the action

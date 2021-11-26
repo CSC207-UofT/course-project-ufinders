@@ -64,7 +64,8 @@ public class JournalWindow { // presenter class
             possibleEntriesToDelete[i] = entryTitle;
             i += 1;
         }
-       return (String)JOptionPane.showInputDialog(null, "choose an entry to delete",
+
+        return (String)JOptionPane.showInputDialog(null, "choose an entry to delete",
                "Delete a journal entry", JOptionPane.QUESTION_MESSAGE, null, possibleEntriesToDelete,
                null);
     }
