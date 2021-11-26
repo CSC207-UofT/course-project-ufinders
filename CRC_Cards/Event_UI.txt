@@ -4,10 +4,9 @@ Responsibilities:
 * Tells EventManager to add an event to the calendar
 * Deletes event by calling EventManager
 * Retrieves events, whether single or all, through EventManager
+* Edits events.
 * Tells EventManager to find events from the UofT website by keyword.
 * Loads all a user's events from their database by telling EventManager.
-* Removes alarm from a specified event.
-* Adds alarm to a specified event.
 
 Collaborators:
 * GetEvent

@@ -6,10 +6,7 @@ Responsibilities:
 * Retrieves events, whether single or all, through MakeDeleteEvent
 * Tells GetEvent to find events from the UofT website by keyword.
 * Loads all a user's events from their database by adding each of them through MakeDeleteEvent.
-* Removes alarm from a specified event.
-* Adds alarm to a specified event.
 
 Collaborators:
 * MakeDeleteEvent
 * Event
-* AlarmMaker %

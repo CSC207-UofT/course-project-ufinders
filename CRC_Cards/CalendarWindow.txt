@@ -1,0 +1,9 @@
+Class Name: CalendarWindow
+
+Responsibilities:
+* Creates GUI for calendar, displaying all the events on a selected date.
+* Tells EventUI to delete or edit specific events.
+* Creates popup windows for editing events.
+
+Collaborators:
+* EventUI

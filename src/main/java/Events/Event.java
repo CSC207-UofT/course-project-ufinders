@@ -1,6 +1,5 @@
 package Events;
 
-import Alarm.Alarm;
 import java.util.Date;
 
 public class Event { //The event object itself
@@ -9,7 +8,6 @@ public class Event { //The event object itself
     private String EventTime; //Time of event
     private String EventTitle;  //Name of event
     private String EventURL;   //URL of event page
-    private Alarm EventAlarm;   //Notification of event
 
     /**
      * Constructs an event on a calendar.
@@ -64,6 +62,7 @@ public class Event { //The event object itself
 
     /**
      * Gets event date.
+     * @return The event's date.
      */
     public String getEventDate() {
         return EventDate;
@@ -71,6 +70,7 @@ public class Event { //The event object itself
 
     /**
      * Gets event time.
+     * @return The event's time.
      */
     public String getEventTime() {
         return EventTime;
@@ -78,6 +78,7 @@ public class Event { //The event object itself
 
     /**
      * Gets event title.
+     * @return The event's title.
      */
     public String getEventTitle() {
         return EventTitle;
@@ -85,24 +86,10 @@ public class Event { //The event object itself
 
     /**
      * Gets event URL.
+     * @return The event's URL.
      */
     public String getEventURL() {
         return EventURL;
     }
 
-    /**
-     * Sets alarm notification for event.
-     *
-     * @param alarm The alarm for the event.
-     */
-    public void setAlarm(Alarm alarm) {
-        this.EventAlarm = alarm;
-    }
-
-    /**
-     * Turns alarm for event off.
-     */
-    public void offAlarm() {
-        this.EventAlarm = null;
-    }
 }

@@ -1,0 +1,10 @@
+Class Name: EventWindow
+
+Responsibilities:
+* Creates GUI for events section.
+* Tells EventUI to create or search for specific events, as well as delete all of them.
+* Creates popup windows for adding and searching for events.
+
+Collaborators:
+* CalendarWindow
+* EventUI
