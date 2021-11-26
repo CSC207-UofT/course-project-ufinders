@@ -56,19 +56,26 @@ public class JournalController {
 
 
     /**
-     * Calls callDeleteEntry to delete the journal entry with title, titleOfEntryToDelete.
-     * Also it calls callCreateEntry to create a new entry with the given title and store it in dir.
+     * Checks whether entry with given info exist. Check whether edited title of entry is not the same title as another
+     * entry, if so returns true. Else, Calls callDeleteEntry to delete the journal entry with title, titleOfEntryToDelete.
+     * Also, it calls callCreateEntry to create a new entry with the given title, store it in dir and return false.
      * @param titleOfEntryToDelete The title of the entry user wants to delete.
      * @param title The possibly modified title of the entry.
      * @param tags The  possibly modified tags of the entry.
-     * @param today The  date the entry was orginaly written on.
+     * @param today The  date the entry was originally written on.
      * @param entry The possibly modified tags of  the entry.
+     * @return true iff entry with given info does not exist or modified entry title is same title as another entry
 
      */
-    public void callEditEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry) {
+    public boolean callEditEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry) {
         if (callEntryExist(titleOfEntryToDelete)){
-        this.callDeleteEntry(titleOfEntryToDelete);
-        this.callCreateEntry(title, entry, today, tags);}
+            if (!callGetAllEntries().contains(title)){
+                 this.callDeleteEntry(titleOfEntryToDelete);
+                 this.callCreateEntry(title, entry, today, tags);
+            return false;}
+            else{return true;}
+            }
+        else{return true;}
     }
 
     /**
