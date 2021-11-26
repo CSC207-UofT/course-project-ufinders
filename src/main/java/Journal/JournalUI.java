@@ -31,8 +31,8 @@ public class JournalUI {
     }
 
     /**
-     * Calls popUpWindow to create a pop-up window prompting user to add an entry. If user gives no title
-     * for entry, entry is title untitled followed by number of untitled entries. If user enters a title
+     * Calls popUpWindow to create a pop-up window prompting user to add an entry. Entry is checked whether it has a
+     * title and if not it is title "Untitled" + " " + titleLessEntries. If user inputs a title
      * that is the same title as an entry that already exist user is prompted to enter a new title until
      * they enter a title of an entry that does not exist. Gets input from pop-window and passes it to controller to
      * create entry with the given information and store it in dir.
@@ -48,14 +48,26 @@ public class JournalUI {
         }
         LocalDate today = LocalDate.now();
 
-        if (Objects.equals(newEntry[0], "")){
-            newEntry[0] = "Untitled"+ " " + titleLessEntries;
-            titleLessEntries += 1;
-        }
+        newEntry[0] = checkEntryHasTitle(newEntry[0]);
+
         boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1] );
 
         while (!entryCreated){
             entryCreated = addEntryWithNewTitle(today, newEntry);
+        }
+    }
+
+
+
+
+    public String checkEntryHasTitle(String title){
+        if (Objects.equals(title, "")){
+            String newTitle = "Untitled"+ " " + titleLessEntries;
+            titleLessEntries += 1;
+            return newTitle;
+        }
+        else{
+            return title;
         }
     }
 
@@ -99,6 +111,9 @@ public class JournalUI {
     public void viewEntry(String titleOfEntryToView){
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
         String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo);
+
+        modifiedJournalEntry[0] = checkEntryHasTitle(modifiedJournalEntry[0]);
+
         this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0], modifiedJournalEntry[1],
                 LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
     }
