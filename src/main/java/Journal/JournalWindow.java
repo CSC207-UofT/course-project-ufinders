@@ -94,5 +94,15 @@ public class JournalWindow { // presenter class
                 null);
     }
 
+    /**
+     * Creates a pop-up window with a warning that an entry with given title already exists
+     */
+
+    public void entryWithTitleAlreadyExists(){
+        ImageIcon icon = new ImageIcon("warning.png");
+        JOptionPane.showMessageDialog(null, "Journal entry with this title already exists. " +
+                "Please choose another title!", "warning", JOptionPane.ERROR_MESSAGE, icon);
+    }
+
 
 }

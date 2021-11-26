@@ -29,8 +29,10 @@ public class JournalUI {
     }
 
     /**
-     * Calls popUpWindow to create a pop-up window prompting user to add an entry. Gets input from pop-window and
-     * passes it to controller to create entry with the given information and store it in dir.
+     * Calls popUpWindow to create a pop-up window prompting user to add an entry. If an entry with that title already
+     * exist user is prompted to enter a new title until they enter a title of an entry that does not exist.
+     * Gets input from pop-window and passes it to controller to create entry with the given information and store it
+     * in dir.
      */
 
     public void addEntry(){
@@ -39,11 +41,33 @@ public class JournalUI {
         for (int i = 0; i < newEntry.length; i += 1){
             if(newEntry[i] == null){
                 newEntry[i] = "";
-
             }
         }
         LocalDate today = LocalDate.now();
-        this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1] );
+        boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1] );
+
+        while (!entryCreated){
+            entryCreated = addEntryWithNewTitle(today, newEntry);
+        }
+    }
+
+
+    /**
+     * Calls popUpWindow to create a pop-up window  warning user that entry with that title already
+     * exist. User is prompted to enter a new title. Gets input from pop-window and
+     * passes it to controller to create entry with the given information and store it in dir. Entry is created
+     * if entry with given title does not exist.
+     * @param today date the journal entry was created
+     * @param newEntry entry input from user in form {title, tags, content}
+     * @return true iff a journal entry was created
+     */
+
+    public boolean addEntryWithNewTitle(LocalDate today, String[] newEntry){
+        this.popUpWindow.entryWithTitleAlreadyExists();
+        String[] tempEntry = {String.valueOf(today), newEntry[0], newEntry[2], newEntry[1]};
+        newEntry = this.popUpWindow.viewAndAddEntryPopUp(tempEntry);
+        return this.controller.callCreateEntry(newEntry[0],
+                newEntry[1], today, newEntry[2] );
     }
 
     /**
