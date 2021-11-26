@@ -277,3 +277,4 @@ public class EventWindow extends JFrame implements PropertyChangeListener {
     }
 
 }
+
