@@ -5,15 +5,12 @@ import java.util.Set;
 
 public class JournalWindow { // presenter class
 
-
-
-
     /**
      * Creates a pop-up window with the title, tags, entry and date in defaultEntryInput for the user to view and edit
      * @param defaultEntryInput Contains information about entry to display to user in the format
      *                          [date of entry, title, tags, entry]
      * @return an array in the format [date of entry, title, tags, entry] which may contain modifies title, entry
-     * and/or tags
+     * and/or tags or an empty array if the user presses cancel
 
      */
     public String[] viewAndAddEntryPopUp(String[] defaultEntryInput) {
@@ -43,6 +40,7 @@ public class JournalWindow { // presenter class
      * Calls viewAndAddEntryPopUP to create a window prompting user to create a new entry asking for its title, tags
      * and content
      * @return an array in the format [date of entry, title, tags, entry]  that the user inputted into the pop-up window
+     * or an emoty array if the user presses cancel
 
      */
     public String[] addEntryPopUp() {
