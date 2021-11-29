@@ -17,9 +17,10 @@ public class JournalWindow { // presenter class
 
      */
     public String[] viewAndAddEntryPopUp(String[] defaultEntryInput) {
-        JTextField title = new JTextField();
-        JTextField tags = new JTextField();
-        JTextField entry = new JTextField();
+        JTextField title = new JTextField(15);
+        JTextField tags = new JTextField(15);
+        JTextArea entry = new JTextArea(7, 35);
+
         title.setText(defaultEntryInput[1]);
         tags.setText(defaultEntryInput[2]);
         entry.setText(defaultEntryInput[3]);
@@ -27,10 +28,14 @@ public class JournalWindow { // presenter class
                 "Title:", title,
                 "Tags:", tags,
                 "Entry:", entry,};
-        ImageIcon icon = new ImageIcon("journaling.jpg");
+        ImageIcon icon = new ImageIcon("journaling.png");
         int option = JOptionPane.showConfirmDialog(null, message, defaultEntryInput[0],
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,  icon); // will be used later
-        return new String[]{title.getText(), tags.getText(), entry.getText()};
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, icon);
+        if (option == JOptionPane.CANCEL_OPTION) {
+            return null;
+        } else {
+            return new String[]{title.getText(), tags.getText(), entry.getText()};
+        }
     }
 
 
