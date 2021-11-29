@@ -5,21 +5,19 @@ import java.util.Set;
 
 public class JournalWindow { // presenter class
 
-
-
-
     /**
      * Creates a pop-up window with the title, tags, entry and date in defaultEntryInput for the user to view and edit
      * @param defaultEntryInput Contains information about entry to display to user in the format
      *                          [date of entry, title, tags, entry]
      * @return an array in the format [date of entry, title, tags, entry] which may contain modifies title, entry
-     * and/or tags
+     * and/or tags or an empty array if the user presses cancel
 
      */
     public String[] viewAndAddEntryPopUp(String[] defaultEntryInput) {
-        JTextField title = new JTextField();
-        JTextField tags = new JTextField();
-        JTextField entry = new JTextField();
+        JTextField title = new JTextField(15);
+        JTextField tags = new JTextField(15);
+        JTextArea entry = new JTextArea(7, 35);
+
         title.setText(defaultEntryInput[1]);
         tags.setText(defaultEntryInput[2]);
         entry.setText(defaultEntryInput[3]);
@@ -27,10 +25,14 @@ public class JournalWindow { // presenter class
                 "Title:", title,
                 "Tags:", tags,
                 "Entry:", entry,};
-        ImageIcon icon = new ImageIcon("journaling.jpg");
+        ImageIcon icon = new ImageIcon("journaling.png");
         int option = JOptionPane.showConfirmDialog(null, message, defaultEntryInput[0],
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,  icon); // will be used later
-        return new String[]{title.getText(), tags.getText(), entry.getText()};
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, icon);
+        if (option == JOptionPane.CANCEL_OPTION) {
+            return null;
+        } else {
+            return new String[]{title.getText(), tags.getText(), entry.getText()};
+        }
     }
 
 
@@ -38,6 +40,7 @@ public class JournalWindow { // presenter class
      * Calls viewAndAddEntryPopUP to create a window prompting user to create a new entry asking for its title, tags
      * and content
      * @return an array in the format [date of entry, title, tags, entry]  that the user inputted into the pop-up window
+     * or an emoty array if the user presses cancel
 
      */
     public String[] addEntryPopUp() {
@@ -59,7 +62,8 @@ public class JournalWindow { // presenter class
             possibleEntriesToDelete[i] = entryTitle;
             i += 1;
         }
-       return (String)JOptionPane.showInputDialog(null, "choose an entry to delete",
+
+        return (String)JOptionPane.showInputDialog(null, "choose an entry to delete",
                "Delete a journal entry", JOptionPane.QUESTION_MESSAGE, null, possibleEntriesToDelete,
                null);
     }
