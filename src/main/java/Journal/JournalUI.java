@@ -100,14 +100,16 @@ public class JournalUI {
     }
 
     /**
-     * Calls popUpWindow to create a pop-up window prompting user to  choose from a list of entries to delete. Gets
-     * the entry the user wants to delete and calls controller to delete that entry.
+     * Calls popUpWindow to create a pop-up window prompting user to  choose from a list of entries to delete.  If user
+     * presses cancel pop-up window is closed. If not Gets the entry the user wants to delete and calls controller to
+     * delete that entry.
      */
 
     public void deleteEntry(){
 
         String entryToDelete = this.popUpWindow.deleteEntryPopUp(controller.callGetAllEntries());
-        controller.callDeleteEntry(entryToDelete);
+        if (entryToDelete != null){
+        controller.callDeleteEntry(entryToDelete);}
     }
 
 
@@ -140,22 +142,24 @@ public class JournalUI {
     }}}
 /**
     * Calls controller to get title of all entries. Calls a popUpWindow  to create a pop-up window with these titles,
-    * prompting user to choose an entry to view. Then calls viewEntry passing it the title of the entry the user
- *  wants to view
+    * prompting user to choose an entry to view. if the user presses cancel, the pop-up window is closed. Then calls
+    * viewEntry passing it the title of the entry the user wants to view.
  */
     public void viewAllEntry(){
         String entryToView = this.popUpWindow.viewEntriesPopUp(controller.callGetAllEntries());
+        if (entryToView != null){
         viewEntry(entryToView);
-    }
+    }}
 
     /**
      * Calls popUpWindow to  create a pop-up window with a list of actions that the user wants to do. Gets the action
-     * the user wants to do and call addEntry,deleteEntry or viewAllEntry.
+     * the user wants to do and call addEntry,deleteEntry or viewAllEntry or closes pop-up window if the user
+     * presses cancel.
      */
     public static void main(String[] args) { // what if user presses cancel
         JournalUI UI = new JournalUI();
         String userCommand = UI.popUpWindow.viewUserOptions();
-        while(!Objects.equals(userCommand, "exit journal")){
+        while(!(Objects.equals(userCommand, "exit journal") || Objects.equals(userCommand, null))){
 
             if (Objects.equals(userCommand, "add an entry")){
                 UI.addEntry();
