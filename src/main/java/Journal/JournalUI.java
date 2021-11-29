@@ -53,7 +53,9 @@ public class JournalUI {
         boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1] );
 
         while (!entryCreated){
-            entryCreated = addEntryWithNewTitle(today, newEntry);
+            newEntry = addEntryWithNewTitle(today, newEntry);
+            entryCreated = this.controller.callCreateEntry(newEntry[0],
+                    newEntry[1], today, newEntry[2] );
         }
     }
 
@@ -88,12 +90,11 @@ public class JournalUI {
      * @return true iff a journal entry was created
      */
 
-    public boolean addEntryWithNewTitle(LocalDate today, String[] newEntry){
+    public String[] addEntryWithNewTitle(LocalDate today, String[] newEntry){
         this.popUpWindow.entryWithTitleAlreadyExists();
         String[] tempEntry = {String.valueOf(today), newEntry[0], newEntry[2], newEntry[1]};
         newEntry = this.popUpWindow.viewAndAddEntryPopUp(tempEntry);
-        return this.controller.callCreateEntry(newEntry[0],
-                newEntry[1], today, newEntry[2] );
+        return newEntry;
     }
 
     /**
@@ -111,8 +112,11 @@ public class JournalUI {
     /**
      * Calls controller to get information about the entry the user wants to view. Then, calls popUpWindow tp create a
      * pop-up with the information. Gets the modified journal entry information. Checks whether user has made the entry
-     * have no title and if so give it the title "Untitled"+ " " + titleLessEntries. Calls controller with the modified
-     * journal entry information to edit the entry
+     * have no title and if so give it the title "Untitled"+ " " + titleLessEntries.  If user modifies the title
+     *  that is the same title as an entry that already exist user is prompted to enter a new title until
+     *  they enter a title of an entry that does not exist. Calls controller with the modified journal entry information
+     *  to edit the entry
+     *  @param titleOfEntryToView title of the entry the user wants to view
 
      */
     public void viewEntry(String titleOfEntryToView){
@@ -120,10 +124,17 @@ public class JournalUI {
         String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo);
 
         modifiedJournalEntry[0] = checkEntryHasTitle(modifiedJournalEntry[0]);
-
-        this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0], modifiedJournalEntry[1],
-                LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
-    }
+        boolean noEntryWithSameTitle = this.controller.callGetAllEntries().contains(modifiedJournalEntry[0]);
+        if (!noEntryWithSameTitle){
+            this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
+                    modifiedJournalEntry[1], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
+        }
+        else{
+        while (noEntryWithSameTitle){
+            modifiedJournalEntry = addEntryWithNewTitle( LocalDate.parse(entryInfo[0]), modifiedJournalEntry);
+            noEntryWithSameTitle = this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
+                modifiedJournalEntry[1], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);}
+    }}
 /**
     * Calls controller to get title of all entries. Calls a popUpWindow  to create a pop-up window with these titles,
     * prompting user to choose an entry to view. Then calls viewEntry passing it the title of the entry the user
