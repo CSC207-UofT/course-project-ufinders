@@ -28,15 +28,9 @@ public class ItemManager {
 
         ItemCreator itemCreator = new ItemCreator();
         Animal item = (Animal) itemCreator.makeItem(ItemCategories.animal);
-        String title = (String) info.get(1);
-        String description = (String) info.get(2);
-        double price = (double) info.get(3);
-        String contact = (String) info.get(4);
-        String password = (String) info.get(6);
-        String email = (String) info.get(5);
-        Item.campus campus = (Item.campus) info.get(7);
-        String animal = (String) info.get(8);
-        item.edit(title, description, contact, email, password, price, campus, animal);
+        double price = (double) info.get(2);
+        Item.campus campus = (Item.campus) info.get(6);
+        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus, info.get(7));
         Database.StoreItem(item);
     }
 
@@ -47,53 +41,52 @@ public class ItemManager {
 
         ItemCreator itemCreator = new ItemCreator();
         Clothes item = (Clothes) itemCreator.makeItem(ItemCategories.clothes);
-        String title = (String) info.get(1);
-        String description = (String) info.get(2);
-        double price = (double) info.get(3);
-        String contact = (String) info.get(4);
-        String password = (String) info.get(6);
-        String email = (String) info.get(5);
-        Item.campus campus = (Item.campus) info.get(7);
-        Item.condition condition = (Clothes.condition) info.get(8);
-        Clothes.size size = (Clothes.size) info.get(9);
-        item.edit(title, description, contact, email, password, price, campus, size, condition);
+        double price = (double) info.get(2);
+        Item.campus campus = (Item.campus) info.get(6);
+        Item.condition condition = (Item.condition) info.get(7);
+        Clothes.size size = (Clothes.size) info.get(8);
+        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus, size, condition);
         Database.StoreItem(item);
     }
 
     /**
      * Creates Electronic Item and store into Database
      */
-    public void CreatePostElectronic(String name, String description, double price, String contact, String email,
-                                     String password, Item.campus campus, Item.condition condition,
-                                     String tech_specifications){
+    public void CreatePostElectronic(ArrayList<Object> info){
 
         ItemCreator itemCreator = new ItemCreator();
         Electronic item = (Electronic) itemCreator.makeItem(ItemCategories.electronics);
-        item.edit(name, description, contact, email, password, price, campus, condition, tech_specifications);
+        double price = (double) info.get(2);
+        Item.campus campus = (Item.campus) info.get(6);
+        Item.condition condition = (Item.condition) info.get(7);
+        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus, condition,
+                info.get(8));
         Database.StoreItem(item);
     }
 
     /**
      * Creates Miscellaneous Item and store into Database
      */
-    public void CreatePostMisc(String name, String description, double price, String contact, String email,
-                               String password, Item.campus campus){
+    public void CreatePostMisc(ArrayList<Object> info){
 
         ItemCreator itemCreator = new ItemCreator();
         Misc item = (Misc) itemCreator.makeItem(ItemCategories.misc);
-        item.edit(name, description, contact, email, password, price, campus);
+        double price = (double) info.get(2);
+        Item.campus campus = (Item.campus) info.get(6);
+        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus);
         Database.StoreItem(item);
     }
 
     /**
      * Creates Textbook Item and store into Database
      */
-    public void CreatePostTextbook(String name, String description, double price, String contact, String email,
-                                   String password, Item.campus campus, String course) {
+    public void CreatePostTextbook(ArrayList<Object> info) {
 
         ItemCreator itemCreator = new ItemCreator();
         Textbook item = (Textbook) itemCreator.makeItem(ItemCategories.textbook);
-        item.edit(name, description, contact, email, password, price, campus, course);
+        double price = (double) info.get(2);
+        Item.campus campus = (Item.campus) info.get(6);
+        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus, info.get(7));
         Database.StoreItem(item);
 
     }
@@ -104,9 +97,7 @@ public class ItemManager {
      */
     public static boolean password_match(String title, String password){
 
-        ArrayList<Item> item_lst = Database.GetLst();
-
-        for (Item item: item_lst){
+        for (Item item: Database.item_type_lst){
             if (item.getName().equals(title) & item.getPassword().equals(password)){
                 return true;
             }
@@ -121,16 +112,31 @@ public class ItemManager {
      */
     public static boolean remove_post(String title, String password){
 
-        ArrayList<Item> posts = Database.GetLst();
-
-        for (Item item: posts){
+        for (Item item: Database.item_type_lst){
             if (item.getName().equals(title) & password_match(title, password)){
-                Database.DeleteItem(item);
+                int id = item.getId();
+                Database.DeleteItem(id);
                 return true;
             }
         }
         return false;
     }
 
+//    public static void main(String[] Args){
+//        Animal animal = new Animal();
+//        animal.edit("Apple", "35y/o", "123", "123", "123",
+//                100, Item.campus.UTSG, "horse");
+//        Electronic electronic = new Electronic();
+//        electronic.edit("Banana", "product", "123", "123", "123",
+//                1000, Item.campus.UTSC, Item.condition.LikeNew, "Phone");
+//        Clothes clothes = new Clothes();
+//        clothes.edit("Bright", "colorful", "123", "123", "123",
+//                12, Item.campus.UTM, Clothes.size.S, Item.condition.New);
+//        Database.StoreItem(animal);
+//        Database.StoreItem(electronic);
+//        Database.StoreItem(clothes);
+//        remove_post("Apple", "123");
+//        System.out.println(Database.GetLst());
+//    }
 
 }
