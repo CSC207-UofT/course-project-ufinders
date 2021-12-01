@@ -65,8 +65,11 @@ public class Database implements Serializable{
         return item_type_lst;
     }
 
-    public static void main(String[] Args){
-
+    /**
+     * Deletes item from list
+     */
+    public static void DeleteItem(Item item){
+        item_type_lst.remove(item);
     }
 
 }

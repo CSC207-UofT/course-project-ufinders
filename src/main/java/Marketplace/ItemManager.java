@@ -24,25 +24,39 @@ public class ItemManager {
     /**
      * Creates Animal Item and store into Database
      */
-    public void CreatePostAnimal(String name, String description, double price, String contact,
-                                 String password, String email, Item.campus campus, String animal_type){
+    public void CreatePostAnimal(ArrayList<Object> info){
 
         ItemCreator itemCreator = new ItemCreator();
         Animal item = (Animal) itemCreator.makeItem(ItemCategories.animal);
-        item.edit(name, description, contact, email, password, price, campus, animal_type);
+        String title = (String) info.get(1);
+        String description = (String) info.get(2);
+        double price = (double) info.get(3);
+        String contact = (String) info.get(4);
+        String password = (String) info.get(6);
+        String email = (String) info.get(5);
+        Item.campus campus = (Item.campus) info.get(7);
+        String animal = (String) info.get(8);
+        item.edit(title, description, contact, email, password, price, campus, animal);
         Database.StoreItem(item);
     }
 
     /**
      * Creates Clothes Item and store into Database
      */
-    public void CreatePostClothes(String name, String description, double price, String contact,
-                                  String password, String email, Item.campus campus, Clothes.size size,
-                                  Item.condition condition){
+    public void CreatePostClothes(ArrayList<Object> info){
 
         ItemCreator itemCreator = new ItemCreator();
         Clothes item = (Clothes) itemCreator.makeItem(ItemCategories.clothes);
-        item.edit(name, description, contact, email, password, price, campus, size, condition);
+        String title = (String) info.get(1);
+        String description = (String) info.get(2);
+        double price = (double) info.get(3);
+        String contact = (String) info.get(4);
+        String password = (String) info.get(6);
+        String email = (String) info.get(5);
+        Item.campus campus = (Item.campus) info.get(7);
+        Item.condition condition = (Clothes.condition) info.get(8);
+        Clothes.size size = (Clothes.size) info.get(9);
+        item.edit(title, description, contact, email, password, price, campus, size, condition);
         Database.StoreItem(item);
     }
 
@@ -101,7 +115,7 @@ public class ItemManager {
 
     }
 
-//    TODO: figure how to delete item Database
+
     /**
      * Removes the item sold from post and return true. Needs to check the password before the item can be removed.
      */
@@ -111,11 +125,8 @@ public class ItemManager {
 
         for (Item item: posts){
             if (item.getName().equals(title) & password_match(title, password)){
-                posts.remove(item);
+                Database.DeleteItem(item);
                 return true;
-            }
-            else{
-                Database.StoreItem(item);
             }
         }
         return false;
