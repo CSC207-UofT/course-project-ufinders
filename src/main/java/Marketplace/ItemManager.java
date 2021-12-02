@@ -28,9 +28,15 @@ public class ItemManager {
 
         ItemCreator itemCreator = new ItemCreator();
         Animal item = (Animal) itemCreator.makeItem(ItemCategories.animal);
+        String title = (String) info.get(0);
+        String descrip = (String) info.get(1);
+        String contact = (String) info.get(3);
+        String password = (String) info.get(5);
+        String email = (String) info.get(4);
+        String animal = (String) info.get(7);
         double price = (double) info.get(2);
         Item.campus campus = (Item.campus) info.get(6);
-        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus, info.get(7));
+        item.edit(title, descrip, contact, email, password, price, campus, animal);
         Database.StoreItem(item);
     }
 
@@ -41,11 +47,16 @@ public class ItemManager {
 
         ItemCreator itemCreator = new ItemCreator();
         Clothes item = (Clothes) itemCreator.makeItem(ItemCategories.clothes);
+        String title = (String) info.get(0);
+        String descrip = (String) info.get(1);
+        String contact = (String) info.get(3);
+        String password = (String) info.get(5);
+        String email = (String) info.get(4);
         double price = (double) info.get(2);
         Item.campus campus = (Item.campus) info.get(6);
         Item.condition condition = (Item.condition) info.get(7);
         Clothes.size size = (Clothes.size) info.get(8);
-        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus, size, condition);
+        item.edit(title, descrip, contact, email, password, price, campus, size, condition);
         Database.StoreItem(item);
     }
 
@@ -56,11 +67,16 @@ public class ItemManager {
 
         ItemCreator itemCreator = new ItemCreator();
         Electronic item = (Electronic) itemCreator.makeItem(ItemCategories.electronics);
+        String title = (String) info.get(0);
+        String descrip = (String) info.get(1);
+        String contact = (String) info.get(3);
+        String password = (String) info.get(5);
+        String email = (String) info.get(4);
         double price = (double) info.get(2);
         Item.campus campus = (Item.campus) info.get(6);
+        String tech = (String) info.get(8);
         Item.condition condition = (Item.condition) info.get(7);
-        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus, condition,
-                info.get(8));
+        item.edit(title, descrip, contact, email, password, price, campus, condition, tech);
         Database.StoreItem(item);
     }
 
@@ -71,9 +87,14 @@ public class ItemManager {
 
         ItemCreator itemCreator = new ItemCreator();
         Misc item = (Misc) itemCreator.makeItem(ItemCategories.misc);
+        String title = (String) info.get(0);
+        String descrip = (String) info.get(1);
+        String contact = (String) info.get(3);
+        String password = (String) info.get(5);
+        String email = (String) info.get(4);
         double price = (double) info.get(2);
         Item.campus campus = (Item.campus) info.get(6);
-        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus);
+        item.edit(title, descrip, contact, email, password, price, campus);
         Database.StoreItem(item);
     }
 
@@ -84,9 +105,15 @@ public class ItemManager {
 
         ItemCreator itemCreator = new ItemCreator();
         Textbook item = (Textbook) itemCreator.makeItem(ItemCategories.textbook);
+        String title = (String) info.get(0);
+        String descrip = (String) info.get(1);
+        String contact = (String) info.get(3);
+        String password = (String) info.get(5);
+        String email = (String) info.get(4);
         double price = (double) info.get(2);
+        String course = (String) info.get(7);
         Item.campus campus = (Item.campus) info.get(6);
-        item.edit(info.get(0), info.get(1), info.get(3), info.get(4), info.get(5), price, campus, info.get(7));
+        item.edit(title, descrip, contact, email, password, price, campus, course);
         Database.StoreItem(item);
 
     }
