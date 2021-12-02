@@ -8,7 +8,7 @@ import Journal.JournalUI;
 import Events.EventUI;
 import com.jaunt.NotFound;
 import com.jaunt.ResponseException;
-import Marketplace.User_Controls;
+//import Marketplace.User_Controls;
 
 import javax.swing.filechooser.FileSystemView;
 
@@ -89,9 +89,9 @@ public class User_UI {
                 String[] arguments = new String[]{"hi"};
                 EventUI.main(arguments);
             }
-            else if (Objects.equals(user_input, "marketplace")) {
-                User_Controls.intro();
-            }
+//            else if (Objects.equals(user_input, "marketplace")) {
+//                User_Controls.intro();
+//            }
         }
         if(Objects.equals(choice, "Sign-Up")) {
 
@@ -137,9 +137,9 @@ public class User_UI {
                     String[] arguments = new String[]{"hi"};
                     EventUI.main(arguments);
                 }
-                else if (Objects.equals(user_input2, "marketplace")) {
-                    User_Controls.intro();
-                }
+//                else if (Objects.equals(user_input2, "marketplace")) {
+//                    User_Controls.intro();
+//                }
         }
         if (Objects.equals(choice, "Check")){
             System.out.println("Works");

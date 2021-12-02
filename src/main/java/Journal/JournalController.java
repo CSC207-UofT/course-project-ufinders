@@ -68,7 +68,7 @@ public class JournalController {
 
      */
     public boolean callEditEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry) {
-        if (callEntryExist(titleOfEntryToDelete)){
+        if (callDoesEntryExist(titleOfEntryToDelete)){
             if (!callGetAllEntries().contains(title)){
                  this.callDeleteEntry(titleOfEntryToDelete);
                  this.callCreateEntry(title, entry, today, tags);
@@ -83,10 +83,10 @@ public class JournalController {
      * @return A set of the titles of the users' entries
      */
     public Set<String> callGetAllEntries(){
-        return journalmanager.GetAllEntries();
+        return journalmanager.getAllEntries();
     }
 
-    public boolean callEntryExist(String title){
+    public boolean callDoesEntryExist(String title){
         return journalmanager.doesEntryExist(title);
     }
 }

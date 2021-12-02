@@ -40,7 +40,7 @@ public class JournalWindow { // presenter class
      * Calls viewAndAddEntryPopUP to create a window prompting user to create a new entry asking for its title, tags
      * and content
      * @return an array in the format [date of entry, title, tags, entry]  that the user inputted into the pop-up window
-     * or an emoty array if the user presses cancel
+     * or an empty array if the user presses cancel
 
      */
     public String[] addEntryPopUp() {
@@ -62,9 +62,9 @@ public class JournalWindow { // presenter class
             possibleEntriesToDelete[i] = entryTitle;
             i += 1;
         }
-
+        ImageIcon icon = new ImageIcon("journaling.png");
         return (String)JOptionPane.showInputDialog(null, "choose an entry to delete",
-               "Delete a journal entry", JOptionPane.QUESTION_MESSAGE, null, possibleEntriesToDelete,
+               "Delete a journal entry", JOptionPane.QUESTION_MESSAGE, icon, possibleEntriesToDelete,
                null);
     }
     /**
@@ -79,8 +79,9 @@ public class JournalWindow { // presenter class
             possibleEntriesToView[i] = entryTitle;
             i += 1;
         }
+        ImageIcon icon = new ImageIcon("journaling.png");
         return (String)JOptionPane.showInputDialog(null, "choose an entry to View",
-                "View a journal entry", JOptionPane.QUESTION_MESSAGE, null, possibleEntriesToView,
+                "View a journal entry", JOptionPane.QUESTION_MESSAGE, icon, possibleEntriesToView,
                 null);
     }
 
@@ -89,12 +90,13 @@ public class JournalWindow { // presenter class
      * entry
      * @return the action the user want to do
      */
-    public String viewUserOptions() {
+    public String viewUserOptionsPopUP() {
 
         Object[] userOptions = {"add an entry", "view/edit entries", "delete an entry", "exit journal"};
+        ImageIcon icon = new ImageIcon("journaling.png");
 
         return (String)JOptionPane.showInputDialog(null, "What would you like to do",
-                "Choose what you would like to do in journal", JOptionPane.QUESTION_MESSAGE, null, userOptions,
+                "Choose what you would like to do in journal", JOptionPane.QUESTION_MESSAGE, icon, userOptions,
                 null);
     }
 
@@ -102,7 +104,7 @@ public class JournalWindow { // presenter class
      * Creates a pop-up window with a warning that an entry with given title already exists
      */
 
-    public void entryWithTitleAlreadyExists(){
+    public void entryWithTitleAlreadyExistsWarning(){
         ImageIcon icon = new ImageIcon("warning.png");
         JOptionPane.showMessageDialog(null, "Journal entry with this title already exists. " +
                 "Please choose another title!", "warning", JOptionPane.ERROR_MESSAGE, icon);

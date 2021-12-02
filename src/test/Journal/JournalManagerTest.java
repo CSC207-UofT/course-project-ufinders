@@ -1,7 +1,6 @@
 package Journal;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import User.MakeDir;
 
@@ -29,7 +28,7 @@ public class JournalManagerTest {
     }
     @Test(timeout = 1000)
     public void testJournalEmptyGetAllEntries(){
-       assert manager.GetAllEntries().isEmpty();
+       assert manager.getAllEntries().isEmpty();
 
     }
 
@@ -45,7 +44,7 @@ public class JournalManagerTest {
     public void testNoEntriesYetCreateEntry(){
         manager.createEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
-        assert manager.GetAllEntries().contains("fall walk");
+        assert manager.getAllEntries().contains("fall walk");
     }
 
 
@@ -67,8 +66,8 @@ public class JournalManagerTest {
         manager.createEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         manager.createEntry("confused", "im confused what I want", LocalDate.now(), "high school, unbearable");
-        assert manager.GetAllEntries().contains("fall walk");
-        assert manager.GetAllEntries().contains("confused");
+        assert manager.getAllEntries().contains("fall walk");
+        assert manager.getAllEntries().contains("confused");
     }
 
     @Test(timeout = 1000)
@@ -76,7 +75,7 @@ public class JournalManagerTest {
         manager.createEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         manager.createEntry("confused", "im confused what I want", LocalDate.now(), "high school, unbearable");
-        Set<String> actualInfo = manager.GetAllEntries();
+        Set<String> actualInfo = manager.getAllEntries();
         assert actualInfo.size() == 2;
         assert actualInfo.contains("fall walk");
         assert actualInfo.contains("confused");
@@ -90,10 +89,10 @@ public class JournalManagerTest {
                 " fun");
         manager.createEntry("confused", "im confused what I want", LocalDate.now(), "high school, unbearable");
         manager.deleteEntry("fall walk");
-        assert !manager.GetAllEntries().contains("fall walk");
-        assert manager.GetAllEntries().contains("confused");
+        assert !manager.getAllEntries().contains("fall walk");
+        assert manager.getAllEntries().contains("confused");
         manager.deleteEntry("confused");
-        assert manager.GetAllEntries().isEmpty();
+        assert manager.getAllEntries().isEmpty();
     }
 
 

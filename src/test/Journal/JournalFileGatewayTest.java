@@ -24,9 +24,9 @@ public class JournalFileGatewayTest {
                 .getHomeDirectory()
                 .getAbsolutePath() + "/" + "Documents" +"/" + "JournalEntries");
         gateway = new JournalFileGateway(dir.getPath());
-        halloweenEntry = gateway.addFile("Halloween", "had fun at the party",  LocalDate.now(),
+        halloweenEntry = gateway.createFile("Halloween", "had fun at the party",  LocalDate.now(),
                 "party, friends, drinks");
-        foodEntry = gateway.addFile("cooking", "coking up some new food",  LocalDate.now(),
+        foodEntry = gateway.createFile("cooking", "coking up some new food",  LocalDate.now(),
                 "creative, delicious");
 
     }
@@ -34,13 +34,13 @@ public class JournalFileGatewayTest {
     @Test(timeout = 1000)
     public void addOneFileTest() {
         // later test what happens if file with title already exists
-        File duneEntry = gateway.addFile("Dune", "going to watch dune on tuesday",  LocalDate.now(),
+        File duneEntry = gateway.createFile("Dune", "going to watch dune on tuesday",  LocalDate.now(),
                 "Tuesday, friends, fun");
         File[] allFilesInDir = dir.getDir().listFiles();
 
         assertEquals(duneEntry, allFilesInDir[2]);
 
-        String[] entryInfo = gateway.getInfo(duneEntry);
+        String[] entryInfo = gateway.getEntryInfo(duneEntry);
         String[] excpectedEntryInfo = {LocalDate.now().toString(), "Dune", "Tuesday, friends, fun",  "going to watch " +
                 "dune on tuesday"};
 
@@ -48,7 +48,7 @@ public class JournalFileGatewayTest {
             assertEquals(excpectedEntryInfo[i], entryInfo[i]);
         }
 
-        File walkingEntry = gateway.addFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
+        File walkingEntry = gateway.createFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
                 "fall, pretty, cold");
         allFilesInDir = dir.getDir().listFiles();
         assertEquals(walkingEntry, allFilesInDir[3]);
@@ -66,7 +66,7 @@ public class JournalFileGatewayTest {
 
         String[] excpectedFileInfo = {LocalDate.now().toString(), "fall walks", "fall, pretty, cold",  "went on a fall" +
                 " walk with a friend"};
-        String[] actualFileInfo = gateway.getInfo(walkingEntry);
+        String[] actualFileInfo = gateway.getEntryInfo(walkingEntry);
 
         for (int i = 0; i < excpectedFileInfo.length; i += 1){
             assertEquals(excpectedFileInfo[i], actualFileInfo[i]);
@@ -83,7 +83,7 @@ public class JournalFileGatewayTest {
                 "", walkingEntry.toString());
 
         String[] expectedFileInfo = {LocalDate.now().toString(), "", "",  "" };
-        String[] actualFileInfo = gateway.getInfo(walkingEntry);
+        String[] actualFileInfo = gateway.getEntryInfo(walkingEntry);
 
         for (int i = 0; i < expectedFileInfo.length; i += 1){
             assertEquals(expectedFileInfo[i], actualFileInfo[i]);
@@ -100,7 +100,7 @@ public class JournalFileGatewayTest {
                 "", walkingEntry.toString());
 
         String[] expectedFileInfo = {LocalDate.now().toString(), "fall walks", "",  "I love fall" };
-        String[] actualFileInfo = gateway.getInfo(walkingEntry);
+        String[] actualFileInfo = gateway.getEntryInfo(walkingEntry);
 
         for (int i = 0; i < expectedFileInfo.length; i += 1){
             assertEquals(expectedFileInfo[i], actualFileInfo[i]);
@@ -111,7 +111,7 @@ public class JournalFileGatewayTest {
     @Test(timeout = 1000)
     public void deleteFileTest() {
 
-        File walkingEntry = gateway.addFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
+        File walkingEntry = gateway.createFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
                 "fall, pretty, cold");
         gateway.deleteFile(walkingEntry);
         assert !( Arrays.stream(dir.getDir().listFiles()).anyMatch(walkingEntry::equals));
@@ -131,10 +131,10 @@ public class JournalFileGatewayTest {
         File walkingEntry = new File("fall walks.txt");
         gateway.writeToFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
                 "fall, pretty, cold", walkingEntry.toString());
-        gateway.getInfo(walkingEntry);
+        gateway.getEntryInfo(walkingEntry);
         String[] expectedFileInfo = {LocalDate.now().toString(), "fall walks", "fall, pretty, cold",
                 "went on a fall walk with a friend" };
-        String[] actualFileInfo = gateway.getInfo(walkingEntry);
+        String[] actualFileInfo = gateway.getEntryInfo(walkingEntry);
 
         for (int i = 0; i < expectedFileInfo.length; i += 1){
             assertEquals(expectedFileInfo[i], actualFileInfo[i]);
