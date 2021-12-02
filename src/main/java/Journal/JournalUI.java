@@ -11,14 +11,15 @@ public class JournalUI {
     public JournalController controller;
     // objects the JournalUI calls to create a pop-up window and get information that is inputted
     public JournalWindow popUpWindow;
-    public int titleLessEntries;
-
+    // the number of entries that were not given a title by the user
+    public int numOfTitleLessEntries;
 
 
 
     /**
-     * ???? add about dir after integrated with user
+     * A  constructor that controller, popUpWindow and numOfTitleLessEntries
      */
+
 
     public JournalUI(){
         MakeDir dir = new MakeDir(FileSystemView.getFileSystemView()
@@ -26,7 +27,7 @@ public class JournalUI {
                         .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
         this.controller = new JournalController(new JournalFileGateway(dir.getPath()));
         this.popUpWindow = new JournalWindow();
-        this.titleLessEntries = 0;
+        this.numOfTitleLessEntries = 0;
 
     }
 
@@ -41,24 +42,30 @@ public class JournalUI {
     public void addEntry(){
 
         String[] newEntry = this.popUpWindow.addEntryPopUp();
-        if (newEntry != null) {
-            for (int i = 0; i < newEntry.length; i += 1) {
-                if (newEntry[i] == null) {
-                    newEntry[i] = "";
-                }
-            }
+        if (newEntry != null) { newEntry = replaceNullWithEmptyStrings(newEntry);
+            newEntry[0] = checkEntryHasTitle(newEntry[0]);}
             LocalDate today = LocalDate.now();
-
-            newEntry[0] = checkEntryHasTitle(newEntry[0]);
-
-            boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1]);
+        assert newEntry != null;
+        boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1]);
 
             while (!entryCreated) {
                 newEntry = addEntryWithNewTitle(today, newEntry);
                 entryCreated = this.controller.callCreateEntry(newEntry[0],
-                        newEntry[1], today, newEntry[2]);
-            }
+                        newEntry[1], today, newEntry[2]);}
         }
+
+    /**
+     * Replace elements in arrayToBeFixed that are null with empty strings
+     * @param arrayToBeFixed the array whose null elements will be replaced
+     * @return  arrayToBeFixed with all null elements replaced with empty strings
+     */
+
+    public String[] replaceNullWithEmptyStrings(String[]  arrayToBeFixed){
+        for (int i = 0; i < arrayToBeFixed.length; i += 1) {
+            if (arrayToBeFixed[i] == null) {
+                arrayToBeFixed[i] = "";
+            }}
+        return arrayToBeFixed;
     }
 
 
@@ -72,15 +79,12 @@ public class JournalUI {
 
     public String checkEntryHasTitle(String title){
         if (Objects.equals(title, "")){
-            String newTitle = "Untitled"+ " " + titleLessEntries;
-            titleLessEntries += 1;
-            return newTitle;
-        }
-        else{
-            return title;
-        }
-    }
+            String newTitle = "Untitled"+ " " + numOfTitleLessEntries;
+            numOfTitleLessEntries += 1;
+            return newTitle;}
 
+        else{return title;}
+    }
 
     /**
      * Calls popUpWindow to create a pop-up window  warning user that entry with that title already
@@ -93,7 +97,7 @@ public class JournalUI {
      */
 
     public String[] addEntryWithNewTitle(LocalDate today, String[] newEntry){
-        this.popUpWindow.entryWithTitleAlreadyExists();
+        this.popUpWindow.entryWithTitleAlreadyExistsWarning();
         String[] tempEntry = {String.valueOf(today), newEntry[0], newEntry[2], newEntry[1]};
         newEntry = this.popUpWindow.viewAndAddEntryPopUp(tempEntry);
         return newEntry;
@@ -126,20 +130,36 @@ public class JournalUI {
     public void viewEntry(String titleOfEntryToView){
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
         String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo);
-        if (modifiedJournalEntry != null){
 
+        if (modifiedJournalEntry != null){
         modifiedJournalEntry[0] = checkEntryHasTitle(modifiedJournalEntry[0]);
         boolean noEntryWithSameTitle = this.controller.callGetAllEntries().contains(modifiedJournalEntry[0]);
+
         if (!noEntryWithSameTitle){
             this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
                     modifiedJournalEntry[1], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
         }
-        else{
+        else{addEntryWithUniqueTitle(entryInfo[0], modifiedJournalEntry, titleOfEntryToView);}}}
+
+    /**
+
+     * Keeps prompting user to use a title that is not a title of an entry that already exists for the entry they
+     * are creating. Creates a pop-up window with information from entryInfo.
+     * @param date the date the journal entry was written
+     * @param modifiedJournalEntry journal entry information before modified by user
+     *@param titleOfEntryToView title of the journal entry
+     */
+
+    public void addEntryWithUniqueTitle(String date, String[]
+            modifiedJournalEntry, String titleOfEntryToView){
+        boolean noEntryWithSameTitle = true;
         while (noEntryWithSameTitle){
-            modifiedJournalEntry = addEntryWithNewTitle( LocalDate.parse(entryInfo[0]), modifiedJournalEntry);
+            modifiedJournalEntry = addEntryWithNewTitle( LocalDate.parse(date), modifiedJournalEntry);
             noEntryWithSameTitle = this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
-                modifiedJournalEntry[1], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);}
-    }}}
+                    modifiedJournalEntry[1], LocalDate.parse(date), modifiedJournalEntry[2]);}
+    }
+
+
 /**
     * Calls controller to get title of all entries. Calls a popUpWindow  to create a pop-up window with these titles,
     * prompting user to choose an entry to view. if the user presses cancel, the pop-up window is closed. Then calls
@@ -158,25 +178,18 @@ public class JournalUI {
      */
     public static void main(String[] args) { // what if user presses cancel
         JournalUI UI = new JournalUI();
-        String userCommand = UI.popUpWindow.viewUserOptions();
+        String userCommand = UI.popUpWindow.viewUserOptionsPopUP();
         while(!(Objects.equals(userCommand, "exit journal") || Objects.equals(userCommand, null))){
 
-            if (Objects.equals(userCommand, "add an entry")){
-                UI.addEntry();
-            }
+            if (Objects.equals(userCommand, "add an entry")){UI.addEntry();}
 
             else if(Objects.equals(userCommand, "view/edit entries")){
-                UI.viewAllEntry();
-            }
+                UI.viewAllEntry();}
 
-            else {
-                UI.deleteEntry();
-            }
-            userCommand = UI.popUpWindow.viewUserOptions();
-
+            else {UI.deleteEntry();}
+            userCommand = UI.popUpWindow.viewUserOptionsPopUP();
         }
     }
-
 
 }
 

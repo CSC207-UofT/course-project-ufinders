@@ -58,7 +58,7 @@ public class MarketplaceController {
             search.addFilter(new priceFilter(Double.parseDouble(((ArrayList<String>) choices.get("price")).get(0)),
                     Double.parseDouble(((ArrayList<String>) choices.get("price")).get(1))));
         }
-        search.addFilter(new conditionFilter(Item.condition.valueOf((String) choices.get("condition")))));
+        search.addFilter(new conditionFilter(Item.condition.valueOf((String) choices.get("condition"))));
         search.addFilter(new sizeFilter(Clothes.size.valueOf((String) choices.get("size"))));
         search.addFilter(new courseFilter((String) choices.get("course")));
         if (choices.get("sort").equals("pricehighlow")) {

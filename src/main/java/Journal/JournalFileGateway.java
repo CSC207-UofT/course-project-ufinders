@@ -8,16 +8,16 @@ import java.time.LocalDate;
 public class JournalFileGateway implements FileGateway { //interacts with dir
 
     // the  path of the file to which JournalFileGateway can add, delete and edit text files from.
-    private final String path;
+    private final String journalFilePath;
 
 
     /**
      * Creates a JournalFileGateway with the given path
-     * @param   path      The path of a directory
+     * @param   journalFilePath      The path of a directory
      */
 
-    public JournalFileGateway(String path){
-        this.path = path;
+    public JournalFileGateway(String journalFilePath){
+        this.journalFilePath = journalFilePath;
     }
 
 
@@ -32,10 +32,10 @@ public class JournalFileGateway implements FileGateway { //interacts with dir
 
      */
     @Override
-    public File addFile(String title, String content, LocalDate date, String tags) { // method should be in journal manager.
+    public File createFile(String title, String content, LocalDate date, String tags) { // method should be in journal manager.
 
 
-            String pathOfEntry = path + "/" + title + ".txt";
+            String pathOfEntry = journalFilePath + "/" + title + ".txt";
             File journalEntry = new File(pathOfEntry);
         try {
             journalEntry.createNewFile();
@@ -56,7 +56,7 @@ public class JournalFileGateway implements FileGateway { //interacts with dir
      */
 
     @Override
-    public String[] getInfo(File fileWithInfo) {
+    public String[] getEntryInfo(File fileWithInfo) {
         String[] info = new String[4];
         try{
             BufferedReader reader = new BufferedReader(new FileReader(fileWithInfo));
@@ -76,7 +76,6 @@ public class JournalFileGateway implements FileGateway { //interacts with dir
         catch(Exception IOException){
            return info;
             }
-
     }
 
 

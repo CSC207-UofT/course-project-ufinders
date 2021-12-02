@@ -51,9 +51,7 @@ public class Journal {
      * @param title The key that we want to delete in entries
      */
     public void deleteEntryFile(String title) {
-        if (this.entries.containsKey(title)) {
-            this.entries.remove(title);
-        }
+        this.entries.remove(title);
     }
 
 
@@ -68,11 +66,6 @@ public class Journal {
     }
 
     public boolean EntryExist(String title) {
-        if (this.entries.containsKey(title)){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.entries.containsKey(title);
     }
 }

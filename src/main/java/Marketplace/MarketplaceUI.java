@@ -1,7 +1,5 @@
 package Marketplace;
 
-import Marketplace.Items.types.Clothes;
-import Marketplace.Items.types.Item;
 import Marketplace.Items.types.ItemCategories;
 
 import java.util.*;
@@ -14,8 +12,8 @@ public class MarketplaceUI {
      *
      */
     public static void intro() {
-        String choice = get_input("Do you want to buy, sell, remove item, or ex" +
-                "it the marketplace? (Write 'buy,' 'sell,' 'remove' or 'exit')");
+        MarketplaceWindow w = new MarketplaceWindow();
+        String choice = w.getChoice("Do you want to buy, sell, remove item, or exit the marketplace?", new String[]{"buy", "sell", "remove", "exit"});
         switch (choice) {
             case "buy":
                 MakeSearch();
@@ -28,10 +26,11 @@ public class MarketplaceUI {
                 break;
             case "exit":
                 System.exit(0);
-            default:
-                intro();
-                break;
         }
+    }
+
+    public static void main(String[] args) {
+        NewPost();
     }
 
     /**
@@ -41,37 +40,34 @@ public class MarketplaceUI {
      */
     private static void NewPost(){
         ArrayList<Object> info = new ArrayList<>();
-        info.add(get_input("What is the name of the item you're selling?"));
-        info.add(get_input("What is the description of the item you're selling?"));
-        info.add(Double.parseDouble(get_input("What is the price of the item you're selling?")));
-        info.add(get_input("What is your phone number?"));
-        info.add(get_input("What is your email?"));
-        info.add(get_input("What password would you like to use to delete this post after the item is sold?"));
-        info.add(Item.campus.valueOf(get_input("What is the campus you're selling the item from? Your options are UTM, UTSG, and UTSC")));
-        String typeentry = get_input("What is the type of the item you're selling? Your options are 'Animal' 'Clothing' 'Electronic' 'Textbook' or 'Other'");
+        MarketplaceWindow w = new MarketplaceWindow();
+        info.add(w.getInput("What is the name of the item you're selling?"));
+        info.add(w.getInput("What is the description of the item you're selling?"));
+        info.add(w.getInput("What is the price of the item you're selling?"));
+        info.add(w.getInput("What is your phone number?"));
+        info.add(w.getInput("What is your email?"));
+        info.add(w.getInput("What password would you like to use to delete this post after the item is sold?"));
+        info.add(w.getChoice("What is the campus you're selling the item from?", new String[]{"UTM", "UTSG", "UTSC"}));
+        String typeentry = w.getChoice("What is the type of the item you're selling?", new String[]{"Animal", "Clothing", "Electronic", "Textbook", "Other"});
         switch (typeentry) {
             case "Electronic":
-                info.add(Item.condition.valueOf(get_input("What is the condition of your electronic? " +
-                        "Your options are: New, Used, LikeNew")));
-                info.add(get_input("What are the technical specifications of the electronic you are selling?"));
+                info.add(w.getChoice("What is the condition of your electronic? ", new String[]{"New", "Used", "LikeNew"}));
+                info.add(w.getInput("What are the technical specifications of the electronic you are selling?"));
                 break;
             case "Animal":
-                info.add(get_input("What type of animal are you selling?"));
+                info.add(w.getInput("What type of animal are you selling?"));
                 break;
             case "Textbook":
-                info.add(get_input("What is the condition of the textbook?"));
+                info.add(w.getInput("What is the course this textbook is for?"));
                 break;
             case "Clothing":
-                info.add(Item.condition.valueOf(get_input("What is the condition of the clothing? " +
-                        "Your options are: New, Used, LikeNew")));
-                info.add(Clothes.size.valueOf(get_input("What is the size of the clothing? " +
-                        "Your options are: XS, S, M, L, XL")));
+                info.add(w.getChoice("What is the condition of the clothing?", new String[]{"New", "Used", "LikeNew"}));
+                info.add(w.getChoice("What is the size of the clothing?", new String[]{"XS", "S", "M", "L", "XL"}));
                 break;
         }
         MarketplaceController.selling_info(typeentry, info);
-        System.out.println("Your post has been created!");
+        w.displayInfo("Your item has been posted!");
         intro();
-
     }
 
     /**
@@ -79,55 +75,55 @@ public class MarketplaceUI {
      *
      */
     private static void MakeSearch(){
-        ItemCategories type = ItemCategories.misc;
+        MarketplaceWindow w = new MarketplaceWindow();
         HashMap<String, Object> choices = new HashMap<>();
-        if (get_input("Do you want to search for a specific type of item? (Y/N)").equals("Y")){
-            String typechoice = get_input("If you would like to search only textbooks, type 'textbook'\nIf you " +
-                    "would like to search only clothing, type 'clothes'\nIf you would like to search only electronics, " +
-                    "type 'electronics'\nIf you would like to search only animals, type 'animal'\nIf you changed your mind, " +
-                    "type 'done'");
-            if (!typechoice.equals("done")) {
-                choices.put("type", ItemCategories.valueOf(typechoice));
-            }
+        String typechoice = "misc";
+        if (w.getChoice("Do you want to search for a specific type of item?", new String[]{"Yes", "No"}).equals("Yes")){
+            typechoice = w.getChoice("What type of item would you like to search for?",
+                    new String[]{"textbook", "clothes", "electronics", "animal", "misc"});
+            choices.put("type", ItemCategories.valueOf(typechoice));
         }
-        choices.put("keyword", (get_input("Please enter a keyword for your search (ex. computer" +
+        choices.put("keyword", (w.getInput("Please enter a keyword for your search (ex. computer" +
                 ", desk, biology):")));
-        String filteranswer = get_input(get_prompt(type));
+        ArrayList<String> options = get_options(ItemCategories.valueOf(typechoice));
+        String filteranswer = w.getChoice("Do you want to filter by any of these options? " +
+                "If so, click one and then choose the value you want the items you see to have", options.toArray(new String[0]));
         while (!filteranswer.equals("Done")){
             switch (filteranswer) {
                 case "Campus":
-                    choices.put("campus", ((get_input("What campus do you want your item to be from? Options are: UTSG, UTSC, UTM"))));
+                    choices.put("campus", (w.getChoice("What campus do you want the item to be from?", new String[]{"UTM", "UTSG", "UTSC"})));
+                    options.remove("Campus");
                     break;
                 case "Price":
-                    choices.put("price", new String[]{get_input("What is the lowest price you " +
-                            "want to search for?"), get_input("What is the highest " +
+                    choices.put("price", new String[]{w.getInput("What is the lowest price you " +
+                            "want to search for?"), w.getInput("What is the highest " +
                             "price you want to search for?")});
+                    options.remove("Price");
+                    //could change this so it gives you two options for entry instead of two separate boxes?
                     break;
                 case "Condition":
-                    choices.put("condition", get_input("What condition do you want your item to be in? Options are: New, Used, LikeNew"));
+                    choices.put("condition", (w.getChoice("What condition do you want your item to be in?", new String[]{"New", "Used", "LikeNew"})));
                     break;
                 case "Size":
-                    choices.put("size", get_input("What size do you want your item to be? Options are: XS, S, M, L, XL"));
+                    choices.put("size", (w.getChoice("What size do you want your item to be?", new String[]{"XS", "S", "M", "L", "XL"})));
                     break;
                 case "Course":
-                    choices.put("course", get_input("What course do you want your textbook to be for?"));
+                    choices.put("course", (w.getInput("What course do you want your textbook to be for?")));
                     break;
             }
-            filteranswer = get_input(get_prompt(type));
+            filteranswer = w.getChoice("Do you want to filter by any of these options? " +
+                    "If so, click one and then choose the value you want the items you see to have. Click Done when all filters you want have been applied", options.toArray(new String[0]));
         }
-        String sortchoice = get_input("do you want to sort your results by price? (Y/N)");
-        while (!sortchoice.equals("N")&&!sortchoice.equals("Y")){
-            sortchoice = get_input("do you want to sort by price? (Y/N)");
-        }
-        if (Objects.equals(sortchoice, "Y")) {
-            String sortkey = get_input("do you want to sort by high to low or low to high? (high-low/low-high)");
+        String sortchoice = w.getChoice("do you want to sort your results by price?", new String[]{"Yes", "No"});
+        if (Objects.equals(sortchoice, "Yes")) {
+            String sortkey = w.getChoice("do you want to sort by high to low or low to high?", new String[]{"high to low", "low to high"});
             if (sortkey.equals("high-low")) {
                 choices.put("sort", "pricehighlow");
             } else if (sortkey.equals("low-high")) {
                 choices.put("sort", "pricelowhigh");
             }
         }
-        System.out.println("Loading your search");
+        w.displayInfo("Searching now!");
         MarketplaceController.startSearch(choices);
     }
 
@@ -135,33 +131,36 @@ public class MarketplaceUI {
      * Gets information on what filters the searcher wants.
      *
      */
-    private static String get_prompt(ItemCategories type){
-        String prompt = "Here are your filter options:\nTo filter results by campus, type 'Campus'\nTo filter results by price, type 'Price'";
+    private static ArrayList<String> get_options(ItemCategories type){
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Campus");
+        options.add("Price");
         if (type == ItemCategories.electronics){
-            prompt+= "To filter results by condition, type 'condition'";
+            options.add("Condition");
         }
         if (type == ItemCategories.clothes){
-            prompt+= "To filter results by condition, type 'condition'\nTo filter results by size, type 'size'";
+            options.add("Condition");
+            options.add("Size");
         }
         if (type == ItemCategories.textbook){
-            prompt+= "To filter results by course, type 'Course'";
+            options.add("Course");
         }
-        prompt+= "\nYou can add multiple filters, but please only select one option for each category (ex. only choose one campus, don't go back to choose a second one)\n" +
-                "When you are done choosing filters, type 'Done'";
-        return prompt;
+        options.add("Done");
+        return options;
     }
 
     private static void remove_post(){
+        MarketplaceWindow w = new MarketplaceWindow();
 //    Will change the title to ID when we create an ID instead, but should users be able to remember their ID?
-        String title = get_input("Please enter the title of the item you are removing");
-        String password = get_input("Please enter the password for the item.");
+        String title = w.getInput("Please enter the title of the item you are removing");
+        String password = w.getInput("Please enter the password for the item.");
         if (MarketplaceController.remove_post(title, password)){
-            System.out.println("You have successfully removed item!");
+            w.displayInfo("You have successfully removed the item!");
             intro();
         }
         else {
-            String fail = get_input("You have entered the wrong title or password. Would you like to try again? (Y/N)");
-            if (Objects.equals(fail, "Y")){
+            String fail = w.getChoice("You have entered the wrong title or password. Would you like to try again?", new String[]{"Yes", "No"});
+            if (Objects.equals(fail, "Yes")){
                 remove_post();
             }
             else{
@@ -170,14 +169,4 @@ public class MarketplaceUI {
         }
     }
 
-    /**
-     * Prints a prompt to the terminal and returns what the user writes in response.
-     *
-     * @param prompt prompt to be printed for user
-     */
-    private static String get_input(String prompt){
-        Scanner input = new Scanner(System.in);
-        System.out.println(prompt);
-        return input.nextLine();
-    }
 }

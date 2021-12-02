@@ -41,12 +41,9 @@ public class JournalManager {// file gateway does the work of journal manager
         }
         else {
             // asks interface to create the file with the given info
-            File fileCreated = accessFiles.addFile(title, content, date, tags);
+            File fileCreated = accessFiles.createFile(title, content, date, tags);
             journal.addEntry(title, fileCreated);
             return true;
-//        if (fileCreated == null) { // means file was not created
-//            // need to get a new name for journal entry if journal entry with that name exist
-//        }
         }
     }
     /**
@@ -69,7 +66,7 @@ public class JournalManager {// file gateway does the work of journal manager
      */
         public String[] getEntry(String title){
         File fileWithInfo = journal.getEntryFile(title);
-            return accessFiles.getInfo(fileWithInfo);
+            return accessFiles.getEntryInfo(fileWithInfo);
         }
 
     /**
@@ -77,11 +74,16 @@ public class JournalManager {// file gateway does the work of journal manager
      * @return A set of the titles of the users' entries
      */
 
-        public Set<String> GetAllEntries(){
+        public Set<String> getAllEntries(){
             return journal.getAllEntryTitles();
         }
 
 
+    /**
+     * Calls journal to get the title of all the users' entries
+     *  @param title The title of the entry we are checking exists.
+     * @return true iff an entry with that title exists
+     */
     public boolean doesEntryExist(String title) {
             return journal.EntryExist(title);
     }
