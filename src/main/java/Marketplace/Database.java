@@ -4,6 +4,8 @@ import Marketplace.Items.types.Item;
 
 import java.io.*;
 import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Database implements Serializable{
@@ -14,7 +16,7 @@ public class Database implements Serializable{
      *
      */
 
-    private static ArrayList<Item> item_type_lst = new ArrayList<>();
+    public static ArrayList<Item> item_type_lst = new ArrayList<>();
 
     /**
      * Adds the post to the item_lst
@@ -30,6 +32,7 @@ public class Database implements Serializable{
 
     }
 
+
     /**
      * Serializes the item into a file called itemlst.txt
      */
@@ -38,8 +41,10 @@ public class Database implements Serializable{
         FileOutputStream newfile = new FileOutputStream("itemlst.txt");
         ObjectOutputStream outputStream = new ObjectOutputStream(newfile);
         outputStream.writeObject(item_type_lst);
+        newfile.close();
 
     }
+
 
     /**
      * Deserializes the items in the file
@@ -49,7 +54,7 @@ public class Database implements Serializable{
         FileInputStream retrievedfile = new FileInputStream("itemlst.txt");
         ObjectInputStream objectInputStream = new ObjectInputStream(retrievedfile);
         item_type_lst = (ArrayList<Item>) objectInputStream.readObject();
-
+        retrievedfile.close();
     }
 
     /**
@@ -68,9 +73,26 @@ public class Database implements Serializable{
     /**
      * Deletes item from list
      */
-    public static void DeleteItem(Item item){
-        item_type_lst.remove(item);
+    public static void DeleteItem(int id){
+        int i = 0;
+        while (i <= id){
+            if (i == id){
+                Item item = item_type_lst.get(i);
+                item_type_lst.remove(item);
+            }
+            i++;
+        }
+        try{
+            FileOutputStream newfile = new FileOutputStream("itemlst.txt");
+            ObjectOutputStream outputStream = new ObjectOutputStream(newfile);
+            outputStream.writeObject(item_type_lst);
+        }
+        catch (Exception e){
+            System.out.println("Cannot store item.");
+        }
     }
+
+
 
 }
 
