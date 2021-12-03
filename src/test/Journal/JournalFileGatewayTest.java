@@ -9,8 +9,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import User.MakeDir;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class JournalFileGatewayTest {
 
@@ -32,7 +31,7 @@ public class JournalFileGatewayTest {
     }
 
     @Test(timeout = 1000)
-    public void addOneFileTest() {
+    public void testaddOneFile() {
         // later test what happens if file with title already exists
         File duneEntry = gateway.createFile("Dune", "going to watch dune on tuesday",  LocalDate.now(),
                 "Tuesday, friends, fun");
@@ -55,6 +54,27 @@ public class JournalFileGatewayTest {
         assertEquals(4, allFilesInDir.length);
 
     }
+
+    @Test(timeout = 1000)
+    public void testaddOneFileWithTitleOfFileThatExsists() {
+        // later test what happens if file with title already exists
+        File duneEntry = gateway.createFile("Dune", "going to watch dune on tuesday",  LocalDate.now(),
+                "Tuesday, friends, fun");
+
+        File duneEntry2 = gateway.createFile("Dune", "watched it",  LocalDate.now(),
+                "Tuesday, friends, fun");
+
+        File[] allFilesInDir = dir.getDir().listFiles();
+
+        if (allFilesInDir != null) {
+            assertEquals(duneEntry, allFilesInDir[2]);
+        }
+        assertNull(duneEntry2);
+
+        }
+
+
+
 
 
     @Test(timeout = 1000)

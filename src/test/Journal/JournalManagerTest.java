@@ -71,6 +71,24 @@ public class JournalManagerTest {
     }
 
     @Test(timeout = 1000)
+    public void testJournalCreateEntryWithTitleOfEntryThatExists(){
+        manager.createEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
+                " fun");
+        assert !manager.createEntry("fall walk", "im confused what I want", LocalDate.now(),
+                "high school, unbearable");
+
+    }
+
+    @Test(timeout = 1000)
+    public void testJournalEditEntryWithTitleOfEntryThatExists(){
+        manager.createEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
+                " fun");
+       assert ! manager.editEntry("fall walk", "fall walk", "im confused what I want", LocalDate.now(),
+                "high school, unbearable");
+
+    }
+
+    @Test(timeout = 1000)
     public void testJournalNotEmptyGetAllEntries(){
         manager.createEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");

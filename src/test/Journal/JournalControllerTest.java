@@ -5,10 +5,10 @@ import org.junit.Test;
 import User.MakeDir;
 
 import javax.swing.filechooser.FileSystemView;
-import java.io.File;
+
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Objects;
+
 
 public class JournalControllerTest {
     JournalFileGateway gateway;
@@ -25,7 +25,7 @@ public class JournalControllerTest {
     }
 
     @Test(timeout = 1000)
-    public void testcallCreateEntry(){
+    public void testCallCreateEntry(){
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         String[] expectedInfo = {LocalDate.now().toString(), "fall walk", "fall, night," +
@@ -37,7 +37,17 @@ public class JournalControllerTest {
     }
 
     @Test(timeout = 1000)
-    public void testcallDeleteEntryEntryNotThere(){
+    public void testCallCreateEntryWithTitleOfEntryThatAlreadyExists(){
+        controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
+                " fun");
+        assert !controller.callCreateEntry("fall walk", "still trying to figure it out", LocalDate.now(), "tomorrow, night," +
+                " crazy");
+
+
+    }
+
+    @Test(timeout = 1000)
+    public void testCallDeleteEntryEntryNotThere(){
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         controller.callDeleteEntry("fall time");
@@ -45,24 +55,23 @@ public class JournalControllerTest {
     }
 
     @Test(timeout = 1000)
-    public void testcallDeleteEntry(){
+    public void testCallDeleteEntry(){
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         controller.callDeleteEntry("fall walk");
-        controller.callGetAllEntries().isEmpty();
+        assert controller.callGetAllEntries().isEmpty();
     }
 
     @Test(timeout = 1000)
-    public void testcallGetEntryEntryNotThere(){
+    public void testCallGetEntryEntryNotThere(){
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
-        String[] expected = new String[4];
-        assert Arrays.equals( controller.callGetEntry("fall time"), expected);
+        assert Arrays.equals( controller.callGetEntry("fall time"), new String[4]);
 
     }
 
     @Test(timeout = 1000)
-    public void testcallGetEntry(){
+    public void testCallGetEntry(){
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
        String[] actual =  controller.callGetEntry("fall walk");
@@ -71,7 +80,7 @@ public class JournalControllerTest {
     }
 
     @Test(timeout = 1000)
-    public void testcallEditEntryNoEntryToEdit(){
+    public void testCallEditEntryNoEntryToEdit(){
         controller.callEditEntry("fall walk", "fall confusion", "i love our fall walks",
                 LocalDate.now(), "fall, night");
         assert controller.callGetAllEntries().isEmpty();
@@ -79,7 +88,7 @@ public class JournalControllerTest {
     }
 
     @Test(timeout = 1000)
-    public void testcallEditEntry(){
+    public void testCallEditEntry(){
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         String[] beforeEdit  = controller.callGetEntry("fall walk");
@@ -95,7 +104,7 @@ public class JournalControllerTest {
 
     }
     @Test(timeout = 1000)
-    public void testcallEditEntryNoEdit(){
+    public void testCallEditEntryNoEdit(){
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         String[] beforeEdit = controller.callGetEntry("fall walk");
@@ -106,12 +115,23 @@ public class JournalControllerTest {
     }
 
     @Test(timeout = 1000)
-    public void testcallGetAllEntriesNoEntriesToGet(){
+    public void testCallEditEntryWithTitleSameAsEntryThatExists(){
+        controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
+                " fun");
+        controller.callCreateEntry("ignorance", "still trying to figure it out", LocalDate.now(), "tomorrow, night," +
+                " crazy");
+
+        assert !controller.callEditEntry("ignorance", "fall walk","fall, night, fun"  , LocalDate.now(), "i love our fall walks");
+
+    }
+
+    @Test(timeout = 1000)
+    public void testCallGetAllEntriesNoEntriesToGet(){
         assert controller.callGetAllEntries().isEmpty();
     }
 
     @Test(timeout = 1000)
-    public void testcallGetAllEntries(){
+    public void testCallGetAllEntries(){
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         controller.callCreateEntry("ignorance", "still trying to figure it out", LocalDate.now(), "tomorrow, night," +
