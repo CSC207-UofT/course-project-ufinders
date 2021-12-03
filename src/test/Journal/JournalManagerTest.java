@@ -34,8 +34,7 @@ public class JournalManagerTest {
 
     @Test(timeout = 1000)
     public void testNoEntriesGetEntry(){
-        String[] expected = new String[4];
-       assert Arrays.equals(manager.getEntry("hello"), expected);
+       assert Arrays.equals(manager.getEntry("hello"), new String[4]);
     }
 
 

@@ -1,6 +1,5 @@
 package Journal;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,7 +22,7 @@ public class MakeDirTest {
     }
 
     @Test(timeout = 1000)
-    public void testgetDir()  {
+    public void testGetDir()  {
         File sampleFile = new File(FileSystemView.getFileSystemView()
                 .getHomeDirectory()
                 .getAbsolutePath() + "/" + "Documents" + "/" + "JournalEntries");
@@ -40,7 +39,7 @@ public class MakeDirTest {
     }
 
     @Test(timeout = 1000)
-    public void testgetPathofFile()  {
+    public void testGetPathOfFile()  {
         // retrieve file
         assertEquals(FileSystemView.getFileSystemView()
                 .getHomeDirectory()
