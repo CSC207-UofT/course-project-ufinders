@@ -78,7 +78,4 @@ public class JournalController {
         return journalmanager.getAllEntries();
     }
 
-    public boolean callDoesEntryExist(String title){
-        return journalmanager.doesEntryExist(title);
-    }
 }
