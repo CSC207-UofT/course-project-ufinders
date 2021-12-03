@@ -32,23 +32,23 @@ public class JournalFileGateway implements FileGateway { //interacts with dir
 
      */
     @Override
-    public File createFile(String title, String content, LocalDate date, String tags) { // method should be in journal manager.
-
+    public File createFile(String title, String content, LocalDate date, String tags) {
 
             String pathOfEntry = journalFilePath + "/" + title + ".txt";
             File journalEntry = new File(pathOfEntry);
         try {
-            journalEntry.createNewFile();
-            writeToFile(title, content, date, tags, pathOfEntry);
-            return journalEntry;}
+            if (journalEntry.createNewFile()) {
+                writeToFile(title, content, date, tags, pathOfEntry);
+                return journalEntry;
+            }
 
-        catch (Exception IOException){// file was not created
-            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    return null;}
 
-    }
-
-    /**
+        /**
      * Reads fileWithInfo, storing tags, title and content within the file to a string array that will be returned.
      * @param fileWithInfo The file that we want to get information from.
      * @return return a string array containing the information in fileWithInfo in the format

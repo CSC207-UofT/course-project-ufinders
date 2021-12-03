@@ -62,7 +62,7 @@ public class JournalController {
      * @param tags The  possibly modified tags of the entry.
      * @param today The  date the entry was originally written on.
      * @param entry The possibly modified tags of  the entry.
-     * @return true iff the entry was modified
+     * @return true iff the entry was not modified
      */
     public boolean callEditEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry) {
 

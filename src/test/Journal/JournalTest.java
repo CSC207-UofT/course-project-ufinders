@@ -31,11 +31,17 @@ public class JournalTest {
                 "fall, pretty, cold", walkingEntry.toString());
         journal.addEntry("fall walks", walkingEntry);
         assert journal.getEntryFile("fall walks").equals(walkingEntry);
-       assert  walkingEntry.delete();
+       journal.deleteEntryFile("fall walks");
+       assert walkingEntry.delete();
+
 
     }
     @Test(timeout = 1000)
     public void testAddMoreThanOneEntry(){
+        File walkingEntry = new File("fall walks.txt");
+        gateway.writeToFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
+                "fall, pretty, cold", walkingEntry.toString());
+        journal.addEntry("fall walks", walkingEntry);
         File duneEntry = new File("Dune.txt");
         gateway.writeToFile("Dune", "going to watch dune on tuesday",  LocalDate.now(),
                 "Tuesday, friends, fun",duneEntry.toString());
@@ -47,34 +53,44 @@ public class JournalTest {
 
         }
         assert journal.getEntryFile("Dune").equals(duneEntry);
+        journal.deleteEntryFile("fall walks");
+        journal.deleteEntryFile("Dune");
         assert duneEntry.delete();
+        assert walkingEntry.delete();
     }
     @Test(timeout = 1000)
     public void testDeleteEntry()  {
+        File duneEntry = new File("Dune.txt");
+        gateway.writeToFile("Dune", "going to watch dune on tuesday",  LocalDate.now(),
+                "Tuesday, friends, fun",duneEntry.toString());
+        journal.addEntry("Dune", duneEntry);
         journal.deleteEntryFile("Dune");
-        Set<String> allEntries = journal.getAllEntryTitles();
+        Set<String> allEntries =  journal.getAllEntryTitles();;
         assert !allEntries.contains("Dune");
+        assert duneEntry.delete();
     }
 
     @Test(timeout = 1000)
     public void testDeleteEntryThatDoesntExist()  {
         journal.deleteEntryFile("happy");
-        Set<String> allEntries = journal.getAllEntryTitles();
-        assert allEntries.contains("fall walks");
+        assert  journal.getAllEntryTitles().toArray().length == 0;
     }
 
     @Test(timeout = 1000)
     public void testDeleteTillJournalEmpty()  {
-        journal.deleteEntryFile("fall walks");
+        File duneEntry = new File("Dune.txt");
+        gateway.writeToFile("Dune", "going to watch dune on tuesday",  LocalDate.now(),
+                "Tuesday, friends, fun",duneEntry.toString());
+        journal.addEntry("Dune", duneEntry);
+        journal.deleteEntryFile("Dune");
+        assert duneEntry.delete();
         Set<String> allEntries = journal.getAllEntryTitles();
         assert allEntries.toArray().length == 0;
     }
 
     @Test(timeout = 1000)
     public void testNoEntriesGetAllEntries()  {
-
         Set<String> allEntries = journal.getAllEntryTitles();
-
         assert allEntries.toArray().length == 0;
 
     }
@@ -93,6 +109,8 @@ public class JournalTest {
         assert allEntries.contains("Dune");
         assert allEntries.contains("fall walks");
         assert allEntries.toArray().length == 2;
+        journal.deleteEntryFile("Dune");
+        journal.deleteEntryFile("fall walks");
         assert duneEntry.delete();
         assert walkingEntry.delete();
 

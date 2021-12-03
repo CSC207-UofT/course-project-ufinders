@@ -5,7 +5,6 @@ import org.junit.Test;
 import User.MakeDir;
 
 import javax.swing.filechooser.FileSystemView;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -34,16 +33,7 @@ public class JournalControllerTest {
         for (int i = 0; i < expectedInfo.length; i += 1){
             assert expectedInfo[i].equals(actualInfo[i]);
         }
-    }
-
-    @Test(timeout = 1000)
-    public void testCallCreateEntryWithTitleOfEntryThatAlreadyExists(){
-        controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
-                " fun");
-        assert !controller.callCreateEntry("fall walk", "still trying to figure it out", LocalDate.now(), "tomorrow, night," +
-                " crazy");
-
-
+        controller.callDeleteEntry("fall walk");
     }
 
     @Test(timeout = 1000)
@@ -52,6 +42,7 @@ public class JournalControllerTest {
                 " fun");
         controller.callDeleteEntry("fall time");
         assert controller.callGetAllEntries().contains("fall walk");
+        controller.callDeleteEntry("fall walk");
     }
 
     @Test(timeout = 1000)
@@ -67,6 +58,7 @@ public class JournalControllerTest {
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         assert Arrays.equals( controller.callGetEntry("fall time"), new String[4]);
+        controller.callDeleteEntry("fall walk");
 
     }
 
@@ -74,9 +66,10 @@ public class JournalControllerTest {
     public void testCallGetEntry(){
         controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
-       String[] actual =  controller.callGetEntry("fall walk");
-       String[] expected = {LocalDate.now().toString(), "fall walk", "fall, night, fun", "i love our fall walks"};
+        String[] actual =  controller.callGetEntry("fall walk");
+        String[] expected = {LocalDate.now().toString(), "fall walk", "fall, night, fun", "i love our fall walks"};
         assert Arrays.equals( actual, expected);
+        controller.callDeleteEntry("fall walk");
     }
 
     @Test(timeout = 1000)
@@ -100,6 +93,7 @@ public class JournalControllerTest {
         assert !controller.callGetAllEntries().contains("fall walk");
         assert controller.callGetAllEntries().contains("fall confusion");
         assert !Arrays.equals(beforeEdit, afterEdit);
+        controller.callDeleteEntry("fall confusion");
 
 
     }
@@ -111,17 +105,7 @@ public class JournalControllerTest {
         controller.callEditEntry("fall walk", "fall walk","fall, night, fun"  , LocalDate.now(), "i love our fall walks");
         String[] afterEdit = controller.callGetEntry("fall walk");
         assert Arrays.equals(beforeEdit, afterEdit);
-
-    }
-
-    @Test(timeout = 1000)
-    public void testCallEditEntryWithTitleSameAsEntryThatExists(){
-        controller.callCreateEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
-                " fun");
-        controller.callCreateEntry("ignorance", "still trying to figure it out", LocalDate.now(), "tomorrow, night," +
-                " crazy");
-
-        assert !controller.callEditEntry("ignorance", "fall walk","fall, night, fun"  , LocalDate.now(), "i love our fall walks");
+        controller.callDeleteEntry("fall walk");
 
     }
 
@@ -139,5 +123,7 @@ public class JournalControllerTest {
         assert controller.callGetAllEntries().size() == 2;
         assert controller.callGetAllEntries().contains("fall walk");
         assert controller.callGetAllEntries().contains("ignorance");
+        controller.callDeleteEntry("fall walk");
+        controller.callDeleteEntry("ignorance");
     }
 }
