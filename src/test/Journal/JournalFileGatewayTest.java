@@ -1,5 +1,6 @@
 package Journal;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -7,10 +8,12 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Objects;
+
 import User.MakeDir;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+
 
 public class JournalFileGatewayTest {
 
@@ -38,21 +41,41 @@ public class JournalFileGatewayTest {
                 "Tuesday, friends, fun");
         File[] allFilesInDir = dir.getDir().listFiles();
 
+        assert allFilesInDir != null;
         assertEquals(duneEntry, allFilesInDir[2]);
 
         String[] entryInfo = gateway.getEntryInfo(duneEntry);
-        String[] excpectedEntryInfo = {LocalDate.now().toString(), "Dune", "Tuesday, friends, fun",  "going to watch " +
+        String[] expectedEntryInfo = {LocalDate.now().toString(), "Dune", "Tuesday, friends, fun",  "going to watch " +
                 "dune on tuesday"};
 
-        for (int i = 0; i < excpectedEntryInfo.length; i += 1){
-            assertEquals(excpectedEntryInfo[i], entryInfo[i]);
+        for (int i = 0; i < expectedEntryInfo.length; i += 1){
+            assertEquals(expectedEntryInfo[i], entryInfo[i]);
         }
 
         File walkingEntry = gateway.createFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
                 "fall, pretty, cold");
         allFilesInDir = dir.getDir().listFiles();
+        assert allFilesInDir != null;
         assertEquals(walkingEntry, allFilesInDir[3]);
         assertEquals(4, allFilesInDir.length);
+        assert duneEntry.delete();
+        assert walkingEntry.delete();
+
+    }
+
+    @Test(timeout = 1000)
+    public void addOneFileWithTitleOfFileThatExists() {
+
+        File duneEntry = gateway.createFile("Dune", "going to watch dune on tuesday",  LocalDate.now(),
+                "Tuesday, friends, fun");
+        File[] allFilesInDir = dir.getDir().listFiles();
+
+        assert allFilesInDir != null;
+        assertEquals(duneEntry, allFilesInDir[2]);
+
+       assert gateway.createFile("Dune", "watched it",  LocalDate.now(),
+               "Tuesday, friends, fun") == null;
+        assert duneEntry.delete();
 
     }
 
@@ -64,14 +87,14 @@ public class JournalFileGatewayTest {
         gateway.writeToFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
                 "fall, pretty, cold", walkingEntry.toString());
 
-        String[] excpectedFileInfo = {LocalDate.now().toString(), "fall walks", "fall, pretty, cold",  "went on a fall" +
+        String[] expectedFileInfo = {LocalDate.now().toString(), "fall walks", "fall, pretty, cold",  "went on a fall" +
                 " walk with a friend"};
         String[] actualFileInfo = gateway.getEntryInfo(walkingEntry);
 
-        for (int i = 0; i < excpectedFileInfo.length; i += 1){
-            assertEquals(excpectedFileInfo[i], actualFileInfo[i]);
+        for (int i = 0; i < expectedFileInfo.length; i += 1){
+            assertEquals(expectedFileInfo[i], actualFileInfo[i]);
         }
-        walkingEntry.delete();
+        assert walkingEntry.delete();
 
     }
 
@@ -88,7 +111,7 @@ public class JournalFileGatewayTest {
         for (int i = 0; i < expectedFileInfo.length; i += 1){
             assertEquals(expectedFileInfo[i], actualFileInfo[i]);
         }
-        walkingEntry.delete();
+        assert walkingEntry.delete();
 
     }
 
@@ -105,7 +128,7 @@ public class JournalFileGatewayTest {
         for (int i = 0; i < expectedFileInfo.length; i += 1){
             assertEquals(expectedFileInfo[i], actualFileInfo[i]);
         }
-        walkingEntry.delete();
+        assert walkingEntry.delete();
 
     }
     @Test(timeout = 1000)
@@ -114,14 +137,15 @@ public class JournalFileGatewayTest {
         File walkingEntry = gateway.createFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
                 "fall, pretty, cold");
         gateway.deleteFile(walkingEntry);
-        assert !( Arrays.stream(dir.getDir().listFiles()).anyMatch(walkingEntry::equals));
+        assert Arrays.stream(Objects.requireNonNull(dir.getDir().listFiles())).noneMatch(walkingEntry::equals);
+
     }
 
     @Test(timeout = 1000)
     public void onlyDeleteFileInstructedToTest() {
-
         gateway.deleteFile(foodEntry);
-        assert Arrays.stream(dir.getDir().listFiles()).anyMatch(halloweenEntry::equals);
+        gateway.getEntryInfo(halloweenEntry);
+        assert true;
 
     }
 
@@ -139,12 +163,12 @@ public class JournalFileGatewayTest {
         for (int i = 0; i < expectedFileInfo.length; i += 1){
             assertEquals(expectedFileInfo[i], actualFileInfo[i]);
         }
-        walkingEntry.delete();
+        assert walkingEntry.delete();
 
     }
 
     @Test(timeout = 1000)
-    public void orderInfoWriteenToFileTest() throws IOException {
+    public void orderInfoWrittenToFileTest() throws IOException {
 
         File walkingEntry = new File("fall walks.txt");
         gateway.writeToFile("fall walks", "went on a fall walk with a friend",  LocalDate.now(),
@@ -161,9 +185,17 @@ public class JournalFileGatewayTest {
         line = reader.readLine().strip();
         assert line.equals("went on a fall walk with a friend");// entry
         reader.close();
-        walkingEntry.delete();
+       assert walkingEntry.delete();
 
     }
+    @AfterClass
 
+    public static void tearDown(){
+        gateway.deleteFile(halloweenEntry);
+        gateway.deleteFile(foodEntry);
     }
+
+
+}
+
 

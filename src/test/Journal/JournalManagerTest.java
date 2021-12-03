@@ -22,20 +22,21 @@ public class JournalManagerTest {
         gateway = new JournalFileGateway(dir.getPath());
         manager = new JournalManager(gateway);
     }
+
+
     @Test(timeout = 1000)
     public void testNoFilesToDeleteDeleteEntry(){
         manager.deleteEntry("hello");
     }
+
     @Test(timeout = 1000)
     public void testJournalEmptyGetAllEntries(){
        assert manager.getAllEntries().isEmpty();
-
     }
 
     @Test(timeout = 1000)
     public void testNoEntriesGetEntry(){
-        String[] expected = new String[4];
-       assert Arrays.equals(manager.getEntry("hello"), expected);
+       assert Arrays.equals(manager.getEntry("hello"),  new String[4]);
     }
 
 
@@ -45,8 +46,8 @@ public class JournalManagerTest {
         manager.createEntry("fall walk", "i love our fall walks", LocalDate.now(), "fall, night," +
                 " fun");
         assert manager.getAllEntries().contains("fall walk");
+        manager.deleteEntry("fall walk");
     }
-
 
 
     @Test(timeout = 1000)
@@ -58,6 +59,7 @@ public class JournalManagerTest {
         for (int i = 0; i < expectedInfo.length; i += 1){
             assert expectedInfo[i].equals(entryInfo[i]);
         }
+        manager.deleteEntry("fall walk");
     }
 
 
@@ -68,6 +70,8 @@ public class JournalManagerTest {
         manager.createEntry("confused", "im confused what I want", LocalDate.now(), "high school, unbearable");
         assert manager.getAllEntries().contains("fall walk");
         assert manager.getAllEntries().contains("confused");
+        manager.deleteEntry("fall walk");
+        manager.deleteEntry("confused");
     }
 
     @Test(timeout = 1000)
@@ -79,6 +83,8 @@ public class JournalManagerTest {
         assert actualInfo.size() == 2;
         assert actualInfo.contains("fall walk");
         assert actualInfo.contains("confused");
+        manager.deleteEntry("fall walk");
+        manager.deleteEntry("confused");
 
 
     }
@@ -93,6 +99,7 @@ public class JournalManagerTest {
         assert manager.getAllEntries().contains("confused");
         manager.deleteEntry("confused");
         assert manager.getAllEntries().isEmpty();
+
     }
 
 

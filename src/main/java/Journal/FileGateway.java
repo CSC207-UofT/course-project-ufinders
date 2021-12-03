@@ -5,11 +5,11 @@ import java.time.LocalDate;
 
 public interface FileGateway {
 
-    public File createFile(String title, String content, LocalDate date, String tags);
+    File createFile(String title, String content, LocalDate date, String tags);
 
-    public String[] getEntryInfo(File fileWithInfo);
+     String[] getEntryInfo(File fileWithInfo);
 
-    public void deleteFile(File fileToDelete);
+     void deleteFile(File fileToDelete);
 
 
 
