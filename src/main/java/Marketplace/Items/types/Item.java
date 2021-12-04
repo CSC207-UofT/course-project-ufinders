@@ -6,16 +6,6 @@ public abstract class Item implements Serializable {
 
     /**
      * An abstract item class that stores the users' information and item's attributes
-     *
-     * @param name the item's name
-     * @param item_description the description of the item
-     * @param contact_num the seller's phone number
-     * @param contact_email the seller's email
-     * @param price the item's price
-     * @param password the item's deletion password
-     * @param campus the seller's campus
-     * @param condition the item's condition
-     * @param picture the item's picture
      */
 
     private String name;
@@ -27,9 +17,6 @@ public abstract class Item implements Serializable {
     private int id;
 
     private static int id_counter = 0;
-
-    /* TODO: add picture attribute
-     */
 
     public enum campus{
         UTSG, UTM, UTSC
@@ -77,6 +64,12 @@ public abstract class Item implements Serializable {
         setPassword(password);
         setPrice(price);
         setCampus(campus);
+    }
+
+    @Override
+    public String toString(){
+        return "Name: " + this.getName() + ", Price: " + this.getPrice() + ", Description: " + this.getItem_description() + ", Contact info: " + this.getContact_email()
+                + " / " + this.getContact_num() + ", available at the " + this.getCampus() + " campus.";
     }
 
     // Getters and setters
