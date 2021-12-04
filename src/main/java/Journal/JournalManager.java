@@ -33,6 +33,7 @@ public class JournalManager {// file gateway does the work of journal manager
      * @param content The content of the entry.
      * @param date The date the entry was written on.
      * @param tags The tags we want to give the entry.
+     * @return true iff entry was created
 
      */
     public boolean createEntry(String title, String content, LocalDate date, String tags) {
@@ -78,7 +79,7 @@ public class JournalManager {// file gateway does the work of journal manager
      * @param tags The  possibly modified tags of the entry.
      * @param today The  date the entry was originally written on.
      * @param entry The possibly modified tags of  the entry.
-     * @return true iff entry with given info does not exist or modified entry title is same title as another entry
+     * @return true iff entry was modified
 
      */
 
@@ -87,10 +88,10 @@ public class JournalManager {// file gateway does the work of journal manager
                 if (!getAllEntries().contains(title)){
                     this.deleteEntry(titleOfEntryToDelete);
                     this.createEntry(title, entry, today, tags);
-                    return false;}
-                else{return true;}
+                    return true;}
+                else{return false;}
             }
-            else{return true;}
+            else{return false;}
         }
 
     /**
