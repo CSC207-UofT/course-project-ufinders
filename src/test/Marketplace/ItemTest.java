@@ -1,10 +1,7 @@
 package Marketplace;
 
 import Marketplace.Items.ItemCreator;
-import Marketplace.Items.types.Item;
-import Marketplace.Items.types.ItemCategories;
-import Marketplace.Items.types.Misc;
-import Marketplace.Items.types.Textbook;
+import Marketplace.Items.types.*;
 import org.junit.Test;
 
 public class ItemTest {
@@ -42,5 +39,15 @@ public class ItemTest {
         Item electronic = ic.makeItem(ItemCategories.electronics);
         Item animal = ic.makeItem(ItemCategories.animal);
         assert (electronic.getId() != animal.getId());
+    }
+
+    @Test(timeout = 5000)
+    public void testtoString(){
+        Animal animal = (Animal) ic.makeItem(ItemCategories.animal);
+        animal.edit("Dog woof woof", "A loyal companion", "12345",
+                "abc@email.com", "123", 10.0, Item.campus.UTSG, "Dog");
+        String animalstring = animal.toString();
+        assert(animalstring.equals("Name: Dog woof woof - Dog, Price: 10.0, Description: A loyal companion, Contact info: abc@email.com / 12345," +
+                " available at the UTSG campus."));
     }
 }
