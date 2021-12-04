@@ -1,6 +1,5 @@
 package Marketplace;
 
-import Marketplace.Items.types.Item;
 import Marketplace.Items.types.ItemCategories;
 
 import java.util.*;
@@ -77,12 +76,12 @@ public class MarketplaceUI {
      */
     private static void MakeSearch(){
         MarketplaceWindow w = new MarketplaceWindow();
-        HashMap<String, Object> choices = new HashMap<>();
+        HashMap<String, String> choices = new HashMap<>();
         String typechoice = "misc";
         if (w.getChoice("Do you want to search for a specific type of item?", new String[]{"Yes", "No"}).equals("Yes")){
             typechoice = w.getChoice("What type of item would you like to search for?",
                     new String[]{"textbook", "clothes", "electronics", "animal", "misc"});
-            choices.put("type", ItemCategories.valueOf(typechoice));
+            choices.put("type", typechoice);
         }
         choices.put("keyword", (w.getInput("Please enter a keyword for your search (ex. computer" +
                 ", desk, biology):")));
@@ -96,11 +95,11 @@ public class MarketplaceUI {
                     options.remove("Campus");
                     break;
                 case "Price":
-                    choices.put("price", new String[]{w.getInput("What is the lowest price you " +
-                            "want to search for?"), w.getInput("What is the highest " +
-                            "price you want to search for?")});
+                    choices.put("lowprice", w.getInput("What is the lowest price you " +
+                            "want to search for?"));
+                    choices.put("highprice", w.getInput("What is the highest " +
+                            "price you want to search for?"));
                     options.remove("Price");
-                    //could change this so it gives you two options for entry instead of two separate boxes?
                     break;
                 case "Condition":
                     choices.put("condition", (w.getChoice("What condition do you want your item to be in?", new String[]{"New", "Used", "LikeNew"})));
@@ -170,8 +169,4 @@ public class MarketplaceUI {
         }
     }
 
-    private static void present_items(ArrayList<Item> items){
-        MarketplaceWindow w = new MarketplaceWindow();
-        w.displayItems(items);
-    }
 }
