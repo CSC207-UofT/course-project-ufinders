@@ -39,7 +39,7 @@ public class Electronic extends Item {
     @Override
     public String toString(){
         return "Name: " + this.getName() + " - " + this.getCondition() + ", Price: " + this.getPrice() + ", Description: " + this.getItem_description() +
-                ", Tech Specifications: " + this.getTech_specifications() + ", Contact info: " + this.getContact_email()
+                System.lineSeparator() + ", Tech Specifications: " + this.getTech_specifications() + ", Contact info: " + this.getContact_email()
                 + " / " + this.getContact_num() + ", available at the " + this.getCampus() + " campus.";
     }
 
