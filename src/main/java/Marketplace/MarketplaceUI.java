@@ -1,5 +1,6 @@
 package Marketplace;
 
+import Marketplace.Items.types.Item;
 import Marketplace.Items.types.ItemCategories;
 
 import java.util.*;
@@ -30,7 +31,7 @@ public class MarketplaceUI {
     }
 
     public static void main(String[] args) {
-        NewPost();
+        intro();
     }
 
     /**
@@ -39,7 +40,7 @@ public class MarketplaceUI {
      *
      */
     private static void NewPost(){
-        ArrayList<Object> info = new ArrayList<>();
+        ArrayList<String> info = new ArrayList<>();
         MarketplaceWindow w = new MarketplaceWindow();
         info.add(w.getInput("What is the name of the item you're selling?"));
         info.add(w.getInput("What is the description of the item you're selling?"));
@@ -124,7 +125,7 @@ public class MarketplaceUI {
             }
         }
         w.displayInfo("Searching now!");
-        MarketplaceController.startSearch(choices);
+        w.displayItems(MarketplaceController.startSearch(choices));
     }
 
     /**
@@ -169,4 +170,8 @@ public class MarketplaceUI {
         }
     }
 
+    private static void present_items(ArrayList<Item> items){
+        MarketplaceWindow w = new MarketplaceWindow();
+        w.displayItems(items);
+    }
 }
