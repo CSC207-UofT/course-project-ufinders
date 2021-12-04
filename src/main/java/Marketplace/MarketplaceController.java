@@ -23,33 +23,47 @@ public class MarketplaceController {
      *
      *
      */
-    public static void selling_info(String type, ArrayList<Object> info){
-        //if we slightly change how ItemManager works, I could just pass the type and the info to the item
-        // manager so that we avoid repeating all these createpost methods
+    public static void selling_info(String type, ArrayList<String> info){
+        String name = info.get(0);
+        String description = info.get(1);
+        double price = Double.parseDouble(info.get(2));
+        String phone = info.get(3);
+        String email = info.get(4);
+        String password = info.get(5);
+        Item.campus campus = Item.campus.valueOf(info.get(6));
         switch (type) {
             case "Electronic":
-                new ItemManager().CreatePostElectronic(info);
+                Item.condition condition = Item.condition.valueOf(info.get(7));
+                String specifications = info.get(8);
+                new ItemManager().CreatePostElectronic(name, description, price, phone, email,
+                        password, campus, condition, specifications);
                 break;
             case "Animal":
-                new ItemManager().CreatePostAnimal(info);
+                String animaltype = info.get(7);
+                new ItemManager().CreatePostAnimal(name, description, price, phone, email, password, campus, animaltype);
                 break;
             case "Textbook":
-                new ItemManager().CreatePostTextbook(info);
+                String course = info.get(7);
+                new ItemManager().CreatePostTextbook(name, description, price, phone, email, password, campus, course);
                 break;
             case "Clothing":
-                new ItemManager().CreatePostClothes(info);
+                Item.condition condition2 = Item.condition.valueOf(info.get(7));
+                Clothes.size size = Clothes.size.valueOf(info.get(8));
+                new ItemManager().CreatePostClothes(name, description, price, phone, email,
+                        password, campus, size, condition2);
                 break;
             case "Other":
-                new ItemManager().CreatePostMisc(info);
+                new ItemManager().CreatePostMisc(name, description, price, phone, email, password, campus);
                 break;
         }
     }
 
     /**
-     * Gets information on what item the user is searching for.
+     * Gets information on what item the user is searching for and make the search
      *
+     * @return the items that the user has searched for
      */
-    public static void startSearch(HashMap<String, Object> choices){
+    public static ArrayList<Item> startSearch(HashMap<String, Object> choices){
         Searcher search = new Searcher();
         search.addFilter(new typeFilter(ItemCategories.valueOf((String) choices.get("type"))));
         search.addFilter(new wordFilter((String) choices.get("keyword")));
@@ -66,7 +80,7 @@ public class MarketplaceController {
         } else if (choices.get("sort").equals("pricelowhigh")) {
             search.addSorter(new Sorter(new HighPrice()));
         }
-        Results.present(search.execute());
+        return search.execute();
     }
 
     public static boolean remove_post(String title, String password){
