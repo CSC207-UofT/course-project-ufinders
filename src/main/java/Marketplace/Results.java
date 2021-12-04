@@ -47,25 +47,25 @@ public class Results {
     public static void item_present(Item item){
         System.out.println(item.getName());
         System.out.println("$" + item.getPrice());
-        System.out.println(item.getItem_description());
+        System.out.println(item.getItemDescription());
 
         if (item instanceof Animal){
-            System.out.println(((Animal) item).getAnimal_type());
+            System.out.println(((Animal) item).getAnimalType());
         }
         if (item instanceof Clothes){
             System.out.println("Size: " + ((Clothes) item).getSize());
             System.out.println(item.getCondition());
         }
         if (item instanceof Electronic){
-            System.out.println("Tech Specifications: " + ((Electronic) item).getTech_specifications());
+            System.out.println("Tech Specifications: " + ((Electronic) item).getTechSpecifications());
         }
         if (item instanceof Textbook){
             System.out.println("Course: " + ((Textbook) item).getCourse());
         }
 
         System.out.println("On the " + item.getCampus() + " campus.");
-        System.out.println(item.getContact_email());
-        System.out.println(item.getContact_num());
+        System.out.println(item.getContactEmail());
+        System.out.println(item.getContactNum());
     }
 
     /**
