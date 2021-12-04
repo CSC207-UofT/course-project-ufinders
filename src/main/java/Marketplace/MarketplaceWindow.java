@@ -29,7 +29,7 @@ public class MarketplaceWindow {
     public static void displayItems(ArrayList<Item> items){
         DefaultListModel<String> listModel = new DefaultListModel<>();
         JFrame jFrame = new JFrame();
-        //       this closes the whole program so we have to fix it to go somewhere else
+        //       this closes the whole program so, we have to fix it to go somewhere else
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         int curr_item = 0;
         while(curr_item < items.size()){
