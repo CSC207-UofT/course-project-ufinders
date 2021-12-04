@@ -13,24 +13,24 @@ public class Textbook extends Item{
         this.course = null;
     }
 
-    public Textbook(String title, String item_description, String contact_num, String contact_email, String password,
+    public Textbook(String title, String itemDescription, String contactNum, String contactEmail, String password,
                       double price, Item.campus campus, String course) {
         // Constructor with parameters
-        super(title, item_description, contact_num, contact_email, password, price, campus);
+        super(title, itemDescription, contactNum, contactEmail, password, price, campus);
         this.course = course;
     }
 
-    public void edit(String title, String item_description, String contact_num, String contact_email, String password,
+    public void edit(String title, String itemDescription, String contactNum, String contactEmail, String password,
                      double price, Item.campus campus, String course) {
         // Polymorphed method from superclass, edits all attributed to the ones outlined in parameters
-        super.edit(title, item_description, contact_num, contact_email, password, price, campus);
+        super.edit(title, itemDescription, contactNum, contactEmail, password, price, campus);
         setCourse(course);
     }
 
     @Override
     public String toString(){
-        return "Name: " + this.getName() + " - for " + this.getCourse() + ", Price: " + this.getPrice() + ", Description: " + this.getItem_description() +
-                System.lineSeparator() + ", Contact info: " + this.getContact_email() + " / " + this.getContact_num() + ", available at the " + this.getCampus() + " campus.";
+        return "Name: " + this.getName() + " - for " + this.getCourse() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() +
+                System.lineSeparator() + ", Contact info: " + this.getContactEmail() + " / " + this.getContactNum() + ", available at the " + this.getCampus() + " campus.";
     }
 
     // Getters and setters
