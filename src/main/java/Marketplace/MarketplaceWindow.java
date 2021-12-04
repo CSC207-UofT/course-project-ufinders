@@ -6,8 +6,6 @@ import Marketplace.Items.types.Electronic;
 import Marketplace.Items.types.Item;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.ArrayList;
 
