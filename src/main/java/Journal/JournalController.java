@@ -30,6 +30,7 @@ public class JournalController {
      * @param content The content of the entry.
      * @param date The date the entry was written on.
      * @param tags The tags we want to give the entry.
+     * @return true iff entry was created
 
      */
     public boolean callCreateEntry(String title, String content, LocalDate date, String tags) {
@@ -62,7 +63,7 @@ public class JournalController {
      * @param tags The  possibly modified tags of the entry.
      * @param today The  date the entry was originally written on.
      * @param entry The possibly modified tags of  the entry.
-     * @return true iff the entry was not modified
+     * @return true iff the entry was modified
      */
     public boolean callEditEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry) {
 

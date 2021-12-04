@@ -42,16 +42,18 @@ public class JournalUI {
     public void addEntry(){
 
         String[] newEntry = this.popUpWindow.addEntryPopUp();
-        if (newEntry != null) { newEntry = replaceNullWithEmptyStrings(newEntry);
-            newEntry[0] = checkEntryHasTitle(newEntry[0]);}
+        if (newEntry != null) {
+            newEntry = replaceNullWithEmptyStrings(newEntry);
+            newEntry[0] = checkEntryHasTitle(newEntry[0]);
             LocalDate today = LocalDate.now();
-        assert newEntry != null;
-        boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1]);
 
+            boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1]);
             while (!entryCreated) {
                 newEntry = addEntryWithNewTitle(today, newEntry);
                 entryCreated = this.controller.callCreateEntry(newEntry[0],
-                        newEntry[1], today, newEntry[2]);}
+                        newEntry[1], today, newEntry[2]);
+            }
+        }
         }
 
     /**
@@ -135,7 +137,7 @@ public class JournalUI {
         modifiedJournalEntry[0] = checkEntryHasTitle(modifiedJournalEntry[0]);
         boolean noEntryWithSameTitle = this.controller.callGetAllEntries().contains(modifiedJournalEntry[0]);
 
-        if (!noEntryWithSameTitle){
+        if (noEntryWithSameTitle){
             this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
                     modifiedJournalEntry[1], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
         }
@@ -152,10 +154,10 @@ public class JournalUI {
 
     public void addEntryWithUniqueTitle(String date, String[]
             modifiedJournalEntry, String titleOfEntryToView){
-        boolean noEntryWithSameTitle = true;
-        while (noEntryWithSameTitle){
+        boolean EntryWithSameTitle = false;
+        while (!EntryWithSameTitle){
             modifiedJournalEntry = addEntryWithNewTitle( LocalDate.parse(date), modifiedJournalEntry);
-            noEntryWithSameTitle = this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
+            EntryWithSameTitle = this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
                     modifiedJournalEntry[1], LocalDate.parse(date), modifiedJournalEntry[2]);}
     }
 

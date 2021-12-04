@@ -96,7 +96,7 @@ public class JournalWindow { // presenter class
         ImageIcon icon = new ImageIcon("journaling.png");
 
         return (String)JOptionPane.showInputDialog(null, "What would you like to do",
-                "Choose what you would like to do in journal", JOptionPane.QUESTION_MESSAGE, icon, userOptions,
+                "Journal", JOptionPane.QUESTION_MESSAGE, icon, userOptions,
                 null);
     }
 

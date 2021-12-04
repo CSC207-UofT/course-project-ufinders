@@ -90,7 +90,7 @@ public class User_UI {
                 EventUI.main(arguments);
             }
             else if (Objects.equals(user_input, "marketplace")) {
-                User_Controls.intro();
+                //User_Controls.intro();
             }
         }
         if(Objects.equals(choice, "Sign-Up")) {
