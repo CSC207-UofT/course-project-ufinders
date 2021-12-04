@@ -9,38 +9,38 @@ public class Electronic extends Item {
      * specifications
      */
     private Item.condition condition;
-    private String tech_specifications;
+    private String techSpecifications;
 
     public Electronic(){
         // Blank Constructor
         super();
         this.condition = null;
-        this.tech_specifications = null;
+        this.techSpecifications = null;
     }
 
-    public Electronic(String title, String item_description, String contact_num, String contact_email, String password,
-                      double price, Item.campus campus, Item.condition condition, String tech_specifications) {
+    public Electronic(String title, String itemDescription, String contactNum, String contactEmail, String password,
+                      double price, Item.campus campus, Item.condition condition, String techSpecifications) {
         // Constructor with parameters
-        super(title, item_description, contact_num, contact_email, password, price, campus);
+        super(title, itemDescription, contactNum, contactEmail, password, price, campus);
         this.condition = condition;
-        this.tech_specifications = tech_specifications;
+        this.techSpecifications = techSpecifications;
     }
 
-    public void edit(String title, String item_description, String contact_num, String contact_email,
+    public void edit(String title, String itemDescription, String contactNum, String contactEmail,
                      String password, double price, Item.campus campus, condition condition,
                      String tech_specifications) {
         // Polymorphed method from superclass, edits all attributed to the ones outlined in parameters
-        super.edit(title, item_description, contact_num, contact_email, password, price, campus);
+        super.edit(title, itemDescription, contactNum, contactEmail, password, price, campus);
         setCondition(condition);
-        setTech_specifications(tech_specifications);
+        setTechSpecifications(tech_specifications);
 
     }
 
     @Override
     public String toString(){
-        return "Name: " + this.getName() + " - " + this.getCondition() + ", Price: " + this.getPrice() + ", Description: " + this.getItem_description() +
-                ", Tech Specifications: " + this.getTech_specifications() + ", Contact info: " + this.getContact_email()
-                + " / " + this.getContact_num() + ", available at the " + this.getCampus() + " campus.";
+        return "Name: " + this.getName() + " - " + this.getCondition() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() +
+                ", Tech Specifications: " + this.getTechSpecifications() + ", Contact info: " + this.getContactEmail()
+                + " / " + this.getContactNum() + ", available at the " + this.getCampus() + " campus.";
     }
 
     // Getters and setters
@@ -53,11 +53,11 @@ public class Electronic extends Item {
         this.condition = condition;
     }
 
-    public String getTech_specifications() {
-        return tech_specifications;
+    public String getTechSpecifications() {
+        return techSpecifications;
     }
 
-    public void setTech_specifications(String tech_specifications) {
-        this.tech_specifications = tech_specifications;
+    public void setTechSpecifications(String techSpecifications) {
+        this.techSpecifications = techSpecifications;
     }
 }

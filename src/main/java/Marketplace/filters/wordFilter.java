@@ -26,7 +26,7 @@ public class wordFilter implements Filter {
     public ArrayList<Item> apply(Iterable<Item> tofilter) {
         ArrayList<Item> filtered = new ArrayList<>();
         for (Item i: tofilter){
-            if (i.getName().contains(keyword)||i.getItem_description().contains(keyword)){
+            if (i.getName().contains(keyword)||i.getItemDescription().contains(keyword)){
                 filtered.add(i);
             }
         }

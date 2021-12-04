@@ -28,10 +28,10 @@ public class ItemTest {
         assert (textbook.getPrice() == 10.0);
         assert (textbook.getCampus().equals(Item.campus.UTSC));
         assert (textbook.getCourse().equals("MAT137"));
-        assert (textbook.getItem_description().equals("Textbook for class"));
+        assert (textbook.getItemDescription().equals("Textbook for class"));
         assert (textbook.getPassword().equals("123"));
-        assert (textbook.getContact_email().equals("abc@email.com"));
-        assert (textbook.getContact_num().equals("12345"));
+        assert (textbook.getContactEmail().equals("abc@email.com"));
+        assert (textbook.getContactNum().equals("12345"));
     }
 
     @Test(timeout = 5000)
