@@ -46,10 +46,11 @@ public class MarketplaceController {
     }
 
     /**
-     * Gets information on what item the user is searching for.
+     * Gets information on what item the user is searching for and make the search
      *
+     * @return the items that the user has searched for
      */
-    public static void startSearch(HashMap<String, Object> choices){
+    public static ArrayList<Item> startSearch(HashMap<String, Object> choices){
         Searcher search = new Searcher();
         search.addFilter(new typeFilter(ItemCategories.valueOf((String) choices.get("type"))));
         search.addFilter(new wordFilter((String) choices.get("keyword")));
@@ -66,7 +67,7 @@ public class MarketplaceController {
         } else if (choices.get("sort").equals("pricelowhigh")) {
             search.addSorter(new Sorter(new HighPrice()));
         }
-        Results.present(search.execute());
+        return search.execute();
     }
 
     public static boolean remove_post(String title, String password){
