@@ -18,27 +18,26 @@ public class Clothes extends Item{
         this.condition = null;
     }
 
-    public Clothes(String title, String itemDescription, String contactNum, String contactEmail, String password,
+    public Clothes(String title, String item_description, String contact_num, String contact_email, String password,
                     double price, Item.campus campus, size size, condition condition) {
         // Constructor with parameters
-        super(title, itemDescription, contactNum, contactEmail, password, price, campus);
+        super(title, item_description, contact_num, contact_email, password, price, campus);
         this.size = size;
         this.condition = condition;
     }
 
-    public void edit(String title, String itemDescription, String contactNum, String contactEmail, String password,
+    public void edit(String title, String item_description, String contact_num, String contact_email, String password,
                      double price, Item.campus campus, size size, condition condition) {
         // Polymorphed method from superclass, edits all attributed to the ones outlined in parameters
-        super.edit(title, itemDescription, contactNum, contactEmail, password, price, campus);
+        super.edit(title, item_description, contact_num, contact_email, password, price, campus);
         setSize(size);
         setCondition(condition);
     }
 
-
     @Override
     public String toString(){
-        return "Name: " + this.getName() + ", Size: " + this.getSize() + " - " + this.getCondition() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() +
-                System.lineSeparator() + ", Contact info: " + this.getContactEmail() + " / " + this.getContactNum() + ", available at the " + this.getCampus() + " campus.";
+        return "Name: " + this.getName() + ", Size: " + this.getSize() + " - " + this.getCondition() + ", Price: " + this.getPrice() + ", Description: " + this.getItem_description() +
+                System.lineSeparator() + ", Contact info: " + this.getContact_email() + " / " + this.getContact_num() + ", available at the " + this.getCampus() + " campus.";
     }
 
     // Getters and setters

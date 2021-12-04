@@ -9,14 +9,14 @@ public abstract class Item implements Serializable {
      */
 
     private String name;
-    private String itemDescription;
-    private String contactNum;
-    private String contactEmail;
+    private String item_description;
+    private String contact_num;
+    private String contact_email;
     private String password;
     private double price;
     private int id;
 
-    private static int idCounter = 0;
+    private static int id_counter = 0;
 
     public enum campus{
         UTSG, UTM, UTSC
@@ -27,40 +27,40 @@ public abstract class Item implements Serializable {
     }
     private condition condition;
 
-    public Item(String title, String itemDescription, String contactNum, String contactEmail, String password,
+    public Item(String title, String item_description, String contact_num, String contact_email, String password,
                 double price, campus campus){
         // Constructor with all parameters for an Item
         this.name = title;
-        this.itemDescription = itemDescription;
-        this.contactNum = contactNum;
-        this.contactEmail = contactEmail;
+        this.item_description = item_description;
+        this.contact_num = contact_num;
+        this.contact_email = contact_email;
         this.password = password;
         this.price = price;
         this.campus = campus;
-        this.id = idCounter;
-        idCounter += 1;
+        this.id = id_counter;
+        id_counter += 1;
     }
 
     public Item(){
         // Constructor for an empty item
         this.name = null;
-        this.itemDescription = null;
-        this.contactNum = null;
-        this.contactEmail = null;
+        this.item_description = null;
+        this.contact_num = null;
+        this.contact_email = null;
         this.password = null;
         this.price = 0.0;
         this.campus = null;
-        this.id = idCounter;
-        idCounter += 1;
+        this.id = id_counter;
+        id_counter += 1;
     }
 
-    public void edit(String title, String itemDescription, String contactNum, String contactEmail, String password,
+    public void edit(String title, String item_description, String contact_num, String contact_email, String password,
                      double price, campus campus){
         // Method which sets all attributes to the selected parameters
         setName(title);
-        setItemDescription(itemDescription);
-        setContactNum(contactNum);
-        setContactEmail(contactEmail);
+        setItem_description(item_description);
+        setContact_num(contact_num);
+        setContact_email(contact_email);
         setPassword(password);
         setPrice(price);
         setCampus(campus);
@@ -68,8 +68,8 @@ public abstract class Item implements Serializable {
 
     @Override
     public String toString(){
-        return "Name: " + this.getName() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() + System.lineSeparator() +
-                ", Contact info: " + this.getContactEmail() + " / " + this.getContactNum() + ", available at the " + this.getCampus() + " campus.";
+        return "Name: " + this.getName() + ", Price: " + this.getPrice() + ", Description: " + this.getItem_description() + System.lineSeparator() +
+                ", Contact info: " + this.getContact_email() + " / " + this.getContact_num() + ", available at the " + this.getCampus() + " campus.";
     }
 
     // Getters and setters
@@ -78,16 +78,16 @@ public abstract class Item implements Serializable {
         return name;
     }
 
-    public String getItemDescription() {
-        return itemDescription;
+    public String getItem_description() {
+        return item_description;
     }
 
-    public String getContactNum() {
-        return contactNum;
+    public String getContact_num() {
+        return contact_num;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
+    public String getContact_email() {
+        return contact_email;
     }
 
     public String getPassword() {
@@ -106,11 +106,11 @@ public abstract class Item implements Serializable {
 
     public void setName(String name) {this.name = name;}
 
-    public void setItemDescription(String itemDescription) {this.itemDescription = itemDescription;}
+    public void setItem_description(String item_description) {this.item_description = item_description;}
 
-    public void setContactNum(String contactNum) {this.contactNum = contactNum;}
+    public void setContact_num(String contact_num) {this.contact_num = contact_num;}
 
-    public void setContactEmail(String contactEmail) {this.contactEmail = contactEmail;}
+    public void setContact_email(String contact_email) {this.contact_email = contact_email;}
 
     public void setPassword(String password) {this.password = password;}
 
