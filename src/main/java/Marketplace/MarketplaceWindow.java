@@ -22,6 +22,7 @@ public class MarketplaceWindow {
                 null, JOptionPane.QUESTION_MESSAGE);
     }
 
+
     /**
      * Displays the list of items that are on sale on popup window
      */
@@ -33,6 +34,13 @@ public class MarketplaceWindow {
         int curr_item = 0;
         while(curr_item < items.size()){
             listModel.addElement((curr_item + 1) + ". " + items.get(curr_item).getName() + ", for $" +
+
+    public static void displayItems(ArrayList<Item> items){
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        JFrame jFrame = new JFrame();
+        int curr_item = 0;
+        while(curr_item < items.size()){
+            listModel.addElement((curr_item + 1) + ". " + items.get(curr_item).getName()  + ", for $" +
                     items.get(curr_item).getPrice());
             curr_item++;
         }
@@ -48,12 +56,15 @@ public class MarketplaceWindow {
         jFrame.add(jList);
         jFrame.setSize(700,700);
         jFrame.setLocationRelativeTo(null);
+        jFrame.setLayout(null);
         jFrame.setVisible(true);
 
 
     }
 
+
     /**
+     * Helper method for displayItems
      * Displays the item's information on new popup window when the item is clicked on in displayItems
      */
     private static void displayItemInfo(Item item){
@@ -61,7 +72,7 @@ public class MarketplaceWindow {
         frame.setLayout(new FlowLayout());
         JLabel label = new JLabel();
         label.setText(item.getName());
-        frame.setSize(500, 300);
+        frame.setSize(400, 300);
         frame.add(label);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
