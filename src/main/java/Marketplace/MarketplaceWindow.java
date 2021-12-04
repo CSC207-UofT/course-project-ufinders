@@ -1,8 +1,5 @@
 package Marketplace;
 
-import Marketplace.Items.types.Animal;
-import Marketplace.Items.types.Clothes;
-import Marketplace.Items.types.Electronic;
 import Marketplace.Items.types.Item;
 
 import javax.swing.*;
