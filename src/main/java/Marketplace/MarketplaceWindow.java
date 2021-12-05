@@ -24,12 +24,12 @@ public class MarketplaceWindow {
      * Displays the list of items that are on sale on popup window
      */
 
-    public void displayItems(ArrayList<Item> items){
+    public static void displayItems(ArrayList<Item> items){
         DefaultListModel<String> listModel = new DefaultListModel<>();
         JFrame jFrame = new JFrame();
         //       this closes the whole program so, we have to fix it to go somewhere else
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        JButton button = new JButton("Done");
         int curr_item = 0;
         while(curr_item < items.size()){
             listModel.addElement((curr_item + 1) + ". " + items.get(curr_item).getName()  + ", for $" +
@@ -44,7 +44,14 @@ public class MarketplaceWindow {
                 displayItemInfo(items.get(ind));
             }
         });
+        button.addActionListener(e -> {
+            jFrame.setVisible(false);
+            button.setVisible(true);
+            MarketplaceUI.intro();
+        });
         jList.setBounds(0, 0, 700, 700);
+        button.setBounds(350, 640, 60, 30);
+        jFrame.add(button);
         jFrame.add(jList);
         jFrame.setSize(700,700);
         jFrame.setLocationRelativeTo(null);
@@ -64,16 +71,19 @@ public class MarketplaceWindow {
         frame.setLayout(new FlowLayout());
         JLabel label = new JLabel();
         label.setText(item.toString());
-        frame.setSize(400, 300);
+        frame.setSize(500, 300);
         frame.add(label);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
 
-        public void displayInfo(String info){
-            JOptionPane.showOptionDialog(null, info, null, JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, new String[]{"Next"}, "");
+    public void displayInfo(String info){
+        JOptionPane.showOptionDialog(null, info, null, JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, new String[]{"Next"}, "");
     }
 
+    public static void main(String[] args) {
+        displayItems(Database.GetLst());
+    }
 }
