@@ -124,7 +124,7 @@ public class MarketplaceUI {
             }
         }
         w.displayInfo("Searching now!");
-        w.displayItems(MarketplaceController.startSearch(choices));
+        MarketplaceWindow.displayItems(MarketplaceController.startSearch(choices));
     }
 
     /**
@@ -151,7 +151,6 @@ public class MarketplaceUI {
 
     private static void remove_post(){
         MarketplaceWindow w = new MarketplaceWindow();
-//    Will change the title to ID when we create an ID instead, but should users be able to remember their ID?
         String title = w.getInput("Please enter the title of the item you are removing");
         String password = w.getInput("Please enter the password for the item.");
         if (MarketplaceController.remove_post(title, password)){

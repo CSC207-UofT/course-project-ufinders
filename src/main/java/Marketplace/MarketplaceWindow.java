@@ -27,7 +27,6 @@ public class MarketplaceWindow {
     public static void displayItems(ArrayList<Item> items){
         DefaultListModel<String> listModel = new DefaultListModel<>();
         JFrame jFrame = new JFrame();
-        //       this closes the whole program so, we have to fix it to go somewhere else
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JButton button = new JButton("Done");
         int curr_item = 0;
@@ -81,5 +80,9 @@ public class MarketplaceWindow {
             JOptionPane.showOptionDialog(null, info, null, JOptionPane.DEFAULT_OPTION,
                     JOptionPane.QUESTION_MESSAGE, null, new String[]{"Next"}, "");
     }
+
+//    public static void main(String[] args) {
+//        displayItems(Database.GetLst());
+//    }
 
 }
