@@ -71,7 +71,7 @@ public class MarketplaceWindow {
         frame.setLayout(new FlowLayout());
         JLabel label = new JLabel();
         label.setText(item.toString());
-        frame.setSize(500, 300);
+        frame.setSize(1000, 300);
         frame.add(label);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

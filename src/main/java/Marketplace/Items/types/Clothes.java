@@ -34,7 +34,6 @@ public class Clothes extends Item{
         setCondition(condition);
     }
 
-
     @Override
     public String toString(){
         return "Name: " + this.getName() + ", Size: " + this.getSize() + " - " + this.getCondition() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() +
