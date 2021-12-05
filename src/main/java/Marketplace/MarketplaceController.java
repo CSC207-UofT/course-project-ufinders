@@ -79,7 +79,7 @@ public class MarketplaceController {
 
     public static boolean remove_post(String title, String password){
 //    Will change the title to ID when we create an ID instead, but should users be able to remember their ID?
-        if (ItemManager.remove_post(title, password)){
+        if (ItemManager.removePost(title, password)){
             System.out.println("You have successfully removed item!");
             return true;
         }
