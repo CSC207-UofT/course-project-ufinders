@@ -9,7 +9,6 @@ import Marketplace.Items.types.ItemCategories;
 import Marketplace.Items.types.Misc;
 import Marketplace.Items.types.Textbook;
 
-import java.util.ArrayList;
 
 
 public class ItemManager {
@@ -88,7 +87,7 @@ public class ItemManager {
      */
     public static boolean password_match(String title, String password){
 
-        for (Item item: Database.item_type_lst){
+        for (Item item: Database.GetLst()){
             if (item.getName().equals(title) & item.getPassword().equals(password)){
                 return true;
             }
@@ -101,9 +100,9 @@ public class ItemManager {
     /**
      * Removes the item sold from post and return true. Needs to check the password before the item can be removed.
      */
-    public static boolean remove_post(String title, String password){
+    public static boolean removePost(String title, String password){
 
-        for (Item item: Database.item_type_lst){
+        for (Item item: Database.GetLst()){
             if (item.getName().equals(title) & password_match(title, password)){
                 int id = item.getId();
                 Database.DeleteItem(id);
@@ -112,22 +111,5 @@ public class ItemManager {
         }
         return false;
     }
-
-//    public static void main(String[] Args){
-//        Animal animal = new Animal();
-//        animal.edit("Apple", "35y/o", "123", "123", "123",
-//                100, Item.campus.UTSG, "horse");
-//        Electronic electronic = new Electronic();
-//        electronic.edit("Banana", "product", "123", "123", "123",
-//                1000, Item.campus.UTSC, Item.condition.LikeNew, "Phone");
-//        Clothes clothes = new Clothes();
-//        clothes.edit("Bright", "colorful", "123", "123", "123",
-//                12, Item.campus.UTM, Clothes.size.S, Item.condition.New);
-//        Database.StoreItem(animal);
-//        Database.StoreItem(electronic);
-//        Database.StoreItem(clothes);
-//        remove_post("Apple", "123");
-//        System.out.println(Database.GetLst());
-//    }
 
 }
