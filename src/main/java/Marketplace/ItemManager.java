@@ -24,96 +24,60 @@ public class ItemManager {
     /**
      * Creates Animal Item and store into Database
      */
-    public void CreatePostAnimal(ArrayList<Object> info){
-
+    public void CreatePostAnimal(String name, String description, double price, String contact,
+                                 String password, String email, Item.campus campus, String animal_type){
         ItemCreator itemCreator = new ItemCreator();
         Animal item = (Animal) itemCreator.makeItem(ItemCategories.animal);
-        String title = (String) info.get(0);
-        String descrip = (String) info.get(1);
-        String contact = (String) info.get(3);
-        String password = (String) info.get(5);
-        String email = (String) info.get(4);
-        String animal = (String) info.get(7);
-        double price = (double) info.get(2);
-        Item.campus campus = (Item.campus) info.get(6);
-        item.edit(title, descrip, contact, email, password, price, campus, animal);
+        item.edit(name, description, contact, email, password, price, campus, animal_type);
         Database.StoreItem(item);
     }
 
     /**
      * Creates Clothes Item and store into Database
      */
-    public void CreatePostClothes(ArrayList<Object> info){
-
+    public void CreatePostClothes(String name, String description, double price, String contact,
+                                  String password, String email, Item.campus campus, Clothes.size size,
+                                  Item.condition condition){
         ItemCreator itemCreator = new ItemCreator();
         Clothes item = (Clothes) itemCreator.makeItem(ItemCategories.clothes);
-        String title = (String) info.get(0);
-        String descrip = (String) info.get(1);
-        String contact = (String) info.get(3);
-        String password = (String) info.get(5);
-        String email = (String) info.get(4);
-        double price = (double) info.get(2);
-        Item.campus campus = (Item.campus) info.get(6);
-        Item.condition condition = (Item.condition) info.get(7);
-        Clothes.size size = (Clothes.size) info.get(8);
-        item.edit(title, descrip, contact, email, password, price, campus, size, condition);
+        item.edit(name, description, contact, email, password, price, campus, size, condition);
         Database.StoreItem(item);
     }
 
     /**
      * Creates Electronic Item and store into Database
      */
-    public void CreatePostElectronic(ArrayList<Object> info){
+    public void CreatePostElectronic(String name, String description, double price, String contact, String email,
+                                     String password, Item.campus campus, Item.condition condition,
+                                     String tech_specifications){
 
         ItemCreator itemCreator = new ItemCreator();
         Electronic item = (Electronic) itemCreator.makeItem(ItemCategories.electronics);
-        String title = (String) info.get(0);
-        String descrip = (String) info.get(1);
-        String contact = (String) info.get(3);
-        String password = (String) info.get(5);
-        String email = (String) info.get(4);
-        double price = (double) info.get(2);
-        Item.campus campus = (Item.campus) info.get(6);
-        String tech = (String) info.get(8);
-        Item.condition condition = (Item.condition) info.get(7);
-        item.edit(title, descrip, contact, email, password, price, campus, condition, tech);
+        item.edit(name, description, contact, email, password, price, campus, condition, tech_specifications);
         Database.StoreItem(item);
     }
 
     /**
      * Creates Miscellaneous Item and store into Database
      */
-    public void CreatePostMisc(ArrayList<Object> info){
-
+    public void CreatePostMisc(String name, String description, double price, String contact, String email,
+                               String password, Item.campus campus){
+        
         ItemCreator itemCreator = new ItemCreator();
         Misc item = (Misc) itemCreator.makeItem(ItemCategories.misc);
-        String title = (String) info.get(0);
-        String descrip = (String) info.get(1);
-        String contact = (String) info.get(3);
-        String password = (String) info.get(5);
-        String email = (String) info.get(4);
-        double price = (double) info.get(2);
-        Item.campus campus = (Item.campus) info.get(6);
-        item.edit(title, descrip, contact, email, password, price, campus);
+        item.edit(name, description, contact, email, password, price, campus);
         Database.StoreItem(item);
     }
 
     /**
      * Creates Textbook Item and store into Database
      */
-    public void CreatePostTextbook(ArrayList<Object> info) {
+    public void CreatePostTextbook(String name, String description, double price, String contact, String email,
+                                   String password, Item.campus campus, String course) {
 
         ItemCreator itemCreator = new ItemCreator();
         Textbook item = (Textbook) itemCreator.makeItem(ItemCategories.textbook);
-        String title = (String) info.get(0);
-        String descrip = (String) info.get(1);
-        String contact = (String) info.get(3);
-        String password = (String) info.get(5);
-        String email = (String) info.get(4);
-        double price = (double) info.get(2);
-        String course = (String) info.get(7);
-        Item.campus campus = (Item.campus) info.get(6);
-        item.edit(title, descrip, contact, email, password, price, campus, course);
+        item.edit(name, description, contact, email, password, price, campus, course);
         Database.StoreItem(item);
 
     }
