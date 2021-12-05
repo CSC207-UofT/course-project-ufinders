@@ -59,31 +59,46 @@ public class MarketplaceController {
      */
     public static ArrayList<Item> startSearch(HashMap<String, String> choices){
         Searcher search = new Searcher();
-        search.addFilter(new typeFilter(ItemCategories.valueOf(choices.get("type"))));
-        search.addFilter(new wordFilter(choices.get("keyword")));
-        search.addFilter(new campusFilter(Item.campus.valueOf(choices.get("campus"))));
-        if (choices.get("price") != null){
-            search.addFilter(new priceFilter(Double.parseDouble((choices.get("lowprice"))),
-                    Double.parseDouble((choices.get("highprice")))));
-        }
-        search.addFilter(new conditionFilter(Item.condition.valueOf(choices.get("condition"))));
-        search.addFilter(new sizeFilter(Clothes.size.valueOf(choices.get("size"))));
-        search.addFilter(new courseFilter(choices.get("course")));
-        if (choices.get("sort").equals("pricehighlow")) {
-            search.addSorter(new Sorter(new LowPrice()));
-        } else if (choices.get("sort").equals("pricelowhigh")) {
-            search.addSorter(new Sorter(new HighPrice()));
+        for (String key : choices.keySet()){
+            makeFilter(choices, key, search);
         }
         return search.execute();
     }
 
     public static boolean remove_post(String title, String password){
 //    Will change the title to ID when we create an ID instead, but should users be able to remember their ID?
-        if (ItemManager.remove_post(title, password)){
+        if (ItemManager.removePost(title, password)){
             System.out.println("You have successfully removed item!");
             return true;
         }
         return false;
+    }
+
+    private static void makeFilter(HashMap<String, String> choices, String key, Searcher search){
+        switch (key) {
+            case "keyword":
+                search.addFilter(new wordFilter(choices.get("keyword")));
+                break;
+            case "type":
+                search.addFilter(new typeFilter(ItemCategories.valueOf(choices.get("type"))));
+                break;
+            case "campus":
+                search.addFilter(new campusFilter(Item.campus.valueOf(choices.get("campus"))));
+                break;
+            case "lowprice":
+                search.addFilter(new priceFilter(Double.parseDouble((choices.get("lowprice"))),
+                        Double.parseDouble((choices.get("highprice")))));
+                break;
+            case "condition":
+                search.addFilter(new conditionFilter(Item.condition.valueOf(choices.get("condition"))));
+                break;
+            case "size":
+                search.addFilter(new sizeFilter(Clothes.size.valueOf(choices.get("size"))));
+                break;
+            case "course":
+                search.addFilter(new courseFilter(choices.get("course")));
+                break;
+        }
     }
 
 }
