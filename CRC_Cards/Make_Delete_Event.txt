@@ -3,8 +3,6 @@ Class Name: MakeDeleteEvent
 Responsibilities:
 * Adds events to calendar database
 * Deletes events
-* Adds alarm to specified event
-* Removes alarm from specified event
 * Retrieves single or all events from a user
 
 Collaborators:
