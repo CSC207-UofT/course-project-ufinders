@@ -16,7 +16,7 @@ public class MakeDeleteEvent { //The Use Case that contains a list of events for
      * Constructs a Events.MakeDeleteEvent object.
      */
     public MakeDeleteEvent() {
-        events = new ArrayList<Event>();
+        events = new ArrayList<>();
     }
 
     /**
@@ -26,6 +26,7 @@ public class MakeDeleteEvent { //The Use Case that contains a list of events for
      * @param time The time the event takes place at.
      * @param title The name of the event.
      * @param URL The URL of the event if it's from the UofT website.
+     * @return The newly created Event object.
      */
     public Event addEvent(String date, String time, String title, String URL) {
         Event event = new Event(date, time, title, URL);
@@ -40,6 +41,7 @@ public class MakeDeleteEvent { //The Use Case that contains a list of events for
      * @param time The time the event takes place at.
      * @param title The name of the event.
      * @param URL The URL of the event if it's from the UofT website.
+     * @return The desired Event object.
      */
     public Event retrieveEvent(String date, String time, String title, String URL) {
         for (Event event : events) {
@@ -82,38 +84,12 @@ public class MakeDeleteEvent { //The Use Case that contains a list of events for
         }
     }
 
-
     /**
      * Returns all events on this user's calendar holds.
+     * @return A list of all event objects under this user.
      */
     public List<Event> retrieveAllEvents() {
         return events;
-    }
-
-    /**
-     * Sets an alarm for the specified event on this student's calendar.
-     *
-     * @param date The date of the event.
-     * @param time The time the event takes place at.
-     * @param title The name of the event.
-     * @param URL The URL of the event if it's from the UofT website.
-     * @param AlarmDate The date the alarm goes off.
-     * @param AlarmTime The time the alarm goes off.
-     */
-    public void setAlarm(String date, String time, String title, String URL, String AlarmDate, String AlarmTime) {
-
-    }
-
-    /**
-     * Removes the alarm from this event on the calendar.
-     *
-     * @param date The date of the event.
-     * @param time The time the event takes place at.
-     * @param title The name of the event.
-     * @param URL The URL of the event if it's from the UofT website.
-     */
-    public void removeAlarm(String date, String time, String title, String URL) {
-
     }
 
 }

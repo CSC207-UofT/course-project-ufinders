@@ -37,6 +37,7 @@ public class EventManager { //The controller for how all events work
      * @param time The time the event takes place at.
      * @param title The name of the event.
      * @param URL The URL of the event if it's from the UofT website.
+     * @return The newly created Event object.
      */
     public Event addEvent(String date, String time, String title, String URL) throws IOException {
         String path = "/course-project-ufinders/src/main/java/userData/";
@@ -50,6 +51,7 @@ public class EventManager { //The controller for how all events work
     /**
      * Reads events matching given keywords from the UofT website
      * @param keywords The string containing the keywords given by the user for the purposes of searching for events.
+     * @return The list of events matching the keyword search.
      */
     public List<Event> searchEvent(String keywords) throws ResponseException, NotFound {
         return GetEvent.findEvents(keywords);
@@ -107,6 +109,7 @@ public class EventManager { //The controller for how all events work
      * @param time The time the event takes place at.
      * @param title The name of the event.
      * @param URL The URL of the event if it's from the UofT website.
+     * @return The desired Event object.
      */
     public Event retrieveEvent(String date, String time, String title, String URL) {
         return mde.retrieveEvent(date, time, title, URL);
@@ -114,24 +117,12 @@ public class EventManager { //The controller for how all events work
 
     /**
      * Retrieves all events on this student's calendar.
+     * @return A list of all event objects under this student.
      */
     public List<Event> retrieveAllEvents() {
         return mde.retrieveAllEvents();
     }
 
-    /**
-     * Sets an alarm for the specified event on this student's calendar.
-     *
-     * @param date The date of the event.
-     * @param time The time the event takes place at.
-     * @param title The name of the event.
-     * @param URL The URL of the event if it's from the UofT website.
-     * @param AlarmDate The date the alarm goes off.
-     * @param AlarmTime The time the alarm goes off.
-     */
-    public void setAlarm(String date, String time, String title, String URL, String AlarmDate, String AlarmTime) {
-        mde.setAlarm(date, time, title, URL, AlarmDate, AlarmTime);
-    }
 
     /**
      * Edits an event in this student's database.
@@ -144,22 +135,11 @@ public class EventManager { //The controller for how all events work
      * @param newTime The new time the event takes place at.
      * @param newTitle The new name of the event.
      * @param newURL The new URL of the event.
+     * @return The newly edited event object.
      */
     public Event editEvent(String date, String time, String title, String URL, String newDate, String newTime, String newTitle, String newURL) throws IOException {
         this.removeSingleEvent(date, time, title, URL);
-        return this.addEvent(newDate, newTitle, newTime, newURL);
-    }
-
-    /**
-     * Removes the alarm from this event on the calendar.
-     *
-     * @param date The date of the event.
-     * @param time The time the event takes place at.
-     * @param title The name of the event.
-     * @param URL The URL of the event if it's from the UofT website.
-     */
-    public void removeAlarm(String date, String time, String title, String URL) {
-        mde.removeAlarm(date, time, title, URL);
+        return this.addEvent(newDate, newTime, newTitle, newURL);
     }
 
     /**
@@ -179,6 +159,9 @@ public class EventManager { //The controller for how all events work
             String userData = currentLine.trim();
             if (!userData.isEmpty()) {
                 userList = Arrays.asList(userData.split(","));
+                if (userList.isEmpty()) {
+                    continue;
+                }
                 String date = userList.get(0);
                 String time = userList.get(1);
                 String title = userList.get(2);
