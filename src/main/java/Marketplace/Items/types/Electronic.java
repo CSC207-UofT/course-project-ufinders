@@ -28,18 +28,18 @@ public class Electronic extends Item {
 
     public void edit(String title, String itemDescription, String contactNum, String contactEmail,
                      String password, double price, Item.campus campus, condition condition,
-                     String tech_specifications) {
+                     String techSpecifications) {
         // Polymorphed method from superclass, edits all attributed to the ones outlined in parameters
         super.edit(title, itemDescription, contactNum, contactEmail, password, price, campus);
         setCondition(condition);
-        setTechSpecifications(tech_specifications);
+        setTechSpecifications(techSpecifications);
 
     }
 
     @Override
     public String toString(){
         return "Name: " + this.getName() + " - " + this.getCondition() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() +
-                ", Tech Specifications: " + this.getTechSpecifications() + ", Contact info: " + this.getContactEmail()
+                System.lineSeparator() + ", Tech Specifications: " + this.getTechSpecifications() + ", Contact info: " + this.getContactEmail()
                 + " / " + this.getContactNum() + ", available at the " + this.getCampus() + " campus.";
     }
 

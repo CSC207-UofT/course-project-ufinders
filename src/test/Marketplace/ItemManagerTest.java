@@ -26,7 +26,7 @@ public class ItemManagerTest {
                 pass, email, Item.campus.UTSG);
         itemManager.CreatePostTextbook("Math", "MAT123 textbook", 10, contact,
                 pass, email, Item.campus.UTM, "Algebra");
-        assert (!Database.item_type_lst.isEmpty());
+       assert (!Database.item_type_lst.isEmpty());
     }
 
 

@@ -2,6 +2,7 @@ package User;
 
 
 
+
 import javax.swing.filechooser.FileSystemView;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,9 +12,8 @@ import java.io.IOException;
 public class Create_User {
 
     public static void make_user(String id, String password, String directory) throws IOException {
-        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView()
-                .getHomeDirectory()
-                .getAbsolutePath() + File.separator +"Documents" + File.separator  + "userData");
+        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
+                File.separator  + "userData");
 
         File myFile = new File(dir.getPath(),id + ".txt");
         if(myFile.createNewFile()){

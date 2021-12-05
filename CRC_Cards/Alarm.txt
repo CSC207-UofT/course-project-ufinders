@@ -1,5 +1,0 @@
-Class Name: Alarm
-
-Responsibilities:
-* Stores the title and the sound
-

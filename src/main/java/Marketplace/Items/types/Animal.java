@@ -29,8 +29,8 @@ public class Animal extends Item{
 
     @Override
     public String toString(){
-        return "Name: " + this.getName() + " - " + this.getAnimalType() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() + ", Contact info: " + this.getContactEmail()
-                + " / " + this.getContactNum() + ", available at the " + this.getCampus() + " campus.";
+        return "Name: " + this.getName() + " - " + this.getAnimalType() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() + System.lineSeparator() +
+                ", Contact info: " + this.getContactEmail() + " / " + this.getContactNum() + ", available at the " + this.getCampus() + " campus.";
     }
 
     // Getters and setters

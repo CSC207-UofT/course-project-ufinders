@@ -1,10 +1,28 @@
 package User;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+
 public class User_Controller {
+
+    public static boolean check_account(String userID){
+        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
+                File.separator  + "userData");
+        File myFile = new File(dir.getPath(),userID + ".txt");
+        return myFile.exists();
+
+    }
+
+    public static String retrieve_account(String userID){
+        return FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
+                File.separator  + "userData" + File.separator +
+                userID + ".txt";
+
+    }
 
     public static String read_password(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
