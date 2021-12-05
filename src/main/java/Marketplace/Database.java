@@ -75,10 +75,11 @@ public class Database implements Serializable{
      */
     public static void DeleteItem(int id){
         int i = 0;
-        while (i <= id){
-            if (i == id){
+        while (i <= item_type_lst.size()){
+            if (id == item_type_lst.get(i).getId()){
                 Item item = item_type_lst.get(i);
                 item_type_lst.remove(item);
+                break;
             }
             i++;
         }
@@ -92,7 +93,9 @@ public class Database implements Serializable{
         }
     }
 
-
+//    public static void main(String[] args) {
+//
+//    }
 
 }
 
