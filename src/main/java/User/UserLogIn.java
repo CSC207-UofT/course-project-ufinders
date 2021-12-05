@@ -10,6 +10,7 @@ public class UserLogIn extends JFrame {
     private JPanel panel1;
     private JPasswordField passwordPasswordField;
     private JButton signInButton;
+    private JButton returnButton;
     private final JFrame frame;
 
     public UserLogIn(){
@@ -35,8 +36,16 @@ public class UserLogIn extends JFrame {
             }
             else{
               // Add text box here to select program choice
+                frame.setVisible(false);
+                frame.dispose();
                 new FeatureSelection(username);
+
             }
+        });
+        returnButton.addActionListener(e -> {
+                frame.setVisible(false);
+                frame.dispose();
+                new UFindIntro();
         });
     }
 }

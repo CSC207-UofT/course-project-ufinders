@@ -22,8 +22,15 @@ public class UFindIntro {
         frame.setVisible(true);
 
 
-        signInButton.addActionListener(e -> new UserLogIn());
+        signInButton.addActionListener(e -> {
+            frame.setVisible(false);
+            frame.dispose();
+            new UserLogIn();
+        });
 
-        signUpButton.addActionListener(e -> new SignUpWindow());
+        signUpButton.addActionListener(e -> {
+            frame.setVisible(false);
+            frame.dispose();
+            new SignUpWindow();});
     }
 }
