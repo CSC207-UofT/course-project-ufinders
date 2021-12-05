@@ -1,5 +1,6 @@
 package User;
 
+
 import Events.EventWindow;
 import Journal.JournalUI;
 import Marketplace.MarketplaceUI;

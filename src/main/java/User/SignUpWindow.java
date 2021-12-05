@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+
 public class SignUpWindow {
     private JTextField textField1;
     private JPasswordField passwordField1;
