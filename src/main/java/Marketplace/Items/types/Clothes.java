@@ -36,8 +36,9 @@ public class Clothes extends Item{
 
     @Override
     public String toString(){
-        return "Name: " + this.getName() + ", Size: " + this.getSize() + " - " + this.getCondition() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() +
-                System.lineSeparator() + ", Contact info: " + this.getContactEmail() + " / " + this.getContactNum() + ", available at the " + this.getCampus() + " campus.";
+        return "Name: " + this.getName() + " - " + this.getCondition() + ", Price: " + this.getPrice() + ", Description: " + this.getItemDescription() +
+                System.lineSeparator() + ", Tech Specifications: " + this.getTechSpecifications() + ", Contact info: " + this.getContactEmail()
+                + " / " + this.getContactNum() + ", available at the " + this.getCampus() + " campus.";
     }
 
     // Getters and setters
