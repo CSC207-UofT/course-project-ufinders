@@ -10,8 +10,14 @@ public class UserLogIn extends JFrame {
     private JPanel panel1;
     private JPasswordField passwordPasswordField;
     private JButton signInButton;
+    private JButton returnButton;
     private final JFrame frame;
 
+    /**
+     * Display the login section of the UI
+     *
+     *
+     */
     public UserLogIn(){
         frame = new JFrame("Ufind");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -35,8 +41,16 @@ public class UserLogIn extends JFrame {
             }
             else{
               // Add text box here to select program choice
+                frame.setVisible(false);
+                frame.dispose();
                 new FeatureSelection(username);
+
             }
+        });
+        returnButton.addActionListener(e -> {
+                frame.setVisible(false);
+                frame.dispose();
+                new UFindIntro();
         });
     }
 }

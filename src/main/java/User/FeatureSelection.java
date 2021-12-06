@@ -14,6 +14,11 @@ public class FeatureSelection {
     private JButton marketplaceButton;
     private JPanel panel1;
 
+    /**
+     * Display the feature selection popup
+     *
+     *
+     */
     public FeatureSelection(String username){
         JFrame frame = new JFrame("Ufind");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

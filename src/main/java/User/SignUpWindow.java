@@ -14,7 +14,14 @@ public class SignUpWindow {
     private JPasswordField passwordField2;
     private JButton signUpButton;
     private JPanel panel1;
+    private JButton returnButton;
     private final JFrame frame;
+
+    /**
+     * Display the sign-up window
+     *
+     *
+     */
 
     public SignUpWindow() {
         frame = new JFrame("UFind");
@@ -48,7 +55,14 @@ public class SignUpWindow {
                 }
                 System.out.println(dir.getPath());
                 JOptionPane.showMessageDialog(frame, "Account Created!");
+                frame.setVisible(false);
+                frame.dispose();
                 new UFindIntro();
-
             }
-});}}
+        });
+        returnButton.addActionListener(e -> {
+            frame.setVisible(false);
+            frame.dispose();
+            new UFindIntro();
+        });
+    }}

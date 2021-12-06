@@ -9,7 +9,13 @@ import java.io.IOException;
 
 public class User_Controller {
 
+    /**
+     * Returns a boolean value corresponding whether an account with the given username exits
+     *
+     *
+     */
     public static boolean check_account(String userID){
+
         MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
                 File.separator  + "userData");
         File myFile = new File(dir.getPath(),userID + ".txt");
@@ -17,6 +23,11 @@ public class User_Controller {
 
     }
 
+    /**
+     * Returns a string representing the file path of the given username
+     *
+     *
+     */
     public static String retrieve_account(String userID){
         return FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
                 File.separator  + "userData" + File.separator +
@@ -24,6 +35,11 @@ public class User_Controller {
 
     }
 
+    /**
+     * Reads and returns the password corresponding to the given filepath
+     *
+     *
+     */
     public static String read_password(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             reader.readLine(); // Read the first line
@@ -36,6 +52,11 @@ public class User_Controller {
         }
     }
 
+    /**
+     * Reads and returns the journal directory corresponding to the given filepath
+     *
+     *
+     */
     public static String read_directory(String filename){
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
         reader.readLine(); // Read the first line
