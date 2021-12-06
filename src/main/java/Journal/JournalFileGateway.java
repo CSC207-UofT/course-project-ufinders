@@ -34,8 +34,8 @@ public class JournalFileGateway implements FileGateway { //interacts with dir
     @Override
     public File createFile(String title, String content, LocalDate date, String tags) {
 
-            String pathOfEntry = journalFilePath + "/" + title + ".txt";
-            File journalEntry = new File(pathOfEntry);
+            String pathOfEntry = this.journalFilePath + File.separator + title + ".txt";
+            File journalEntry = new File(this.journalFilePath + File.separator + title + ".txt");
         try {
             if (journalEntry.createNewFile()) {
                 writeToFile(title, content, date, tags, pathOfEntry);

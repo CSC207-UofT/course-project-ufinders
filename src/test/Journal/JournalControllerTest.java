@@ -18,7 +18,7 @@ public class JournalControllerTest {
     public  void setUp() {
         dir = new MakeDir(FileSystemView.getFileSystemView()
                 .getHomeDirectory()
-                .getAbsolutePath() + "/" + "Documents" + "/" + "JournalEntries");
+                .getAbsolutePath() + "/" + "Documents" + "/" + "Journal Entries");
         gateway = new JournalFileGateway(dir.getPath());
         controller = new JournalController(gateway);
     }
