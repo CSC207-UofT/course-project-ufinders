@@ -1,6 +1,7 @@
 package Marketplace;
 
 import Marketplace.Items.types.ItemCategories;
+import User.UFindIntro;
 
 import java.util.*;
 
@@ -25,12 +26,8 @@ public class MarketplaceUI {
                 remove_post();
                 break;
             case "exit":
-                System.exit(0);
+                new UFindIntro();
         }
-    }
-
-    public static void main(String[] args) {
-        intro();
     }
 
     /**

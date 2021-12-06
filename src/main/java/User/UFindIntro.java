@@ -9,6 +9,11 @@ public class UFindIntro {
     private JButton signInButton;
     private JPanel panel1;
 
+    /**
+     * Display the Intro section of the user interface
+     *
+     *
+     */
     public UFindIntro(){
         JFrame frame = new JFrame("Ufind");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -22,8 +27,15 @@ public class UFindIntro {
         frame.setVisible(true);
 
 
-        signInButton.addActionListener(e -> new UserLogIn());
+        signInButton.addActionListener(e -> {
+            frame.setVisible(false);
+            frame.dispose();
+            new UserLogIn();
+        });
 
-        signUpButton.addActionListener(e -> new SignUpWindow());
+        signUpButton.addActionListener(e -> {
+            frame.setVisible(false);
+            frame.dispose();
+            new SignUpWindow();});
     }
 }

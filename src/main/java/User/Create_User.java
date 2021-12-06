@@ -11,7 +11,12 @@ import java.io.IOException;
 
 public class Create_User {
 
-    public static void make_user(String id, String password, String directory) throws IOException {
+    /**
+     * Create a user file with the given username, password and journal directory path
+     *
+     *
+     */
+    public static void makeUser(String id, String password, String directory) throws IOException {
         MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
                 File.separator  + "userData");
 

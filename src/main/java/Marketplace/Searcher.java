@@ -6,13 +6,12 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class Searcher {
-    private Stack<Filter> filters;
+    private final Stack<Filter> filters;
     private Sorter sorter;
 
     /**
      * executes a search using the filters specified in filters and the sorter, if it has been given a value.
      *
-     * @return an arraylist of the resulting items
      */
     public Searcher(){
         this.filters = new Stack<>();

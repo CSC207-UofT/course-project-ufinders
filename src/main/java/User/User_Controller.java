@@ -9,7 +9,13 @@ import java.io.IOException;
 
 public class User_Controller {
 
-    public static boolean check_account(String userID){
+    /**
+     * Returns a boolean value corresponding whether an account with the given username exits
+     *
+     *
+     */
+    public static boolean checkAccount(String userID){
+
         MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
                 File.separator  + "userData");
         File myFile = new File(dir.getPath(),userID + ".txt");
@@ -17,14 +23,24 @@ public class User_Controller {
 
     }
 
-    public static String retrieve_account(String userID){
+    /**
+     * Returns a string representing the file path of the given username
+     *
+     *
+     */
+    public static String retrieveAccount(String userID){
         return FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
                 File.separator  + "userData" + File.separator +
                 userID + ".txt";
 
     }
 
-    public static String read_password(String filename) {
+    /**
+     * Reads and returns the password corresponding to the given filepath
+     *
+     *
+     */
+    public static String readPassword(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             reader.readLine(); // Read the first line
             // Read and return the second line which is the password
@@ -36,7 +52,12 @@ public class User_Controller {
         }
     }
 
-    public static String read_directory(String filename){
+    /**
+     * Reads and returns the journal directory corresponding to the given filepath
+     *
+     *
+     */
+    public static String readDirectory(String filename){
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
         reader.readLine(); // Read the first line
         reader.readLine(); // Read the second line
