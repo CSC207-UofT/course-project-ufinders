@@ -2,6 +2,7 @@ package Journal;
 
 
 import javax.swing.filechooser.FileSystemView;
+import java.io.File;
 import java.time.LocalDate;
 import java.util.Objects;
 import User.MakeDir;
@@ -22,9 +23,8 @@ public class JournalUI {
 
 
     public JournalUI(){
-        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView()
-                        .getHomeDirectory()
-                        .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
+        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
+                File.separator  + "Journal Entries");
         this.controller = new JournalController(new JournalFileGateway(dir.getPath()));
         this.popUpWindow = new JournalWindow();
         this.numOfTitleLessEntries = 0;
