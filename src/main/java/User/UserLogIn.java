@@ -13,6 +13,11 @@ public class UserLogIn extends JFrame {
     private JButton returnButton;
     private final JFrame frame;
 
+    /**
+     * Display the login section of the UI
+     *
+     *
+     */
     public UserLogIn(){
         frame = new JFrame("Ufind");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

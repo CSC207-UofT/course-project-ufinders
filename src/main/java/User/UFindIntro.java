@@ -9,6 +9,11 @@ public class UFindIntro {
     private JButton signInButton;
     private JPanel panel1;
 
+    /**
+     * Display the Intro section of the user interface
+     *
+     *
+     */
     public UFindIntro(){
         JFrame frame = new JFrame("Ufind");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

@@ -17,6 +17,12 @@ public class SignUpWindow {
     private JButton returnButton;
     private final JFrame frame;
 
+    /**
+     * Display the sign-up window
+     *
+     *
+     */
+
     public SignUpWindow() {
         frame = new JFrame("UFind");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
