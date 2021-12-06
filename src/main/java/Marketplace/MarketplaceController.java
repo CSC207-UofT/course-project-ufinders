@@ -34,7 +34,7 @@ public class MarketplaceController {
                 break;
             case "Animal":
                 String animaltype = info.get(7);
-                new ItemManager().CreatePostAnimal(name, description, price, phone, email, password, campus, animaltype);
+                new ItemManager().CreatePostAnimal(name, description, price, phone, password, email, campus, animaltype);
                 break;
             case "Textbook":
                 String course = info.get(7);
@@ -43,8 +43,8 @@ public class MarketplaceController {
             case "Clothing":
                 Item.condition condition2 = Item.condition.valueOf(info.get(7));
                 Clothes.size size = Clothes.size.valueOf(info.get(8));
-                new ItemManager().CreatePostClothes(name, description, price, phone, email,
-                        password, campus, size, condition2);
+                new ItemManager().CreatePostClothes(name, description, price, phone, password,
+                        email, campus, size, condition2);
                 break;
             case "Other":
                 new ItemManager().CreatePostMisc(name, description, price, phone, email, password, campus);
