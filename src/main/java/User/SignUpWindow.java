@@ -49,7 +49,7 @@ public class SignUpWindow {
                 MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath()
                         + File.separator  + "Journal Entries");
                 try {
-                    Create_User.make_user(username, password1, dir.getPath());
+                    Create_User.makeUser(username, password1, dir.getPath());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

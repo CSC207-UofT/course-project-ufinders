@@ -16,7 +16,7 @@ public class Create_User {
      *
      *
      */
-    public static void make_user(String id, String password, String directory) throws IOException {
+    public static void makeUser(String id, String password, String directory) throws IOException {
         MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
                 File.separator  + "userData");
 

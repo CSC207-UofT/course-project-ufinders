@@ -38,8 +38,8 @@ public class FeatureSelection {
         });
 
         journalButton.addActionListener(e -> {
-            String user_file = User_Controller.retrieve_account(username);
-            String[] dir_path = {User_Controller.read_directory(user_file)};
+            String user_file = User_Controller.retrieveAccount(username);
+            String[] dir_path = {User_Controller.readDirectory(user_file)};
             JournalUI.main(dir_path);
         });
 

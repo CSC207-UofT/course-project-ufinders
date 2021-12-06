@@ -34,9 +34,9 @@ public class UserLogIn extends JFrame {
         signInButton.addActionListener(e -> {
             String username = usernameTextField.getText();
             String password = new String(passwordPasswordField.getPassword());
-            String hypothetical_path = User_Controller.retrieve_account(username);
-            if (!User_Controller.check_account(username) ||
-                    (!Objects.equals(password, User_Controller.read_password(hypothetical_path)))) {
+            String hypothetical_path = User_Controller.retrieveAccount(username);
+            if (!User_Controller.checkAccount(username) ||
+                    (!Objects.equals(password, User_Controller.readPassword(hypothetical_path)))) {
                 JOptionPane.showMessageDialog(frame, "Invalid Username or Password");
             }
             else{

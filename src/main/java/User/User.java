@@ -18,7 +18,7 @@ public class User {
     public User(String id, String password, String directory){
         this.setUserID(id);
         this.setPassword(password);
-        this.setdirectory(directory);
+        this.setDirectory(directory);
     }
 
 
@@ -45,7 +45,7 @@ public class User {
      *
      * @param directory The user's directory
      */
-    public void setdirectory(String directory){
+    public void setDirectory(String directory){
         Directory = directory;
     }
 }

@@ -14,7 +14,7 @@ public class User_Controller {
      *
      *
      */
-    public static boolean check_account(String userID){
+    public static boolean checkAccount(String userID){
 
         MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
                 File.separator  + "userData");
@@ -28,7 +28,7 @@ public class User_Controller {
      *
      *
      */
-    public static String retrieve_account(String userID){
+    public static String retrieveAccount(String userID){
         return FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
                 File.separator  + "userData" + File.separator +
                 userID + ".txt";
@@ -40,7 +40,7 @@ public class User_Controller {
      *
      *
      */
-    public static String read_password(String filename) {
+    public static String readPassword(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             reader.readLine(); // Read the first line
             // Read and return the second line which is the password
@@ -57,7 +57,7 @@ public class User_Controller {
      *
      *
      */
-    public static String read_directory(String filename){
+    public static String readDirectory(String filename){
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
         reader.readLine(); // Read the first line
         reader.readLine(); // Read the second line
