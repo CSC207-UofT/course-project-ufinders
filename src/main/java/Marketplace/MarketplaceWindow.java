@@ -24,7 +24,7 @@ public class MarketplaceWindow {
      * Displays the list of items that are on sale on popup window
      */
 
-    public void displayItems(ArrayList<Item> items) {
+    public static void displayItems(ArrayList<Item> items) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         JFrame jFrame = new JFrame();
         //       this closes the whole program so, we have to fix it to go somewhere else
@@ -41,18 +41,19 @@ public class MarketplaceWindow {
         jList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 int ind = jList.getSelectedIndex();
+                button.setVisible(true);
                 displayItemInfo(items.get(ind));
             }
         });
         button.addActionListener(e -> {
             jFrame.setVisible(false);
-            button.setVisible(true);
             MarketplaceUI.intro();
         });
         jList.setBounds(0, 0, 700, 700);
-        button.setBounds(350, 640, 60, 30);
+        button.setBounds(350, 600, 60, 30);
         jFrame.add(button);
         jFrame.add(jList);
+        jFrame.pack();
         jFrame.setSize(700, 700);
         jFrame.setLocationRelativeTo(null);
         jFrame.setLayout(null);
@@ -82,4 +83,6 @@ public class MarketplaceWindow {
         JOptionPane.showOptionDialog(null, info, null, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, new String[]{"Next"}, "");
     }
+
+
 }
