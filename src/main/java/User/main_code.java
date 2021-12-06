@@ -8,7 +8,7 @@ import com.jaunt.ResponseException;
 
 
 
-public class main {
+public class main_code {
 
     /**
      * Run the program using the GUIs
