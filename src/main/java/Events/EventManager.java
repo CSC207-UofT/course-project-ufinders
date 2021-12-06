@@ -1,8 +1,10 @@
 package Events;
 
+import User.MakeDir;
 import com.jaunt.NotFound;
 import com.jaunt.ResponseException;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,8 +42,10 @@ public class EventManager { //The controller for how all events work
      * @return The newly created Event object.
      */
     public Event addEvent(String date, String time, String title, String URL) throws IOException {
-        String path = "/course-project-ufinders/src/main/java/userData/";
-        FileWriter userWriter = new FileWriter(path + utorID + ".txt");
+        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
+                File.separator  + "userDataEvents");
+
+        FileWriter userWriter = new FileWriter(dir.getPath() + utorID + ".txt");
         String newData = MessageFormat.format("{0},{1},{2},{3}", date, time, title, URL);
         userWriter.write(newData + "\n");
         userWriter.close();
@@ -62,8 +66,9 @@ public class EventManager { //The controller for how all events work
      */
     public void removeAllEvents() throws FileNotFoundException {
         mde.removeAllEvents();
-        String path = "/course-project-ufinders/src/main/java/userData/";
-        PrintWriter userPrint = new PrintWriter(path + utorID + ".txt");
+        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
+                File.separator  + "userDataEvents");
+        PrintWriter userPrint = new PrintWriter(dir.getPath() + utorID + ".txt");
         userPrint.print("");
         userPrint.close();
     }
@@ -79,9 +84,10 @@ public class EventManager { //The controller for how all events work
     public void removeSingleEvent(String date, String time, String title, String URL) throws IOException {
         //In MakeDeleteEvent, removes event from eventList, then in this class it removes it from the user file
         mde.removeEvent(date, time, title, URL);
-        String path = "/course-project-ufinders/src/main/java/userData/";
+        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
+                File.separator  + "userDataEvents");
 
-        File inputFile = new File(path + utorID + ".txt");
+        File inputFile = new File(dir.getPath() + utorID + ".txt");
         File tempFile = new File("tempfile.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(inputFile));
@@ -146,8 +152,9 @@ public class EventManager { //The controller for how all events work
      * Loads this user's calendar from their database.
      */
     public void loadEvents() throws IOException { //Make sure the titles don't have commas
-        String path = "/course-project-ufinders/src/main/java/userData/";
-        File userFile = new File(path + utorID + ".txt");
+        MakeDir dir = new MakeDir(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() +
+                File.separator  + "userDataEvents");
+        File userFile = new File(dir.getPath() + utorID + ".txt");
         if (userFile.length() == 0) {
             return;
         }

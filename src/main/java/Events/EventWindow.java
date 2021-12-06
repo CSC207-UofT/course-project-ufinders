@@ -44,7 +44,7 @@ public class EventWindow extends JFrame implements PropertyChangeListener {
      * @param userID The userID of the user.
      */
     public EventWindow(String[] userID) throws IOException {
-        eventInterface = new EventUI("soltanp3");
+        eventInterface = new EventUI("mkvacs");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(368, 362);
         setTitle("UFinders");
