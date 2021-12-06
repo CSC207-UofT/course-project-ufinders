@@ -62,11 +62,6 @@ public class MarketplaceController {
         for (String key : choices.keySet()){
             makeFilter(choices, key, search);
         }
-        if (choices.get("sort").equals("pricehighlow")) {
-            search.addSorter(new Sorter(new LowPrice()));
-        } else if (choices.get("sort").equals("pricelowhigh")) {
-            search.addSorter(new Sorter(new HighPrice()));
-        }
         return search.execute();
     }
 
