@@ -2,6 +2,7 @@ package Journal;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -85,7 +86,7 @@ public class JournalManager {// file gateway does the work of journal manager
 
         public boolean editEntry(String titleOfEntryToDelete, String title, String tags, LocalDate today, String entry){
             if (doesEntryExist(titleOfEntryToDelete)){
-                if (!getAllEntries().contains(title)){
+                if ((!getAllEntries().contains(title))|| Objects.equals(titleOfEntryToDelete, title)){
                     this.deleteEntry(titleOfEntryToDelete);
                     this.createEntry(title, entry, today, tags);
                     return true;}
