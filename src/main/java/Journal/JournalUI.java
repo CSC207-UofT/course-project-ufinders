@@ -12,6 +12,9 @@ public class JournalUI {
     // objects the JournalUI calls to create a pop-up window and get information that is inputted
     public JournalWindow popUpWindow;
 
+    // number of entries with no title
+    public int titleLessEntries;
+
 
 
 
@@ -21,6 +24,7 @@ public class JournalUI {
                 .getAbsolutePath() + "/" +"Documents" + "/"  + "Journal Entries");
         this.controller = new JournalController(new JournalFileGateway(dir.getPath()));
         this.popUpWindow = new JournalWindow();
+        this.titleLessEntries += 0;
 
     }
 
@@ -39,10 +43,30 @@ public class JournalUI {
 
                 }
             }
+            newEntry[0] = checkEntryHasTitle(newEntry[0]);
             LocalDate today = LocalDate.now();
             this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1]);
         }
     }
+
+    /**
+     * check whether title is an empty string, if it is  "Untitled"+ " " + titleLessEntries is returned and
+     * if not title is returned
+     * @param title string that is checked if it is empty string
+     * @return  "Untitled"+ " " + titleLessEntries if title is empty string and title if title is not an empty string
+     */
+
+    public String checkEntryHasTitle(String title){
+        if (Objects.equals(title, "")){
+            String newTitle = "Untitled"+ " " + titleLessEntries;
+            titleLessEntries += 1;
+            return newTitle;
+        }
+        else{
+            return title;
+        }
+    }
+
 
     /**
      * Calls popUpWindow to create a pop-up window prompting user to  choose from a list of entries to delete. Gets
@@ -65,6 +89,8 @@ public class JournalUI {
     public void viewEntry(String titleOfEntryToView){
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
         String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo);
+        modifiedJournalEntry[0] = checkEntryHasTitle(modifiedJournalEntry[0]);
+
         this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0], modifiedJournalEntry[1],
                 LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
     }
