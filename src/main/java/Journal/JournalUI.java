@@ -48,13 +48,13 @@ public class JournalUI {
             boolean entryCreated = this.controller.callCreateEntry(newEntry[0], newEntry[2], today, newEntry[1]);
             while (!entryCreated) {
                 this.popUpWindow.entryWithTitleAlreadyExistsWarning();
-                newEntry = addEntryWithNewTitle(today, newEntry);
-                entryCreated = this.controller.callCreateEntry(newEntry[0],
-                        newEntry[2], today, newEntry[1]);
-            }
+                    newEntry = addEntryWithNewTitle(today, newEntry);
+                if (newEntry == null) {entryCreated = true;}
 
-        }
-    }
+                else{newEntry[0] = checkEntryHasTitle(newEntry[0]);
+                    entryCreated = this.controller.callCreateEntry(newEntry[0],
+                            newEntry[2], today, newEntry[1]);}}
+        }}
 
 
     /**
@@ -113,20 +113,24 @@ public class JournalUI {
      *  to edit the entry
      *  @param titleOfEntryToView title of the entry the user wants to view
      */
-    public void viewEntry(String titleOfEntryToView){
+    public void viewEntry(String titleOfEntryToView) {
         String[] entryInfo = this.controller.callGetEntry(titleOfEntryToView);
         String[] modifiedJournalEntry = this.popUpWindow.viewAndAddEntryPopUp(entryInfo);
-        modifiedJournalEntry[0] = checkEntryHasTitle(modifiedJournalEntry[0]);
+        if (modifiedJournalEntry != null) {
+            modifiedJournalEntry[0] = checkEntryHasTitle(modifiedJournalEntry[0]);
 
-        boolean entryModified = this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
-                modifiedJournalEntry[1], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
-        while (!entryModified) {
-            this.popUpWindow.entryWithTitleAlreadyExistsWarning();
-            modifiedJournalEntry = addEntryWithNewTitle(LocalDate.parse(entryInfo[0]), modifiedJournalEntry);
-            entryModified = this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
+            boolean entryModified = this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
                     modifiedJournalEntry[1], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
+            while (!entryModified) {
+                this.popUpWindow.entryWithTitleAlreadyExistsWarning();
+                modifiedJournalEntry = addEntryWithNewTitle(LocalDate.parse(entryInfo[0]), modifiedJournalEntry);
+                if (modifiedJournalEntry == null){entryModified = true;}
+                else{
+                entryModified = this.controller.callEditEntry(titleOfEntryToView, modifiedJournalEntry[0],
+                        modifiedJournalEntry[1], LocalDate.parse(entryInfo[0]), modifiedJournalEntry[2]);
+            }
         }
-    }
+    }}
 
 
     /**
@@ -147,7 +151,7 @@ public class JournalUI {
     public static void main(String[] args) { // what if user presses cancel
         JournalUI UI = new JournalUI();
         String userCommand = UI.popUpWindow.viewUserOptionsPopUP();
-        while(!Objects.equals(userCommand, "exit journal")){
+        while((!Objects.equals(userCommand, "exit journal")) && userCommand != null){
 
             if (Objects.equals(userCommand, "add an entry")){
                 UI.addEntry();
