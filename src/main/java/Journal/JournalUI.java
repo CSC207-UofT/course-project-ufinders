@@ -151,7 +151,7 @@ public class JournalUI {
     public static void main(String[] args) { // what if user presses cancel
         JournalUI UI = new JournalUI();
         String userCommand = UI.popUpWindow.viewUserOptionsPopUP();
-        while((!Objects.equals(userCommand, "exit journal")) && userCommand != null){
+        while((!Objects.equals(userCommand, "exit journal"))){
 
             if (Objects.equals(userCommand, "add an entry")){
                 UI.addEntry();
