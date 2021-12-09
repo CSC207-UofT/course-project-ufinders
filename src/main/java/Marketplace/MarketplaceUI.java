@@ -23,7 +23,7 @@ public class MarketplaceUI {
                 NewPost();
                 break;
             case "remove":
-                remove_post();
+                removePostInfo();
                 break;
             case "exit":
                 new UFindIntro();
@@ -31,7 +31,7 @@ public class MarketplaceUI {
     }
 
     /**
-     * Gets information on what item the user is selling and passes to Sell_Buy.
+     * Gets information on what item the user is selling and passes that information to MarketplaceController.
      *
      *
      */
@@ -62,13 +62,13 @@ public class MarketplaceUI {
                 info.add(w.getChoice("What is the size of the clothing?", new String[]{"XS", "S", "M", "L", "XL"}));
                 break;
         }
-        MarketplaceController.selling_info(typeentry, info);
+        MarketplaceController.sellingInfo(typeentry, info);
         w.displayInfo("Your item has been posted!");
         intro();
     }
 
     /**
-     * Gets information on what item the user is searching for.
+     * Gets information on what item the user is searching for and passes it to MarketplaceController.
      *
      */
     private static void MakeSearch(){
@@ -82,7 +82,7 @@ public class MarketplaceUI {
         }
         choices.put("keyword", (w.getInput("Please enter a keyword for your search (ex. computer" +
                 ", desk, biology):")));
-        ArrayList<String> options = get_options(ItemCategories.valueOf(typechoice));
+        ArrayList<String> options = getOptions(ItemCategories.valueOf(typechoice));
         String filteranswer = w.getChoice("Do you want to filter by any of these options? " +
                 "If so, click one and then choose the value you want the items you see to have", options.toArray(new String[0]));
         while (!filteranswer.equals("Done")){
@@ -128,7 +128,7 @@ public class MarketplaceUI {
      * Gets information on what filters the searcher wants.
      *
      */
-    private static ArrayList<String> get_options(ItemCategories type){
+    private static ArrayList<String> getOptions(ItemCategories type){
         ArrayList<String> options = new ArrayList<>();
         options.add("Campus");
         options.add("Price");
@@ -146,19 +146,22 @@ public class MarketplaceUI {
         return options;
     }
 
-    private static void remove_post(){
+    /**
+     * gets information for the user to remove a post and passes it to MarketplaceController
+     */
+    private static void removePostInfo(){
         MarketplaceWindow w = new MarketplaceWindow();
 //    Will change the title to ID when we create an ID instead, but should users be able to remember their ID?
         String title = w.getInput("Please enter the title of the item you are removing");
         String password = w.getInput("Please enter the password for the item.");
-        if (MarketplaceController.remove_post(title, password)){
+        if (MarketplaceController.removePost(title, password)){
             w.displayInfo("You have successfully removed the item!");
             intro();
         }
         else {
             String fail = w.getChoice("You have entered the wrong title or password. Would you like to try again?", new String[]{"Yes", "No"});
             if (Objects.equals(fail, "Yes")){
-                remove_post();
+                removePostInfo();
             }
             else{
                 intro();

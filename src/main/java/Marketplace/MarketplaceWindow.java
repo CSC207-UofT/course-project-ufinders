@@ -8,12 +8,23 @@ import java.util.ArrayList;
 
 public class MarketplaceWindow {
 
+    /**
+     * displays the given prompts and buttons for the given options
+     * @param prompt the prompt for the user
+     * @param options a list of Strings, with each String being one button
+     * @return the user's response to the prompt
+     */
     public String getChoice(String prompt, String[] options) {
         int response = JOptionPane.showOptionDialog(null, prompt, null, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, options, "");
         return options[response];
     }
 
+    /**
+     * gets the users input for a certain prompt
+     * @param prompt the prompt for the user
+     * @return the user's response to the prompt
+     */
     public String getInput(String prompt) {
         return JOptionPane.showInputDialog(null, prompt,
                 null, JOptionPane.QUESTION_MESSAGE);
@@ -24,7 +35,7 @@ public class MarketplaceWindow {
      * Displays the list of items that are on sale on popup window
      */
 
-    public static void displayItems(ArrayList<Item> items) {
+    public void displayItems(ArrayList<Item> items) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         JFrame jFrame = new JFrame();
         //       this closes the whole program so, we have to fix it to go somewhere else
@@ -79,6 +90,10 @@ public class MarketplaceWindow {
 
     }
 
+    /**
+     * displays information to the user
+     * @param info information to be displayed
+     */
     public void displayInfo(String info) {
         JOptionPane.showOptionDialog(null, info, null, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, new String[]{"Next"}, "");

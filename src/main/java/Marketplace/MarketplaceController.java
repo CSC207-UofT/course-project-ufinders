@@ -13,11 +13,11 @@ import Marketplace.Items.types.*;
 public class MarketplaceController {
 
     /**
-     * Gets information on what item the user is selling and passes to Sell_Buy.
-     *
-     *
+     * Passes information about an item to the appropriate ItemManager method for creation.
+     * @param type the item type
+     * @param info the list of info gathered about the item
      */
-    public static void selling_info(String type, ArrayList<String> info){
+    public static void sellingInfo(String type, ArrayList<String> info){
         String name = info.get(0);
         String description = info.get(1);
         double price = Double.parseDouble(info.get(2));
@@ -53,8 +53,8 @@ public class MarketplaceController {
     }
 
     /**
-     * Gets information on what item the user is searching for and make the search
-     *
+     * Makes a search based on user specifications and returns the results from the search
+     * @param choices a hashmap with keys as the type of filter needed and values as the choice for that filter
      * @return the items that the user has searched for
      */
     public static ArrayList<Item> startSearch(HashMap<String, String> choices){
@@ -65,17 +65,32 @@ public class MarketplaceController {
         return search.execute();
     }
 
-    public static boolean remove_post(String title, String password){
+    /**
+     * attempts to remove the given post and returns whether the post was sucessfully removed
+     * @param title title of post to be removed
+     * @param password password for post to be removed
+     * @return true if the post is removed
+     */
+    public static boolean removePost(String title, String password){
 //    Will change the title to ID when we create an ID instead, but should users be able to remember their ID?
-        if (ItemManager.removePost(title, password)){
-            System.out.println("You have successfully removed item!");
-            return true;
-        }
-        return false;
+        return ItemManager.removePost(title, password);
     }
+
+    /**
+     * makes a filter and adds it to the search using the given key and hashmap
+     * @param choices a hashmap with keys as the type of filter needed and values as the choice for that filter
+     * @param key the hashmap key for a type of filter
+     * @param search the search object to add filters to
+     */
 
     private static void makeFilter(HashMap<String, String> choices, String key, Searcher search){
         switch (key) {
+            case "sort":
+                if (choices.get("sort").equals("pricehighlow")) {
+                    search.addSorter(new Sorter(new HighPrice()));
+                } else if (choices.get("sort").equals("pricelowhigh")) {
+                    search.addSorter(new Sorter(new LowPrice()));
+                }
             case "keyword":
                 search.addFilter(new wordFilter(choices.get("keyword")));
                 break;

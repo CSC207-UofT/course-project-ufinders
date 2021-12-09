@@ -92,9 +92,4 @@ public class Database implements Serializable{
             System.out.println("Cannot store item.");
         }
     }
-
-//    public static void main(String[] args) {
-//
-//    }
-
 }
