@@ -2,6 +2,8 @@
 
 Our Phase 2 written work is in the Phase2 folder, inside is an updated specification that directs you to how our program works. Our updated CRC cards are in the CRC_Card folder.
 
+To run our program as a whole, navigate to the User package and run main_code
+
 Below is directions on how our program works:
 
 How User Works:
